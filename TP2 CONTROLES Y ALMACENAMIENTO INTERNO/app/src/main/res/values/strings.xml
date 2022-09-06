@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">EjerciciosControles Grupo5</string>
     <string name="title_form">Formulario de contacto</string>
+    <string name="title_ListadoContactos_form">Contactos</string>
 
     <!-- Form 1  -->
     <string name="txt_form_contact">Este es un fromulario destinado al registro de personas, sus datos personales e intereses.</string>

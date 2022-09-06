@@ -6,16 +6,13 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ListView;
 
-public class ListadoContactos extends AppCompatActivity {
-
-    private ListView lvContactos;
+public class InfoUsuario extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_listado_contactos);
+        setContentView(R.layout.activity_info_usuario);
         setContentView(R.layout.activity_main);
     }
 
@@ -43,4 +40,5 @@ public class ListadoContactos extends AppCompatActivity {
         if (id == R.id.listar || id == R.id.agregar) return true;
         return super.onOptionsItemSelected(item);
     }
+
 }
