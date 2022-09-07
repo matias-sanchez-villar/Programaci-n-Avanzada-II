@@ -14,10 +14,11 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class ListadoContactos extends AppCompatActivity {
 
-    private List<String> listUsuarios = new ArrayList<String>();
+    private final List<String> listUsuarios = new ArrayList<>();
 
     private ListView lvUsers;
 
@@ -37,7 +38,7 @@ public class ListadoContactos extends AppCompatActivity {
         //Falta la comprobar si existe
         SharedPreferences preference = getSharedPreferences("contactos", Context.MODE_PRIVATE);
         //Falta un whilee
-        while (preference.getString("nombre","") != ""){
+        while (!Objects.equals(preference.getString("nombre", ""), "")){
             text = preference.getString("nombre","") + " ";
             text += preference.getString("apellido","") + " - ";
             text += preference.getString("email","");
