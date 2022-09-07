@@ -37,10 +37,12 @@ public class ListadoContactos extends AppCompatActivity {
         //Falta la comprobar si existe
         SharedPreferences preference = getSharedPreferences("contactos", Context.MODE_PRIVATE);
         //Falta un whilee
-        text = preference.getString("nombre","") + " ";
-        text += preference.getString("apellido","") + " - ";
-        text += preference.getString("email","");
-        listUsuarios.add(text);
+        while (preference.getString("nombre","") != ""){
+            text = preference.getString("nombre","") + " ";
+            text += preference.getString("apellido","") + " - ";
+            text += preference.getString("email","");
+            listUsuarios.add(text);
+        }
     }
 
     private void setAdapter (){
