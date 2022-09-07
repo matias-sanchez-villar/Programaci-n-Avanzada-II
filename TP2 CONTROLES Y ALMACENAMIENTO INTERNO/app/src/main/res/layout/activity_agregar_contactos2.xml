@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".AgregarContactos2">
 
+
     <TextView
         android:id="@+id/textTitle"
         android:layout_width="wrap_content"
@@ -15,38 +16,23 @@
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.431"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.085"
+        app:layout_constraintVertical_bias="0.026"
         tools:ignore="MissingConstraints"
         tools:text="@string/title_form" />
 
-    <TextView
-        android:id="@+id/textFormContact"
-        android:layout_width="293dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="568dp"
-        android:text="A continuación, por favor se ide completar más datos personales."
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textTitle"
-        app:layout_constraintVertical_bias="0.607"
-        tools:ignore="MissingConstraints"
-        tools:text="A continuación, por favor se ide completar más datos personales." />
-
     <RadioGroup
         android:id="@+id/radioGroup1"
-        android:layout_width="297dp"
-        android:layout_height="300dp"
+        android:layout_width="303dp"
+        android:layout_height="242dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.517"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.385"
-        tools:ignore="MissingConstraints">
+        app:layout_constraintVertical_bias="0.385">
 
         <TextView
             android:id="@+id/textEstudios"
@@ -91,27 +77,21 @@
 
     </RadioGroup>
 
-    <TextView
-        android:id="@+id/textInformacion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="80dp"
-        android:text="DESEA RECIBIR INFORMACION?"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.28"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup2" />
-
     <RadioGroup
         android:id="@+id/radioGroup2"
         android:layout_width="143dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
+        android:layout_marginStart="36dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup1"
-        app:layout_constraintVertical_bias="0.206">
+        app:layout_constraintVertical_bias="0.117">
+
+        <TextView
+            android:id="@+id/textIntereses"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="INTERESES" />
 
         <CheckBox
             android:id="@+id/cbDeporte"
@@ -150,19 +130,18 @@
             android:text="Tecnologia" />
     </RadioGroup>
 
-    <Switch
-        android:id="@+id/switchInformacion"
+    <TextView
+        android:id="@+id/textInformacion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginBottom="44dp"
-        android:text="SI"
-        app:layout_constraintBottom_toTopOf="@+id/btnGuardar"
+        android:layout_marginBottom="80dp"
+        android:text="DESEA RECIBIR INFORMACION?"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.029"
-        app:layout_constraintStart_toEndOf="@+id/textInformacion"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup3"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintHorizontal_bias="0.068"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup2"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/btnGuardar"
@@ -172,18 +151,19 @@
         android:text="GUARDAR"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.817"
+        app:layout_constraintHorizontal_bias="0.529"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInformacion"
-        app:layout_constraintVertical_bias="0.218" />
+        app:layout_constraintVertical_bias="0.812"
+        android:onClick="Guardar"/>
 
-    <TextView
-        android:id="@+id/textIntereses"
+    <Switch
+        android:id="@+id/recibeInformacion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
-        android:text="INTERESES"
-        app:layout_constraintBottom_toTopOf="@+id/radioGroup2"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup1"
-        tools:layout_editor_absoluteX="59dp" />
+        android:layout_marginStart="44dp"
+        android:text="Si"
+        app:layout_constraintStart_toEndOf="@+id/textInformacion"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup3" />
+
 </android.support.constraint.ConstraintLayout>

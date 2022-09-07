@@ -49,7 +49,7 @@
 
     <ScrollView
         android:layout_width="332dp"
-        android:layout_height="450dp"
+        android:layout_height="330dp"
         android:layout_marginTop="36dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -75,7 +75,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="Nombre"
+                android:hint="Nombre"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
             <TextView
@@ -91,7 +91,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="Apellido"
+                android:hint="Apellido"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
             <TextView
@@ -112,7 +112,7 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:inputType="phone"
-                    android:text="Telefono"
+                    android:hint="Telefono"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
                 <Spinner
@@ -141,7 +141,7 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:inputType="textEmailAddress"
-                    android:text="Email"
+                    android:hint="Email"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
                 <Spinner
@@ -159,12 +159,12 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName5"
+                android:id="@+id/editTextDireccion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="Direccion"
+                android:hint="Direccion"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
             <TextView
@@ -181,14 +181,15 @@
                 android:ems="10"
                 android:inputType="date"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                tools:text="Fecha de nacimiento" />
+                android:hint="Fecha de nacimiento" />
 
             <Button
                 android:id="@+id/btnContinuar"
                 android:layout_width="119dp"
                 android:layout_height="wrap_content"
                 android:text="CONTINUAR"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:onClick="agregarActivity2"/>
 
         </LinearLayout>
     </ScrollView>
