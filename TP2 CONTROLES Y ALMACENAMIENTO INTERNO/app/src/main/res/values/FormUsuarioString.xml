@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="txtTitleString">Informacion de usuario</string>
+    <string name="txtTitleNombreString">Nombre</string>
+    <string name="txtTitleApellidoString">Apellido</string>
+    <string name="txtTitleTelefonoString">Telefono</string>
+    <string name="txtTitleEmailString">Email</string>
+    <string name="txtTitleDireccionString">Direccion</string>
+    <string name="txtTitleFechaNacimientoString">Fecha de Nacimiento</string>
+    <string name="txtTitleEstudiosString">Estudios</string>
+    <string name="txtTitleInteresesString">Intereses</string>
+
+</resources>
