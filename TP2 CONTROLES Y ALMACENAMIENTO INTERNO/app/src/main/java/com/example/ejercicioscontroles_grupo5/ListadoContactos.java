@@ -25,11 +25,11 @@ public class ListadoContactos extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listado_contactos);
-        setContentView(R.layout.activity_main);
 
         getShared();
         setAdapter();
-        onClickAdapter();
+        Intent intent = new Intent(this, InfoUsuario.class);
+        onClickAdapter(intent);
     }
 
     private void getShared (){
@@ -57,13 +57,16 @@ public class ListadoContactos extends AppCompatActivity {
         lvUsers.setAdapter(adapter);
     }
 
-    private void onClickAdapter(){
+    private void onClickAdapter(Intent intent){
         lvUsers.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick (AdapterView<?> parent, View view, int position, long id){
                 String completo = (String)lvUsers.getItemAtPosition(position);
                 String[] parts = completo.split(" "); // [0] nombre, [1] apellido, [2] email
-                
+                intent.putExtra("nombre", "");
+                intent.putExtra("apellido", "");
+                intent.putExtra("email", "");
+                startActivity(intent);
             }
         });
     }

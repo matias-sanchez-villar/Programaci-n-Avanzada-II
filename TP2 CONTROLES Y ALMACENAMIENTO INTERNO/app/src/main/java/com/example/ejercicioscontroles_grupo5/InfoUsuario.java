@@ -31,7 +31,6 @@ public class InfoUsuario extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info_usuario);
-        setContentView(R.layout.activity_main);
 
         findViewById();
         getShared();
