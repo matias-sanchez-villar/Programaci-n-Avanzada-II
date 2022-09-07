@@ -11,7 +11,7 @@
         android:id="@+id/textTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="FORMULARIO DE CONTACTO"
+        android:text="@string/title_agregarContactos"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -20,8 +20,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.026"
-        tools:ignore="MissingConstraints"
-        tools:text="@string/title_form" />
+        tools:ignore="MissingConstraints" />
 
     <RadioGroup
         android:id="@+id/radioGroup1"
@@ -91,7 +90,7 @@
             android:id="@+id/textIntereses"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="INTERESES" />
+            android:text="@string/txtTitleInteresesString" />
 
         <CheckBox
             android:id="@+id/cbDeporte"

@@ -19,7 +19,6 @@ import java.util.Objects;
 public class ListadoContactos extends AppCompatActivity {
 
     private final List<String> listUsuarios = new ArrayList<>();
-
     private ListView lvUsers;
 
     @Override
@@ -34,16 +33,18 @@ public class ListadoContactos extends AppCompatActivity {
     }
 
     private void getShared (){
-        String text;
-        //Falta la comprobar si existe
+        int cont = 0;
         SharedPreferences preference = getSharedPreferences("contactos", Context.MODE_PRIVATE);
-        //Falta un whilee
+
         while (!Objects.equals(preference.getString("nombre", ""), "")){
-            text = preference.getString("nombre","") + " ";
+            cont++;
+            String text = "";
+            text += preference.getString("nombre","") + " ";
             text += preference.getString("apellido","") + " - ";
             text += preference.getString("email","");
             listUsuarios.add(text);
         }
+        if (cont == 0) listUsuarios.add("Aun no tiene registros de contactos guardados");
     }
 
     private void setAdapter (){
@@ -60,8 +61,9 @@ public class ListadoContactos extends AppCompatActivity {
         lvUsers.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick (AdapterView<?> parent, View view, int position, long id){
-                //Me retorna el string entero
-                lvUsers.getItemAtPosition(position);
+                String completo = (String)lvUsers.getItemAtPosition(position);
+                String[] parts = completo.split(" "); // [0] nombre, [1] apellido, [2] email
+                
             }
         });
     }

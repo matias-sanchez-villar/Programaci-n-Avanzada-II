@@ -10,11 +10,22 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import java.util.Objects;
+import java.util.HashMap;
+import java.util.Map;
 
 public class InfoUsuario extends AppCompatActivity {
 
     private TextView nombre, apellido, tipoTelefono, telefono, tipoEmail, email, direccion, fechaNacimiento, estudios, intereses;
+    private Map<String, String> mapEstudios = new HashMap<String, String>()
+    {
+        {
+            put("pCompleto", "Primario completo");
+            put("pIncompleto", "Primario incompleto");
+            put("sCompleto", "Secundario completo");
+            put("sIncompleto", "Secundario incompleto");
+            put("otros", "Otros");
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +51,7 @@ public class InfoUsuario extends AppCompatActivity {
     }
 
     private void getShared (){
-        String text;
-        //Falta la comprobar si existe
+        String Intereses = "";
         SharedPreferences preference = getSharedPreferences("contactos", Context.MODE_PRIVATE);
         nombre.setText(preference.getString("nombre",""));
         apellido.setText(preference.getString("apellido",""));
@@ -51,8 +61,20 @@ public class InfoUsuario extends AppCompatActivity {
         email.setText(preference.getString("email",""));
         direccion.setText(preference.getString("direccion",""));
         fechaNacimiento.setText(preference.getString("fechaNacimiento",""));
-        estudios.setText(preference.getString("nombre",""));
-        intereses.setText(preference.getString("nombre",""));
+        for (Map.Entry<String, String> estudio : mapEstudios.entrySet()) {
+            if(preference.getBoolean(estudio.getKey(), false) != false){
+                estudios.setText(estudio.getValue());
+                break;
+            }
+        }
+        if (preference.getBoolean("deporte", false) != false)
+            Intereses += "Deportes ";
+        if (preference.getBoolean("arte", false) != false)
+            Intereses += "arte ";
+        if (preference.getBoolean("musica", false) != false)
+            Intereses += "musica ";
+        if (preference.getBoolean("tecnologica", false) != false)
+            Intereses += "tecnologica ";
     }
 
     @Override
