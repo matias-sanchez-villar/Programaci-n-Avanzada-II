@@ -10,8 +10,13 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class AgregarContactos extends AppCompatActivity {
 
@@ -66,16 +71,34 @@ public class AgregarContactos extends AppCompatActivity {
     }
 
     public void agregarActivity2 (View view){
-        Intent agregar2 = new Intent(this, AgregarContactos2.class);
-        agregar2.putExtra("nombre", nombre.getText().toString());
-        agregar2.putExtra("apellido", apellido.getText().toString());
-        agregar2.putExtra("telefono", telefono.getText().toString());
-        agregar2.putExtra("email", email.getText().toString());
-        agregar2.putExtra("direccion", direccion.getText().toString());
-        agregar2.putExtra("fechaNacimiento", fechaNacimiento.getText().toString());
-        agregar2.putExtra("spTelefono", spTelefono.getSelectedItem().toString());
-        agregar2.putExtra("spEmail", spEmail.getSelectedItem().toString());
-        startActivity(agregar2);
+
+        //validaciones
+        if(!validaNombreyApellido(nombre.getText().toString())) {
+            Toast.makeText(this,"Nombre incorrecto", Toast.LENGTH_SHORT).show();
+        }
+        else if(!validaNombreyApellido(apellido.getText().toString())) {
+            Toast.makeText(this,"Apellido incorrecto", Toast.LENGTH_SHORT).show();
+        }
+        else if(!validaMail(email.getText().toString())) {
+            Toast.makeText(this,"Mail incorrecto", Toast.LENGTH_SHORT).show();
+        }
+        else if(!android.util.Patterns.PHONE.matcher(telefono.getText().toString()).matches()) {
+            Toast.makeText(this,"Telefono incorrecto", Toast.LENGTH_SHORT).show();
+        }
+        else if(!validafecha(fechaNacimiento.getText().toString())) {
+            Toast.makeText(this,"Fecha incorrecta", Toast.LENGTH_SHORT).show();
+        } else {
+            Intent agregar2 = new Intent(this, AgregarContactos2.class);
+            agregar2.putExtra("nombre", nombre.getText().toString());
+            agregar2.putExtra("apellido", apellido.getText().toString());
+            agregar2.putExtra("telefono", telefono.getText().toString());
+            agregar2.putExtra("email", email.getText().toString());
+            agregar2.putExtra("direccion", direccion.getText().toString());
+            agregar2.putExtra("fechaNacimiento", fechaNacimiento.getText().toString());
+            agregar2.putExtra("spTelefono", spTelefono.getSelectedItem().toString());
+            agregar2.putExtra("spEmail", spEmail.getSelectedItem().toString());
+            startActivity(agregar2);
+        }
     }
 
     @Override
@@ -87,6 +110,30 @@ public class AgregarContactos extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public boolean validaMail(String mail) {
+        Pattern pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+
+        Matcher mather = pattern.matcher(mail);
+        return mather.matches();
+    }
+    public boolean validafecha(String fecha) {
+        if (fecha == null || !fecha.matches("^(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/((?:19|20)[0-9][0-9])$"))
+            return false;
+        SimpleDateFormat format=new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            format.parse(fecha);
+            return true;
+        }catch (ParseException e){
+            return false;
+        }
+    }
+
+    public boolean validaNombreyApellido(String nombreyapellido) {
+        Pattern pattern = Pattern.compile("^[A-Za-z]{1,20}$");
+        Matcher mather = pattern.matcher(nombreyapellido);
+        return mather.matches();
+    }
 
 
 

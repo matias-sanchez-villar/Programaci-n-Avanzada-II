@@ -33,18 +33,21 @@ public class ListadoContactos extends AppCompatActivity {
     }
 
     private void getShared (){
-        int cont = 0;
         SharedPreferences preference = getSharedPreferences("contactos", Context.MODE_PRIVATE);
 
-        while (!Objects.equals(preference.getString("nombre", ""), "")){
-            cont++;
-            String text = "";
-            text += preference.getString("nombre","") + " ";
-            text += preference.getString("apellido","") + " - ";
-            text += preference.getString("email","");
-            listUsuarios.add(text);
+        int cantidadContactos = preference.getInt("cantidadContactos", Context.MODE_PRIVATE);
+        if (cantidadContactos == 0) {
+            listUsuarios.add("Aun no tiene registros de contactos guardados");
         }
-        if (cont == 0) listUsuarios.add("Aun no tiene registros de contactos guardados");
+        else {
+            for (int x=1; x <= cantidadContactos; x++){
+                String text = "";
+                text += preference.getString("nombre"+x,"") + " ";
+                text += preference.getString("apellido"+x,"") + " - ";
+                text += preference.getString("email"+x,"");
+                listUsuarios.add(text);
+            }
+        }
     }
 
     private void setAdapter (){
@@ -63,9 +66,7 @@ public class ListadoContactos extends AppCompatActivity {
             public void onItemClick (AdapterView<?> parent, View view, int position, long id){
                 String completo = (String)lvUsers.getItemAtPosition(position);
                 String[] parts = completo.split(" "); // [0] nombre, [1] apellido, [2] email
-                intent.putExtra("nombre", "");
-                intent.putExtra("apellido", "");
-                intent.putExtra("email", "");
+                intent.putExtra("id", position+1);
                 startActivity(intent);
             }
         });

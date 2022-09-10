@@ -1,6 +1,7 @@
 package com.example.ejercicioscontroles_grupo5;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -51,29 +52,50 @@ public class AgregarContactos2 extends AppCompatActivity {
         String fechaNacimiento = getIntent().getStringExtra("fechaNacimiento");
         String spTelefono = getIntent().getStringExtra("spTelefono");
         String spEmail = getIntent().getStringExtra("spEmail");
+
         SharedPreferences preferences = getSharedPreferences("contactos", Context.MODE_PRIVATE);
+
+        int cantidadContactos = preferences.getInt("cantidadContactos", -1);
+
+        if (cantidadContactos == -1){
+            cantidadContactos = 1;
+        } else {
+            cantidadContactos++;
+        }
+
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("nombre", nombre);
-        editor.putString("apellido", apellido);
-        editor.putString("telefono", telefono);
-        editor.putString("email", email);
-        editor.putString("direccion", direccion);
-        editor.putString("fechaNacimiento", fechaNacimiento);
-        editor.putString("spTelefono", spTelefono);
-        editor.putString("spEmail", spEmail);
-        editor.putBoolean("pCompleto", primarioCompleto.isChecked());
-        editor.putBoolean("pIncompleto", primarioIncompleto.isChecked());
-        editor.putBoolean("sCompleto", secundarioCompleto.isChecked());
-        editor.putBoolean("sIncompleto", secundarioIncompleto.isChecked());
-        editor.putBoolean("otros", otros.isChecked());
-        editor.putBoolean("deporte", deporte.isChecked());
-        editor.putBoolean("arte", arte.isChecked());
-        editor.putBoolean("musica", musica.isChecked());
-        editor.putBoolean("tecnologica", tecnologia.isChecked());
-        editor.putBoolean("recibeInformacion", recibeInformacion.isChecked());
+
+
+        editor.putString("nombre" + cantidadContactos, nombre);
+        editor.putString("apellido" + cantidadContactos, apellido);
+        editor.putString("telefono" + cantidadContactos, telefono);
+        editor.putString("email" + cantidadContactos, email);
+        editor.putString("direccion" + cantidadContactos, direccion);
+        editor.putString("fechaNacimiento" + cantidadContactos, fechaNacimiento);
+        editor.putString("spTelefono" + cantidadContactos, spTelefono);
+        editor.putString("spEmail" + cantidadContactos, spEmail);
+        editor.putBoolean("pCompleto" + cantidadContactos, primarioCompleto.isChecked());
+        editor.putBoolean("pIncompleto" + cantidadContactos, primarioIncompleto.isChecked());
+        editor.putBoolean("sCompleto" + cantidadContactos, secundarioCompleto.isChecked());
+        editor.putBoolean("sIncompleto" + cantidadContactos, secundarioIncompleto.isChecked());
+        editor.putBoolean("otros" + cantidadContactos, otros.isChecked());
+        editor.putBoolean("deporte" + cantidadContactos, deporte.isChecked());
+        editor.putBoolean("arte" + cantidadContactos, arte.isChecked());
+        editor.putBoolean("musica" + cantidadContactos, musica.isChecked());
+        editor.putBoolean("tecnologica" + cantidadContactos, tecnologia.isChecked());
+        editor.putBoolean("recibeInformacion" + cantidadContactos, recibeInformacion.isChecked());
+
+        editor.putInt("cantidadContactos", cantidadContactos);
 
         editor.commit();
 
         Toast.makeText(this, "El contacto ha sido guardado", Toast.LENGTH_SHORT).show();
+
+        iniciarMainActivity();
+    }
+
+    public void iniciarMainActivity(){
+        Intent mainActivity = new Intent(this, MainActivity.class);
+        startActivity(mainActivity);
     }
 }

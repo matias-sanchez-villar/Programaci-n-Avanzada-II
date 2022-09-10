@@ -51,29 +51,32 @@ public class InfoUsuario extends AppCompatActivity {
 
     private void getShared (){
         String Intereses = "";
-        SharedPreferences preference = getSharedPreferences("contactos", Context.MODE_PRIVATE);
-        nombre.setText(preference.getString("nombre",""));
-        apellido.setText(preference.getString("apellido",""));
-        tipoTelefono.setText(preference.getString("spTelefono",""));
-        telefono.setText(preference.getString("telefono",""));
-        tipoEmail.setText(preference.getString("spEmail",""));
-        email.setText(preference.getString("email",""));
-        direccion.setText(preference.getString("direccion",""));
-        fechaNacimiento.setText(preference.getString("fechaNacimiento",""));
-        for (Map.Entry<String, String> estudio : mapEstudios.entrySet()) {
-            if(preference.getBoolean(estudio.getKey(), false) != false){
-                estudios.setText(estudio.getValue());
-                break;
+        int position = getIntent().getIntExtra("id", -1);
+        if(position != -1){
+            SharedPreferences preference = getSharedPreferences("contactos", Context.MODE_PRIVATE);
+            nombre.setText(preference.getString("nombre"+position,""));
+            apellido.setText(preference.getString("apellido"+position,""));
+            tipoTelefono.setText(preference.getString("spTelefono"+position,""));
+            telefono.setText(preference.getString("telefono"+position,""));
+            tipoEmail.setText(preference.getString("spEmail"+position,""));
+            email.setText(preference.getString("email"+position,""));
+            direccion.setText(preference.getString("direccion"+position,""));
+            fechaNacimiento.setText(preference.getString("fechaNacimiento"+position,""));
+            for (Map.Entry<String, String> estudio : mapEstudios.entrySet()) {
+                if(preference.getBoolean(estudio.getKey(), false) != false){
+                    estudios.setText(estudio.getValue());
+                    break;
+                }
             }
+            if (preference.getBoolean("deporte"+position, false) != false)
+                Intereses += "Deportes ";
+            if (preference.getBoolean("arte"+position, false) != false)
+                Intereses += "arte ";
+            if (preference.getBoolean("musica"+position, false) != false)
+                Intereses += "musica ";
+            if (preference.getBoolean("tecnologica"+position, false) != false)
+                Intereses += "tecnologica ";
         }
-        if (preference.getBoolean("deporte", false) != false)
-            Intereses += "Deportes ";
-        if (preference.getBoolean("arte", false) != false)
-            Intereses += "arte ";
-        if (preference.getBoolean("musica", false) != false)
-            Intereses += "musica ";
-        if (preference.getBoolean("tecnologica", false) != false)
-            Intereses += "tecnologica ";
     }
 
     @Override
