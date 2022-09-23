@@ -50,13 +50,15 @@ public class MainActivity extends AppCompatActivity {
         Cursor fila = database.rawQuery
                 ("select id, Nombre, Mail, password from usuarios where nombre="
                         + name + " password=" + password, null);
-        if(fila.moveToFirst())
+        if(fila.moveToFirst()) {
+            database.close();
             activityUser(
                     fila.getString(0),
                     fila.getString(1),
                     fila.getString(2),
                     fila.getString(3)
             );
+        }
         else
             toast("El usuario ingresado no existe en nuestra base de datos");
         database.close();
