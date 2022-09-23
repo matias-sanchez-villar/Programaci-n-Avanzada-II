@@ -25,12 +25,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void login(View view){
-            toast("pepe");
-        if(ValidarUsuario.nombre(txtNombreUsuario.getText().toString()) != true)
-            toast("pepe");
-        if(ValidarUsuario.password(txtContasena.getText().toString()) != true)
+        if(!ValidarUsuario.nombre(txtNombreUsuario.getText().toString())) {
+            toast("Nombre de usuario incorrecto");
             return;
-        //buscarBD();
+        }
+        if(!ValidarUsuario.password(txtContasena.getText().toString())){
+            toast("Contraseña incorrecta");
+            return;
+        }
+        buscarBD();
     }
 
     public void registrar(View view){

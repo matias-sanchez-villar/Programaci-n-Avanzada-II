@@ -52,15 +52,15 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="@string/mainTxtNameUser" />
+            android:hint="@string/mainTxtNameUser" />
 
         <EditText
             android:id="@+id/txtContasena"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="@string/mainTxtPassword" />
+            android:inputType="textPassword"
+            android:hint="@string/mainTxtPassword" />
 
         <Button
             android:id="@+id/btnLogin"
