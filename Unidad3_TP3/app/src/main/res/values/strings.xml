@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">parking control</string>
+    <string name="txtTitle">Registrarse</string>
+    <string name="btnRegistrarUsu">ACEPTAR</string>
+    <string name="txtnomUsu">Nombre</string>
+    <string name="txtmailUsu">Correo electronico</string>
+    <string name="txtPassUsu">Contraseña</string>
+    <string name="txtRepPassUsu">Repetir Contraseña</string>
+</resources>
