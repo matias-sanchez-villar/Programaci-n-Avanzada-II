@@ -29,11 +29,14 @@ public class MainActivity extends AppCompatActivity {
             toast("Nombre de usuario incorrecto");
             return;
         }
+        /**
         if(!ValidarUsuario.password(txtContasena.getText().toString())){
             toast("Contraseña incorrecta");
             return;
         }
-        buscarBD();
+         **/
+        activityParqueo();
+        // buscarBD();
     }
 
     public void registrar(View view){
@@ -71,6 +74,11 @@ public class MainActivity extends AppCompatActivity {
         intente.putExtra("Mail", Mail);
         intente.putExtra("password", password);
         startActivity(intente);
+    }
+
+    public void activityParqueo(){
+        Intent parqueo = new Intent(this, Parqueos.class);
+        startActivity(parqueo);
     }
 
     public void activityParqueos(){

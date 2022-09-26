@@ -10,13 +10,13 @@ public class ValidarUsuario {
     public static final String passwordRegex = "";
 
     public static boolean nombre (String nombre) {
-        Pattern pattern = Pattern.compile(emailRegex);
+        Pattern pattern = Pattern.compile(nombreRegex);
         Matcher mather = pattern.matcher(nombre);
         return  mather.matches();
     }
 
     public static boolean email (String email) {
-        Pattern pattern = Pattern.compile(nombreRegex);
+        Pattern pattern = Pattern.compile(emailRegex);
         Matcher mather = pattern.matcher(email);
         return  mather.matches();
     }
