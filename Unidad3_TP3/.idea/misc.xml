@@ -4,11 +4,23 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Diego/AndroidStudioProjects/Unidad3_TP3/app/src/main/res/layout/activity_registrar_usuario.xml" value="0.33" />
+        <entry key="..\:/Users/elmer/Desktop/Elmer/UTN/Programacion Avanzada II/Projects/Programacion-Avanzada-II/Unidad3_TP3/app/src/main/res/drawable/ic_menu_gallery.xml" value="0.1545" />
+        <entry key="..\:/Users/elmer/Desktop/Elmer/UTN/Programacion Avanzada II/Projects/Programacion-Avanzada-II/Unidad3_TP3/app/src/main/res/drawable/ic_menu_slideshow.xml" value="0.1545" />
         <entry key="..\:/Users/elmer/Desktop/Elmer/UTN/Programacion Avanzada II/Projects/Programacion-Avanzada-II/Unidad3_TP3/app/src/main/res/layout/activity_main.xml" value="0.15" />
         <entry key="..\:/Users/elmer/Desktop/Elmer/UTN/Programacion Avanzada II/Projects/Programacion-Avanzada-II/Unidad3_TP3/app/src/main/res/layout/activity_main2.xml" value="0.15" />
-        <entry key="..\:/Users/elmer/Desktop/Elmer/UTN/Programacion Avanzada II/Projects/Programacion-Avanzada-II/Unidad3_TP3/app/src/main/res/layout/activity_parqueos.xml" value="0.264" />
+        <entry key="..\:/Users/elmer/Desktop/Elmer/UTN/Programacion Avanzada II/Projects/Programacion-Avanzada-II/Unidad3_TP3/app/src/main/res/layout/activity_parqueos.xml" value="0.2" />
+        <entry key="..\:/Users/elmer/Desktop/Elmer/UTN/Programacion Avanzada II/Projects/Programacion-Avanzada-II/Unidad3_TP3/app/src/main/res/layout/activity_parqueos_drawer.xml" value="0.15" />
+        <entry key="..\:/Users/elmer/Desktop/Elmer/UTN/Programacion Avanzada II/Projects/Programacion-Avanzada-II/Unidad3_TP3/app/src/main/res/layout/activity_registrar_parqueo.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/elmer/Desktop/Elmer/UTN/Programacion Avanzada II/Projects/Programacion-Avanzada-II/Unidad3_TP3/app/src/main/res/layout/activity_registrar_usuario.xml" value="0.15" />
+        <entry key="..\:/Users/elmer/Desktop/Elmer/UTN/Programacion Avanzada II/Projects/Programacion-Avanzada-II/Unidad3_TP3/app/src/main/res/layout/app_bar_parqueos_drawer.xml" value="0.1" />
+        <entry key="..\:/Users/elmer/Desktop/Elmer/UTN/Programacion Avanzada II/Projects/Programacion-Avanzada-II/Unidad3_TP3/app/src/main/res/layout/content_parqueos_drawer.xml" value="0.15" />
+        <entry key="..\:/Users/elmer/Desktop/Elmer/UTN/Programacion Avanzada II/Projects/Programacion-Avanzada-II/Unidad3_TP3/app/src/main/res/layout/dialog_registrar_parqueo.xml" value="0.15" />
+        <entry key="..\:/Users/elmer/Desktop/Elmer/UTN/Programacion Avanzada II/Projects/Programacion-Avanzada-II/Unidad3_TP3/app/src/main/res/layout/fragment_gallery.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/elmer/Desktop/Elmer/UTN/Programacion Avanzada II/Projects/Programacion-Avanzada-II/Unidad3_TP3/app/src/main/res/layout/fragment_home.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/elmer/Desktop/Elmer/UTN/Programacion Avanzada II/Projects/Programacion-Avanzada-II/Unidad3_TP3/app/src/main/res/layout/nav_header_parqueos_drawer.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/elmer/Desktop/Elmer/UTN/Programacion Avanzada II/Projects/Programacion-Avanzada-II/Unidad3_TP3/app/src/main/res/menu/activity_main_drawer.xml" value="0.536" />
         <entry key="..\:/Users/elmer/Desktop/Elmer/UTN/Programacion Avanzada II/Projects/Programacion-Avanzada-II/Unidad3_TP3/app/src/main/res/menu/menu_parqueos.xml" value="0.18697916666666667" />
+        <entry key="..\:/Users/elmer/Desktop/Elmer/UTN/Programacion Avanzada II/Projects/Programacion-Avanzada-II/Unidad3_TP3/app/src/main/res/menu/parqueos_drawer.xml" value="0.15" />
         <entry key="..\:/Users/msancvil.USERSAD/Documents/Programacion-Avanzada-II/Unidad3_TP3/app/src/main/res/layout/activity_main.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/msancvil.USERSAD/Documents/Programacion-Avanzada-II/Unidad3_TP3/app/src/main/res/layout/activity_registrar_usuario.xml" value="0.1" />
       </map>

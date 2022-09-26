@@ -17,9 +17,15 @@ public class AdminSQLite extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String query="create table usuarios(id integer primary key autoincrement, Nombre text , Mail text, password text);";
+        String query="create table usuarios" +
+                "(id integer primary key autoincrement, Nombre text , Mail text, password text)";
+
+        String queryParqueos ="CREATE TABLE parqueos" +
+                "(id INTEGER PRIMARY KEY AUTOINCREMENT, id_usuario INTEGER, nro_matricula INTEGER," +
+                "tiempo INTEGER)";
 
         db.execSQL(query);
+        db.execSQL(queryParqueos);
     }
 
     @Override
@@ -37,19 +43,27 @@ public class AdminSQLite extends SQLiteOpenHelper {
     //Metodo Insertar Usuario con validacion de campos vacios
     public void insertarUsuario(String nom, String mail, String pass){
         ContentValues registro=new ContentValues();
-        if(!nom.isEmpty() && mail.isEmpty() && pass.isEmpty()){
+        if(!nom.isEmpty() && !mail.isEmpty() && !pass.isEmpty()){
              registro.put("Nombre",nom);
              registro.put("Mail",mail);
-             registro.put("Password",pass);
+             registro.put("password",pass);
              this.getWritableDatabase().insert("usuarios", null, registro);
         }
+    }
+
+    public void insertarParqueo(int matricula, int tiempo, int idUsuario){
+        ContentValues nuevoParqueo = new ContentValues();
+        nuevoParqueo.put("nro_matricula", matricula);
+        nuevoParqueo.put("id_usuario", idUsuario);
+        nuevoParqueo.put("tiempo", tiempo);
+        this.getWritableDatabase().insert("parqueos", null, nuevoParqueo);
     }
 
     //Metodo para validar correo existente
     public Cursor ConsultaMail (String correo) throws SQLException{
         Cursor mcursor=null;
         mcursor=this.getReadableDatabase().query("usuarios", new String[] {"id","Nombre","Mail", "password"},
-                            "Mail like '"+correo,null,null,null,null);
+                            "Mail = " + Utilities.SQLString(correo),null,null,null,null);
         return mcursor;
     }
 

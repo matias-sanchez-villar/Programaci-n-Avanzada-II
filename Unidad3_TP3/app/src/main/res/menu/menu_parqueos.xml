@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".Parqueos">
-<item
-    android:id="@+id/registrarParqueo"
-    android:title="Registrar"></item>
-</menu>

@@ -54,7 +54,7 @@ public class RegistrarUsuario extends AppCompatActivity {
                         String.valueOf(txtpassword.getText()));
                 helper.cerarDB();
                 Toast.makeText(getApplicationContext(),"Registro almacenado con exito",Toast.LENGTH_LONG).show();
-                Intent i= new Intent(getApplicationContext(),MainActivity.class);
+                    Intent i= new Intent(getApplicationContext(),MainActivity.class);
                 startActivity(i);
                 }else{
                     Toast.makeText(getApplicationContext(),"No se ha podido registrar el usuario",Toast.LENGTH_LONG).show();
@@ -78,14 +78,15 @@ public class RegistrarUsuario extends AppCompatActivity {
     }
 
     public boolean validaMailexistente(String mail) {
-        boolean bandera=true;
+        boolean existe=false;
         Cursor cursor= helper.ConsultaMail(mail);
         if(cursor.getCount()>0){
-            bandera= false;
-        }else{
+            existe= true;
             Toast.makeText(getApplicationContext(),"Mail registrado, ingrese un nuevo correo",Toast.LENGTH_LONG).show();
+        }else{
+            existe = false;
         }
-        return bandera;
+        return existe;
     }
 
     public boolean validaNombre(String nombre) {

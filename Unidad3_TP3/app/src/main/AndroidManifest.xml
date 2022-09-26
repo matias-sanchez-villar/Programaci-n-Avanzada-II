@@ -14,8 +14,10 @@
         android:theme="@style/Theme.Unidad3_TP3"
         tools:targetApi="31">
         <activity
-            android:name=".Parqueos"
-            android:exported="false" />
+            android:name=".ParqueosDrawer"
+            android:exported="false"
+            android:label="@string/title_activity_parqueos_drawer"
+            android:theme="@style/Theme.Unidad3_TP3.NoActionBar" />
         <activity
             android:name=".RegistrarUsuario"
             android:exported="false" />
