@@ -73,5 +73,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intente);
     }
 
+    public void activityParqueos(){
+
+    }
+
     public void toast(String txt) {Toast.makeText(this, txt, Toast.LENGTH_SHORT).show();}
 }
