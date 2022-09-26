@@ -8,6 +8,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import java.sql.ClientInfoStatus;
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class AdminSQLite extends SQLiteOpenHelper {
 
@@ -65,6 +69,12 @@ public class AdminSQLite extends SQLiteOpenHelper {
         mcursor=this.getReadableDatabase().query("usuarios", new String[] {"id","Nombre","Mail", "password"},
                             "Mail = " + Utilities.SQLString(correo),null,null,null,null);
         return mcursor;
+    }
+
+    //Metodo para leer parqueos
+    public Cursor LeerParqueos(int idUsuario){
+        Cursor c = this.getReadableDatabase().rawQuery("select nro_matricula,tiempo from parqueos where id_usuario ="+ idUsuario,null);
+        return c;
     }
 
 }

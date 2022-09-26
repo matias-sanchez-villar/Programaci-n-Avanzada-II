@@ -19,4 +19,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <GridView
+        android:id="@+id/GridViewParqueos"
+        android:layout_width="409dp"
+        android:layout_height="346dp"
+        android:numColumns="2"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="384dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

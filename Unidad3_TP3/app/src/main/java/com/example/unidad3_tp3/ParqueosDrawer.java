@@ -1,13 +1,17 @@
 package com.example.unidad3_tp3;
 
 import android.app.Dialog;
+import android.database.Cursor;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,6 +19,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.lifecycle.AndroidViewModel;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -26,6 +31,9 @@ import com.example.unidad3_tp3.databinding.ActivityParqueosDrawerBinding;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ParqueosDrawer extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
@@ -36,6 +44,7 @@ public class ParqueosDrawer extends AppCompatActivity {
     FloatingActionButton btnOpenDialog;
     AdminSQLite helper=new AdminSQLite(this, "DB_TP3",null,1);
     TextView userName, userMail;
+    GridView Lista;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +75,11 @@ public class ParqueosDrawer extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
 
         instanceLayouts();
+
+        LlenarGridView();
+
+        Lista=(GridView) findViewById(R.id.GridViewParqueos);
+
     }
 
     @Override
@@ -138,6 +152,8 @@ public class ParqueosDrawer extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"Registro almacenado con exito",Toast.LENGTH_LONG).show();
 
                     dialog.dismiss();
+
+                    LlenarGridView();
                 }
             }
         });
@@ -153,4 +169,26 @@ public class ParqueosDrawer extends AppCompatActivity {
     public boolean validarCamposNumericos(int matricula, int tiempo, int usuario){
         return matricula != -1 && tiempo != -1 && usuario != -1;
     }
+
+    public void LlenarGridView(){
+        int userId = getIntent().getIntExtra("userId", -1);
+
+        helper.abrirDB();
+
+        Cursor c = helper.LeerParqueos(userId);
+        String Matricula = "", Tiempo = "";
+        ArrayList<String> item = new ArrayList<String>();
+        if(c.moveToFirst()){
+            Matricula = c.getString(0);
+            Tiempo = c.getString(1);
+            item.add(Matricula+" "+Tiempo);
+        }while (c.moveToNext());
+
+        helper.cerarDB();
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.fragment_parqueos,item);
+        Lista.setAdapter(adapter);
+    }
+
+
 }
