@@ -15,6 +15,7 @@ import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.unidad3_tp3.ui.parqueo.ParqueoFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -44,7 +45,6 @@ public class ParqueosDrawer extends AppCompatActivity {
     FloatingActionButton btnOpenDialog;
     AdminSQLite helper=new AdminSQLite(this, "DB_TP3",null,1);
     TextView userName, userMail;
-    GridView Lista;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,9 +76,12 @@ public class ParqueosDrawer extends AppCompatActivity {
 
         instanceLayouts();
 
-        LlenarGridView();
-
-        Lista=(GridView) findViewById(R.id.GridViewParqueos);
+        Bundle bundle = new Bundle();
+        bundle.putInt("userId", getIntent().getIntExtra("userId", -1));
+        ParqueoFragment parqueoFragment = new ParqueoFragment();
+        parqueoFragment.setArguments(bundle);
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_parqueo_layout, parqueoFragment).commit();
 
     }
 
@@ -152,8 +155,6 @@ public class ParqueosDrawer extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"Registro almacenado con exito",Toast.LENGTH_LONG).show();
 
                     dialog.dismiss();
-
-                    LlenarGridView();
                 }
             }
         });
@@ -169,26 +170,5 @@ public class ParqueosDrawer extends AppCompatActivity {
     public boolean validarCamposNumericos(int matricula, int tiempo, int usuario){
         return matricula != -1 && tiempo != -1 && usuario != -1;
     }
-
-    public void LlenarGridView(){
-        int userId = getIntent().getIntExtra("userId", -1);
-
-        helper.abrirDB();
-
-        Cursor c = helper.LeerParqueos(userId);
-        String Matricula = "", Tiempo = "";
-        ArrayList<String> item = new ArrayList<String>();
-        if(c.moveToFirst()){
-            Matricula = c.getString(0);
-            Tiempo = c.getString(1);
-            item.add(Matricula+" "+Tiempo);
-        }while (c.moveToNext());
-
-        helper.cerarDB();
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.fragment_parqueos,item);
-        Lista.setAdapter(adapter);
-    }
-
 
 }
