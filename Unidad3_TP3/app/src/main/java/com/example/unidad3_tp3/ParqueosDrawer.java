@@ -1,6 +1,7 @@
 package com.example.unidad3_tp3;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Build;
 import android.os.Bundle;
@@ -95,8 +96,8 @@ public class ParqueosDrawer extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
         int id = item.getItemId();
-        if(id == R.id.nuevoParqueo){
-            openDialog();
+        if(id == R.id.cerrarSesion){
+            cerrarSesion();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -139,12 +140,12 @@ public class ParqueosDrawer extends AppCompatActivity {
         btnRegistrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int matricula = Utilities.stringToNumber(txtMatricula.getText().toString());
+                String matricula = txtMatricula.getText().toString();
                 int tiempo = Utilities.stringToNumber(txtTiempo.getText().toString());
                 int userId = getIntent().getIntExtra("userId", -1);
 
-                if(!validarCamposNumericos(matricula,tiempo, userId)){
-                    Toast.makeText(getApplicationContext(), "Solo se admiten numeros", Toast.LENGTH_LONG);
+                if(!validarCamposNumericos(tiempo, userId) || matricula.isEmpty()){
+                    Toast.makeText(getApplicationContext(), "Debe completar correctamente los campos", Toast.LENGTH_LONG);
                 }else {
                     helper.abrirDB();
 
@@ -167,8 +168,13 @@ public class ParqueosDrawer extends AppCompatActivity {
         });
     }
 
-    public boolean validarCamposNumericos(int matricula, int tiempo, int usuario){
-        return matricula != -1 && tiempo != -1 && usuario != -1;
+    public boolean validarCamposNumericos(int tiempo, int usuario){
+        return tiempo != -1 && usuario != -1;
+    }
+
+    public void cerrarSesion(){
+        Intent main = new Intent(this, MainActivity.class);
+        startActivity(main);
     }
 
 }

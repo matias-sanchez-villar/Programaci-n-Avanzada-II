@@ -2,8 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/nuevoParqueo"
+        android:id="@+id/cerrarSesion"
         android:orderInCategory="100"
-        android:title="Nuevo Parqueo"
+        android:title="Cerrar sesión"
         app:showAsAction="never" />
 </menu>

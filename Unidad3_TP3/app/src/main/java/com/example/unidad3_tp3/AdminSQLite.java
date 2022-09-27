@@ -25,7 +25,7 @@ public class AdminSQLite extends SQLiteOpenHelper {
                 "(id integer primary key autoincrement, Nombre text , Mail text, password text)";
 
         String queryParqueos ="CREATE TABLE parqueos" +
-                "(id INTEGER PRIMARY KEY AUTOINCREMENT, id_usuario INTEGER, nro_matricula INTEGER," +
+                "(id INTEGER PRIMARY KEY AUTOINCREMENT, id_usuario INTEGER, nro_matricula text," +
                 "tiempo INTEGER)";
 
         db.execSQL(query);
@@ -55,7 +55,7 @@ public class AdminSQLite extends SQLiteOpenHelper {
         }
     }
 
-    public void insertarParqueo(int matricula, int tiempo, int idUsuario){
+    public void insertarParqueo(String matricula, int tiempo, int idUsuario){
         ContentValues nuevoParqueo = new ContentValues();
         nuevoParqueo.put("nro_matricula", matricula);
         nuevoParqueo.put("id_usuario", idUsuario);
