@@ -5,9 +5,9 @@ import java.util.regex.Pattern;
 
 public class ValidarUsuario {
 
-    public static final String emailRegex = "^[_A-Za-z0-9-\\\\+]+(\\\\.[_A-Za-z0-9-]+)*@\"\n\"[A-Za-z0-9-]+(\\\\.[A-Za-z0-9]+)*(\\\\.[A-Za-z]{2,})$";
+    public static final String emailRegex = "([a-zA-Z0-9_-]+@[a-zA-Z0-9]+.[a-z]{2,4})";
     public static final String nombreRegex = "^[A-Za-z]{1,20}$";
-    public static final String passwordRegex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$";
+    public static final String passwordRegex = "([a-zA-Z]*)([0-9]*)([@#$%^&+=]*)(?=\\S+$).{3,}";
 
     public static boolean nombre (String nombre) {
         Pattern pattern = Pattern.compile(nombreRegex);

@@ -30,7 +30,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void login(View view){
         if(!ValidarUsuario.nombre(txtNombreUsuario.getText().toString())) {
-            toast("Nombre de usuario incorrecto");
+            toast("Nombre de usuario incorrecto, intente nuevamente");
+            return;
+        }
+
+        if(!ValidarUsuario.password(txtContasena.getText().toString())) {
+            toast("Contraseña incorrecto, intente nuevamente");
             return;
         }
 
@@ -69,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         }
         else
             toast("El usuario ingresado no existe en nuestra base de datos");
-        }
+    }
 
     public void activityUser(String id, String nombre, String Mail, String password){
         Intent intente = new Intent(this, RegistrarUsuario.class);

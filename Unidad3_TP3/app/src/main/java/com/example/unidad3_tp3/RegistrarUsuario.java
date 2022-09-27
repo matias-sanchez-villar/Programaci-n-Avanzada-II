@@ -36,13 +36,12 @@ public class RegistrarUsuario extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                validarUsuario();
+
                 //validaciones
-                if(!validaNombre(txtNombre.getText().toString())) {
-                    Toast.makeText(getApplicationContext(),"Nombre incorrecto", Toast.LENGTH_SHORT).show();
-                }
-                /*if(!validaMail(txtCorreo.getText().toString())) {
-                    Toast.makeText(getApplicationContext(),"Mail incorrecto", Toast.LENGTH_SHORT).show();
-                }*/
+                if(!validaNombre(txtNombre.getText().toString())) toast("Nombre incorrecto");
+
+                /*if(!validaMail(txtCorreo.getText().toString())) toast("Mail incorrecto");*/
 
 
                 if(!validaMailexistente(txtCorreo.getText().toString())){ //es TRUE existe
@@ -53,12 +52,11 @@ public class RegistrarUsuario extends AppCompatActivity {
                         String.valueOf(txtCorreo.getText()),
                         String.valueOf(txtpassword.getText()));
                 helper.cerarDB();
-                Toast.makeText(getApplicationContext(),"Registro almacenado con exito",Toast.LENGTH_LONG).show();
+                toast("Registro almacenado con exito");
                     Intent i= new Intent(getApplicationContext(),MainActivity.class);
                 startActivity(i);
-                }else{
-                    Toast.makeText(getApplicationContext(),"No se ha podido registrar el usuario",Toast.LENGTH_LONG).show();
                 }
+                else toast("No se ha podido registrar el usuario");
 
                 txtNombre.setText("");
                 txtCorreo.setText("");
@@ -95,6 +93,28 @@ public class RegistrarUsuario extends AppCompatActivity {
         return mather.matches();
     }
 
+    public void validarUsuario (){
+        if(!ValidarUsuario.nombre(txtNombre.getText().toString())) {
+            toast("Nombre de usuario incorrecto, intente nuevamente");
+            return;
+        }
+
+        if(!ValidarUsuario.email(txtCorreo.getText().toString())) {
+            toast("Correo incorrecto, intente nuevamente");
+            return;
+        }
+
+        if(!ValidarUsuario.password(txtpassword.getText().toString())) {
+            toast("Contraseña incorrecto, intente nuevamente");
+            return;
+        }
+
+        if (txtRepPassword.getText().toString() != txtpassword.getText().toString()){
+            toast("Contraseña incorrecto, intente nuevamente");
+            return;
+        }
+    }
+
     /*
     public boolean validarPassword(String pass, String repeatPass) {
         boolean bandera=false;
@@ -106,5 +126,5 @@ public class RegistrarUsuario extends AppCompatActivity {
         return bandera;
     }*/
 
-
+    public void toast(String txt) {Toast.makeText(this, txt, Toast.LENGTH_SHORT).show();}
 }
