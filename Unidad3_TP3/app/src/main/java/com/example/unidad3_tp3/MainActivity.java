@@ -36,7 +36,8 @@ public class MainActivity extends AppCompatActivity {
 
         buscarBD();
 
-        if(!this.loggedUserName.isEmpty() && !this.loggedUserMail.isEmpty()){
+        if(this.loggedUserName != null && !this.loggedUserName.isEmpty()
+                && this.loggedUserMail != null && !this.loggedUserMail.isEmpty()){
             this.activityParqueo();
         }
     }

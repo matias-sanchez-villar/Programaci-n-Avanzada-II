@@ -34,6 +34,7 @@ public class ParqueoFragment extends Fragment {
         ParqueoViewModel homeViewModel =
                 new ViewModelProvider(this).get(ParqueoViewModel.class);
 
+        // Este binding por el momento no lo estamos usando. Implementamos el View view
         binding = FragmentParqueosBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
@@ -50,9 +51,12 @@ public class ParqueoFragment extends Fragment {
             LlenarGridView();
         }
 
-        final TextView textView = binding.textHome;
-        homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
-        return root;
+        /**
+         Retornamos view ya que es el view de donde obtenemos el GridView.
+         Si se quisiera usar binding, habría que setear el gridView de la siguiente forma
+         binding.GridView.setAdapter(Adapter);
+         */
+        return view;
     }
 
     @Override
@@ -75,9 +79,9 @@ public class ParqueoFragment extends Fragment {
 
         helper.cerarDB();
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), R.layout.fragment_parqueos,item);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.grid_item,item);
 
-        Lista.setAdapter(adapter);
+         Lista.setAdapter(adapter);
     }
 
 }
