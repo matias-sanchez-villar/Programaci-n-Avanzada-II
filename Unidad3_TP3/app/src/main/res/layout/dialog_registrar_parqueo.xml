@@ -25,9 +25,9 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/txtMatricula"
-                android:hint="Nro. Matricula"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:hint="Nro. Matricula">
 
             </com.google.android.material.textfield.TextInputEditText>
 
@@ -44,7 +44,8 @@
                 android:id="@+id/txtTiempo"
                 android:hint="Tiempo"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:inputType="number">
 
             </com.google.android.material.textfield.TextInputEditText>
 
