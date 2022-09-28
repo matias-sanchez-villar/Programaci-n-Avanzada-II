@@ -1,14 +1,17 @@
 package com.example.unidad3_tp3;
 
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -36,28 +39,26 @@ public class RegistrarUsuario extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                validarUsuario();
+                if(validarCamposVacios(String.valueOf(txtNombre.getText()), String.valueOf(txtCorreo.getText()),String.valueOf(txtpassword.getText()),String.valueOf(txtRepPassword.getText())))  {
 
-                //validaciones
-                if(!validaNombre(txtNombre.getText().toString())) toast("Nombre incorrecto");
+                    if (validarPassword(String.valueOf(txtpassword.getText()), String.valueOf(txtRepPassword.getText()))) {
+                        if((validaMailexistente(String.valueOf(txtCorreo.getText()))) && (validarFormatMail(String.valueOf(txtCorreo.getText())))) { //es TRUE existe
 
-                /*if(!validaMail(txtCorreo.getText().toString())) toast("Mail incorrecto");*/
-
-
-                if(!validaMailexistente(txtCorreo.getText().toString())){ //es TRUE existe
-
-
-                helper.abrirDB();
-                helper.insertarUsuario(String.valueOf(txtNombre.getText()),
-                        String.valueOf(txtCorreo.getText()),
-                        String.valueOf(txtpassword.getText()));
-                helper.cerarDB();
-                toast("Registro almacenado con exito");
-                    Intent i= new Intent(getApplicationContext(),MainActivity.class);
-                startActivity(i);
+                            helper.abrirDB();
+                            helper.insertarUsuario(String.valueOf(txtNombre.getText()),
+                                    String.valueOf(txtCorreo.getText()),
+                                    String.valueOf(txtpassword.getText()));
+                            helper.cerarDB();
+                            Toast.makeText(getApplicationContext(), "Registro almacenado con exito", Toast.LENGTH_LONG).show();
+                            Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                            startActivity(i);
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Mail incorrecto", Toast.LENGTH_LONG).show();
+                        }
+                    }else{
+                        Toast.makeText(getApplicationContext(),"Password incorrecto",Toast.LENGTH_LONG).show();
+                    }
                 }
-                else toast("No se ha podido registrar el usuario");
-
                 txtNombre.setText("");
                 txtCorreo.setText("");
                 txtpassword.setText("");
@@ -67,7 +68,7 @@ public class RegistrarUsuario extends AppCompatActivity {
 
     }
 
-    public boolean validaMail(String mail) {
+    public boolean validarFormatMail(String mail) {
         Pattern pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
                 + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
 
@@ -75,56 +76,48 @@ public class RegistrarUsuario extends AppCompatActivity {
         return mather.matches();
     }
 
+
     public boolean validaMailexistente(String mail) {
-        boolean existe=false;
+        boolean bandera=true;
+        helper.abrirDB();
         Cursor cursor= helper.ConsultaMail(mail);
-        if(cursor.getCount()>0){
-            existe= true;
-            Toast.makeText(getApplicationContext(),"Mail registrado, ingrese un nuevo correo",Toast.LENGTH_LONG).show();
-        }else{
-            existe = false;
+        try {
+            if(cursor.getCount()>0){
+                bandera= false;
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
         }
-        return existe;
+        helper.cerarDB();
+        return bandera;
     }
 
-    public boolean validaNombre(String nombre) {
-        Pattern pattern = Pattern.compile("^[A-Za-z]{1,20}$");
-        Matcher mather = pattern.matcher(nombre);
-        return mather.matches();
-    }
-
-    public void validarUsuario (){
-        if(!ValidarUsuario.nombre(txtNombre.getText().toString())) {
-            toast("Nombre de usuario incorrecto, intente nuevamente");
-            return;
-        }
-
-        if(!ValidarUsuario.email(txtCorreo.getText().toString())) {
-            toast("Correo incorrecto, intente nuevamente");
-            return;
-        }
-
-        if(!ValidarUsuario.password(txtpassword.getText().toString())) {
-            toast("Contraseña incorrecto, intente nuevamente");
-            return;
-        }
-
-        if (txtRepPassword.getText().toString() != txtpassword.getText().toString()){
-            toast("Contraseña incorrecto, intente nuevamente");
-            return;
-        }
-    }
-
-    /*
     public boolean validarPassword(String pass, String repeatPass) {
-        boolean bandera=false;
         if(pass.equals(repeatPass)){
-            bandera= true;
-        }else{
-            Toast.makeText(getApplicationContext(),"Password incorrecto",Toast.LENGTH_LONG).show();
+            return true;
+        }
+        return false;
+    }
+
+    public boolean validarCamposVacios(String nom, String mail, String pass, String repeatPass) {
+        boolean bandera= true;
+        if(nom.trim().isEmpty()){
+            txtNombre.setError("Campo Nombre obligatorio");
+            bandera=false;
+        }
+        if(mail.trim().isEmpty()){
+            txtCorreo.setError("Campo Correo obligatorio");
+            bandera=false;
+        }
+        if(pass.trim().isEmpty()){
+            txtpassword.setError("Campo Password obligatorio");
+            bandera=false;
+        }
+        if(repeatPass.trim().isEmpty()){
+            txtRepPassword.setError("Campo Repetir password obligatorio");
+            bandera=false;
         }
         return bandera;
-    }*/
+    }
 
-    public void toast(String txt) {Toast.makeText(this, txt, Toast.LENGTH_SHORT).show();}
 }
