@@ -78,7 +78,7 @@ public class ParqueoFragment extends Fragment {
         }while (c.moveToNext()){
             Matricula = c.getString(0);
             Tiempo = c.getString(1);
-            item.add(Matricula+" "+Tiempo);
+            item.add(Matricula+"\n "+Tiempo);
         }
 
         helper.cerarDB();

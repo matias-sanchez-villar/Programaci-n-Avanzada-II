@@ -156,6 +156,13 @@ public class ParqueosDrawer extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"Registro almacenado con exito",Toast.LENGTH_LONG).show();
 
                     dialog.dismiss();
+
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("userId", getIntent().getIntExtra("userId", -1));
+                    ParqueoFragment parqueoFragment = new ParqueoFragment();
+                    parqueoFragment.setArguments(bundle);
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.fragment_parqueo_layout, parqueoFragment).commit();
                 }
             }
         });
