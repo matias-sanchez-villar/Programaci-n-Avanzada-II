@@ -48,7 +48,13 @@ public class ParqueoFragment extends Fragment {
         Bundle bundle = getArguments();
         if(bundle != null){
             userId = bundle.getInt("userId");
-            LlenarGridView();
+        }
+        else{
+            Bundle bundle1 = new Bundle();
+            bundle1.putInt("userId", getActivity().getIntent().getIntExtra("userId", -1));
+            userId = bundle1.getInt("userId");
+            ParqueoFragment parqueoFragment = new ParqueoFragment();
+            parqueoFragment.setArguments(bundle1);
         }
 
         /**
@@ -56,6 +62,7 @@ public class ParqueoFragment extends Fragment {
          Si se quisiera usar binding, habría que setear el gridView de la siguiente forma
          binding.GridView.setAdapter(Adapter);
          */
+        LlenarGridView();
         return view;
     }
 
@@ -74,7 +81,7 @@ public class ParqueoFragment extends Fragment {
         if(c.moveToFirst()){
             Matricula = c.getString(0);
             Tiempo = c.getString(1);
-            item.add(Matricula+" "+Tiempo);
+            item.add(Matricula+"\n "+Tiempo);
         }while (c.moveToNext()){
             Matricula = c.getString(0);
             Tiempo = c.getString(1);
