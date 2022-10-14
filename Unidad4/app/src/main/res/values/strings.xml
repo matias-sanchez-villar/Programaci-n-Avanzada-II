@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Unidad4</string>
+    <string name="title">TP4</string>
+    <string name="tabAlta">ALTA</string>
+    <string name="tabModificacion">MODIFICACIONES</string>
+    <string name="tabListado">LISTADO</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="titleAlta">ALTA fragment</string>
+    <string name="titleModificar">MODIFICAR fragment</string>
+    <string name="titleListar">LISTAR fragment</string>
+
+</resources>
