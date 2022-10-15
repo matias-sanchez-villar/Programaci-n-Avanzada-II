@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<string name="modificarTxtId">Id</string>
+<string name="modificarTxtBuscar">Buscar</string>
+<string name="modificarTxtNombreProd">Nombre producto</string>
+<string name="modificarTxtStock">Stock</string>
+<string name="modificarTxtCategoria">Categoria</string>
+<string name="modificarTxtModificar">Modificar</string>
+</resources>
