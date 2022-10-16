@@ -2,11 +2,19 @@ package com.example.unidad4;
 
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
+
+import com.example.unidad4.Data.DataMainActivity;
+import com.example.unidad4.Entity.Articulo;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +31,9 @@ public class ListarFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private final List<String> listArticulos = new ArrayList<>();
+    private ListView lvArticulos;
 
     public ListarFragment() {
         // Required empty public constructor
@@ -47,6 +58,13 @@ public class ListarFragment extends Fragment {
     }
 
     @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState){
+        lvArticulos = getView().findViewById(R.id.lvArticulos);
+        getDBInfo();
+        setDBInfo();
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
@@ -60,5 +78,14 @@ public class ListarFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_listar, container, false);
+    }
+
+    public void getDBInfo(){
+        DataMainActivity threadActivity = new DataMainActivity(lvArticulos, getActivity());
+        threadActivity.execute();
+    }
+
+    public void setDBInfo(){
+
     }
 }
