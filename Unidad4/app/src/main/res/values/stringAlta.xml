@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="altaTxtId">Id</string>
+    <string name="altaTxtNombreProd">Nombre producto</string>
+    <string name="altaTxtStock">Stock</string>
+    <string name="altaTxtCategoria">Categoria</string>
+    <string name="altaTxtAgregar">Agregar</string>
+</resources>
