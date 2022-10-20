@@ -65,7 +65,6 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
                     android:backgroundTint="#D0E3E1E1"
-                    android:onClick="onClickBtnBuscar"
                     android:text="@string/modificarTxtBuscar"
                     android:textColor="#000000" />
             </LinearLayout>
@@ -104,7 +103,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:backgroundTint="#D0E3E1E1"
-            android:onClick="onClickBtnModificar"
             android:text="@string/modificarTxtModificar"
             android:textColor="#000000" />
 

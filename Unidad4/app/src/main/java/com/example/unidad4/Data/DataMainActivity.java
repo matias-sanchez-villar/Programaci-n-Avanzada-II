@@ -61,7 +61,6 @@ public class DataMainActivity extends AsyncTask<String, Void, String> {
             result2 = "Conexion no exitosa";
         }
         return response;
-
     }
 
 
