@@ -2,6 +2,7 @@ package com.example.unidad4;
 
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -13,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.example.unidad4.Data.DataCategoria;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
@@ -30,6 +32,13 @@ public class AltaFragment extends Fragment {
     }
 
     public AltaFragment() {}
+
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState){
+        spnCategorias = getView().findViewById(R.id.spnCategorias);
+        getDBInfo();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -71,5 +80,10 @@ public class AltaFragment extends Fragment {
         txtNombreProducto.setText("pepe");
         txtStock.setText("22");
 
+    }
+
+    public void getDBInfo(){
+        DataCategoria threadActivity = new DataCategoria(spnCategorias, getActivity());
+        threadActivity.execute();
     }
 }

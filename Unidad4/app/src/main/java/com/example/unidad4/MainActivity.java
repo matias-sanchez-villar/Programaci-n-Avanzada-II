@@ -6,10 +6,10 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
+import android.widget.ListView;
 
 import com.example.unidad4.Controller.PageAdapter;
 
-import com.example.unidad4.Data.DataMainActivity;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
@@ -37,10 +37,6 @@ public class MainActivity extends AppCompatActivity implements TabLayoutMediator
         setViewPagerAdapter();
         new TabLayoutMediator(tableLayout, viewPager, this).attach();
 
-
-
-
-
     }
 
     public void setViewPagerAdapter() {
@@ -58,6 +54,13 @@ public class MainActivity extends AppCompatActivity implements TabLayoutMediator
     @Override
     public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
         tab.setText(titles.get(position));
+        fillDbInfo();
+    }
+
+    public void fillDbInfo(){
+        ListView lv = this.findViewById(R.id.lvArticulos);
+        // DataMainActivity threadActivity = new DataMainActivity(lv, this);
+        // threadActivity.execute();
     }
 
 }

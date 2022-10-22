@@ -2,6 +2,7 @@ package com.example.unidad4;
 
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.unidad4.Data.DataCategoria;
 import com.example.unidad4.Entity.Articulo;
 import com.example.unidad4.Entity.Categoria;
 
@@ -31,6 +33,12 @@ public class ModificarFragment extends Fragment {
     }
 
     public ModificarFragment() {}
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState){
+        spnCategorias = getView().findViewById(R.id.spnCategorias);
+        getDBInfo();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -59,17 +67,6 @@ public class ModificarFragment extends Fragment {
         spnCategorias = (Spinner) view.findViewById(R.id.spnCategorias);
         btnBuscar = (Button) view.findViewById(R.id.btnBuscar);
         btnModificar = (Button) view.findViewById(R.id.btnModificar);
-
-        //No
-        String [] nombres = {"pepe", "jose", "carolina", "luicio"};
-        //Si
-        ArrayAdapter <String> categorias = new ArrayAdapter<String>(
-                getActivity(),
-                android.R.layout.simple_spinner_item,
-                nombres
-        );
-        spnCategorias.setAdapter(categorias);
-        spnCategorias.setPrompt("Categorias");
     }
 
     public void onClickBtnBuscar(){
@@ -90,6 +87,11 @@ public class ModificarFragment extends Fragment {
 
     public void toast(String txt) {
         Toast.makeText(getActivity(), txt, Toast.LENGTH_SHORT).show();
+    }
+
+    public void getDBInfo(){
+        DataCategoria threadActivity = new DataCategoria(spnCategorias, getActivity());
+        threadActivity.execute();
     }
 
 }

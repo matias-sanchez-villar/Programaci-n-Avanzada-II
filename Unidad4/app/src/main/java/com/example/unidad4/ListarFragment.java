@@ -10,8 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import com.example.unidad4.Data.DataMainActivity;
-import com.example.unidad4.Entity.Articulo;
+import com.example.unidad4.Data.DataArticulo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,7 +60,6 @@ public class ListarFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState){
         lvArticulos = getView().findViewById(R.id.lvArticulos);
         getDBInfo();
-        setDBInfo();
     }
 
     @Override
@@ -81,11 +79,8 @@ public class ListarFragment extends Fragment {
     }
 
     public void getDBInfo(){
-        DataMainActivity threadActivity = new DataMainActivity(lvArticulos, getActivity());
+        DataArticulo threadActivity = new DataArticulo(lvArticulos, getActivity());
         threadActivity.execute();
     }
 
-    public void setDBInfo(){
-
-    }
 }

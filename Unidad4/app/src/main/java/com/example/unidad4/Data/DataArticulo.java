@@ -16,7 +16,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class DataMainActivity extends AsyncTask<String, Void, String> {
+public class DataArticulo extends AsyncTask<String, Void, String> {
 
     private ListView lvArticulos;
     private Context context;
@@ -26,7 +26,7 @@ public class DataMainActivity extends AsyncTask<String, Void, String> {
 
     //Recibe por constructor el listView
     //Constructor
-    public DataMainActivity(ListView lv, Context ct)
+    public DataArticulo(ListView lv, Context ct)
     {
         lvArticulos = lv;
         context = ct;
