@@ -7,6 +7,7 @@ import android.widget.ListView;
 
 import com.example.unidad4.Adapter.ArticuloAdapter;
 import com.example.unidad4.Entity.Articulo;
+import com.example.unidad4.MainActivity;
 import com.example.unidad4.R;
 
 import java.sql.Connection;
@@ -23,7 +24,7 @@ public class DataMainActivity extends AsyncTask<String, Void, String> {
     private static String result2;
     private static ArrayList<String> listaArticulos = new ArrayList<String>();
 
-    //Recibe por constructor el textview
+    //Recibe por constructor el listView
     //Constructor
     public DataMainActivity(ListView lv, Context ct)
     {
@@ -68,7 +69,6 @@ public class DataMainActivity extends AsyncTask<String, Void, String> {
     // Se cargan datos recibidos desde la BD en algún control. EJ: ListView
     @Override
     protected void onPostExecute(String response) {
-
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 this.context,
                 R.layout.list_item_articulos,
