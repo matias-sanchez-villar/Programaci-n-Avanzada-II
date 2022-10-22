@@ -8,20 +8,24 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.unidad4.Data.ArticuloRepository;
 import com.example.unidad4.Data.DataCategoria;
 import com.example.unidad4.Entity.Articulo;
 import com.example.unidad4.Entity.Categoria;
 
+import java.util.concurrent.ExecutionException;
+
 public class ModificarFragment extends Fragment {
 
     private Articulo articulo;
-    private Categoria categoria;
+    private Categoria categoriaSelected;
     private EditText txtId, txtNombreProducto, txtStock;
     private Spinner spnCategorias;
     private Button btnBuscar, btnModificar;
@@ -37,6 +41,17 @@ public class ModificarFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState){
         spnCategorias = getView().findViewById(R.id.spnCategorias);
+        spnCategorias.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                categoriaSelected = (Categoria) parent.getSelectedItem();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
         getDBInfo();
     }
 
@@ -70,23 +85,81 @@ public class ModificarFragment extends Fragment {
     }
 
     public void onClickBtnBuscar(){
-        String id = txtId.getText().toString();
 
-        //seteamos
-        txtNombreProducto.setText("pepe");
-        txtStock.setText("22");
-        
+        /**
+         * TODO: AGREGAR VALIDACIONES ACA Y DESCOMENTAR
+
+         **/
+
+        int id = Integer.parseInt(txtId.getText().toString());
+
+        ArticuloRepository thread = new ArticuloRepository(id);
+
+        try {
+           String result = thread.execute().get();
+
+           if(result == ArticuloRepository.OPERACION_EXITOSA){
+
+               articulo = thread.getArticulo();
+              txtNombreProducto.setText(articulo.getNombre());
+
+              txtStock.setText(String.valueOf(articulo.getStock()));
+
+              spnCategorias.setSelection(articulo.getIdCategoria() - 1);
+           } else {
+               Toast.makeText(
+                       getActivity().getApplicationContext(),
+                       "Hubo un error al agregar",
+                       Toast.LENGTH_LONG).show();
+           }
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public void onClickBtnModificar(){
-        String Stock = txtStock.getText().toString();
-        String nombreProducto = txtNombreProducto.getText().toString();
-        String categoria = spnCategorias.getSelectedItem().toString();
-        toast(categoria);
-    }
 
-    public void toast(String txt) {
-        Toast.makeText(getActivity(), txt, Toast.LENGTH_SHORT).show();
+        /**
+         * TODO: AGREGAR VALIDACIONES ACA Y DESCOMENTAR
+
+         **/
+
+        int Stock = Integer.parseInt(txtStock.getText().toString());
+        String nombreProducto = txtNombreProducto.getText().toString();
+
+        if(articulo.getIdCategoria() != categoriaSelected.getId()){
+            articulo.setIdCategoria(categoriaSelected.getId());
+        }
+
+        ArticuloRepository thread = new ArticuloRepository(articulo, false, getActivity());
+
+        try {
+            String result = thread.execute().get();
+
+            if(result == ArticuloRepository.OPERACION_EXITOSA){
+                txtId.setText("");
+                txtStock.setText("");
+                txtNombreProducto.setText("");
+
+                Toast.makeText(
+                        getActivity().getApplicationContext(),
+                        "Producto modificado",
+                        Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(
+                        getActivity().getApplicationContext(),
+                        "Hubo un error al modificar",
+                        Toast.LENGTH_LONG).show();
+            }
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public void getDBInfo(){
