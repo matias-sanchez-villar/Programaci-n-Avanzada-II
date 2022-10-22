@@ -9,21 +9,28 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
+import com.example.unidad4.Data.ArticuloRepository;
 import com.example.unidad4.Data.DataCategoria;
+import com.example.unidad4.Entity.Articulo;
+import com.example.unidad4.Entity.Categoria;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 public class AltaFragment extends Fragment {
 
     private EditText txtId, txtNombreProducto, txtStock;
     private Spinner spnCategorias;
     private Button btnAgregar;
+    private Categoria categoriaSelected;
     View view;
 
     @Override
@@ -38,6 +45,17 @@ public class AltaFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState){
         spnCategorias = getView().findViewById(R.id.spnCategorias);
         getDBInfo();
+        spnCategorias.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                categoriaSelected = (Categoria) parent.getSelectedItem();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
     @Override
@@ -60,26 +78,50 @@ public class AltaFragment extends Fragment {
         txtStock = (EditText)view.findViewById(R.id.txtStock);
         spnCategorias = (Spinner) view.findViewById(R.id.spnCategorias);
         btnAgregar = (Button) view.findViewById(R.id.btnAgregar);
-
-        //No
-        String [] nombres = {"pepe", "jose", "carolina", "luicio"};
-        //Si
-        ArrayAdapter<String> categorias = new ArrayAdapter<String>(
-                getActivity(),
-                android.R.layout.simple_spinner_item,
-                nombres
-        );
-        spnCategorias.setAdapter(categorias);
-        spnCategorias.setPrompt("Categorias");
     }
 
-    public void onClickBtnAgregar(){
-        String id = txtId.getText().toString();
+    public void onClickBtnAgregar() {
 
-        //seteamos
-        txtNombreProducto.setText("pepe");
-        txtStock.setText("22");
+        /**
+         * TODO: AGREGAR VALIDACIONES ACA Y DESCOMENTAR
 
+        **/
+
+        int id = Integer.parseInt(txtId.getText().toString());
+        String nombre = txtNombreProducto.getText().toString();
+        int stock = Integer.parseInt(txtStock.getText().toString());
+
+        ArticuloRepository thread = new ArticuloRepository(
+                new Articulo(
+                        id,
+                        nombre,
+                        stock,
+                        categoriaSelected.getId()),
+                true,
+                getActivity());
+        try {
+            String result = thread.execute().get();
+
+            if(result == ArticuloRepository.OPERACION_EXITOSA){
+                txtId.setText("");
+                txtStock.setText("");
+                txtNombreProducto.setText("");
+
+                Toast.makeText(
+                        getActivity().getApplicationContext(),
+                        "Producto agregado",
+                        Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(
+                        getActivity().getApplicationContext(),
+                        "Hubo un error al agregar",
+                        Toast.LENGTH_LONG).show();
+            }
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public void getDBInfo(){

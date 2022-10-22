@@ -27,7 +27,7 @@ public class Articulo {
         return this.nombre;
     }
 
-    public int stock(){
+    public int getStock(){
         return this.stock;
     }
 
