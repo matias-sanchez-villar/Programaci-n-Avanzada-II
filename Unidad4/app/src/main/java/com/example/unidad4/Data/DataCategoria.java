@@ -44,6 +44,7 @@ public class DataCategoria extends AsyncTask<String, Void, String> {
             result2 = " ";
 
             Categoria categoria;
+            listaCategorias.clear();
             while(rs.next()) {
                 categoria = new Categoria();
                 categoria.setId(rs.getInt("id"));
