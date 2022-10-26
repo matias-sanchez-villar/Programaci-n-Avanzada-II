@@ -153,7 +153,7 @@ public class AltaFragment extends Fragment {
 
 
     }
-    
+
 
     public boolean validarInteger(String ID){
         int num;

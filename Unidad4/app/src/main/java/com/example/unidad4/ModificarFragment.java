@@ -91,33 +91,50 @@ public class ModificarFragment extends Fragment {
 
          **/
 
+        if(validarCampoVacioID(String.valueOf(txtId.getText()))) {
 
-        int id = Integer.parseInt(txtId.getText().toString());
 
-        ArticuloRepository thread = new ArticuloRepository(id);
+            if (validarInteger(String.valueOf(txtId.getText()))) {
+                /**/
+                int id = Integer.parseInt(txtId.getText().toString());
 
-        try {
-           String result = thread.execute().get();
+                ArticuloRepository thread = new ArticuloRepository(id);
 
-           if(result == ArticuloRepository.OPERACION_EXITOSA){
+                try {
+                    String result = thread.execute().get();
 
-               articulo = thread.getArticulo();
-              txtNombreProducto.setText(articulo.getNombre());
+                    if (result == ArticuloRepository.OPERACION_EXITOSA) {
 
-              txtStock.setText(String.valueOf(articulo.getStock()));
+                        articulo = thread.getArticulo();
+                        txtNombreProducto.setText(articulo.getNombre());
 
-              spnCategorias.setSelection(articulo.getIdCategoria() - 1);
-           } else {
-               Toast.makeText(
-                       getActivity().getApplicationContext(),
-                       "Hubo un error al agregar",
-                       Toast.LENGTH_LONG).show();
-           }
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+                        txtStock.setText(String.valueOf(articulo.getStock()));
+
+                        spnCategorias.setSelection(articulo.getIdCategoria() - 1);
+                    } else {
+                        Toast.makeText(
+                                getActivity().getApplicationContext(),
+                                "Hubo un error al agregar",
+                                Toast.LENGTH_LONG).show();
+                    }
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                /**/
+            } else {
+                Toast.makeText(getActivity(), "Asegurese que el ID sea un numero y positivo.", Toast.LENGTH_LONG).show();
+                txtId.setText("");
+                txtNombreProducto.setText("");
+                txtStock.setText("");
+            }
         }
+        else{
+            txtId.setText("");
+        }
+
+
 
     }
 
@@ -128,40 +145,96 @@ public class ModificarFragment extends Fragment {
 
          **/
 
-        int Stock = Integer.parseInt(txtStock.getText().toString());
-        String nombreProducto = txtNombreProducto.getText().toString();
+        if(validarCamposVacios(String.valueOf(txtNombreProducto.getText()),String.valueOf(txtStock.getText()))) {
 
-        if(articulo.getIdCategoria() != categoriaSelected.getId()){
-            articulo.setIdCategoria(categoriaSelected.getId());
-        }
+            if (validarInteger(String.valueOf(txtStock.getText()))) {
 
-        ArticuloRepository thread = new ArticuloRepository(articulo, false, getActivity());
+                /**/
+                int Stock = Integer.parseInt(txtStock.getText().toString());
+                String nombreProducto = txtNombreProducto.getText().toString();
 
-        try {
-            String result = thread.execute().get();
+                if (articulo.getIdCategoria() != categoriaSelected.getId()) {
+                    articulo.setIdCategoria(categoriaSelected.getId());
+                }
 
-            if(result == ArticuloRepository.OPERACION_EXITOSA){
-                txtId.setText("");
-                txtStock.setText("");
-                txtNombreProducto.setText("");
+                ArticuloRepository thread = new ArticuloRepository(articulo, false, getActivity());
 
-                Toast.makeText(
-                        getActivity().getApplicationContext(),
-                        "Producto modificado",
-                        Toast.LENGTH_LONG).show();
+                try {
+                    String result = thread.execute().get();
+
+                    if (result == ArticuloRepository.OPERACION_EXITOSA) {
+                        txtId.setText("");
+                        txtStock.setText("");
+                        txtNombreProducto.setText("");
+
+                        Toast.makeText(
+                                getActivity().getApplicationContext(),
+                                "Producto modificado",
+                                Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(
+                                getActivity().getApplicationContext(),
+                                "Hubo un error al modificar",
+                                Toast.LENGTH_LONG).show();
+                    }
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                /**/
+
             } else {
-                Toast.makeText(
-                        getActivity().getApplicationContext(),
-                        "Hubo un error al modificar",
-                        Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), "Asegurese que el STOCK sea un numero y positivo.", Toast.LENGTH_LONG).show();
+                txtStock.setText("");
             }
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        }
+        else{
+            txtNombreProducto.setText("");
+            txtStock.setText("");
         }
 
     }
+
+    public boolean validarInteger(String ID){
+        int num;
+        try {
+            num= Integer.parseInt(ID);
+            if(num > 0){
+                return true;
+            }
+            else{
+                return false;
+            }
+
+        }
+        catch (Exception e){
+            return false;
+        }
+    }
+
+    public boolean validarCampoVacioID(String id) {
+        boolean bandera= true;
+        if(id.trim().isEmpty()){
+            txtId.setError("Campo ID obligatorio");
+            bandera=false;
+        }
+        return bandera;
+    }
+
+    public boolean validarCamposVacios(String nombre, String stock) {
+        boolean bandera= true;
+        if(nombre.trim().isEmpty()){
+            txtNombreProducto.setError("Campo Producto obligatorio");
+            bandera=false;
+        }
+        if(stock.trim().isEmpty()) {
+            txtStock.setError("Campo Stock obligatorio");
+            bandera = false;
+        }
+        return bandera;
+    }
+
 
     public void getDBInfo(){
         DataCategoria threadActivity = new DataCategoria(spnCategorias, getActivity());
