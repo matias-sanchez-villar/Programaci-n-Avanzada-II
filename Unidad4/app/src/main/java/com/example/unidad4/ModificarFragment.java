@@ -91,6 +91,7 @@ public class ModificarFragment extends Fragment {
 
          **/
 
+
         int id = Integer.parseInt(txtId.getText().toString());
 
         ArticuloRepository thread = new ArticuloRepository(id);

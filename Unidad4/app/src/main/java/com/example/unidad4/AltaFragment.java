@@ -1,5 +1,7 @@
 package com.example.unidad4;
 
+import android.database.Cursor;
+import android.database.SQLException;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -32,6 +34,7 @@ public class AltaFragment extends Fragment {
     private Button btnAgregar;
     private Categoria categoriaSelected;
     View view;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -82,46 +85,110 @@ public class AltaFragment extends Fragment {
 
     public void onClickBtnAgregar() {
 
-        /**
-         * TODO: AGREGAR VALIDACIONES ACA Y DESCOMENTAR
 
-        **/
+        if (validarCamposVacios(String.valueOf(txtId.getText()), String.valueOf(txtNombreProducto.getText()),String.valueOf(txtStock.getText()))){
 
-        int id = Integer.parseInt(txtId.getText().toString());
-        String nombre = txtNombreProducto.getText().toString();
-        int stock = Integer.parseInt(txtStock.getText().toString());
+            if(validarInteger(String.valueOf(txtId.getText()))){
 
-        ArticuloRepository thread = new ArticuloRepository(
-                new Articulo(
-                        id,
-                        nombre,
-                        stock,
-                        categoriaSelected.getId()),
-                true,
-                getActivity());
-        try {
-            String result = thread.execute().get();
+                if(validarInteger(String.valueOf(txtStock.getText()))){
 
-            if(result == ArticuloRepository.OPERACION_EXITOSA){
-                txtId.setText("");
-                txtStock.setText("");
-                txtNombreProducto.setText("");
+                    /**/
+                    int id = Integer.parseInt(txtId.getText().toString());
+                    String nombre = txtNombreProducto.getText().toString();
+                    int stock = Integer.parseInt(txtStock.getText().toString());
 
-                Toast.makeText(
-                        getActivity().getApplicationContext(),
-                        "Producto agregado",
-                        Toast.LENGTH_LONG).show();
-            } else {
-                Toast.makeText(
-                        getActivity().getApplicationContext(),
-                        "Hubo un error al agregar",
-                        Toast.LENGTH_LONG).show();
+                    ArticuloRepository thread = new ArticuloRepository(
+                            new Articulo(
+                                    id,
+                                    nombre,
+                                    stock,
+                                    categoriaSelected.getId()),
+                            true,
+                            getActivity());
+                    try {
+                        String result = thread.execute().get();
+
+                        if(result == ArticuloRepository.OPERACION_EXITOSA){
+                            txtId.setText("");
+                            txtStock.setText("");
+                            txtNombreProducto.setText("");
+
+                            Toast.makeText(
+                                    getActivity().getApplicationContext(),
+                                    "Producto agregado",
+                                    Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(
+                                    getActivity().getApplicationContext(),
+                                    "Hubo un error al agregar",
+                                    Toast.LENGTH_LONG).show();
+                        }
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    /**/
+
+                }
+                else{
+                    Toast.makeText(getActivity(),"Asegurese que el STOCK sea un numero y positivo.", Toast.LENGTH_LONG).show();
+                    txtId.setText("");
+                    txtNombreProducto.setText("");
+                    txtStock.setText("");
+                }
             }
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+            else{
+                Toast.makeText(getActivity(),"Asegurese que el ID sea un numero y positivo.", Toast.LENGTH_LONG).show();
+                txtId.setText("");
+                txtNombreProducto.setText("");
+                txtStock.setText("");
+            }
         }
+        else{
+            txtId.setText("");
+            txtNombreProducto.setText("");
+            txtStock.setText("");
+        }
+
+
+    }
+    
+
+    public boolean validarInteger(String ID){
+        int num;
+        try {
+            num= Integer.parseInt(ID);
+            if(num > 0){
+                return true;
+            }
+            else{
+                return false;
+            }
+
+        }
+        catch (Exception e){
+            return false;
+        }
+    }
+
+
+
+    public boolean validarCamposVacios(String id, String nombre, String stock) {
+        boolean bandera= true;
+        if(id.trim().isEmpty()){
+            txtId.setError("Campo ID obligatorio");
+            bandera=false;
+        }
+        if(nombre.trim().isEmpty()){
+            txtNombreProducto.setError("Campo Producto obligatorio");
+            bandera=false;
+        }
+        if(stock.trim().isEmpty()) {
+            txtStock.setError("Campo Stock obligatorio");
+            bandera = false;
+        }
+        return bandera;
     }
 
     public void getDBInfo(){
