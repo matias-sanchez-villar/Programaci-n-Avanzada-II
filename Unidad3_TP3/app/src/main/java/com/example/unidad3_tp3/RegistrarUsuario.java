@@ -39,10 +39,10 @@ public class RegistrarUsuario extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(validarCamposVacios(String.valueOf(txtNombre.getText()), String.valueOf(txtCorreo.getText()),String.valueOf(txtpassword.getText()),String.valueOf(txtRepPassword.getText())))  {
+                    if(validarCamposVacios(String.valueOf(txtNombre.getText()), String.valueOf(txtCorreo.getText()),String.valueOf(txtpassword.getText()),String.valueOf(txtRepPassword.getText())))  {
 
                     if (validarPassword(String.valueOf(txtpassword.getText()), String.valueOf(txtRepPassword.getText()))) {
-                        if((validaMailexistente(String.valueOf(txtCorreo.getText()))) && (validarFormatMail(String.valueOf(txtCorreo.getText())))) { //es TRUE existe
+                        if((validaMailexistente(String.valueOf(txtCorreo.getText())))        && (validarFormatMail(String.valueOf(txtCorreo.getText())))) { //es TRUE existe
 
                             helper.abrirDB();
                             helper.insertarUsuario(String.valueOf(txtNombre.getText()),
