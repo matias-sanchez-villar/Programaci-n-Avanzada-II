@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="solicitanteNombre">Nombre</string>
+    <string name="solicitanteApellido">Apellido</string>
+    <string name="solicitanteFechaFinSolicitud">Fecha de fin de solicitud</string>
+    <string name="solicitanteApellido">Apellido</string>
+    <string name="solicitanteLocalidad">Localidad</string>
+    <string name="solicitanteProvincia">Provincia</string>
+    <string name="solicitanteDireccion">Direccion</string>
+    <string name="solicitanteNroDomicilio">Numero de domicilio</string>
+    <string name="solicitanteCantDonates">Cantidad de donantes necesarios</string>
+    <string name="solicitanteTipoSangre">Tipo de sangre</string>
+</resources>
