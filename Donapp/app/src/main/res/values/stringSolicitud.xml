@@ -3,11 +3,10 @@
     <string name="solicitanteNombre">Nombre</string>
     <string name="solicitanteApellido">Apellido</string>
     <string name="solicitanteFechaFinSolicitud">Fecha de fin de solicitud</string>
-    <string name="solicitanteApellido">Apellido</string>
-    <string name="solicitanteLocalidad">Localidad</string>
-    <string name="solicitanteProvincia">Provincia</string>
-    <string name="solicitanteDireccion">Direccion</string>
-    <string name="solicitanteNroDomicilio">Numero de domicilio</string>
+    <string name="solicitanteLocalidad">Localidad de donacion</string>
+    <string name="solicitanteProvincia">Provincia de donacion</string>
+    <string name="solicitanteDireccion">Direccion de donacion</string>
+    <string name="solicitanteNroDomicilio">Numero de domicilio de donacion</string>
     <string name="solicitanteCantDonates">Cantidad de donantes necesarios</string>
-    <string name="solicitanteTipoSangre">Tipo de sangre</string>
+    <string name="solicitanteTipoSangre">Tipo de sangre requerida</string>
 </resources>
