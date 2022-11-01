@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="solicitanteNombre">Nombre</string>
-    <string name="solicitanteApellido">Apellido</string>
+    <string name="solicitanteAlta">Alta solicitud</string>
+    <string name="solicitanteNombre">Nombre solicitante</string>
+    <string name="solicitanteApellido">Apellido solicitante</string>
     <string name="solicitanteFechaFinSolicitud">Fecha de fin de solicitud</string>
     <string name="solicitanteLocalidad">Localidad de donacion</string>
     <string name="solicitanteProvincia">Provincia de donacion</string>

@@ -59,7 +59,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/titleAlta"
+            android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:baselineAligned="false"
@@ -82,7 +82,7 @@
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/textNombreC"
+            android:id="@+id/textNombre"
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:hint="@string/NombreCampana"
