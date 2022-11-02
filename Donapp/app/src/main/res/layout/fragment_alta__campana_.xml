@@ -13,7 +13,7 @@
 
 
         <Button
-            android:id="@+id/BtnCerrarS"
+            android:id="@+id/btnCerrarSession"
             style="@style/Widget.Material3.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -26,13 +26,13 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.925"
-            app:layout_constraintStart_toEndOf="@+id/BtnCerrar"
+            app:layout_constraintStart_toEndOf="@+id/btnCerrarSession"
             app:layout_constraintTop_toTopOf="parent"
             tools:layout_conversion_absoluteHeight="35dp"
             tools:layout_conversion_absoluteWidth="113dp" />
 
         <Button
-            android:id="@+id/BtnCerrar"
+            android:id="@+id/btnCerrarSession"
             style="@style/Widget.Material3.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

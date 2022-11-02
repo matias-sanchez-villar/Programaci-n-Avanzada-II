@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="solicitanteAlta">Alta solicitud</string>
+    <string name="solicitanteListado">Listado solicitud</string>
+    <string name="solicitanteDetalle">Detalle   solicitud</string>
     <string name="solicitanteNombre">Nombre solicitante</string>
     <string name="solicitanteApellido">Apellido solicitante</string>
     <string name="solicitanteFechaFinSolicitud">Fecha de fin de solicitud</string>

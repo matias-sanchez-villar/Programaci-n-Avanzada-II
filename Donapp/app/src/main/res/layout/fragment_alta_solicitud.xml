@@ -13,7 +13,7 @@
 
 
         <Button
-            android:id="@+id/BtnCerrarS"
+            android:id="@+id/btnCerrarSession"
             style="@style/Widget.Material3.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -26,13 +26,13 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.925"
-            app:layout_constraintStart_toEndOf="@+id/BtnCerrar"
+            app:layout_constraintStart_toEndOf="@+id/btnCerrar"
             app:layout_constraintTop_toTopOf="parent"
             tools:layout_conversion_absoluteHeight="35dp"
             tools:layout_conversion_absoluteWidth="113dp" />
 
         <Button
-            android:id="@+id/BtnCerrar"
+            android:id="@+id/btnCerrar"
             style="@style/Widget.Material3.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -44,7 +44,7 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.083"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
@@ -111,19 +111,19 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <EditText
-                android:id="@+id/txtLocalidad"
+            <Spinner
+                android:id="@+id/spnLocalidad"
                 android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:hint="@string/solicitanteLocalidad"
-                android:textSize="16sp" />
+                android:layout_height="43dp"
+                android:contentDescription="@string/solicitanteTipoSangre"
+                android:dropDownWidth="match_parent" />
 
-            <EditText
-                android:id="@+id/txtProvincia"
+            <Spinner
+                android:id="@+id/spnProvincia"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/solicitanteProvincia"
-                android:textSize="16sp" />
+                android:layout_height="43dp"
+                android:contentDescription="@string/solicitanteTipoSangre"
+                android:dropDownWidth="match_parent" />
 
         </LinearLayout>
 
@@ -144,7 +144,7 @@
             android:textSize="16sp" />
 
         <Spinner
-            android:id="@+id/spTipoSangre"
+            android:id="@+id/spnTipoSangre"
             android:layout_width="match_parent"
             android:layout_height="43dp"
             android:contentDescription="@string/solicitanteTipoSangre"
