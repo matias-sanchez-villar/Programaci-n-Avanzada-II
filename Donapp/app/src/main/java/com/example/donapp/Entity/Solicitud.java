@@ -13,6 +13,15 @@ public class Solicitud {
     public Solicitud() {
         this.estado = true;
     }
+    public Solicitud(String nombre, String apellido, String fecha, Provincia provincia, String direccion, int cantidadDonantes) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.fecha = fecha;
+        this.provincia = provincia;
+        this.direccion = direccion;
+        this.cantidadDonantes = cantidadDonantes;
+        this.estado = true;
+    }
 
     public Solicitud(int id, String nombre, String apellido, String fecha, Provincia provincia, String direccion, int cantidadDonantes, Boolean estado) {
         this.id = id;

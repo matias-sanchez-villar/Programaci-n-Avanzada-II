@@ -9,6 +9,11 @@ public class Localidad {
         this.estado = true;
     }
 
+    public Localidad(String localidad) {
+        this.localidad = localidad;
+        this.estado = true;
+    }
+
     public Localidad(int id, String localidad, Boolean estado) {
         this.id = id;
         this.localidad = localidad;

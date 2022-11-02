@@ -12,6 +12,12 @@ public class Provincia {
         this.estado = true;
     }
 
+    public Provincia(String provincia, ArrayList<Localidad> localidad) {
+        this.provincia = provincia;
+        this.localidad = localidad;
+        this.estado = true;
+    }
+
     public Provincia(int id, String provincia, ArrayList<Localidad> localidad, Boolean estado) {
         this.id = id;
         this.provincia = provincia;
