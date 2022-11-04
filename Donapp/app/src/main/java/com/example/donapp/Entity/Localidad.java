@@ -2,7 +2,7 @@ package com.example.donapp.Entity;
 
 public class Localidad {
     private int id;
-    private String localidad;
+    private String nombre;
     private Boolean estado;
 
     public Localidad() {
@@ -10,13 +10,13 @@ public class Localidad {
     }
 
     public Localidad(String localidad) {
-        this.localidad = localidad;
+        this.nombre = localidad;
         this.estado = true;
     }
 
     public Localidad(int id, String localidad, Boolean estado) {
         this.id = id;
-        this.localidad = localidad;
+        this.nombre = localidad;
         this.estado = estado;
     }
 
@@ -29,11 +29,11 @@ public class Localidad {
     }
 
     public String getLocalidad() {
-        return localidad;
+        return nombre;
     }
 
     public void setLocalidad(String localidad) {
-        this.localidad = localidad;
+        this.nombre = localidad;
     }
 
     public Boolean getEstado() {

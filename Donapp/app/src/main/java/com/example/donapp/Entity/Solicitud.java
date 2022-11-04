@@ -2,6 +2,7 @@ package com.example.donapp.Entity;
 
 public class Solicitud {
     private int id;
+    private String codigo;
     private String nombre;
     private String apellido;
     private String fecha;
