@@ -9,33 +9,7 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-    <!-- FRAGMENT = Listar Campaña-->
-    <string name="title_ListarCampana">Listado Campañas</string>
-    <string name="Back_ListarCampana">Volver</string>
-    <string name="Filter_ListarCampana">Filtrar</string>
-    <!-- FRAGMENT = Alta Campaña-->
-    <string name="title_Altacampana">Alta Campaña</string>
-    <string name="Cerar_AltaCampana">X</string>
-    <string name="Out_AltaCampana">Cerrar Sesion</string>
-    <string name="NombreCampana">Nombre de la campaña</string>
-    <string name="Fecha">Fecha</string>
-    <string name="Localidad">Localidad</string>
-    <string name="Provincia">Provincia</string>
-    <string name="CantSolitantes">Cantidad de solicitantes</string>
-    <string name="CantDias">Cant Dias</string>
-    <string name="Check">Acepto terminos y condiciones</string>
-    <string name="BotonGuardar">Guardar</string>
-    <!-- FRAGMENT = Detalle Campaña-->
-    <string name="title_Detallecampana">Detalle Campaña</string>
-    <string name="Back_DetalleCampana">Volver</string>
-    <string name="id">ID:</string>
-    <string name="Empresa">Empresa:</string>
-    <string name="FechaDCampaña">Fecha:</string>
-    <string name="LocalidadDetalle">Localidad:</string>
-    <string name="ProvinciaDetalle">Provincia:</string>
-    <string name="CantSolitantesDetalle">Cant de solicitantes:</string>
-    <string name="CantDiasDetalle">Cant Dias:</string>
-    <string name="BotonVolver">Volver</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

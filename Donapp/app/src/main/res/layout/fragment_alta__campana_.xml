@@ -26,13 +26,13 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.925"
-            app:layout_constraintStart_toEndOf="@+id/btnCerrarSession"
+            app:layout_constraintStart_toEndOf="@+id/btnCerrar"
             app:layout_constraintTop_toTopOf="parent"
             tools:layout_conversion_absoluteHeight="35dp"
             tools:layout_conversion_absoluteWidth="113dp" />
 
         <Button
-            android:id="@+id/btnCerrarSession"
+            android:id="@+id/btnCerrar"
             style="@style/Widget.Material3.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -92,6 +92,7 @@
             android:id="@+id/textFecha"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:clickable="true"
             android:drawableEnd="@android:drawable/ic_menu_my_calendar"
             android:ems="10"
             android:hint="@string/Fecha"
@@ -100,21 +101,21 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="45dp">
 
-            <EditText
-                android:id="@+id/textLocalidad"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:hint="@string/Localidad"
-                android:textSize="16sp" />
-
-            <EditText
-                android:id="@+id/textProvincia"
+            <Spinner
+                android:id="@+id/spLocalidad"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/Provincia"
-                android:textSize="16sp" />
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:entries="@array/arrayLocalidades"/>
+
+            <Spinner
+                android:id="@+id/spProvincia"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:entries="@array/arrayProvincia"/>
 
         </LinearLayout>
 
@@ -124,23 +125,26 @@
 
             <EditText
                 android:id="@+id/textCantS"
-                android:layout_width="213dp"
+                android:layout_width="205dp"
                 android:layout_height="wrap_content"
                 android:hint="@string/CantSolitantes"
                 android:inputType="number"
                 android:textSize="16sp" />
 
-            <Spinner
-                android:id="@+id/spCantdias"
-                android:layout_width="match_parent"
-                android:layout_height="43dp"
-                android:contentDescription="@string/CantDias"
-                android:dropDownWidth="match_parent" />
+            <EditText
+                android:id="@+id/textCantDias"
+                android:layout_width="198dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="@string/CantDias"
+                android:inputType="number"
+                android:textSize="16sp" />
 
         </LinearLayout>
 
         <CheckBox
-            android:id="@+id/checkBox"
+            android:id="@+id/checkTerminos"
             android:layout_width="291dp"
             android:layout_height="wrap_content"
             android:text="@string/Check"
