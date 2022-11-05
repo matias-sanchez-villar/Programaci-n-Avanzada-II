@@ -16,6 +16,7 @@ import com.example.donapp.Entity.Localidad;
 import com.example.donapp.Entity.Provincia;
 import com.example.donapp.Entity.Solicitud;
 import com.example.donapp.R;
+import com.example.donapp.Util.Validar;
 
 import java.util.ArrayList;
 
@@ -79,6 +80,8 @@ public class AltaSolicitud extends Fragment {
     }
 
     public void onClickBtnGuardar(){
+        if (validateData())
+            return;
         ArrayList<Localidad> localidad = new ArrayList<Localidad>();
         localidad.add(new Localidad(spnLocalidad.getSelectedItem().toString()));
         Solicitud solicitud = new Solicitud(
@@ -95,6 +98,38 @@ public class AltaSolicitud extends Fragment {
 
         //TODO: Solo queda guardar en la BD
 
+    }
+
+    public boolean validateData(){
+        if (!Validar.texto(txtNombre.getText().toString())) {
+            toast("Error en el campo Nombre, completelo nuevamente");
+            return false;
+        }
+        if (!Validar.texto(txtApellido.getText().toString())) {
+            toast("Error en el campo Apellido, completelo nuevamente");
+            return false;
+        }
+        if (!Validar.texto(spnLocalidad.getSelectedItem().toString())) {
+            toast("Error en el campo Localidad, completelo nuevamente");
+            return false;
+        }
+        if (!Validar.texto(spnProvincia.getSelectedItem().toString())) {
+            toast("Error en el campo Provincia, completelo nuevamente");
+            return false;
+        }
+        if (!Validar.textoConEspaciosNumeros(txtDireccion.getText().toString())) {
+            toast("Error en el campo Direccion, completelo nuevamente");
+            return false;
+        }
+        if (!Validar.date(txtFecha.getText().toString())) {
+            toast("Error en el campo Fecha, completelo nuevamente");
+            return false;
+        }
+        if (!Validar.numeros(txtCantDonante.getText().toString())) {
+            toast("Error en el campo Cantidad de donantes, completelo nuevamente");
+            return false;
+        }
+        return  true;
     }
 
     public void toast(String txt) {Toast.makeText(getContext(), txt, Toast.LENGTH_SHORT).show();}
