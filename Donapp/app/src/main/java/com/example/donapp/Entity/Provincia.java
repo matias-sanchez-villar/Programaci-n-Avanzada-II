@@ -2,7 +2,7 @@ package com.example.donapp.Entity;
 
 import java.util.ArrayList;
 
-public class Provincia extends EntidadEstadoBase {
+public class Provincia extends EntidadBase {
     private String nombre;
     private ArrayList<Localidad> localidad = new ArrayList<Localidad>();
 

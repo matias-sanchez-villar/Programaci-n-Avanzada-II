@@ -6,6 +6,7 @@ public abstract class Persona extends EntidadBase {
     String direccion;
     Provincia provincia;
     Localidad localidad;
+    Boolean isJuridica;
 
     public Persona(){
     }
@@ -62,5 +63,13 @@ public abstract class Persona extends EntidadBase {
 
     public void setLocalidad(Localidad localidad) {
         this.localidad = localidad;
+    }
+
+    public Boolean getJuridica() {
+        return isJuridica;
+    }
+
+    public void setJuridica(Boolean juridica) {
+        isJuridica = juridica;
     }
 }

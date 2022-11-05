@@ -60,7 +60,7 @@ public class DataSolicitud extends AsyncTask<String, Void, String> {
                 );
                 solicitud.setDireccion(rs.getString("direccion"));
                 solicitud.setCantidadDonantes(Integer.parseInt(rs.getString("cantidadDonantes")));
-                solicitud.setEstado(Boolean.parseBoolean(rs.getString("estado")));
+                // solicitud.setEstado(Boolean.parseBoolean(rs.getString("estado")));
 
                 //Agregamos el nombre del articulo
                 listSolicitud.add(solicitud);

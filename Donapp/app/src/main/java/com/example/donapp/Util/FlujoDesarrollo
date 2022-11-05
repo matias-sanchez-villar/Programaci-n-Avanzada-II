@@ -1,0 +1,25 @@
+** CREACION DE ENTIDAD DE TABLA Y METODOS PARA ACCEDER A BASE **
+1. Crear entidad correspondiente en package Entity
+2. Agregar nombre de tabla en package Database.TableDB. Servirá para una posterior busqueda de tablas. OPCIONAL
+3. Agregar en package DATA un package con el nombre de la entidad a relacionar en la tabla.
+4. Por cada acción CRUD (Create, Read, Update y Delete) crear un hilo Async.
+5. Cada hilo debe tener un context, en caso del update y create debe tener un objeto del tipo de la entidad deseada.
+6. En el delete, debe tener un id para eliminar.
+7. Para el Data, que es el hilo que usaremos para obtener listas, se deberá evaluar que adapters vamos a usar, EJ: En Usuario,
+tal vez necesitemos cargar un list view y un spinner, entonces deberiamos declarar como propiedad de la clase estos dos objetos.
+De esta forma, también crearemos constructores que reciban un spinner o un list view dependiendo la situación en la que lo usemos.
+8. Agregar una clase que unificará todos estos hilos y los manejara, se llamara NombreEntidadRepository: Esta clase
+deberá extender de BaseRepository y IQueryRepository.
+9. BaseRepository nos permite ejecutar los hilos sin necesidad de repetirlos en todas las clases que vamos a crear
+10. IQueryRepository es una interfaz que nos permitirá definir nuestros propios metodos para implementar.
+11. El repository que vamos a crear en realidad actua como un service, en versiones posteriores deberíamos cambiarlo y validar esos usos.
+12. Para usar cualquier hilo, debemos instanciar un objeto del tipo Repository que creamos, y listo. Solo queda utilizar los metodos cuando sean necesarios.
+13. Para un ejemplo claro en tema codigo, ver entidad USUARIO.
+
+
+** AGREGAR ACTIVITY**
+1. Puede pasar que les de error al querer agregar un activity que este en el package Activity
+Esto pasa porque hay que ir a AndroidManifest.xml y van a ver que el activity que agregaron
+esta en rojo, hay que agregarle a la propiedad name=".Activity.NombreAcvity" asi reconoce el package
+2. Probablemente les de error cuando crean por primera vez un activity, en el metodo setContentView.
+Lo que hay que hacer es volver a escribirlo manual para que lo tome de nuevo. Nada raro.

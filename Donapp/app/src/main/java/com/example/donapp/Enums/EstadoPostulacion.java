@@ -11,8 +11,8 @@ public enum EstadoPostulacion implements IEstado {
     @Override
     public String displayEstado() {
         return this == ACTIVO
-                ? EstadosConst.ACTIVO
-                : this == CONFIRMADO ? EstadosConst.CONFIRMADO
+                ? ACTIVO.name()
+                : this == CONFIRMADO ? CONFIRMADO.name()
                 : ErrorConst.ESTADO_INVALIDO;
     }
 }

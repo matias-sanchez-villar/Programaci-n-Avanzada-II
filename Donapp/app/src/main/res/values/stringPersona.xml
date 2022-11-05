@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="nombrePersona">Nombre</string>
+    <string name="apellidoPersona">Apellido</string>
+    <string name="telefonoPersona">Telefono de contacto</string>
+    <string name="direccionPersona">Dirección</string>
+    <string name="provinciaPersona">Provincia</string>
+    <string name="localidadPersona">Localidad</string>
+    <string name="fechaNacPersona">Fecha de nacimiento</string>
+    <string name="cuilPersona">CUIL</string>
+    <string name="horarioInicioPersona">Horario de atención desde</string>
+    <string name="horarioFinPersona">Horario de atencion hasta</string>
+</resources>

@@ -11,8 +11,8 @@ public enum Estado implements IEstado {
     @Override
     public String displayEstado() {
         return this == ACTIVO
-                ? EstadosConst.ACTIVO
-                : this == INACTIVO ? EstadosConst.INACTIVO
+                ? ACTIVO.name()
+                : this == INACTIVO ? INACTIVO.name()
                 : ErrorConst.ESTADO_INVALIDO;
     }
 
