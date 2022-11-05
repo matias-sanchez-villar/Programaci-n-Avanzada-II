@@ -43,7 +43,7 @@ public class DataLocalidad extends AsyncTask<String, Void, String> {
                 localidad = new Localidad();
                 localidad.setId(rs.getInt("id"));
                 localidad.setLocalidad(rs.getString("localidad"));
-                localidad.setEstado(Boolean.parseBoolean(rs.getString("estado")));
+                // localidad.setEstado(Boolean.parseBoolean(rs.getString("estado")));
 
                 //Agregamos el nombre del articulo
                 listLocalidad.add(localidad);

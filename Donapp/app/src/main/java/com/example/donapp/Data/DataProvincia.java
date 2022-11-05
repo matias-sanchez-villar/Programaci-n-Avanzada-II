@@ -49,7 +49,7 @@ public class DataProvincia extends AsyncTask<String, Void, String> {
                 provincia.setId(rs.getInt("id"));
                 provincia.setProvincia(rs.getString("provincia"));
                 provincia.setLocalidad(localidad);
-                provincia.setEstado(Boolean.parseBoolean(rs.getString("estado")));
+                // provincia.setEstado(Boolean.parseBoolean(rs.getString("estado")));
 
                 //Agregamos el nombre del articulo
                 listProvincia.add(provincia);

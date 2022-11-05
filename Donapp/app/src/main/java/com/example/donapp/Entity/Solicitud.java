@@ -1,17 +1,16 @@
 package com.example.donapp.Entity;
 
-public class Solicitud {
-    private int id;
+public class Solicitud extends EntidadEstadoBase{
+    private String codigo;
     private String nombre;
     private String apellido;
     private String fecha;
     private Provincia provincia;
+    private Localidad localidad;
     private String direccion;
     private int cantidadDonantes;
-    private Boolean estado;
 
     public Solicitud() {
-        this.estado = true;
     }
 
     public Solicitud(String nombre, String apellido, String fecha, Provincia provincia, String direccion, int cantidadDonantes) {
@@ -21,7 +20,6 @@ public class Solicitud {
         this.provincia = provincia;
         this.direccion = direccion;
         this.cantidadDonantes = cantidadDonantes;
-        this.estado = true;
     }
 
     public Solicitud(int id, String nombre, String apellido, String fecha, Provincia provincia, String direccion, int cantidadDonantes, Boolean estado) {
@@ -32,15 +30,6 @@ public class Solicitud {
         this.provincia = provincia;
         this.direccion = direccion;
         this.cantidadDonantes = cantidadDonantes;
-        this.estado = estado;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getNombre() {
@@ -91,11 +80,19 @@ public class Solicitud {
         this.cantidadDonantes = cantidadDonantes;
     }
 
-    public Boolean getEstado() {
-        return estado;
+    public String getCodigo() {
+        return codigo;
     }
 
-    public void setEstado(Boolean estado) {
-        this.estado = estado;
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
+    public Localidad getLocalidad() {
+        return localidad;
+    }
+
+    public void setLocalidad(Localidad localidad) {
+        this.localidad = localidad;
     }
 }
