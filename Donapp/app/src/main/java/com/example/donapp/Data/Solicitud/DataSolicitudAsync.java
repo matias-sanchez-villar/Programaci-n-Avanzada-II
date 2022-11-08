@@ -27,11 +27,21 @@ public class DataSolicitudAsync extends AsyncTask<String, Void, StatusResponse> 
 
     private ListView lvSolicitud;
     private Context context;
+    private Spinner spn;
     private static ArrayList<Solicitud> listSolicitud = new ArrayList<Solicitud>();
 
     public DataSolicitudAsync(ListView lv, Context ct){
         this.lvSolicitud = lv;
         this.context = ct;
+    }
+
+    public DataSolicitudAsync(Context context){
+        this.context = context;
+    }
+
+    public DataSolicitudAsync(Spinner spn, Context context){
+        this.spn = spn;
+        this.context = context;
     }
 
     @Override
