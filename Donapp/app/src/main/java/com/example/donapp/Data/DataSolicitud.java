@@ -51,7 +51,7 @@ public class DataSolicitud extends AsyncTask<String, Void, String> {
                 solicitud.setId(rs.getInt("id"));
                 solicitud.setNombre(rs.getString("nombre"));
                 solicitud.setApellido(rs.getString("apellido"));
-                solicitud.setFecha(rs.getString("fecha"));
+                solicitud.setFecha(rs.getDate("fecha"));
                 solicitud.setProvincia(
                         new Provincia(
                                 rs.getString("provincia"),

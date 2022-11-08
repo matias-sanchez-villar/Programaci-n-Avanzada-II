@@ -1,6 +1,8 @@
 package com.example.donapp.Entity;
 
-public abstract class EntidadBase {
+import java.io.Serializable;
+
+public abstract class EntidadBase implements Serializable {
     int id;
 
     public EntidadBase(){

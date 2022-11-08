@@ -3,7 +3,9 @@ package com.example.donapp.Entity;
 import com.example.donapp.Enums.Estado;
 import com.example.donapp.Interfaces.IEstado;
 
-public abstract class EntidadEstadoBase {
+import java.io.Serializable;
+
+public abstract class EntidadEstadoBase implements Serializable {
     int id;
     IEstado estado;
 

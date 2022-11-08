@@ -1,19 +1,23 @@
 package com.example.donapp.Entity;
 
+import java.util.Date;
+
 public class Solicitud extends EntidadEstadoBase{
     private String codigo;
     private String nombre;
     private String apellido;
-    private String fecha;
+    private Date fecha;
     private Provincia provincia;
     private Localidad localidad;
     private String direccion;
     private int cantidadDonantes;
+    private Usuario usuario;
+    private Criticidad criticidad;
 
     public Solicitud() {
     }
 
-    public Solicitud(String nombre, String apellido, String fecha, Provincia provincia, String direccion, int cantidadDonantes) {
+    public Solicitud(String nombre, String apellido, Date fecha, Provincia provincia, String direccion, int cantidadDonantes) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.fecha = fecha;
@@ -22,7 +26,7 @@ public class Solicitud extends EntidadEstadoBase{
         this.cantidadDonantes = cantidadDonantes;
     }
 
-    public Solicitud(int id, String nombre, String apellido, String fecha, Provincia provincia, String direccion, int cantidadDonantes, Boolean estado) {
+    public Solicitud(int id, String nombre, String apellido, Date fecha, Provincia provincia, String direccion, int cantidadDonantes, Boolean estado) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -48,11 +52,11 @@ public class Solicitud extends EntidadEstadoBase{
         this.apellido = apellido;
     }
 
-    public String getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
-    public void setFecha(String fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 
@@ -94,5 +98,29 @@ public class Solicitud extends EntidadEstadoBase{
 
     public void setLocalidad(Localidad localidad) {
         this.localidad = localidad;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public Criticidad getCriticidad() {
+        return criticidad;
+    }
+
+    public void setCriticidad(Criticidad criticidad) {
+        this.criticidad = criticidad;
+    }
+
+    @Override
+    public String toString() {
+        return "Codigo: " + codigo + '\n' +
+                "Nombre: " + nombre + ", " + apellido + '\n' +
+                "Fecha: " + fecha + '\n' +
+                "Criticidad: " + criticidad.getDescripcion();
     }
 }

@@ -10,6 +10,10 @@ public class Provincia extends EntidadBase {
         super();
     }
 
+    public Provincia(int id){
+        this.id = id;
+    }
+
     public Provincia(String provincia, ArrayList<Localidad> localidad) {
         super();
         this.nombre = provincia;
@@ -22,11 +26,11 @@ public class Provincia extends EntidadBase {
         this.localidad = localidad;
     }
 
-    public String getProvincia() {
+    public String getNombre() {
         return nombre;
     }
 
-    public void setProvincia(String provincia) {
+    public void setNombre(String provincia) {
         this.nombre = provincia;
     }
 
@@ -36,5 +40,10 @@ public class Provincia extends EntidadBase {
 
     public void setLocalidad(ArrayList<Localidad> localidad) {
         this.localidad = localidad;
+    }
+
+    @Override
+    public String toString(){
+        return this.nombre;
     }
 }

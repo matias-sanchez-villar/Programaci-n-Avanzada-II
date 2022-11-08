@@ -22,4 +22,15 @@ deberá extender de BaseRepository y IQueryRepository.
 Esto pasa porque hay que ir a AndroidManifest.xml y van a ver que el activity que agregaron
 esta en rojo, hay que agregarle a la propiedad name=".Activity.NombreAcvity" asi reconoce el package
 2. Probablemente les de error cuando crean por primera vez un activity, en el metodo setContentView.
-Lo que hay que hacer es volver a escribirlo manual para que lo tome de nuevo. Nada raro.
+Lo que hay que hacer es agregar el siguiente import: import com.example.donapp.R;
+
+** MEJORAS **
+1. Ver si se aplica el repository como encapsulador de las funciones
+2. Ver si esta bien el nombre BaseRepository ya que maneja mas threads que otra cosa.
+3. Buscar alternativas a los return null;
+4. Al usar inflate en SolicitudesFragmen #L65, arroja error en debug. Validar que sea por versión o que cambios se hicieron.
+Tal vez puede ser el REGEX!?
+
+** PENDIENTE **
+1. Validaciones en Persona y Usuario (Clase y formularios)
+2. Falta agregar Criticidad a Solicitudes

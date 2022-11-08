@@ -16,6 +16,7 @@ import com.example.donapp.Entity.Localidad;
 import com.example.donapp.Entity.Provincia;
 import com.example.donapp.Entity.Solicitud;
 import com.example.donapp.R;
+import com.example.donapp.Util.DateUtil;
 
 import java.util.ArrayList;
 
@@ -84,7 +85,7 @@ public class AltaSolicitud extends Fragment {
         Solicitud solicitud = new Solicitud(
                 txtNombre.getText().toString(),
                 txtApellido.getText().toString(),
-                txtFecha.getText().toString(),
+                DateUtil.convertToSqlDate(txtFecha.getText().toString()),
                 new Provincia(
                         spnProvincia.getSelectedItem().toString(),
                         localidad

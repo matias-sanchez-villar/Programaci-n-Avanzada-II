@@ -6,4 +6,103 @@
     android:layout_height="match_parent"
     tools:context=".Activity.PersonaJuridicaActivity">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:weightSum="1" >
+
+            <EditText
+                android:id="@+id/nombrePersonaJuridica"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/nombrePersona"
+                android:inputType="text"
+                android:minHeight="38dp"
+                android:paddingTop="10dp"/>
+
+            <EditText
+                android:id="@+id/cuilPersonaJuridica"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/cuilPersona"
+                android:inputType="text"
+                android:minHeight="38dp"
+                android:paddingTop="10dp"/>
+
+            <EditText
+                android:id="@+id/telefonoPersonaJuridica"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/telefonoPersona"
+                android:inputType="text"
+                android:minHeight="38dp"
+                android:paddingTop="10dp"/>
+
+            <EditText
+                android:id="@+id/horarioInicioPersona"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/horarioInicioPersona"
+                android:inputType="time"
+                android:minHeight="38dp"
+                android:paddingTop="10dp"/>
+
+            <EditText
+                android:id="@+id/horarioFinPersona"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/horarioFinPersona"
+                android:inputType="time"
+                android:minHeight="38dp"
+                android:paddingTop="10dp"/>
+
+            <EditText
+                android:id="@+id/direccionJuridica"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/direccionPersona"
+                android:inputType="text"
+                android:minHeight="38dp"
+                android:paddingTop="10dp"/>
+
+            <Spinner
+                android:id="@+id/spnProvinciaPersonaJuridica"
+                android:layout_width="match_parent"
+                android:layout_height="38dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"/>
+
+            <Spinner
+                android:id="@+id/spnLocalidadPersonaJuridica"
+                android:layout_width="match_parent"
+                android:layout_height="38dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"/>
+
+            <Button
+                android:id="@+id/btnSiguienFromJuridica"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:text="SIGUIENTE">
+
+            </Button>
+
+        </LinearLayout>
+
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,6 +7,10 @@ public class PersonaJuridica extends Persona{
     String horarioInicio;
     String horarioFin;
 
+    public PersonaJuridica(){
+
+    }
+
     public PersonaJuridica(int id,
                            String nombre,
                            int telefono,
@@ -20,6 +24,38 @@ public class PersonaJuridica extends Persona{
         this.cuil = cuil;
         this.horarioInicio = horarioInicio;
         this.horarioFin = horarioFin;
+        this.isJuridica = true;
+    }
+
+    public PersonaJuridica(String nombre,
+                           int telefono,
+                           String direccion,
+                           Provincia provincia,
+                           Localidad localidad,
+                           String cuil,
+                           String horarioInicio,
+                           String horarioFin){
+        super(nombre, telefono, direccion, provincia, localidad);
+        this.cuil = cuil;
+        this.horarioInicio = horarioInicio;
+        this.horarioFin = horarioFin;
+        this.isJuridica = true;
+    }
+
+    public PersonaJuridica(Persona persona, String cuil, String horarioInicio, String horarioFin){
+        this.nombre = persona.nombre;
+        this.direccion = persona.direccion;
+        this.provincia = persona.getProvincia();
+        this.telefono = persona.getTelefono();
+        this.localidad = persona.getLocalidad();
+        this.cuil = cuil;
+        this.horarioInicio = horarioInicio;
+        this.horarioFin = horarioFin;
+        this.isJuridica = true;
+    }
+
+    public PersonaJuridica(int id){
+        this.id = id;
     }
 
     public String getCuil() {

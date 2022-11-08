@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.donapp.Enums.TipoUsuario;
 import com.example.donapp.R;
 
 public class TipoUsuarioActivity extends AppCompatActivity {
@@ -27,40 +28,42 @@ public class TipoUsuarioActivity extends AppCompatActivity {
         btnSolicitante.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                registrarPersonaFisica();
+                registrarPersonaFisica(TipoUsuario.SOLICITANTE);
             }
         });
 
         btnDonante.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                registrarPersonaFisica();
+                registrarPersonaFisica(TipoUsuario.DONANTE);
             }
         });
 
         btnEmpresa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                registrarPersonaJuridica();
+                registrarPersonaJuridica(TipoUsuario.EMPRESA);
             }
         });
 
         btnInstitucion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                registrarPersonaJuridica();
+                registrarPersonaJuridica(TipoUsuario.INSTITUCION);
             }
         });
 
     }
 
-    public void registrarPersonaFisica(){
+    public void registrarPersonaFisica(TipoUsuario tipoUsuario){
         Intent personaFisicaFormulario = new Intent(this, PersonaFisicaActivity.class);
+        personaFisicaFormulario.putExtra("tipoUsuario", tipoUsuario.ordinal());
         startActivity(personaFisicaFormulario);
     }
 
-    public void registrarPersonaJuridica(){
+    public void registrarPersonaJuridica(TipoUsuario tipoUsuario){
         Intent personaJuridicaFormulario = new Intent(this, PersonaJuridicaActivity.class);
+        personaJuridicaFormulario.putExtra("tipoUsuario", tipoUsuario.ordinal());
         startActivity(personaJuridicaFormulario);
     }
 

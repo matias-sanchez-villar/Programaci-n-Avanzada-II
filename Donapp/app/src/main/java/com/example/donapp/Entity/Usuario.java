@@ -1,5 +1,6 @@
 package com.example.donapp.Entity;
 
+import com.example.donapp.Enums.Estado;
 import com.example.donapp.Enums.TipoUsuario;
 
 public class Usuario extends EntidadEstadoBase {
@@ -13,8 +14,38 @@ public class Usuario extends EntidadEstadoBase {
         super();
     }
 
+    public Usuario(String nombreUsuario, String password){
+        this.nombreUsuario = nombreUsuario;
+        this.password = password;
+    }
+
     public Usuario(int id){
         super(id);
+    }
+
+    public Usuario(int id,
+                   String nombreUsuario,
+                   TipoUsuario tipoUsuario,
+                   String email,
+                   String password,
+                   Persona persona){
+        this.id = id;
+        this.nombreUsuario = nombreUsuario;
+        this.tipoUsuario = tipoUsuario;
+        this.email = email;
+        this.password = password;
+        this.persona = persona;
+    }
+
+    public Usuario(String nombreUsuario,
+                   String email,
+                   String password,
+                   TipoUsuario tipoUsuario){
+        this.nombreUsuario = nombreUsuario;
+        this.email = email;
+        this.password = password;
+        this.tipoUsuario = tipoUsuario;
+        this.estado = Estado.ACTIVO;
     }
 
     public String getNombreUsuario() {

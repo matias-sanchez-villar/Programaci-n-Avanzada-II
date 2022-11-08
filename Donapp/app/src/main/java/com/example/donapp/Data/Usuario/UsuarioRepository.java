@@ -14,21 +14,23 @@ import com.example.donapp.Interfaces.IQueryRepository;
 public class UsuarioRepository extends BaseRepository<Usuario> implements IQueryRepository<Usuario> {
 
     private AsyncTask<String, Void, StatusResponse> thread;
+    private AsyncTask<String, Void, Integer> createThread;
+    private AsyncTask<String, Void, Usuario> entityThread;
 
     public UsuarioRepository(Context context){
         this.context = context;
     }
 
     @Override
-    public StatusResponse create(Usuario entity){
-        this.thread = new CreateUsuarioAsync(entity, this.context);
-        return this.createAsync(entity, thread);
+    public Integer create(Usuario entity){
+        this.createThread = new CreateUsuarioAsync(entity, this.context);
+        return this.createAsync(createThread);
     }
 
     @Override
     public StatusResponse update(Usuario entity) {
         this.thread = new UpdateUsuarioAsync(entity, this.context);
-        return this.updateAsync(entity, thread);
+        return this.updateAsync(thread);
     }
 
     @Override
@@ -53,6 +55,15 @@ public class UsuarioRepository extends BaseRepository<Usuario> implements IQuery
     public StatusResponse selectAllForListView(ListView lv) {
         this.thread = new DataUsuarioAsync(lv, this.context);
         return this.selectAllAsync(thread);
+    }
+
+    @Override
+    public Usuario selectEntity(Usuario entity) {
+        this.entityThread = new ReadUsuarioAsync(
+                entity.getNombreUsuario(),
+                entity.getPassword(),
+                context);
+        return this.selectEntity(entityThread);
     }
 
 }

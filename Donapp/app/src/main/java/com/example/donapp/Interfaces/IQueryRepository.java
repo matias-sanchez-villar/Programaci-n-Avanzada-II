@@ -11,10 +11,11 @@ import com.example.donapp.Enums.StatusResponse;
  */
 
 public interface IQueryRepository<T> {
-    StatusResponse create(T entity);
+    Integer create(T entity);
     StatusResponse update(T entity);
     StatusResponse delete(int id);
     StatusResponse selectAll();
     StatusResponse selectAllForSpinner(Spinner spn);
     StatusResponse selectAllForListView(ListView lv);
+    T selectEntity(T entity);
 }

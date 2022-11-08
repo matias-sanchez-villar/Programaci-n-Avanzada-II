@@ -24,19 +24,19 @@ public abstract class BaseRepository<T> implements IBaseRepository<T> {
     protected Context context;
 
     @Override
-    public StatusResponse createAsync(T object, AsyncTask<String, Void, StatusResponse> thread) {
+    public Integer createAsync(AsyncTask<String, Void, Integer> thread) {
         try{
             return thread.execute().get();
         } catch (ExecutionException e){
-            return StatusResponse.FAIL;
+            return StatusResponse.FAIL.ordinal();
         } catch (InterruptedException e) {
             e.printStackTrace();
-            return StatusResponse.FAIL;
+            return StatusResponse.FAIL.ordinal();
         }
     }
 
     @Override
-    public StatusResponse updateAsync(T object, AsyncTask<String, Void, StatusResponse> thread) {
+    public StatusResponse updateAsync(AsyncTask<String, Void, StatusResponse> thread) {
         try{
             return thread.execute().get();
         } catch (ExecutionException e){
@@ -66,6 +66,19 @@ public abstract class BaseRepository<T> implements IBaseRepository<T> {
             return StatusResponse.SUCCESS;
         } catch (IllegalStateException ex){
             return StatusResponse.FAIL;
+        }
+    }
+
+    @Override
+    public T selectEntity(AsyncTask<String, Void, T> thread){
+        try {
+            return thread.execute().get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+            return null;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+            return null;
         }
     }
 }
