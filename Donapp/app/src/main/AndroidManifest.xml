@@ -17,6 +17,12 @@
         android:theme="@style/Theme.Donapp"
         tools:targetApi="31">
         <activity
+            android:name=".AltaSolicitud"
+            android:exported="false" />
+        <activity
+            android:name=".DetalleSolicitud"
+            android:exported="false" />
+        <activity
             android:name=".Activity.EmpresaActivity"
             android:exported="false"
             android:label="@string/title_activity_empresa"

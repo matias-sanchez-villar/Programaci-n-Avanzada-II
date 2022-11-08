@@ -4,7 +4,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,6 +17,8 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.donapp.Data.Solicitud.SolicitudRepository;
 import com.example.donapp.databinding.FragmentSolicitudesBinding;
 
+import java.util.ArrayList;
+
 
 public class SolicitudesFragment extends Fragment {
 
@@ -23,6 +27,8 @@ public class SolicitudesFragment extends Fragment {
     TextView listItem;
     ListView listView;
     SolicitudRepository _solicitudRepository;
+    ArrayList<String> searcheableProperties = new ArrayList<String>();
+    Spinner spnSearcheableProperties;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -34,9 +40,10 @@ public class SolicitudesFragment extends Fragment {
 
         _solicitudRepository = new SolicitudRepository(getActivity());
 
-        searchView = (SearchView) binding.SearchBuscar;
+        searchView = (SearchView) binding.searchBuscarSolicitudes;
 
         instanceLayouts();
+        fillProperties();
         setListeners();
         getDBInfo();
 
@@ -69,5 +76,25 @@ public class SolicitudesFragment extends Fragment {
 
     public void instanceLayouts(){
         listView = (ListView) binding.listSolicitudes;
+    }
+
+    public void fillProperties(){
+        spnSearcheableProperties = (Spinner) binding.spnSearchSolicitud;
+
+        // Propiedades buscables
+        searcheableProperties.add("Codigo");
+        searcheableProperties.add("Nombre");
+        searcheableProperties.add("Criticidad");
+        searcheableProperties.add("Provincia");
+        searcheableProperties.add("Localidad");
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                getActivity(),
+                android.R.layout.simple_spinner_item,
+                searcheableProperties);
+
+        // Set Adapter
+        spnSearcheableProperties.setAdapter(adapter);
+
+        //
     }
 }

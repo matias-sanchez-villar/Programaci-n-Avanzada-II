@@ -8,9 +8,7 @@ import android.widget.Spinner;
 
 import com.example.donapp.Database.DataDB;
 import com.example.donapp.Database.TableDB;
-import com.example.donapp.Entity.Localidad;
 import com.example.donapp.Entity.Provincia;
-import com.example.donapp.Entity.Solicitud;
 import com.example.donapp.Enums.StatusResponse;
 
 import java.sql.Connection;
