@@ -9,7 +9,6 @@
     <string name="solicitanteLocalidad">Localidad de donacion</string>
     <string name="solicitanteProvincia">Provincia de donacion</string>
     <string name="solicitanteDireccion">Direccion de donacion</string>
-    <string name="solicitanteNroDomicilio">Numero de domicilio de donacion</string>
     <string name="solicitanteCantDonates">Cantidad de donantes necesarios</string>
     <string name="solicitanteTipoSangre">Tipo de sangre requerida</string>
 </resources>
