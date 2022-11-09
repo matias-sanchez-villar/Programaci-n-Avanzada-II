@@ -5,6 +5,7 @@ public class Campana {
     private int idEmpresa;
     private String nombreCampana;
     private String fecha;
+    private String direccion;
     private Provincia provincia;
     private int cantSolicitante;
     private int cantDias;
@@ -13,14 +14,14 @@ public class Campana {
     public Campana() {this.estado = true;}
 
 
-    public Campana(String nombreCampana, String fecha, Provincia provincia, int cantSolicitante, int cantDias) {
+    public Campana(String nombreCampana, String fecha, String direccion, Provincia provincia, int cantSolicitante, int cantDias) {
         //Falta el ID empresa de session
         this.nombreCampana = nombreCampana;
         this.fecha = fecha;
+        this.direccion = direccion;
         this.provincia = provincia;
         this.cantSolicitante = cantSolicitante;
-        this.cantDias = cantDias;
-        this.estado = true;
+        this.cantDias = cantDias;;
     }
 
 
@@ -54,6 +55,14 @@ public class Campana {
 
     public void setFecha(String fecha) {
         this.fecha = fecha;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
 
 

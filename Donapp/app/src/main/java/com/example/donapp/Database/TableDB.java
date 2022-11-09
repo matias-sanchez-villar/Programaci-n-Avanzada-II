@@ -7,6 +7,7 @@ public final class TableDB {
     public static String LOCALIDAD = "localidades";
     public static String PERSONA = "personas";
     public static String SOLICITUD = "solicitudes";
+    public static String CAMPANIA = "campanias";
 
     public static String SelectAll(String table){
         return "SELECT * FROM " + table;
