@@ -306,7 +306,7 @@
                 </LinearLayout>
 
                 <Button
-                    android:id="@+id/btnGuardar"
+                    android:id="@+id/btnGuardarHistMedico"
                     style="@style/Widget.Material3.Button"
                     android:layout_width="248dp"
                     android:layout_height="wrap_content"
