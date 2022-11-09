@@ -6,4 +6,132 @@
     android:layout_height="match_parent"
     tools:context=".Activity.AltaSolicitud">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="1dp"
+        tools:ignore="MissingConstraints"
+        android:padding="15dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="false"
+                android:text="@string/solicitanteAlta"
+                android:textAlignment="center"
+                android:textColor="#0C0C0B"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                tools:layout_conversion_absoluteHeight="32dp"
+                tools:layout_conversion_absoluteWidth="200dp"
+                tools:layout_editor_absoluteX="41dp"
+                tools:layout_editor_absoluteY="0dp"
+                android:padding="15dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/txtNombre"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:hint="@string/solicitanteNombre"
+                android:textSize="16sp"
+                android:inputType="textPersonName"
+                android:padding="15dp"/>
+
+            <EditText
+                android:id="@+id/txtApellido"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:hint="@string/solicitanteApellido"
+                android:textSize="16sp"
+                android:inputType="textPersonName"
+                android:padding="15dp"/>
+
+            <EditText
+                android:id="@+id/txtFecha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@android:drawable/ic_menu_my_calendar"
+                android:ems="10"
+                android:hint="@string/solicitanteFechaFinSolicitud"
+                android:inputType="date"
+                android:textSize="16sp"
+                android:padding="15dp"/>
+
+            <Spinner
+                android:id="@+id/spnLocalidad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/solicitanteTipoSangre"
+                android:dropDownWidth="match_parent"
+                android:padding="25dp"
+                android:scaleType="center"/>
+
+            <Spinner
+                android:id="@+id/spnProvincia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/solicitanteTipoSangre"
+                android:dropDownWidth="match_parent"
+                android:padding="25dp"
+                android:scaleType="center"/>
+
+
+
+            <EditText
+                android:id="@+id/txtDireccion"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:hint="@string/solicitanteDireccion"
+                android:textSize="16sp"
+                android:inputType="textPostalAddress"
+                android:padding="15dp"/>
+
+            <EditText
+                android:id="@+id/txtCantDonante"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:hint="@string/solicitanteCantDonates"
+                android:inputType="number"
+                android:textSize="16sp"
+                android:padding="15dp"/>
+
+            <Spinner
+                android:id="@+id/spnTipoSangre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/solicitanteTipoSangre"
+                android:dropDownWidth="match_parent"
+                android:padding="25dp"
+                android:scaleType="center"/>
+
+            <Button
+                android:id="@+id/btnGuardar"
+                style="@style/Widget.Material3.Button"
+                android:layout_width="248dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#348708"
+                android:text="@string/BotonGuardar"
+                android:textSize="14sp"
+                app:rippleColor="#4CAF50"
+                android:padding="15dp"/>
+        </LinearLayout>
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -45,9 +45,11 @@
         <entry key="..\:/Users/elmer/Desktop/Elmer/UTN/Programacion Avanzada II/Projects/Programacion-Avanzada-II/Donapp/app/src/main/res/menu/activity_solicitante_donante_drawer.xml" value="0.4" />
         <entry key="..\:/Users/elmer/Desktop/Elmer/UTN/Programacion Avanzada II/Projects/Programacion-Avanzada-II/Donapp/app/src/main/res/menu/menu_main.xml" value="0.11302083333333333" />
         <entry key="..\:/Users/elmer/Desktop/Elmer/UTN/Programacion Avanzada II/Projects/Programacion-Avanzada-II/Donapp/app/src/main/res/menu/solicitante_donante.xml" value="0.11302083333333333" />
+        <entry key="..\:/Users/msancvil.USERSAD/Documents/Programacion-Avanzada-II/Donapp/app/src/main/res/layout/activity_alta_solicitud.xml" value="0.4466666666666667" />
         <entry key="..\:/Users/msancvil.USERSAD/Documents/Programacion-Avanzada-II/Donapp/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/msancvil.USERSAD/Documents/Programacion-Avanzada-II/Donapp/app/src/main/res/layout/activity_persona_fisica.xml" value="0.1796875" />
         <entry key="..\:/Users/msancvil.USERSAD/Documents/Programacion-Avanzada-II/Donapp/app/src/main/res/layout/fragment_alta__campana_.xml" value="0.3333333333333333" />
-        <entry key="..\:/Users/msancvil.USERSAD/Documents/Programacion-Avanzada-II/Donapp/app/src/main/res/layout/fragment_alta_solicitud.xml" value="0.22" />
+        <entry key="..\:/Users/msancvil.USERSAD/Documents/Programacion-Avanzada-II/Donapp/app/src/main/res/layout/fragment_alta_solicitud.xml" value="0.1" />
         <entry key="..\:/Users/msancvil.USERSAD/Documents/Programacion-Avanzada-II/Donapp/app/src/main/res/layout/fragment_listado_donante.xml" value="0.1796875" />
         <entry key="..\:/Users/msancvil.USERSAD/Documents/Programacion-Avanzada-II/Donapp/app/src/main/res/layout/fragment_listado_solicitud.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/msancvil.USERSAD/Documents/Programacion-Avanzada-II/Donapp/app/src/main/res/layout/fragment_listar__campana_.xml" value="0.1796875" />
@@ -59,5 +61,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.22" />
+      </ProjectState>
+    </option>
   </component>
 </project>
