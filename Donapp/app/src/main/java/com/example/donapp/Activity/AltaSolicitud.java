@@ -28,6 +28,7 @@ public class AltaSolicitud extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alta_solicitud);
+        fillProperties();
     }
 
     public void onClickBtnGuardar(){
@@ -86,6 +87,5 @@ public class AltaSolicitud extends AppCompatActivity {
         return  true;
     }
 
-    public void toast(String txt) {
-        Toast.makeText(this, txt, Toast.LENGTH_SHORT).show();}
+    public void toast(String txt) {Toast.makeText(this, txt, Toast.LENGTH_SHORT).show();}
 }
