@@ -269,6 +269,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
                 android:backgroundTint="#348708"
+                android:onClick="onClickBtnVolver"
                 android:text="@string/BotonVolver"
                 android:textSize="14sp"
                 app:rippleColor="#4CAF50" />
