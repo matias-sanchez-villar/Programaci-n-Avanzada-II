@@ -1,6 +1,6 @@
---TODO: Ver script de Mati para validar campo estado
+-- TODO: Ver script de Mati para validar campo estado
 
---CRITICIDAD
+-- CRITICIDAD
 CREATE TABLE IF NOT EXISTS `criticidad` (
 `id` int(11) NOT NULL AUTO_INCREMENT,
 `descripcion` varchar(25) NOT NULL,
@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS `provincias`(
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---`localidades`ES
+-- localidades
 CREATE TABLE IF NOT EXISTS `localidades`(
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `nombre` varchar(65) NOT NULL,
@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `localidades`(
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
---SOLICITUDES
+-- SOLICITUDES
 CREATE TABLE IF NOT EXISTS `solicitudes`(
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `codigo` varchar(65) NOT NULL,
@@ -45,8 +45,7 @@ CREATE TABLE IF NOT EXISTS `solicitudes`(
     FOREIGN KEY (id_criticidad) REFERENCES criticidad(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---PERSONAS
-
+-- PERSONAS
 CREATE TABLE IF NOT EXISTS `personas`(
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `nombre` varchar(65) NOT NULL,
@@ -81,7 +80,7 @@ CREATE TABLE IF NOT EXISTS `usuarios`(
     UNIQUE(`nombre_usuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---POSTULACIONES
+-- POSTULACIONES
 CREATE TABLE IF NOT EXISTS `postulaciones`(
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `codigo` varchar(65) NOT NULL,
@@ -91,6 +90,24 @@ CREATE TABLE IF NOT EXISTS `postulaciones`(
     `fecha_confirmacion` date NULL,
     `estado` int(11) NOT NULL,
     PRIMARY KEY (`id`),
+    FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- CAMPAÑAS
+CREATE TABLE IF NOT EXISTS `campanias`(
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `id_usuario` int(11) NOT NULL,
+    `nombre_campana` varchar(65) NOT NULL,
+    `fecha` date NOT NULL,
+    `id_localidad` int(11) NOT NULL,
+    `id_provincia` int(11) NOT NULL,
+    `direccion` varchar(65) NOT NULL,
+    `cantidadDonantes` int(11) NOT NULL,
+    `cantidadDias` int(11) NOT NULL,
+    `estado` int(11) NOT NULL DEFAULT 1,
+    PRIMARY KEY (`id`),
+    FOREIGN KEY (id_provincia) REFERENCES provincias(id),
+    FOREIGN KEY (id_localidad) REFERENCES localidades(id),
     FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
