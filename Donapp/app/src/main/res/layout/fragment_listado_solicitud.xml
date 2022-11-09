@@ -37,7 +37,7 @@
 
         <SearchView
             android:id="@+id/SearchBuscar"
-            android:layout_width="300dp"
+            android:layout_width="400dp"
             android:layout_height="45dp"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
