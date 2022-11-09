@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.AltaSolicitud">
+    tools:context=".Activity.AltaSolicitudActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -27,7 +27,7 @@
                 >
 
                 <TextView
-                    android:id="@+id/title"
+                    android:id="@+id/altaSolicitudTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:baselineAligned="false"
@@ -51,7 +51,7 @@
                 android:orientation="vertical">
 
                 <EditText
-                    android:id="@+id/txtNombre"
+                    android:id="@+id/txtNombreAltaSolicitud"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:hint="@string/solicitanteNombre"
@@ -60,7 +60,7 @@
                     android:padding="15dp"/>
 
                 <EditText
-                    android:id="@+id/txtApellido"
+                    android:id="@+id/txtApellidoAltaSolicitud"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:hint="@string/solicitanteApellido"
@@ -69,7 +69,7 @@
                     android:padding="15dp"/>
 
                 <EditText
-                    android:id="@+id/txtFecha"
+                    android:id="@+id/txtFechaAltaSolicitud"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableEnd="@android:drawable/ic_menu_my_calendar"
@@ -80,7 +80,7 @@
                     android:padding="15dp"/>
 
                 <Spinner
-                    android:id="@+id/spnLocalidad"
+                    android:id="@+id/spnProvinciaAltaSolicitud"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:contentDescription="@string/solicitanteTipoSangre"
@@ -89,7 +89,7 @@
                     android:scaleType="center"/>
 
                 <Spinner
-                    android:id="@+id/spnProvincia"
+                    android:id="@+id/spnLocalidadAltaSolicitud"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:contentDescription="@string/solicitanteTipoSangre"
@@ -100,7 +100,7 @@
 
 
                 <EditText
-                    android:id="@+id/txtDireccion"
+                    android:id="@+id/txtDireccionAltaSolicitud"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:hint="@string/solicitanteDireccion"
@@ -109,34 +109,81 @@
                     android:padding="15dp"/>
 
                 <EditText
-                    android:id="@+id/txtCantDonante"
+                    android:id="@+id/txtCantDonanteAltaSolicitud"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:hint="@string/solicitanteCantDonates"
                     android:inputType="number"
                     android:textSize="16sp"
                     android:padding="15dp"/>
-
-                <Spinner
-                    android:id="@+id/spnTipoSangre"
-                    android:layout_width="match_parent"
+                <LinearLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:contentDescription="@string/solicitanteTipoSangre"
-                    android:dropDownWidth="match_parent"
-                    android:padding="25dp"
-                    android:scaleType="center"/>
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp">
 
-                <Button
-                    android:id="@+id/btnGuardar"
-                    style="@style/Widget.Material3.Button"
-                    android:layout_width="248dp"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="120dp"
+                        android:text="Tipo de sangre" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Criticidad"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="#348708"
-                    android:onClick="onClickBtnGuardar"
-                    android:padding="15dp"
-                    android:text="@string/BotonGuardar"
-                    android:textSize="14sp"
-                    app:rippleColor="#4CAF50" />
+                    android:orientation="horizontal">
+
+                    <Spinner
+                        android:id="@+id/spnTipoSangreAltaSolicitud"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="50dp"
+                        android:contentDescription="@string/solicitanteTipoSangre"
+                        android:dropDownWidth="match_parent"
+                        android:padding="25dp"
+                        android:scaleType="center"/>
+
+                    <Spinner
+                        android:id="@+id/spnTipoCriticidadAltaSolicitud"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/solicitanteTipoSangre"
+                        android:dropDownWidth="match_parent"
+                        android:padding="25dp"
+                        android:scaleType="center"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <Button
+                        android:id="@+id/btnGuardarAltaSolicitud"
+                        style="@style/Widget.Material3.Button"
+                        android:layout_width="248dp"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="#348708"
+                        android:padding="15dp"
+                        android:text="@string/BotonGuardar"
+                        android:textSize="14sp"
+                        app:rippleColor="#4CAF50" />
+
+                    <Button
+                        android:id="@+id/btnCancelarAltaSolicitud"
+                        style="@style/Widget.Material3.Button"
+                        android:layout_width="248dp"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="#348708"
+                        android:padding="15dp"
+                        android:text="Cancelar solicitud"
+                        android:textSize="14sp"
+                        app:rippleColor="#4CAF50" />
+                </LinearLayout>
             </LinearLayout>
 
         </LinearLayout>

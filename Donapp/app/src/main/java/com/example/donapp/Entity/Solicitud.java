@@ -1,5 +1,8 @@
 package com.example.donapp.Entity;
 
+import com.example.donapp.Enums.EstadoSolicitud;
+import com.example.donapp.Util.CodigoGenerator;
+
 import java.util.Date;
 
 public class Solicitud extends EntidadEstadoBase{
@@ -10,6 +13,7 @@ public class Solicitud extends EntidadEstadoBase{
     private Provincia provincia;
     private Localidad localidad;
     private String direccion;
+    private String tipoDeSangre;
     private int cantidadDonantes;
     private Usuario usuario;
     private Criticidad criticidad;
@@ -17,16 +21,32 @@ public class Solicitud extends EntidadEstadoBase{
     public Solicitud() {
     }
 
-    public Solicitud(String nombre, String apellido, Date fecha, Provincia provincia, String direccion, int cantidadDonantes) {
+    public Solicitud(String nombre,
+                     String apellido,
+                     Date fecha,
+                     Provincia provincia,
+                     String direccion,
+                     int cantidadDonantes,
+                     String tipoDeSangre) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.fecha = fecha;
         this.provincia = provincia;
         this.direccion = direccion;
         this.cantidadDonantes = cantidadDonantes;
+        this.tipoDeSangre = tipoDeSangre;
+        setAutomaticCodigo();
     }
 
-    public Solicitud(int id, String nombre, String apellido, Date fecha, Provincia provincia, String direccion, int cantidadDonantes, Boolean estado) {
+    public Solicitud(int id,
+                     String nombre,
+                     String apellido,
+                     Date fecha,
+                     Provincia provincia,
+                     String direccion,
+                     int cantidadDonantes,
+                     Boolean estado,
+                     String tipoDeSangre) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -34,6 +54,8 @@ public class Solicitud extends EntidadEstadoBase{
         this.provincia = provincia;
         this.direccion = direccion;
         this.cantidadDonantes = cantidadDonantes;
+        this.tipoDeSangre = tipoDeSangre;
+        setAutomaticCodigo();
     }
 
     public String getNombre() {
@@ -122,5 +144,21 @@ public class Solicitud extends EntidadEstadoBase{
                 "Nombre: " + nombre + ", " + apellido + '\n' +
                 "Fecha: " + fecha + '\n' +
                 "Criticidad: " + criticidad.getDescripcion();
+    }
+
+    public String getTipoDeSangre() {
+        return tipoDeSangre;
+    }
+
+    public void setTipoDeSangre(String tipoDeSangre) {
+        this.tipoDeSangre = tipoDeSangre;
+    }
+
+    public void setAutomaticCodigo(){
+        this.codigo = CodigoGenerator.getAutomaticCode(CodigoGenerator.codigoSolicitudLenght);
+    }
+
+    public int getEstadoInt(){
+        return EstadoSolicitud.getTipoEstadoToInt(this.estado);
     }
 }

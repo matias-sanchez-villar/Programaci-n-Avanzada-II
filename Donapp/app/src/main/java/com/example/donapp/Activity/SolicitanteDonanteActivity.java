@@ -36,6 +36,12 @@ public class SolicitanteDonanteActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         setSupportActionBar(binding.appBarSolicitanteDonante.toolbar);
+
+
+        /**
+         * Botón de icono de mail(default) o de +.
+         * No lo usamos ya que se muestran en todos los fragments y no nos sirve
+         * Si se quiere volver a agregar, hay que agregar en app_bar_activity.xml
         binding.appBarSolicitanteDonante.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -43,6 +49,8 @@ public class SolicitanteDonanteActivity extends AppCompatActivity {
                  //       .setAction("Action", null).show();
             }
         });
+
+         **/
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
         // Passing each menu ID as a set of Ids because each

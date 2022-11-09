@@ -59,16 +59,15 @@ public class AltaCampaniaActivity extends AppCompatActivity {
         _provinciaRepository = new ProvinciaRepository(this);
         _localidadRepository = new LocalidadRepository(this);
 
-        txtNombre = (EditText)findViewById(R.id.txtNombre);
-        txtFecha = (EditText)findViewById(R.id.txtFecha);
-        txtDireccion = (EditText)findViewById(R.id.txtDireccion);
-        txtCantS = (EditText)findViewById(R.id.textCantS);
-        spnLocalidad = (Spinner)findViewById(R.id.spnLocalidad);
-        spnProvincia = (Spinner)findViewById(R.id.spnProvincia);
-        txtCantS = (EditText)findViewById((R.id.textCantS));
-        txtCantDias = (EditText)findViewById((R.id.textCantDias));
-        checkTerminos = (CheckBox)findViewById(R.id.checkTerminos);
-        btnGuardar = (Button)findViewById(R.id.btnGuardar);
+        txtNombre = (EditText)findViewById(R.id.txtNombreAltaCampania);
+        txtFecha = (EditText)findViewById(R.id.txtFechaAltaCampania);
+        txtDireccion = (EditText)findViewById(R.id.txtDireccionAltaCampania);
+        txtCantS = (EditText)findViewById(R.id.txtCantDiasAltaCampania);
+        spnLocalidad = (Spinner)findViewById(R.id.spnLocalidadAltaCampania);
+        spnProvincia = (Spinner)findViewById(R.id.spnProvinciaAltaCampania);
+        txtCantDias = (EditText)findViewById((R.id.txtCantDiasAltaCampania));
+        checkTerminos = (CheckBox)findViewById(R.id.checkTerminosAltaCampania);
+        btnGuardar = (Button)findViewById(R.id.btnGuardarAltaCampania);
 
     }
 

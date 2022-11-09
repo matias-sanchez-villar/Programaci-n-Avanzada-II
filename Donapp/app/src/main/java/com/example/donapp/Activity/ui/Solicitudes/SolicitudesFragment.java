@@ -1,10 +1,13 @@
 package com.example.donapp.Activity.ui.Solicitudes;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -14,6 +17,7 @@ import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.donapp.Activity.MisSolicitudesActivity;
 import com.example.donapp.Data.Solicitud.SolicitudRepository;
 import com.example.donapp.databinding.FragmentSolicitudesBinding;
 
@@ -24,7 +28,7 @@ public class SolicitudesFragment extends Fragment {
 
     private FragmentSolicitudesBinding binding;
     SearchView searchView;
-    TextView listItem;
+    Button misSolicitudesButton;
     ListView listView;
     SolicitudRepository _solicitudRepository;
     ArrayList<String> searcheableProperties = new ArrayList<String>();
@@ -68,6 +72,20 @@ public class SolicitudesFragment extends Fragment {
                 return false;
             }
         });
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // TODO: INSTANCIAR DETALLE Y PASAR SOLICITUD
+            }
+        });
+
+        misSolicitudesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToMisSolicitudes();
+            }
+        });
     }
 
     public void getDBInfo(){
@@ -76,6 +94,7 @@ public class SolicitudesFragment extends Fragment {
 
     public void instanceLayouts(){
         listView = (ListView) binding.listSolicitudes;
+        misSolicitudesButton = (Button) binding.MisSolicitudesBtn;
     }
 
     public void fillProperties(){
@@ -96,5 +115,10 @@ public class SolicitudesFragment extends Fragment {
         spnSearcheableProperties.setAdapter(adapter);
 
         //
+    }
+
+    public void goToMisSolicitudes(){
+        Intent misSolicitudesIntent = new Intent(getActivity(), MisSolicitudesActivity.class);
+        startActivity(misSolicitudesIntent);
     }
 }

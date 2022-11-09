@@ -32,4 +32,8 @@ public abstract class EntidadEstadoBase implements Serializable {
     public void setEstado(IEstado estado){
         this.estado = estado;
     }
+
+    public boolean isNew(){
+        return this.id == 0;
+    }
 }

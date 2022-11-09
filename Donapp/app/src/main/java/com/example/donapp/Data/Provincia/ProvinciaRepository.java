@@ -11,34 +11,15 @@ import com.example.donapp.Data.BaseRepository;
 import com.example.donapp.Entity.Provincia;
 import com.example.donapp.Enums.StatusResponse;
 import com.example.donapp.Interfaces.IQueryRepository;
+import com.example.donapp.Interfaces.IQuerySelectRepository;
 
-public class ProvinciaRepository extends BaseRepository<Provincia> implements IQueryRepository<Provincia> {
+public class ProvinciaRepository extends BaseRepository<Provincia> implements IQuerySelectRepository<Provincia> {
 
     private AsyncTask<String, Void, StatusResponse> thread;
     private AsyncTask<String, Void, Integer> createThread;
 
     public ProvinciaRepository(Context context){
         this.context = context;
-    }
-
-    @Override
-    public Integer create(Provincia entity) {
-        return null;
-    }
-
-    @Override
-    public StatusResponse update(Provincia entity) {
-        return null;
-    }
-
-    @Override
-    public StatusResponse delete(int id) {
-        return null;
-    }
-
-    @Override
-    public StatusResponse selectAll() {
-        return null;
     }
 
     @Override
@@ -52,8 +33,4 @@ public class ProvinciaRepository extends BaseRepository<Provincia> implements IQ
         return null;
     }
 
-    @Override
-    public Provincia selectEntity(Provincia entity) {
-        return null;
-    }
 }

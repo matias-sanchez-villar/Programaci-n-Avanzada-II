@@ -36,7 +36,9 @@ CREATE TABLE IF NOT EXISTS `solicitudes`(
     `direccion` varchar(65) NOT NULL,
     `id_usuario` int(11) NOT NULL,
     `cantidadDonantes` int(11) NOT NULL,
+    `cantDonantesConfirmados` int(11) NOT NULL,
     `id_criticidad` int(11) NOT NULL,
+    `tipo_sangre` varchar(5) NOT NULL,
     `estado` int(11) NOT NULL DEFAULT 1,
     PRIMARY KEY (`id`),
     FOREIGN KEY (id_provincia) REFERENCES provincias(id),
@@ -2294,6 +2296,9 @@ INSERT INTO `personas`(`nombre`, `telefono`, `direccion`, `id_provincia`, `id_lo
 
 
 --SOLICITUDES
-INSERT INTO `solicitudes`(`id`, `codigo`, `nombre`, `apellido`, `fecha`, `id_localidad`, `id_provincia`, `direccion`, `id_usuario`, `cantidadDonantes`, `estado`, `id_criticidad`) VALUES (1, 'AABBCC', 'Maria', 'Antonieta', '1990-07-10', 1, 1, 'Lomas 123', 1, 50, 1, 1);
-INSERT INTO `solicitudes`(`id`, `codigo`, `nombre`, `apellido`, `fecha`, `id_localidad`, `id_provincia`, `direccion`, `id_usuario`, `cantidadDonantes`, `estado`, `id_criticidad`) VALUES (2, 'BBCCDD', 'Flor', 'Diaz', '1990-07-15', 1, 1, 'Cerro 325', 1, 10, 1, 2);
-INSERT INTO `solicitudes`(`id`, `codigo`, `nombre`, `apellido`, `fecha`, `id_localidad`, `id_provincia`, `direccion`, `id_usuario`, `cantidadDonantes`, `estado`, `id_criticidad`) VALUES (3, 'DDEEFF', 'Ernesto', 'Fela', '1990-05-10', 2, 1, 'Montaña 456', 3, 5, 1, 3);
+INSERT INTO `solicitudes`(`id`, `codigo`, `nombre`, `apellido`, `fecha`, `id_localidad`, `id_provincia`, `direccion`, `id_usuario`, `cantidadDonantes`, `estado`, `tipo_sangre`, `id_criticidad`) VALUES (1, 'AABBCC', 'Maria', 'Antonieta', '1990-07-10', 1, 1, 'Lomas 123', 1, 50, 1, '0', 1);
+INSERT INTO `solicitudes`(`id`, `codigo`, `nombre`, `apellido`, `fecha`, `id_localidad`, `id_provincia`, `direccion`, `id_usuario`, `cantidadDonantes`, `estado`, `tipo_sangre`, `id_criticidad`) VALUES (2, 'BBCCDD', 'Flor', 'Diaz', '1990-07-15', 1, 1, 'Cerro 325', 1, 10, 1, 'AB', 2);
+INSERT INTO `solicitudes`(`id`, `codigo`, `nombre`, `apellido`, `fecha`, `id_localidad`, `id_provincia`, `direccion`, `id_usuario`, `cantidadDonantes`, `estado`, `tipo_sangre`, `id_criticidad`) VALUES (3, 'DDEEFF', 'Ernesto', 'Fela', '1990-05-10', 2, 1, 'Montaña 456', 3, 5, 1, 'B', 3);
+INSERT INTO `solicitudes`(`id`, `codigo`, `nombre`, `apellido`, `fecha`, `id_localidad`, `id_provincia`, `direccion`, `id_usuario`, `cantidadDonantes`, `estado`, `tipo_sangre`, `id_criticidad`) VALUES (6, 'MMNNOP', 'Horacio', 'Pacheli', '1990-05-10', 2, 1, 'Montaña 456', 3, 5, 1, 'B', 3);
+INSERT INTO `solicitudes`(`id`, `codigo`, `nombre`, `apellido`, `fecha`, `id_localidad`, `id_provincia`, `direccion`, `id_usuario`, `cantidadDonantes`, `estado`, `tipo_sangre`, `id_criticidad`) VALUES (5, 'JJKKLL', 'Mirta', 'Alvarez', '1990-07-15', 1, 1, 'Cerro 325', 1, 10, 1, 'B', 2);
+INSERT INTO `solicitudes`(`id`, `codigo`, `nombre`, `apellido`, `fecha`, `id_localidad`, `id_provincia`, `direccion`, `id_usuario`, `cantidadDonantes`, `estado`, `tipo_sangre`, `id_criticidad`) VALUES (4, 'GGHHII', 'Mercedes', 'Antonieta', '1990-07-10', 1, 1, 'Lomas 123', 1, 50, 1, 'A', 1);

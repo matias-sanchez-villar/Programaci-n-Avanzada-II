@@ -20,4 +20,9 @@ public enum EstadoSolicitud implements IEstado {
                 ? CANCELADA
                 : ACTIVA;
     }
+
+    public static int getTipoEstadoToInt(IEstado estado){
+        return estado.equals(ACTIVA.displayEstado()) ? ACTIVA.ordinal() : CANCELADA.ordinal();
+    }
+
 }

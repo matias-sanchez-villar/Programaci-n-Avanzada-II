@@ -30,7 +30,15 @@ Lo que hay que hacer es agregar el siguiente import: import com.example.donapp.R
 3. Buscar alternativas a los return null;
 4. Al usar inflate en SolicitudesFragmen #L65, arroja error en debug. Validar que sea por versión o que cambios se hicieron.
 Tal vez puede ser el REGEX!?
+5. Validar si se pueden manipular fragments en el drawer. Osea crear un fragment aparte e inflarlo cuando
+instanciamos el ui del drawer. Insertar los fragments que nosotros queramos.
+6. Al seleccionar atrás en los activities que creamos, debe volver a pantalla anterior.
+7. PASAR TODO A INGLES!!
+8. Mejorar busqueda de listas de datos mediante propiedades, se estan usando strings literales
+9. Establecer una nomenclatura unica, se estan usando diferentes formas de nombrar a componentes como txt y spinners.
+10. Renombrar IQueryRepository y IQuerySelectRepository, al igual que BaseRepository, no aplica del todo el nombre.
 
 ** PENDIENTE **
 1. Validaciones en Persona y Usuario (Clase y formularios)
 2. Falta agregar Criticidad a Solicitudes
+3. Agregar ScrollView a todo lo que se pueda, en especial list view

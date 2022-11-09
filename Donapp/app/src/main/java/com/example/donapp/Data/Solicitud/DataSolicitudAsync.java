@@ -6,6 +6,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 
+import androidx.annotation.Nullable;
+
 import com.example.donapp.Database.DataDB;
 import com.example.donapp.Database.TableDB;
 import com.example.donapp.Entity.Criticidad;
@@ -29,6 +31,9 @@ public class DataSolicitudAsync extends AsyncTask<String, Void, StatusResponse> 
     private Context context;
     private Spinner spn;
     private static ArrayList<Solicitud> listSolicitud = new ArrayList<Solicitud>();
+    private int integerPropertie = -1;
+    private String stringPropertie;
+    private String searcheablePropertie;
 
     public DataSolicitudAsync(ListView lv, Context ct){
         this.lvSolicitud = lv;
@@ -44,13 +49,45 @@ public class DataSolicitudAsync extends AsyncTask<String, Void, StatusResponse> 
         this.context = context;
     }
 
+    public DataSolicitudAsync(
+            Context context,
+            ListView lv,
+            int integerPropertie,
+            String searcheablePropertie
+    )
+    {
+        this.lvSolicitud = lv;
+        this.context = context;
+        this.integerPropertie = integerPropertie;
+        this.searcheablePropertie = searcheablePropertie;
+    }
+
+    public DataSolicitudAsync(
+            Context context,
+            ListView lv,
+            String stringPropertie,
+            String searcheablePropertie
+    )
+    {
+        this.lvSolicitud = lv;
+        this.context = context;
+        this.stringPropertie = stringPropertie;
+        this.searcheablePropertie = searcheablePropertie;
+    }
+
     @Override
     protected StatusResponse doInBackground(String... strings) {
         try {
             Class.forName(DataDB.driver);
             Connection con = DriverManager.getConnection(DataDB.urlMySQL, DataDB.user, DataDB.pass);
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery(queryLocalidadWithCriticidad());
+            ResultSet rs = st.executeQuery(
+                    findByIntegerPropertie()
+                    ? querySolicitudWithCriticidadByIntegerPropertie(searcheablePropertie, integerPropertie)
+                    : findByStringPropertie()
+                    ? querySolicitudWithCriticidadLikeStringPropertie(searcheablePropertie, stringPropertie)
+                    : querySolicitudWithCriticidad()
+            );
 
             Solicitud solicitud;
             listSolicitud.clear();
@@ -94,9 +131,36 @@ public class DataSolicitudAsync extends AsyncTask<String, Void, StatusResponse> 
         this.lvSolicitud.setAdapter(adapter);
     }
 
-    public String queryLocalidadWithCriticidad(){
+    public String querySolicitudWithCriticidad(){
         return "SELECT sol.*, c.descripcion AS 'descripcion' " +
                 "FROM `solicitudes` sol " +
-                "INNER JOIN `criticidad` c ON c.id = sol.id_criticidad";
+                "INNER JOIN `criticidad` c ON c.id = sol.id_criticidad " +
+                "WHERE sol.estado = 1";
+    }
+
+    public String querySolicitudWithCriticidadByIntegerPropertie(
+            String propertie,
+            int value){
+        return String.format("SELECT sol.*, c.descripcion AS 'descripcion' " +
+                "FROM `solicitudes` sol " +
+                "INNER JOIN `criticidad` c ON c.id = sol.id_criticidad " +
+                "WHERE sol.%1$s = %2$s ORDER BY fecha", propertie, value);
+    }
+
+    public String querySolicitudWithCriticidadLikeStringPropertie(
+            String propertie,
+            String value){
+        return String.format("SELECT sol.*, c.descripcion AS 'descripcion' " +
+                "FROM `solicitudes` sol " +
+                "INNER JOIN `criticidad` c ON c.id = sol.id_criticidad " +
+                "WHERE sol.%1$s LIKE '%" + "'%2$s'" + "%' ORDER BY fecha", propertie, value);
+    }
+
+    public boolean findByIntegerPropertie(){
+        return this.integerPropertie != -1 && this.searcheablePropertie != null;
+    }
+
+    public boolean findByStringPropertie(){
+        return this.stringPropertie != null && searcheablePropertie != null;
     }
 }

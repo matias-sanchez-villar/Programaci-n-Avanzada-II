@@ -14,7 +14,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/titleACampania"
+            android:id="@+id/titleAltaCampania"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:baselineAligned="false"
@@ -43,7 +43,7 @@
             android:layout_height="20dp" />
 
         <EditText
-            android:id="@+id/textNombre"
+            android:id="@+id/txtNombreAltaCampania"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/NombreCampana"
@@ -54,7 +54,7 @@
             android:layout_height="20dp" />
 
         <EditText
-            android:id="@+id/textFecha"
+            android:id="@+id/txtFechaAltaCampania"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clickable="false"
@@ -69,7 +69,7 @@
             android:layout_height="20dp" />
 
         <EditText
-            android:id="@+id/textDireccion"
+            android:id="@+id/txtDireccionAltaCampania"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Direccion"
@@ -80,7 +80,7 @@
             android:layout_height="20dp" />
 
         <Spinner
-            android:id="@+id/spLocalidad"
+            android:id="@+id/spnLocalidadAltaCampania"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -91,7 +91,7 @@
             android:layout_height="20dp" />
 
         <Spinner
-            android:id="@+id/spProvincia"
+            android:id="@+id/spnProvinciaAltaCampania"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -102,7 +102,7 @@
             android:layout_height="20dp" />
 
         <EditText
-            android:id="@+id/textCantS"
+            android:id="@+id/txtCantSAltaCampania"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/CantSolitantes"
@@ -114,7 +114,7 @@
             android:layout_height="20dp" />
 
         <EditText
-            android:id="@+id/textCantDias"
+            android:id="@+id/txtCantDiasAltaCampania"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -136,14 +136,14 @@
         android:orientation="vertical">
 
         <CheckBox
-            android:id="@+id/checkTerminos"
+            android:id="@+id/checkTerminosAltaCampania"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/Check"
             android:textSize="12sp" />
 
         <Button
-            android:id="@+id/btnGuardar"
+            android:id="@+id/btnGuardarAltaCampania"
             style="@style/Widget.Material3.Button"
             android:layout_width="248dp"
             android:layout_height="wrap_content"

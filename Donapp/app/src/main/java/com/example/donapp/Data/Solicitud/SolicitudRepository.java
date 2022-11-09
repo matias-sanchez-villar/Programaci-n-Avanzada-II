@@ -11,6 +11,8 @@ import com.example.donapp.Entity.Solicitud;
 import com.example.donapp.Enums.StatusResponse;
 import com.example.donapp.Interfaces.IQueryRepository;
 
+import javax.net.ssl.SSLEngineResult;
+
 public class SolicitudRepository extends BaseRepository<Solicitud> implements IQueryRepository<Solicitud> {
     private AsyncTask<String, Void, StatusResponse> thread;
     private AsyncTask<String, Void, Integer> createThread;
@@ -53,6 +55,16 @@ public class SolicitudRepository extends BaseRepository<Solicitud> implements IQ
     @Override
     public StatusResponse selectAllForListView(ListView lv) {
         this.thread = new DataSolicitudAsync(lv, context);
+        return this.selectAllAsync(thread);
+    }
+
+    public StatusResponse selectAllForListViewByIntegerPropertie(
+            ListView lv,
+            String propertie,
+            int value
+    )
+    {
+        this.thread = new DataSolicitudAsync(context, lv, value, propertie);
         return this.selectAllAsync(thread);
     }
 

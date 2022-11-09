@@ -23,5 +23,10 @@ public class Criticidad extends EntidadBase{
         this.descripcion = descripcion;
     }
 
+    @Override
+    public String toString() {
+        return descripcion;
+    }
+
     //TODO: TEMPORAL, BUSCAR DATOS DINAMICAMENTE.
 }

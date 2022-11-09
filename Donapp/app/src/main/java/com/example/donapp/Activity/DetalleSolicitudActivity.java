@@ -7,7 +7,7 @@ import android.os.Bundle;
 
 import com.example.donapp.R;
 
-public class DetalleSolicitud extends AppCompatActivity {
+public class DetalleSolicitudActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
