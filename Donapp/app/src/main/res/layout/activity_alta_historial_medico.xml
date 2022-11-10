@@ -51,7 +51,7 @@
                 android:orientation="vertical">
 
                 <Spinner
-                    android:id="@+id/spnTipoSangres"
+                    android:id="@+id/spnTipoSangreAltaHistorialMedico"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:contentDescription="@string/HistMedTipoSangre"
@@ -60,25 +60,25 @@
                     android:scaleType="center"/>
 
                 <EditText
-                    android:id="@+id/txtPeso"
+                    android:id="@+id/txtPesoAltaHistorialMedico"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:hint="@string/HistMedPeso"
                     android:textSize="16sp"
-                    android:inputType="text"
+                    android:inputType="number"
                     android:padding="15dp"/>
 
                 <EditText
-                    android:id="@+id/txtAltura"
+                    android:id="@+id/txtAlturaAltaHistorialMedico"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:hint="@string/HistMedAltura"
                     android:textSize="16sp"
-                    android:inputType="text"
+                    android:inputType="numberDecimal"
                     android:padding="15dp"/>
 
                 <EditText
-                    android:id="@+id/txtFechaUltimaDonacion"
+                    android:id="@+id/txtFechaUltimaDonacionAltaHistorialMedico"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableEnd="@android:drawable/ic_menu_my_calendar"
@@ -89,7 +89,7 @@
                     android:padding="15dp"/>
 
                 <TextView
-                    android:id="@+id/txtTatuajes"
+                    android:id="@+id/txtTatuajesAltaHistorialMedico"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/HistMedTatuajes"
@@ -104,14 +104,14 @@
                     android:padding="10dp">
 
                     <CheckBox
-                        android:id="@+id/cbxTatuajesTrue"
+                        android:id="@+id/cbxTatuajesTrueAltaHistorialMedico"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="@string/HistMedTrue"/>
 
                     <CheckBox
-                        android:id="@+id/cbxTatuajesFalse"
+                        android:id="@+id/cbxTatuajesFalseAltaHistorialMedico"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -123,7 +123,7 @@
                     android:id="@+id/txtHistMedEnfTranSexual"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/HistMedEnfTasmSexual"
+                    android:hint="Vacuna contra alergias"
                     android:layout_weight="1"
                     android:textSize="16sp"
                     android:padding="15dp"/>
@@ -135,14 +135,14 @@
                     android:padding="10dp">
 
                     <CheckBox
-                        android:id="@+id/cbxTranSexualTrue"
+                        android:id="@+id/cbxVacunaAlergiaTrueAltaHistorialMedico"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="@string/HistMedTrue"/>
 
                     <CheckBox
-                        android:id="@+id/cbxTranSexualFalse"
+                        android:id="@+id/cbxVacunaAlergiaFalseAltaHistorialMedico"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -151,10 +151,10 @@
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/txtHistMedDrogas"
+                    android:id="@+id/txtExamenSangreAltaHistorialMedico"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/HistMedDrogas"
+                    android:hint="Examen de sangre en los ultimos 6 meses"
                     android:layout_weight="1"
                     android:textSize="16sp"
                     android:padding="15dp"/>
@@ -166,14 +166,14 @@
                     android:padding="10dp">
 
                     <CheckBox
-                        android:id="@+id/cbxDrogasTrue"
+                        android:id="@+id/cbxExamenSangreTrueAltaHistorialMedico"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="@string/HistMedTrue"/>
 
                     <CheckBox
-                        android:id="@+id/cbxDrogasFalse"
+                        android:id="@+id/cbxExamenSangreFalseAltaHistorialMedico"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -185,7 +185,7 @@
                     android:id="@+id/txtHistMedMedicamentos"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/HistMedMedicamentos"
+                    android:hint="Revisión Médica en los ultimos 6 meses"
                     android:layout_weight="1"
                     android:textSize="16sp"
                     android:padding="15dp"/>
@@ -197,14 +197,14 @@
                     android:padding="10dp">
 
                     <CheckBox
-                        android:id="@+id/cbxMedicamentosTrue"
+                        android:id="@+id/cbxRevisionMedicaTrueAltaHistorialMedico"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="@string/HistMedTrue"/>
 
                     <CheckBox
-                        android:id="@+id/cbxMedicamentosFalse"
+                        android:id="@+id/cbxRevisionMedicaFalseAltaHistorialMedico"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -213,10 +213,10 @@
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/txtHistMedMinimas"
+                    android:id="@+id/txtTratamientoDentalAltaHistorialMedico"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/HistMedEnfMinimas"
+                    android:hint="Tratamiento dental en los ultimos 6 meses"
                     android:layout_weight="1"
                     android:textSize="16sp"
                     android:padding="15dp"/>
@@ -228,14 +228,45 @@
                     android:padding="10dp">
 
                     <CheckBox
-                        android:id="@+id/cbxMedidasMinimasTrue"
+                        android:id="@+id/cbxTratamientoDentalTrueAltaHistorialMedico"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="@string/HistMedTrue"/>
 
                     <CheckBox
-                        android:id="@+id/cbxMedidasMinimasFalse"
+                        android:id="@+id/cbxTratamientoDentalFalseAltaHistorialMedico"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/HistMedFalse"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/txtEndoscopiaAltaHistorialMedico"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Endoscopía en los ultimos 6 meses"
+                    android:layout_weight="1"
+                    android:textSize="16sp"
+                    android:padding="15dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <CheckBox
+                        android:id="@+id/cbxEndoscopiaTrueAltaHistorialMedico"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/HistMedTrue"/>
+
+                    <CheckBox
+                        android:id="@+id/cbxEndoscopiaFalseAltaHistorialMedico"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -275,10 +306,10 @@
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/txtHistMedEnfermedades"
+                    android:id="@+id/txtEmbarazoAltaHistorialMedico"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/HistMedEnfDefiniticas"
+                    android:hint="Embarazo o parto en los ultimos 6 meses"
                     android:layout_weight="1"
                     android:textSize="16sp"
                     android:padding="15dp"/>
@@ -290,14 +321,200 @@
                     android:padding="10dp">
 
                     <CheckBox
-                        android:id="@+id/cbxDefinitivosTrue"
+                        android:id="@+id/cbxEmbarazoTrueAltaHistorialMedico"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="@string/HistMedTrue"/>
 
                     <CheckBox
-                        android:id="@+id/cbxDefinitivosFalse"
+                        android:id="@+id/cbxEmbarazoFalseAltaHistorialMedico"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/HistMedFalse"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/txtEnfermedadesAltaHistorialMedico"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Enfermedades cronicas en los ultimos 6 meses"
+                    android:layout_weight="1"
+                    android:textSize="16sp"
+                    android:padding="15dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <CheckBox
+                        android:id="@+id/cbxEnfermedadesTrueAltaHistorialMedico"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/HistMedTrue"/>
+
+                    <CheckBox
+                        android:id="@+id/cbxEnfermedadesFalseAltaHistorialMedico"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/HistMedFalse"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/txtOperacionAltaHistorialMedico"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Operaciones en los ultimos 6 meses"
+                    android:layout_weight="1"
+                    android:textSize="16sp"
+                    android:padding="15dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <CheckBox
+                        android:id="@+id/cbxOperacionesTrueAltaHistorialMedico"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/HistMedTrue"/>
+
+                    <CheckBox
+                        android:id="@+id/cbxOperacionesFalseAltaHistorialMedico"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/HistMedFalse"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/txtViajesAltaHistorialMedico"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Viajes en los ultimos 6 meses"
+                    android:layout_weight="1"
+                    android:textSize="16sp"
+                    android:padding="15dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <CheckBox
+                        android:id="@+id/cbxViajesTrueAltaHistorialMedico"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/HistMedTrue"/>
+
+                    <CheckBox
+                        android:id="@+id/cbxViajesFalseAltaHistorialMedico"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/HistMedFalse"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/txtAnemiaAltaHistorialMedico"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Sintomas de anemia"
+                    android:layout_weight="1"
+                    android:textSize="16sp"
+                    android:padding="15dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <CheckBox
+                        android:id="@+id/cbxAnemiaTrueAltaHistorialMedico"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/HistMedTrue"/>
+
+                    <CheckBox
+                        android:id="@+id/cbxAnemiaFalseAltaHistorialMedico"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/HistMedFalse"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/txtAccidenteVasculaAltaHistorialMedico"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Accidente vascular en los ultimos 6 meses"
+                    android:layout_weight="1"
+                    android:textSize="16sp"
+                    android:padding="15dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <CheckBox
+                        android:id="@+id/cbxAccidenteVascularTrueAltaHistorialMedico"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/HistMedTrue"/>
+
+                    <CheckBox
+                        android:id="@+id/cbxAccidenteVascularFalseAltaHistorialMedico"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/HistMedFalse"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/txtMedicamentosAltaHistorialMedico"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Usa Medicamentos"
+                    android:layout_weight="1"
+                    android:textSize="16sp"
+                    android:padding="15dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <CheckBox
+                        android:id="@+id/cbxMedicamentosTrueAltaHistorialMedico"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/HistMedTrue"/>
+
+                    <CheckBox
+                        android:id="@+id/cbxMedicamentosFalseAltaHistorialMedico"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -312,16 +529,14 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="15dp"
                     android:backgroundTint="#348708"
-                    android:onClick="onClickBtnGuardar"
                     android:padding="15dp"
                     android:text="@string/BotonGuardar"
                     android:textSize="14sp"
                     app:rippleColor="#4CAF50" />
 
             </LinearLayout>
-
         </LinearLayout>
-
     </ScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

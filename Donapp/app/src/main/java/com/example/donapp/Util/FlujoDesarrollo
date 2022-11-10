@@ -60,3 +60,4 @@ instanciamos el ui del drawer. Insertar los fragments que nosotros queramos.
 5. El scrollView no debería incluir botones
 6. Agregar validaciones a cuil
 7. Falta mapear provincia, localidad y cualquier cosa que se carge en un spinner al modificar.
+8. VALIDACIONES EN HISTORIAL MEDICO, QUE SI O SI HAYA ALGUN CHECKBOX SELECCIONADO

@@ -2,43 +2,57 @@ package com.example.donapp.Entity;
 
 import com.example.donapp.Enums.TipoSangre;
 
-public class HistorialMedico extends EntidadBase{
+import java.util.Date;
+
+public class HistorialMedico extends EntidadEstadoBase{
     private TipoSangre tipoSangre;
-    private String peso;
-    private String altura;
+    private int peso;
+    private double altura;
+    private Date ultimaDonacion;
     private boolean tatuajes;
-    private boolean enferTranSexual;
-    private boolean usoDrogras;
-    private boolean usoMedicamentos;
-    private boolean resMinimas;
-    private boolean resMaximas;
+    private boolean vacunaAlergia;
+    private boolean examenSangre;
+    private boolean revisionMedica;
+    private boolean tratamientoDental;
+    private boolean endoscopia;
+    boolean embarazo;
+    boolean enfermedaCronica;
+    boolean operacion;
+    boolean viaje;
+    boolean anemia;
+    boolean accidenteVascular;
+    boolean usaMedicamentos;
+    boolean hepatitis;
+    Usuario usuario;
 
     public HistorialMedico(){}
 
-    public HistorialMedico(TipoSangre tipoSangre, String peso, String altura, boolean tatuajes, boolean enferTranSexual, boolean usoDrogras, boolean usoMedicamentos, boolean resMinimas, boolean resMaximas) {
-        super();
-        this.tipoSangre = tipoSangre;
-        this.peso = peso;
-        this.altura = altura;
-        this.tatuajes = tatuajes;
-        this.enferTranSexual = enferTranSexual;
-        this.usoDrogras = usoDrogras;
-        this.usoMedicamentos = usoMedicamentos;
-        this.resMinimas = resMinimas;
-        this.resMaximas = resMaximas;
+    public HistorialMedico(int id){
+        super(id);
     }
 
-    public HistorialMedico(int id, TipoSangre tipoSangre, String peso, String altura, boolean tatuajes, boolean enferTranSexual, boolean usoDrogras, boolean usoMedicamentos, boolean resMinimas, boolean resMaximas) {
-        super(id);
+    public HistorialMedico(TipoSangre tipoSangre,
+                           int peso,
+                           double altura,
+                           boolean tatuajes,
+                           boolean vacunaAlergia,
+                           boolean examenSangre,
+                           boolean revisionMedica,
+                           boolean tratamientoDental,
+                           boolean endoscopia,
+                           boolean embarazo,
+                           boolean enfermedaCronica,
+                           boolean operacion,
+                           boolean viaje,
+                           boolean accidenteVascular,
+                           boolean usaMedicamentos,
+                           boolean hepatitis,
+                           Usuario usuario){
         this.tipoSangre = tipoSangre;
         this.peso = peso;
         this.altura = altura;
         this.tatuajes = tatuajes;
-        this.enferTranSexual = enferTranSexual;
-        this.usoDrogras = usoDrogras;
-        this.usoMedicamentos = usoMedicamentos;
-        this.resMinimas = resMinimas;
-        this.resMaximas = resMaximas;
+        this.vacunaAlergia = vacunaAlergia;
     }
 
     public TipoSangre getTipoSangre() {
@@ -49,19 +63,27 @@ public class HistorialMedico extends EntidadBase{
         this.tipoSangre = tipoSangre;
     }
 
-    public String getPeso() {
+    public String getPesoToString() {
+        return String.valueOf(peso) + " kg";
+    }
+
+    public int getPeso(){
         return peso;
     }
 
-    public void setPeso(String peso) {
+    public void setPeso(int peso) {
         this.peso = peso;
     }
 
-    public String getAltura() {
+    public double getAltura(){
         return altura;
     }
 
-    public void setAltura(String altura) {
+    public String getAlturaToString() {
+        return String.valueOf(altura) + " mts";
+    }
+
+    public void setAltura(double altura) {
         this.altura = altura;
     }
 
@@ -73,43 +95,123 @@ public class HistorialMedico extends EntidadBase{
         this.tatuajes = tatuajes;
     }
 
-    public boolean isEnferTranSexual() {
-        return enferTranSexual;
+    public boolean isVacunaAlergia() {
+        return vacunaAlergia;
     }
 
-    public void setEnferTranSexual(boolean enferTranSexual) {
-        this.enferTranSexual = enferTranSexual;
+    public void setVacunaAlergia(boolean vacunaAlergia) {
+        this.vacunaAlergia = vacunaAlergia;
     }
 
-    public boolean isUsoDrogras() {
-        return usoDrogras;
+    public boolean isExamenSangre() {
+        return examenSangre;
     }
 
-    public void setUsoDrogras(boolean usoDrogras) {
-        this.usoDrogras = usoDrogras;
+    public void setExamenSangre(boolean examenSangre) {
+        this.examenSangre = examenSangre;
     }
 
-    public boolean isUsoMedicamentos() {
-        return usoMedicamentos;
+    public boolean isRevisionMedica() {
+        return revisionMedica;
     }
 
-    public void setUsoMedicamentos(boolean usoMedicamentos) {
-        this.usoMedicamentos = usoMedicamentos;
+    public void setRevisionMedica(boolean revisionMedica) {
+        this.revisionMedica = revisionMedica;
     }
 
-    public boolean isResMinimas() {
-        return resMinimas;
+    public boolean isTratamientoDental() {
+        return tratamientoDental;
     }
 
-    public void setResMinimas(boolean resMinimas) {
-        this.resMinimas = resMinimas;
+    public void setTratamientoDental(boolean tratamientoDental) {
+        this.tratamientoDental = tratamientoDental;
     }
 
-    public boolean isResMaximas() {
-        return resMaximas;
+    public boolean isEndoscopia() {
+        return endoscopia;
     }
 
-    public void setResMaximas(boolean resMaximas) {
-        this.resMaximas = resMaximas;
+    public void setEndoscopia(boolean endoscopia) {
+        this.endoscopia = endoscopia;
+    }
+
+    public boolean isEmbarazo() {
+        return embarazo;
+    }
+
+    public void setEmbarazo(boolean embarazo) {
+        this.embarazo = embarazo;
+    }
+
+    public boolean isEnfermedaCronica() {
+        return enfermedaCronica;
+    }
+
+    public void setEnfermedaCronica(boolean enfermedaCronica) {
+        this.enfermedaCronica = enfermedaCronica;
+    }
+
+    public boolean isOperacion() {
+        return operacion;
+    }
+
+    public void setOperacion(boolean operacion) {
+        this.operacion = operacion;
+    }
+
+    public boolean isViaje() {
+        return viaje;
+    }
+
+    public void setViaje(boolean viaje) {
+        this.viaje = viaje;
+    }
+
+    public boolean isAccidenteVascular() {
+        return accidenteVascular;
+    }
+
+    public void setAccidenteVascular(boolean accidenteVascular) {
+        this.accidenteVascular = accidenteVascular;
+    }
+
+    public boolean isUsaMedicamentos() {
+        return usaMedicamentos;
+    }
+
+    public void setUsaMedicamentos(boolean usaMedicamentos) {
+        this.usaMedicamentos = usaMedicamentos;
+    }
+
+    public boolean isHepatitis() {
+        return hepatitis;
+    }
+
+    public void setHepatitis(boolean hepatitis) {
+        this.hepatitis = hepatitis;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public Date getUltimaDonacion() {
+        return ultimaDonacion;
+    }
+
+    public void setUltimaDonacion(Date ultimaDonacion) {
+        this.ultimaDonacion = ultimaDonacion;
+    }
+
+    public boolean isAnemia() {
+        return anemia;
+    }
+
+    public void setAnemia(boolean anemia) {
+        this.anemia = anemia;
     }
 }
