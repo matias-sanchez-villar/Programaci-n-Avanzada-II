@@ -104,7 +104,7 @@ CREATE TABLE IF NOT EXISTS `campanias`(
     `id_localidad` int(11) NOT NULL,
     `id_provincia` int(11) NOT NULL,
     `direccion` varchar(65) NOT NULL,
-    `cantidadDonantes` int(11) NOT NULL,
+    `cantidadSolicitante` int(11) NOT NULL,
     `cantidadDias` int(11) NOT NULL,
     `estado` int(11) NOT NULL DEFAULT 1,
     PRIMARY KEY (`id`),

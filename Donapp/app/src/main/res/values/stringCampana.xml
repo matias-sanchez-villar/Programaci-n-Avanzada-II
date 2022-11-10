@@ -51,6 +51,7 @@
     <string name="FechaDCampaña">Fecha:</string>
     <string name="LocalidadDetalle">Localidad:</string>
     <string name="ProvinciaDetalle">Provincia:</string>
+    <string name="DireccionDetalle">Direccion:</string>
     <string name="CantSolitantesDetalle">Cant de solicitantes:</string>
     <string name="CantDiasDetalle">Cant Dias:</string>
     <string name="BotonVolver">Volver</string>
