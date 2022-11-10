@@ -30,9 +30,14 @@ public class BancosDeSangreFragment extends Fragment{
         View root = binding.getRoot();
 
         vtBancoSangre = (ListView) binding.lvBancoSangre;
+        fillProperties();
         setListeners();
 
         return root;
+    }
+
+    public void fillProperties(){
+
     }
 
     public void setListeners(){
