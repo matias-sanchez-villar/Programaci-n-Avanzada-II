@@ -8,7 +8,7 @@ public final class TableDB {
     public static String PERSONA = "personas";
     public static String SOLICITUD = "solicitudes";
     public static String CAMPANIA = "campanias";
-    public static String BANCO_SANGRE = "bancoSangre";
+    public static String BANCOS_SANGRE = "bancos_sangre";
 
     public static String SelectAll(String table){
         return "SELECT * FROM " + table;

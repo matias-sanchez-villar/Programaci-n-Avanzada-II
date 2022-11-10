@@ -39,7 +39,7 @@ public class BancoSangreRepository extends AsyncTask<String, Void, StatusRespons
             Class.forName(DataDB.driver);
             Connection con = DriverManager.getConnection(DataDB.urlMySQL, DataDB.user, DataDB.pass);
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery(TableDB.SelectAll(TableDB.BANCO_SANGRE));
+            ResultSet rs = st.executeQuery(TableDB.SelectAll(TableDB.BANCOS_SANGRE));
 
             BancoSangre bancoSangre;
             listBancoSangre.clear();
