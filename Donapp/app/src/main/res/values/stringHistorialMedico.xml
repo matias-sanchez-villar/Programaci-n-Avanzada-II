@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="HistMedTitulo">Historial Medico</string>
+    <string name="HistMedTipoSangre">Tipo de sangre</string>
+    <string name="HistMedPeso">Peso</string>
+    <string name="HistMedAltura">Altura</string>
+    <string name="HistMedFechaUltimaDonacion">Fecha de ultima donacion</string>
+    <string name="HistMedTatuajes">Tatuajes en los ultimos 6 meses</string>
+    <string name="HistMedEnfDefiniticas">enfermedades cardíacas, pulmonares, renales, tuberculosis, anemia, hemofilia, úlcera activa, cáncer, trastornos de la coagulación, etc.</string>
+    <string name="HistMedEnfHepatitis">Haber tenido antecedentes de hepatitis C o B, chagas, accidente cerebrovascular, etc.</string>
+    <string name="HistMedEnfTasmSexual">Efermedades de trasmision sexual</string>
+    <string name="HistMedDrogas">Uso de drogas en los ultimos 6 meses</string>
+    <string name="HistMedMedicamentos">Consume medicamentos</string>
+    <string name="HistMedEnfMinimas">Embarazo, parto, operación reciente, haber tenido síntomas de COVID en los últimos 10 días</string>
+    <string name="HistMedTrue">Si</string>
+    <string name="HistMedFalse">No</string>
+</resources>

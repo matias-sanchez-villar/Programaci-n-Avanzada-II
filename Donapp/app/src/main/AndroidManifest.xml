@@ -20,6 +20,9 @@
             android:name=".Activity.MisSolicitudesActivity"
             android:exported="false" />
         <activity
+            android:name="Activity.AltaHistorialMedico"
+            android:exported="false" />
+        <activity
             android:name=".Activity.AltaSolicitudActivity"
             android:exported="false" />
         <activity
