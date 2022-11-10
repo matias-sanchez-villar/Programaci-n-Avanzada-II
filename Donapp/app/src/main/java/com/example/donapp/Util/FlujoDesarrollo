@@ -37,8 +37,12 @@ instanciamos el ui del drawer. Insertar los fragments que nosotros queramos.
 8. Mejorar busqueda de listas de datos mediante propiedades, se estan usando strings literales
 9. Establecer una nomenclatura unica, se estan usando diferentes formas de nombrar a componentes como txt y spinners.
 10. Renombrar IQueryRepository y IQuerySelectRepository, al igual que BaseRepository, no aplica del todo el nombre.
+11. Los repository usados en los activities/fragments se deberían instanciar en la misma declaración
+
 
 ** PENDIENTE **
 1. Validaciones en Persona y Usuario (Clase y formularios)
 2. Falta agregar Criticidad a Solicitudes
 3. Agregar ScrollView a todo lo que se pueda, en especial list view
+4. Los titulos de la vista de los detalles deberían ir acompañados del codigo. EJ: Solicitud: AABBKK
+5. El scrollView no debería incluir botones

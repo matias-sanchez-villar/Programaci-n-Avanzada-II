@@ -70,6 +70,7 @@ public class SolicitudRepository extends BaseRepository<Solicitud> implements IQ
 
     @Override
     public Solicitud selectEntity(Solicitud entity) {
+        this.entityThread = new ReadSolicitudAsync(entity.getId(), context);
         return this.selectEntity(entityThread);
     }
 }

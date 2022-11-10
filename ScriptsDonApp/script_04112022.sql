@@ -113,6 +113,34 @@ CREATE TABLE IF NOT EXISTS `campanias`(
     FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- HISTORIALES MEDICOS
+
+CREATE TABLE IF NOT EXISTS `historiales_medicos`(
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `tipo_sangre` varchar(25) NOT NULL,
+    `peso` int(11) NOT NULL,
+    `altura` decimal(15) NOT NULL,
+    `ultima_donacion` date NULL,
+    `tatuajes` binary NOT NULL,
+    `inyeccion_alergia` binary NOT NULL,
+    `examen_sangre` binary NOT NULL,
+    `revision_medica` binary NOT NULL,
+    `tratamiento_dental` binary NOT NULL,
+    `endoscopia` binary NOT NULL,
+    `embarazo_parto` binary NOT NULL,
+    `enfermedad_cronica` binary NOT NULL,
+    `operacion` binary NOT NULL,
+    `viaje` binary NOT NULL,
+    `anemia` binary NOT NULL,
+    `accidente_vascular` binary NOT NULL,
+    `usa_medicamentos` binary NOT NULL,
+    `hepatitis` binary NOT NULL,
+    `estado` binary NOT NULL DEFAULT true,
+    `id_usuario` int(11) NOT NULL
+    PRIMARY KEY (`id`),
+    FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 -- ------- ----------------------------------------------------------------
 -- INSERTS --
 -- ------- ----------------------------------------------------------------

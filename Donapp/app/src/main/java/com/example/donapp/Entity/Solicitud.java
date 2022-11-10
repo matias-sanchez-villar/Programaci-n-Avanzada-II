@@ -2,6 +2,7 @@ package com.example.donapp.Entity;
 
 import com.example.donapp.Enums.EstadoSolicitud;
 import com.example.donapp.Util.CodigoGenerator;
+import com.example.donapp.Util.DateUtil;
 
 import java.util.Date;
 
@@ -19,6 +20,10 @@ public class Solicitud extends EntidadEstadoBase{
     private Criticidad criticidad;
 
     public Solicitud() {
+    }
+
+    public Solicitud(int id){
+        super(id);
     }
 
     public Solicitud(String nombre,
@@ -76,6 +81,10 @@ public class Solicitud extends EntidadEstadoBase{
 
     public Date getFecha() {
         return fecha;
+    }
+
+    public String getAndroidFecha(){
+        return DateUtil.convertToAndroidDate(fecha.toString());
     }
 
     public void setFecha(Date fecha) {
@@ -142,7 +151,7 @@ public class Solicitud extends EntidadEstadoBase{
     public String toString() {
         return "Codigo: " + codigo + '\n' +
                 "Nombre: " + nombre + ", " + apellido + '\n' +
-                "Fecha: " + fecha + '\n' +
+                "Fecha: " + getAndroidFecha() + '\n' +
                 "Criticidad: " + criticidad.getDescripcion();
     }
 

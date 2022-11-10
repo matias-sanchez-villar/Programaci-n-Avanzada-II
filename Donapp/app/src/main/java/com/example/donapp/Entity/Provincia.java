@@ -26,6 +26,11 @@ public class Provincia extends EntidadBase {
         this.localidad = localidad;
     }
 
+    public Provincia(int id, String nombre){
+        super(id);
+        this.nombre = nombre;
+    }
+
     public String getNombre() {
         return nombre;
     }

@@ -28,4 +28,22 @@ public final class DateUtil {
             return null;
         }
     }
+
+    public static String convertToAndroidDate(String stringFecha){
+        Log.i("TAG", "stringFechaEntrada :" +  stringFecha);
+        SimpleDateFormat sdf = new SimpleDateFormat(formatoSalida);
+        try {
+            Date date = sdf.parse(stringFecha);
+            //Definimos formato del string que deseamos obtener.
+            sdf = new SimpleDateFormat(formatoEntrada);
+            String stringFechaSalida = sdf.format(date);
+            Log.i("TAG", "stringFechaSalida :" +  stringFechaSalida);
+            Date dateSalida = sdf.parse(stringFechaSalida);
+            //Log.i("TAG", "dateSalida :" +  dateSalida);
+            return stringFechaSalida;
+        }catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

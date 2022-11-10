@@ -59,6 +59,8 @@ public class AltaSolicitudActivity extends AppCompatActivity {
         bundle = getIntent().getExtras();
         solicitudForUpdate = (Solicitud) bundle.getSerializable("solicitudUpdate");
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         fillProperties();
         setListeners();
         getDBInfo();
@@ -72,6 +74,12 @@ public class AltaSolicitudActivity extends AppCompatActivity {
         }
 
     }
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return false;
+    }
+
 
     public void onClickBtnGuardar(){
         // if (validateData()) {
@@ -244,7 +252,7 @@ public class AltaSolicitudActivity extends AppCompatActivity {
     public void fillComponents(Solicitud solicitud){
         txtNombre.setText(solicitud.getNombre());
         txtApellido.setText(solicitud.getApellido());
-        txtFecha.setText(solicitud.getFecha().toString());
+        txtFecha.setText(solicitud.getAndroidFecha());
         txtDireccion.setText(solicitud.getDireccion());
         txtCantDonante.setText(String.valueOf(solicitud.getCantidadDonantes()));
 

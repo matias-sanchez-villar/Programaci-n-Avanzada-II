@@ -17,8 +17,10 @@ import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.donapp.Activity.DetalleSolicitudActivity;
 import com.example.donapp.Activity.MisSolicitudesActivity;
 import com.example.donapp.Data.Solicitud.SolicitudRepository;
+import com.example.donapp.Entity.Solicitud;
 import com.example.donapp.databinding.FragmentSolicitudesBinding;
 
 import java.util.ArrayList;
@@ -76,7 +78,11 @@ public class SolicitudesFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // TODO: INSTANCIAR DETALLE Y PASAR SOLICITUD
+                Solicitud solicitudSelected = (Solicitud) parent.getItemAtPosition(position);
+                Intent detalleIntent = new Intent(getActivity(), DetalleSolicitudActivity.class);
+                detalleIntent.putExtra("solicitud_id", solicitudSelected.getId());
+
+                startActivity(detalleIntent);
             }
         });
 

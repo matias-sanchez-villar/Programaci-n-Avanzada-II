@@ -6,7 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".Activity.DetalleSolicitudActivity">
 
-
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -22,11 +24,11 @@
             android:padding="15dp">
 
             <TextView
-                android:id="@+id/title"
+                android:id="@+id/titleDetalleSolicitud"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:baselineAligned="false"
-                android:text="@string/solicitanteAlta"
+                android:text="Solicitud"
                 android:textAlignment="center"
                 android:textColor="#0C0C0B"
                 android:textSize="20sp"
@@ -48,36 +50,12 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:padding="10dp">
-
-                <TextView
-                    android:id="@+id/txtId"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/id"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txtIdResponse"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textSize="16sp"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:padding="10dp">
 
                 <TextView
-                    android:id="@+id/txtNombre"
+                    android:id="@+id/txtNombreDetalleSolicitud"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -86,7 +64,7 @@
                     android:textStyle="bold"/>
 
                 <TextView
-                    android:id="@+id/txtNombreResponse"
+                    android:id="@+id/txtNombreResponseDetalleSolicitud"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -101,7 +79,7 @@
                 android:padding="10dp">
 
                 <TextView
-                    android:id="@+id/txtApellido"
+                    android:id="@+id/txtApellidoDetalleSolicitud"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -110,7 +88,7 @@
                     android:textStyle="bold"/>
 
                 <TextView
-                    android:id="@+id/txtApellidoResponse"
+                    android:id="@+id/txtApellidoResponseDetalleSolicitud"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -125,7 +103,7 @@
                 android:padding="10dp">
 
                 <TextView
-                    android:id="@+id/txtFechaFin"
+                    android:id="@+id/txtFechaFinDetalleSolicitud"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -134,7 +112,7 @@
                     android:textStyle="bold"/>
 
                 <TextView
-                    android:id="@+id/txtFechaFinResponse"
+                    android:id="@+id/txtFechaFinResponseDetalleSolicitud"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -149,7 +127,7 @@
                 android:padding="10dp">
 
                 <TextView
-                    android:id="@+id/txtLocalidad"
+                    android:id="@+id/txtLocalidadDetalleSolicitud"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -158,7 +136,7 @@
                     android:textStyle="bold"/>
 
                 <TextView
-                    android:id="@+id/txtLocalidadResponse"
+                    android:id="@+id/txtLocalidadResponseDetalleSolicitud"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -173,7 +151,7 @@
                 android:padding="10dp">
 
                 <TextView
-                    android:id="@+id/txtProvincia"
+                    android:id="@+id/txtProvinciaDetalleSolicitud"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -182,7 +160,7 @@
                     android:textStyle="bold"/>
 
                 <TextView
-                    android:id="@+id/txtProvinciaResponse"
+                    android:id="@+id/txtProvinciaResponseDetalleSolicitud"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -197,7 +175,7 @@
                 android:padding="10dp">
 
                 <TextView
-                    android:id="@+id/txtDireccion"
+                    android:id="@+id/txtDireccionDetalleSolicitud"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -206,7 +184,7 @@
                     android:textStyle="bold"/>
 
                 <TextView
-                    android:id="@+id/txtDireccionResponse"
+                    android:id="@+id/txtDireccionResponseDetalleSolicitud"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -221,7 +199,7 @@
                 android:padding="10dp">
 
                 <TextView
-                    android:id="@+id/txtCantDonantes"
+                    android:id="@+id/txtCantDonantesDetalleSolicitud"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -230,7 +208,7 @@
                     android:textStyle="bold"/>
 
                 <TextView
-                    android:id="@+id/txtCantDonantesResponse"
+                    android:id="@+id/txtCantDonantesResponseDetalleSolicitud"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -245,7 +223,7 @@
                 android:padding="10dp">
 
                 <TextView
-                    android:id="@+id/txtTipoSangre"
+                    android:id="@+id/txtTipoSangreDetalleSolicitud"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -254,7 +232,7 @@
                     android:textStyle="bold"/>
 
                 <TextView
-                    android:id="@+id/txtCantTipoSangre"
+                    android:id="@+id/txtCantTipoSangreDetalleSolicitud"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -262,18 +240,40 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:id="@+id/txtCriticidadDetalleSolicitud"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/solicitanteTipoSangre"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/txtCriticidadResponseDetalleSolicitud"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="16sp"/>
+
+            </LinearLayout>
             <Button
-                android:id="@+id/btnVolver"
+                android:id="@+id/btnVolverDetalleSolicitud"
                 style="@style/Widget.Material3.Button"
                 android:layout_width="248dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
                 android:backgroundTint="#348708"
-                android:onClick="onClickBtnVolver"
                 android:text="@string/BotonVolver"
                 android:textSize="14sp"
                 app:rippleColor="#4CAF50" />
-
         </LinearLayout>
     </LinearLayout>
+</ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

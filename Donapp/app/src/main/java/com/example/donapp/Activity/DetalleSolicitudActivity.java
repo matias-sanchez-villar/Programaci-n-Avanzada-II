@@ -13,42 +13,72 @@ import android.widget.TextView;
 import com.example.donapp.Data.Localidad.LocalidadRepository;
 import com.example.donapp.Data.Provincia.ProvinciaRepository;
 import com.example.donapp.Data.Solicitud.SolicitudRepository;
+import com.example.donapp.Entity.Solicitud;
 import com.example.donapp.R;
 
 public class DetalleSolicitudActivity extends AppCompatActivity {
 
     private TextView txtIdResponse, txtNombreResponse, txtApellidoResponse,
             txtFechaFinResponse, txtLocalidadResponse, txtProvinciaResponse,
-            txtDireccionResponse, txtCantDonantesResponse, txtCantTipoSangre;
+            txtDireccionResponse, txtCantDonantesResponse, txtCantTipoSangre, txtCriticidad;
     private Button btnVolver;
+    Solicitud solicitud;
+    SolicitudRepository _solicitudRepository;
+    Bundle bundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle_solicitud);
+        _solicitudRepository = new SolicitudRepository(this);
+
+        bundle = getIntent().getExtras();
+
+        int id = bundle.getInt("solicitud_id", 0);
+
+        if(id != 0){
+            this.solicitud = _solicitudRepository.selectEntity(new Solicitud(id));
+        }
+
         fillProperties();
-        setingsPropirties();
+        setProperties();
+        setListeners();
+
     }
 
     public void fillProperties(){
-        txtIdResponse = (TextView)findViewById(R.id.txtIdResponse);
-        txtNombreResponse = (TextView)findViewById(R.id.txtNombreResponse);
-        txtApellidoResponse = (TextView)findViewById(R.id.txtApellidoResponse);
-        txtFechaFinResponse = (TextView)findViewById(R.id.txtFechaFinResponse);
-        txtLocalidadResponse = (TextView)findViewById(R.id.txtLocalidadResponse);
-        txtProvinciaResponse = (TextView)findViewById(R.id.txtProvinciaResponse);
-        txtDireccionResponse = (TextView)findViewById(R.id.txtDireccionResponse);
-        txtCantDonantesResponse = (TextView)findViewById(R.id.txtCantDonantesResponse);
-        txtCantTipoSangre = (TextView)findViewById(R.id.txtCantTipoSangre);
-        btnVolver = (Button)findViewById(R.id.btnVolver);
+        txtNombreResponse = (TextView)findViewById(R.id.txtNombreResponseDetalleSolicitud);
+        txtApellidoResponse = (TextView)findViewById(R.id.txtApellidoResponseDetalleSolicitud);
+        txtFechaFinResponse = (TextView)findViewById(R.id.txtFechaFinResponseDetalleSolicitud);
+        txtLocalidadResponse = (TextView)findViewById(R.id.txtLocalidadResponseDetalleSolicitud);
+        txtProvinciaResponse = (TextView)findViewById(R.id.txtProvinciaResponseDetalleSolicitud);
+        txtDireccionResponse = (TextView)findViewById(R.id.txtDireccionResponseDetalleSolicitud);
+        txtCantDonantesResponse = (TextView)findViewById(R.id.txtCantDonantesResponseDetalleSolicitud);
+        txtCantTipoSangre = (TextView)findViewById(R.id.txtCantTipoSangreDetalleSolicitud);
+        txtCriticidad = (TextView) findViewById(R.id.txtCriticidadResponseDetalleSolicitud);
+        btnVolver = (Button)findViewById(R.id.btnVolverDetalleSolicitud);
     }
 
-    public void setingsPropirties(){
+    public void setListeners(){
+        btnVolver.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+    }
+
+    public void setProperties(){
         ///seteamos las propiedades
-    }
-
-    public void onClickBtnVolver(View view){
-        //Volvemos al activity anterior
+        txtNombreResponse.setText(solicitud.getNombre());
+        txtApellidoResponse.setText(solicitud.getApellido());
+        txtFechaFinResponse.setText(solicitud.getAndroidFecha());
+        txtLocalidadResponse.setText(solicitud.getLocalidad().getNombre());
+        txtProvinciaResponse.setText(solicitud.getProvincia().getNombre());
+        txtDireccionResponse.setText(solicitud.getDireccion());
+        txtCantDonantesResponse.setText(String.valueOf(solicitud.getCantidadDonantes()));
+        txtCantTipoSangre.setText(solicitud.getTipoDeSangre());
+        txtCriticidad.setText(solicitud.getCriticidad().getDescripcion());
     }
 
 }
