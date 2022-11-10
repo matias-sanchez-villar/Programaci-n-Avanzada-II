@@ -6,14 +6,11 @@ import android.widget.ListView;
 import android.widget.Spinner;
 
 import com.example.donapp.Data.BaseRepository;
-import com.example.donapp.Data.Usuario.ReadUsuarioAsync;
 import com.example.donapp.Entity.Solicitud;
 import com.example.donapp.Enums.StatusResponse;
-import com.example.donapp.Interfaces.IQueryRepository;
+import com.example.donapp.Interfaces.ICRUDRepository;
 
-import javax.net.ssl.SSLEngineResult;
-
-public class SolicitudRepository extends BaseRepository<Solicitud> implements IQueryRepository<Solicitud> {
+public class SolicitudRepository extends BaseRepository<Solicitud> implements ICRUDRepository<Solicitud> {
     private AsyncTask<String, Void, StatusResponse> thread;
     private AsyncTask<String, Void, Integer> createThread;
     private AsyncTask<String, Void, Solicitud> entityThread;

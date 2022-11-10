@@ -50,7 +50,7 @@ instanciamos el ui del drawer. Insertar los fragments que nosotros queramos.
 9. Establecer una nomenclatura unica, se estan usando diferentes formas de nombrar a componentes como txt y spinners.
 10. Renombrar IQueryRepository y IQuerySelectRepository, al igual que BaseRepository, no aplica del todo el nombre.
 11. Los repository usados en los activities/fragments se deberían instanciar en la misma declaración
-
+12. Se estan usando todo margin para alinear layouts de historial medico en fragment_historial. MEJORAR
 
 ** PENDIENTE **
 1. Validaciones en Persona y Usuario (Clase y formularios)

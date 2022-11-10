@@ -10,7 +10,7 @@ import com.example.donapp.Enums.StatusResponse;
  * Solamente las entidades que son listadas, estas no pueden ser creadas o modificadas.
  */
 
-public interface IQuerySelectRepository<T> {
+public interface IReadRepository<T> {
     StatusResponse selectAllForSpinner(Spinner spn);
     StatusResponse selectAllForListView(ListView lv);
 }

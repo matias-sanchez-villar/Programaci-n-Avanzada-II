@@ -8,10 +8,9 @@ import android.widget.Spinner;
 import com.example.donapp.Data.BaseRepository;
 import com.example.donapp.Entity.Localidad;
 import com.example.donapp.Enums.StatusResponse;
-import com.example.donapp.Interfaces.IQueryRepository;
-import com.example.donapp.Interfaces.IQuerySelectRepository;
+import com.example.donapp.Interfaces.IReadRepository;
 
-public class LocalidadRepository extends BaseRepository<Localidad> implements IQuerySelectRepository<Localidad> {
+public class LocalidadRepository extends BaseRepository<Localidad> implements IReadRepository<Localidad> {
 
     private AsyncTask<String, Void, StatusResponse> thread;
     private AsyncTask<String, Void, Integer> createThread;

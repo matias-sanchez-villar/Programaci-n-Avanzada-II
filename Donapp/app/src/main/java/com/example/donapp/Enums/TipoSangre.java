@@ -48,6 +48,20 @@ public enum TipoSangre {
         }
     }
 
+    public static String getStringByPosition(int pos){
+        switch (pos){
+            case 0: return AP.getTipoSangre();
+            case 1: return AN.getTipoSangre();
+            case 2: return BP.getTipoSangre();
+            case 3: return BN.getTipoSangre();
+            case 4: return OP.getTipoSangre();
+            case 5: return ON.getTipoSangre();
+            case 6: return ABP.getTipoSangre();
+            case 7: return ABN.getTipoSangre();
+            default: return AP.getTipoSangre();
+        }
+    }
+
     public static ArrayAdapter<String> getSpinnerAdapter(Context ct){
         ArrayList<String> values = new ArrayList<String>(){
             {

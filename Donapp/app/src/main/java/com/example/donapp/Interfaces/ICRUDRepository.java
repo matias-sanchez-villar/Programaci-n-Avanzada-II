@@ -10,7 +10,7 @@ import com.example.donapp.Enums.StatusResponse;
  *
  */
 
-public interface IQueryRepository<T> {
+public interface ICRUDRepository<T> {
     Integer create(T entity);
     StatusResponse update(T entity);
     StatusResponse delete(int id);

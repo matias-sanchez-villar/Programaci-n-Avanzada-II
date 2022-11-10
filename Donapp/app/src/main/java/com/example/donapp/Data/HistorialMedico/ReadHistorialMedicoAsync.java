@@ -1,2 +1,4 @@
-package com.example.donapp.Data.HistorialMedico;public class ReadHistorialMedicoAsync {
+package com.example.donapp.Data.HistorialMedico;
+
+public class ReadHistorialMedicoAsync {
 }
