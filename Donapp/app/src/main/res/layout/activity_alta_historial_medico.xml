@@ -51,7 +51,7 @@
                 android:orientation="vertical">
 
                 <Spinner
-                    android:id="@+id/spnTipoSangre"
+                    android:id="@+id/spnTipoSangres"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:contentDescription="@string/HistMedTipoSangre"
