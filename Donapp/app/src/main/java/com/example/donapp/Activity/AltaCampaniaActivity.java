@@ -17,7 +17,7 @@ import com.example.donapp.Data.Localidad.LocalidadRepository;
 import com.example.donapp.Data.Provincia.ProvinciaRepository;
 import com.example.donapp.Entity.Localidad;
 import com.example.donapp.Entity.Provincia;
-import com.example.donapp.Entity.Campana;
+import com.example.donapp.Entity.Campania;
 
 import com.example.donapp.R;
 import com.example.donapp.Util.DateUtil;
@@ -35,7 +35,7 @@ public class AltaCampaniaActivity extends AppCompatActivity {
     private Provincia provinciaSelected;
     private Localidad localidadSelected;
     private CampaniaRepository campaniaRepository;
-    private Campana campana;
+    private Campania campania;
 
 
     @Override

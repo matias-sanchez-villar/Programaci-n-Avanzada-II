@@ -6,14 +6,14 @@ import android.widget.ListView;
 import android.widget.Spinner;
 
 import com.example.donapp.Data.BaseRepository;
-import com.example.donapp.Entity.Campana;
+import com.example.donapp.Entity.Campania;
 import com.example.donapp.Enums.StatusResponse;
 import com.example.donapp.Interfaces.IQueryRepository;
 
-public class CampaniaRepository extends BaseRepository<Campana> implements IQueryRepository<Campana> {
+public class CampaniaRepository extends BaseRepository<Campania> implements IQueryRepository<Campania> {
     private AsyncTask<String, Void, StatusResponse> thread;
     private AsyncTask<String, Void, Integer> createThread;
-    private AsyncTask<String, Void, Campana> entityThread;
+    private AsyncTask<String, Void, Campania> entityThread;
 
     public CampaniaRepository(Context context){
         this.context = context;
@@ -21,13 +21,13 @@ public class CampaniaRepository extends BaseRepository<Campana> implements IQuer
 
 
     @Override
-    public Integer create(Campana entity) {
+    public Integer create(Campania entity) {
         this.createThread = new CreateCampaniaAsync(entity, this.context);
         return this.createAsync(createThread);
     }
 
     @Override
-    public StatusResponse update(Campana entity) {
+    public StatusResponse update(Campania entity) {
         this.thread = new UpdateCampaniaAsync(entity, this.context);
         return this.updateAsync(thread);
     }
@@ -57,7 +57,7 @@ public class CampaniaRepository extends BaseRepository<Campana> implements IQuer
     }
 
     @Override
-    public Campana selectEntity(Campana entity)  {
+    public Campania selectEntity(Campania entity)  {
         return this.selectEntity(entityThread);
     }
 }

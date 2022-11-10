@@ -21,5 +21,5 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_empresa"
-        app:menu="@menu/activity_institucion_drawer" />
+        app:menu="@menu/activity_empresa_drawer" />
 </androidx.drawerlayout.widget.DrawerLayout>

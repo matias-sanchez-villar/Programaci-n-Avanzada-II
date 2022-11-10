@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.donapp.Activity.ui.InstitucionesMedicas.InstitucionesMedicasFragment;
 import com.example.donapp.Data.Usuario.UsuarioRepository;
 import com.example.donapp.Entity.Usuario;
 import com.example.donapp.Enums.TipoUsuario;
@@ -38,6 +39,7 @@ public class LogInActivity extends AppCompatActivity {
             edit.putString("mailUsuario", usuarioSearched.getEmail());
             edit.putString("nombreUsuario", usuarioSearched.getNombreUsuario());
             edit.putInt("idUsuario", usuarioSearched.getId());
+            edit.putInt("tipoUsuario", usuarioSearched.getTipoUsuario().ordinal());
             edit.apply();
 
             initializeMenu(usuarioSearched.getTipoUsuario());
@@ -68,9 +70,14 @@ public class LogInActivity extends AppCompatActivity {
     }
 
     public void initializeMenu(TipoUsuario tipoUsuario){
+        Intent menu;
         if(tipoUsuario == TipoUsuario.SOLICITANTE || tipoUsuario == TipoUsuario.DONANTE){
-            Intent menu = new Intent(this, SolicitanteDonanteActivity.class);
-            startActivity(menu);
+            menu = new Intent(this, SolicitanteDonanteActivity.class);
+        } else if(tipoUsuario == TipoUsuario.EMPRESA){
+            menu = new Intent(this, EmpresaActivity.class);
+        } else {
+            menu = new Intent(this, InstitucionActivity.class);
         }
+        startActivity(menu);
     }
 }

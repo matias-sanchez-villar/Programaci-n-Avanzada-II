@@ -1,6 +1,6 @@
 package com.example.donapp.Entity;
 
-public class Campana {
+public class Campania {
     private int id;
     private int idEmpresa;
     private String nombreCampana;
@@ -11,10 +11,10 @@ public class Campana {
     private int cantDias;
     private Boolean estado;
 
-    public Campana() {this.estado = true;}
+    public Campania() {this.estado = true;}
 
 
-    public Campana(String nombreCampana, String fecha, String direccion, Provincia provincia, int cantSolicitante, int cantDias) {
+    public Campania(String nombreCampana, String fecha, String direccion, Provincia provincia, int cantSolicitante, int cantDias) {
         //Falta el ID empresa de session
         this.nombreCampana = nombreCampana;
         this.fecha = fecha;

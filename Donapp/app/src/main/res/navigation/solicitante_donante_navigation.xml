@@ -22,4 +22,28 @@
         android:name="com.example.donapp.Activity.ui.Campanias.CampaniasFragment"
         android:label="@string/Campanias"
         tools:layout="@layout/fragment_campanias" />
+
+    <fragment
+        android:id="@+id/nav_bancos_sangre_solicitante"
+        android:name="com.example.donapp.Activity.ui.BancosDeSangre.BancosDeSangreFragment"
+        android:label="Bancos de sangre"
+        tools:layout="@layout/fragment_bancos_de_sangre" />
+
+    <fragment
+        android:id="@+id/nav_historial_medico_solicitante"
+        android:name="com.example.donapp.Activity.ui.HistorialMedico.HistorialMedicoFragment"
+        android:label="Historial Médico"
+        tools:layout="@layout/fragment_historial_medico" />
+
+    <fragment
+        android:id="@+id/nav_postulaciones_solicitante"
+        android:name="com.example.donapp.Activity.ui.Postulaciones.PostulacionesFragment"
+        android:label="Postulaciones"
+        tools:layout="@layout/fragment_postulaciones" />
+
+    <fragment
+        android:id="@+id/nav_mis_datos_solicitante"
+        android:name="com.example.donapp.Activity.ui.HistorialMedico.HistorialMedicoFragment"
+        android:label="Mis datos"
+        tools:layout="@layout/fragment_mis_datos_persona_fisica"/>
 </navigation>

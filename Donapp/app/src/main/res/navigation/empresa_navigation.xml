@@ -3,23 +3,42 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation3"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/nav_inicio_empresa">
 
     <fragment
-        android:id="@+id/nav_home"
+        android:id="@+id/nav_inicio_empresa"
         android:name="com.example.donapp.Activity.ui.Inicio.InicioFragment"
-        android:label="@string/menu_home"
+        android:label="@string/DonApp"
         tools:layout="@layout/fragment_inicio" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.example.donapp.Activity.ui.Solicitudes.SolicitudesFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_solicitudes" />
+        android:id="@+id/nav_campanias_empresa"
+        android:name="com.example.donapp.Activity.ui.Campanias.CampaniasFragment"
+        android:label="@string/Campanias"
+        tools:layout="@layout/fragment_campanias" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.donapp.Activity.ui.Campanias.CampaniasFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_campanias" />
+        android:id="@+id/nav_instituciones_empresa"
+        android:name="com.example.donapp.Activity.ui.InstitucionesMedicas.InstitucionesMedicasFragment"
+        android:label="Instituciones médicas"
+        tools:layout="@layout/fragment_instituciones_medicas" />
+
+    <fragment
+        android:id="@+id/nav_donantes_empresa"
+        android:name="com.example.donapp.Activity.ui.Donantes.DonantesFragment"
+        android:label="Donantes"
+        tools:layout="@layout/fragment_donantes" />
+
+    <fragment
+        android:id="@+id/nav_estadisticas_empresa"
+        android:name="com.example.donapp.Activity.ui.Estadisticas.EstadisticasFragment"
+        android:label="Estadisticas"
+        tools:layout="@layout/fragment_estadisticas" />
+
+    <fragment
+        android:id="@+id/nav_mis_datos_empresa"
+        android:name="com.example.donapp.Activity.ui.MisDatos.MisDatosPersonaJuridicaFragment"
+        android:label="Mis datos"
+        tools:layout="@layout/fragment_mis_datos_persona_juridica" />
+
 </navigation>

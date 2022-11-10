@@ -3,17 +3,17 @@ package com.example.donapp.Data.Campania;
 import android.content.Context;
 import android.os.AsyncTask;
 
-import com.example.donapp.Entity.Campana;
+import com.example.donapp.Entity.Campania;
 
 
-public class ReadCampaniaAsync extends AsyncTask<String,Void, Campana> {
+public class ReadCampaniaAsync extends AsyncTask<String,Void, Campania> {
 
-    Campana campana;
+    Campania campania;
     private Context context;
     private int searcheableId;
 
-    public ReadCampaniaAsync(Campana campana, Context context) {
-        this.campana = campana;
+    public ReadCampaniaAsync(Campania campania, Context context) {
+        this.campania = campania;
         this.context = context;
     }
 
@@ -23,7 +23,7 @@ public class ReadCampaniaAsync extends AsyncTask<String,Void, Campana> {
     }
 
     @Override
-    protected Campana doInBackground(String... strings) {
+    protected Campania doInBackground(String... strings) {
 
         //Conexion a BD
         return null;

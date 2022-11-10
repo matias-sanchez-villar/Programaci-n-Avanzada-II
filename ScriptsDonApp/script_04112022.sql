@@ -87,9 +87,10 @@ CREATE TABLE IF NOT EXISTS `postulaciones`(
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `codigo` varchar(65) NOT NULL,
     `fecha_generacion` date NOT NULL,
-    `id_usuario` int(11) NOT NULL,
     `categoria` int(11) NOT NULL,
     `fecha_confirmacion` date NULL,
+    `id_usuario` int(11) NOT NULL,
+    `id_registro_postulado` int(11) NOT NULL,
     `estado` int(11) NOT NULL,
     PRIMARY KEY (`id`),
     FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
@@ -98,20 +99,26 @@ CREATE TABLE IF NOT EXISTS `postulaciones`(
 -- CAMPAÑAS
 CREATE TABLE IF NOT EXISTS `campanias`(
     `id` int(11) NOT NULL AUTO_INCREMENT,
-    `id_usuario` int(11) NOT NULL,
+    `codigo` varchar(65) NOT NULL,
     `nombre_campana` varchar(65) NOT NULL,
     `fecha` date NOT NULL,
+    `fecha_fin` date NULL,
     `id_localidad` int(11) NOT NULL,
     `id_provincia` int(11) NOT NULL,
     `direccion` varchar(65) NOT NULL,
-    `cantidadDonantes` int(11) NOT NULL,
-    `cantidadDias` int(11) NOT NULL,
+    `cantidad_donantes` int(11) NOT NULL,
+    `cantidad_donantes_postulados` int(11) NULL,
+    `cantidad_dias` int(11) NOT NULL,
+    `id_institucion` int(11) NULL,
+    `id_usuario` int(11) NOT NULL,
     `estado` int(11) NOT NULL DEFAULT 1,
     PRIMARY KEY (`id`),
     FOREIGN KEY (id_provincia) REFERENCES provincias(id),
     FOREIGN KEY (id_localidad) REFERENCES localidades(id),
+    FOREIGN KEY (id_institucion) REFERENCES usuarios(id),
     FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 
 -- HISTORIALES MEDICOS
 
@@ -136,7 +143,7 @@ CREATE TABLE IF NOT EXISTS `historiales_medicos`(
     `usa_medicamentos` binary NOT NULL,
     `hepatitis` binary NOT NULL,
     `estado` binary NOT NULL DEFAULT true,
-    `id_usuario` int(11) NOT NULL
+    `id_usuario` int(11) NOT NULL,
     PRIMARY KEY (`id`),
     FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

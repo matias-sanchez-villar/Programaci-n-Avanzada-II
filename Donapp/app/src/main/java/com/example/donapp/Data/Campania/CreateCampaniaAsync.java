@@ -3,16 +3,16 @@ package com.example.donapp.Data.Campania;
 import android.content.Context;
 import android.os.AsyncTask;
 
-import com.example.donapp.Entity.Campana;
+import com.example.donapp.Entity.Campania;
 
 
 public class CreateCampaniaAsync extends AsyncTask<String, Void, Integer> {
 
-    private Campana campana;
+    private Campania campania;
     private Context context;
 
-    public CreateCampaniaAsync(Campana campana, Context context) {
-        this.campana = campana;
+    public CreateCampaniaAsync(Campania campania, Context context) {
+        this.campania = campania;
         this.context = context;
     }
 

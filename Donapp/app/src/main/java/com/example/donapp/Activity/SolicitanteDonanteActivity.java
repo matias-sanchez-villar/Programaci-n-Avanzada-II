@@ -1,12 +1,15 @@
 package com.example.donapp.Activity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import android.widget.TextView;
 
+import com.example.donapp.Entity.GlobalPreferences;
 import com.example.donapp.databinding.ActivitySolicitanteDonanteBinding;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -56,7 +59,13 @@ public class SolicitanteDonanteActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_inicio_solicitante, R.id.nav_solicitudes_solicitante, R.id.nav_campanias_solicitante)
+                R.id.nav_inicio_solicitante,
+                R.id.nav_solicitudes_solicitante,
+                R.id.nav_campanias_solicitante,
+                R.id.nav_bancos_sangre_solicitante,
+                R.id.nav_historial_medico_solicitante,
+                R.id.nav_postulaciones_solicitante,
+                R.id.nav_mis_datos_solicitante)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_solicitante_donante);
@@ -80,6 +89,21 @@ public class SolicitanteDonanteActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_cerrar_sesion_solicitante:
+                backToLogin();
+                return true;
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
+        }
+    }
+
     public void instanceLayouts(){
         View header = binding.navView.getHeaderView(0);
         nombreUsuario = (TextView) header.findViewById(R.id.navHeaderNombreUsuarioSolicitante);
@@ -91,5 +115,11 @@ public class SolicitanteDonanteActivity extends AppCompatActivity {
 
         nombreUsuario.setText(nombre);
         mailUsuario.setText(mail);
+    }
+
+    public void backToLogin(){
+        GlobalPreferences.restartPreferences(this);
+        Intent loginActivity = new Intent(this, LogInActivity.class);
+        startActivity(loginActivity);
     }
 }

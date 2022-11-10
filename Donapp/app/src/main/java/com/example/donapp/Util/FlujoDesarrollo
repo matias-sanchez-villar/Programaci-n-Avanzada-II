@@ -24,6 +24,18 @@ esta en rojo, hay que agregarle a la propiedad name=".Activity.NombreAcvity" asi
 2. Probablemente les de error cuando crean por primera vez un activity, en el metodo setContentView.
 Lo que hay que hacer es agregar el siguiente import: import com.example.donapp.R;
 
+
+**  AGREGAR ITEM Y FRAGMENT A MENU **
+1. Crear package con nombre de entidad en Activity.ui
+2. Crear Fragment y ViewModel de la entidad
+3. Crear layout de ese fragmente: fragment_entidad.xml
+4. Ubicar ActivityPrincipal donde se quiere insertar el item
+5. Ir a nav_header_{NombreActivityDePunto4}
+6. Agregar el item y id
+7. Agregar en {NombreActivityDePunto4}_navigation.xml el fragment que se creo con mismo id creado en punto 6.
+8. Ir al activity principal, ubicar mAppBarConfiguration = newAppBarConfiguration.Builder y agregar R.id.{idFragmentCreado}
+9. LISTO!!
+
 ** MEJORAS **
 1. Ver si se aplica el repository como encapsulador de las funciones
 2. Ver si esta bien el nombre BaseRepository ya que maneja mas threads que otra cosa.
@@ -46,3 +58,5 @@ instanciamos el ui del drawer. Insertar los fragments que nosotros queramos.
 3. Agregar ScrollView a todo lo que se pueda, en especial list view
 4. Los titulos de la vista de los detalles deberían ir acompañados del codigo. EJ: Solicitud: AABBKK
 5. El scrollView no debería incluir botones
+6. Agregar validaciones a cuil
+7. Falta mapear provincia, localidad y cualquier cosa que se carge en un spinner al modificar.

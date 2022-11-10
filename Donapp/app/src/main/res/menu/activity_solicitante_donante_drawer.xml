@@ -6,15 +6,33 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_inicio_solicitante"
-            android:icon="@android:drawable/ic_menu_myplaces"
+            android:icon="@drawable/ic_home_2"
             android:title="@string/Inicio" />
         <item
             android:id="@+id/nav_solicitudes_solicitante"
-            android:icon="@android:drawable/ic_menu_agenda"
+            android:icon="@drawable/ic_donacion_2"
             android:title="@string/Solicitudes" />
         <item
             android:id="@+id/nav_campanias_solicitante"
-            android:icon="@android:drawable/ic_menu_zoom"
+            android:icon="@drawable/ic_campania_2"
             android:title="@string/Campanias" />
+        <item
+            android:id="@+id/nav_bancos_sangre_solicitante"
+            android:icon="@drawable/ic_hospital"
+            android:title="Bancos de sangre"/>
+        <item
+            android:id="@+id/nav_historial_medico_solicitante"
+            android:icon="@drawable/ic_historial_medico"
+            android:title="Historial medico"/>
+        <item
+            android:id="@+id/nav_postulaciones_solicitante"
+            android:icon="@drawable/ic_postulacion"
+            android:title="Postulaciones"/>
+        <item
+            android:id="@+id/nav_mis_datos_solicitante"
+            android:icon="@drawable/ic_seguridad_4"
+            android:title="Mis datos"/>
+
+
     </group>
 </menu>
