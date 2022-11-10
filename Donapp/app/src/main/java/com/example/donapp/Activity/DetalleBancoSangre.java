@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.donapp.Data.BancoSangre.BancoSangreRepository;
+import com.example.donapp.Data.BancoSangre.ReadBancoSangreAsync;
 import com.example.donapp.Entity.BancoSangre;
 import com.example.donapp.Entity.Solicitud;
 import com.example.donapp.R;
@@ -16,7 +16,7 @@ public class DetalleBancoSangre extends AppCompatActivity {
 
     TextView txtHospital, txtProvincia, txtLocalidad, txtDireccion;
     Button btnPostularse;
-    BancoSangreRepository bancoSangreRepository;
+    ReadBancoSangreAsync readBancoSangreAsync;
     BancoSangre bancoSangre;
 
     @Override
@@ -38,13 +38,12 @@ public class DetalleBancoSangre extends AppCompatActivity {
         txtLocalidad = (TextView)findViewById(R.id.txtLocalidadResponseBNC);
         txtDireccion = (TextView)findViewById(R.id.txtDireccionResponseBNC);
         btnPostularse = (Button)findViewById(R.id.btnPostularseBNC);
-        bancoSangreRepository = new BancoSangreRepository(this);
     }
 
     public void setProperties(){
         Bundle bundle = getIntent().getExtras();
         int id = bundle.getInt("bancoSangre_id", 0);
-        //bancoSangre = bancoSangreRepository.selectEntity(new Solicitud(id));
+        readBancoSangreAsync = new ReadBancoSangreAsync(id, this);
         txtHospital.setText(bancoSangre.getHospital());
         txtProvincia.setText(bancoSangre.getProvincia().getNombre());
         txtLocalidad.setText(bancoSangre.getLocalidad().getNombre());
