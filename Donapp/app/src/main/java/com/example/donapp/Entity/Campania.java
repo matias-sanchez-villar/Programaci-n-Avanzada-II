@@ -1,29 +1,60 @@
 package com.example.donapp.Entity;
 
+import java.util.Date;
+
 public class Campania {
     private int id;
-    private int idEmpresa;
-    private String nombreCampana;
-    private String fecha;
+    private String cuitEmpresa; //para probar
+    private String nombreCampania;
+    private Date fecha;
     private String direccion;
+    private Localidad localidad;
     private Provincia provincia;
     private int cantSolicitante;
     private int cantDias;
     private Boolean estado;
+    private int UsuarioEmpresa;
 
     public Campania() {this.estado = true;}
 
 
-    public Campania(String nombreCampana, String fecha, String direccion, Provincia provincia, int cantSolicitante, int cantDias) {
+    public Campania(String nombreCampana, Date fecha, String direccion, Provincia provincia, int cantSolicitante, int cantDias) {
         //Falta el ID empresa de session
-        this.nombreCampana = nombreCampana;
+        this.nombreCampania = nombreCampana;
         this.fecha = fecha;
         this.direccion = direccion;
         this.provincia = provincia;
         this.cantSolicitante = cantSolicitante;
-        this.cantDias = cantDias;;
+        this.cantDias = cantDias;
     }
 
+    public Campania(String nombreCampana, Date fecha, String direccion, Localidad localidad, Provincia provincia, int cantSolicitante, int cantDias, Usuario usuarioEmpresa) {
+        this.nombreCampania = nombreCampana;
+        this.fecha = fecha;
+        this.direccion = direccion;
+        this.localidad = localidad;
+        this.provincia = provincia;
+        this.cantSolicitante = cantSolicitante;
+        this.cantDias = cantDias;
+        this.estado = true;
+        UsuarioEmpresa = usuarioEmpresa.getId();
+    }
+
+    public int getUsuarioEmpresa() {
+        return UsuarioEmpresa;
+    }
+
+    public void setUsuarioEmpresa(int usuarioEmpresa) {
+        UsuarioEmpresa = usuarioEmpresa;
+    }
+
+    public Localidad getLocalidad() {
+        return localidad;
+    }
+
+    public void setLocalidad(Localidad localidad) {
+        this.localidad = localidad;
+    }
 
     public int getId() {
         return id;
@@ -33,29 +64,25 @@ public class Campania {
         this.id = id;
     }
 
-    public int getIdEmpresa() {
-        return idEmpresa;
+    public String getCuitEmpresa() {
+        return cuitEmpresa;
     }
 
-    public void setIdEmpresa(int idEmpresa) {
-        this.idEmpresa = idEmpresa;
+    public void setCuitEmpresa(String cuitEmpresa) {
+        this.cuitEmpresa = cuitEmpresa;
     }
 
     public String getNombreCampana() {
-        return nombreCampana;
+        return nombreCampania;
     }
 
     public void setNombreCampana(String nombreCampana) {
-        this.nombreCampana = nombreCampana;
+        this.nombreCampania = nombreCampana;
     }
 
-    public String getFecha() {
-        return fecha;
-    }
+    public Date getFecha() {return fecha;}
 
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
-    }
+    public void setFecha(Date fecha) {this.fecha = fecha;}
 
     public String getDireccion() {
         return direccion;

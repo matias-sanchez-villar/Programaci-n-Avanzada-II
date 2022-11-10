@@ -100,7 +100,7 @@ CREATE TABLE IF NOT EXISTS `postulaciones`(
 CREATE TABLE IF NOT EXISTS `campanias`(
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `codigo` varchar(65) NOT NULL,
-    `nombre_campana` varchar(65) NOT NULL,
+    `nombre_campania` varchar(65) NOT NULL,
     `fecha` date NOT NULL,
     `fecha_fin` date NULL,
     `id_localidad` int(11) NOT NULL,

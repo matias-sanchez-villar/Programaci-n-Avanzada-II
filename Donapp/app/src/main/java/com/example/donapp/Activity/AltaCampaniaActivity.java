@@ -19,6 +19,7 @@ import com.example.donapp.Entity.Localidad;
 import com.example.donapp.Entity.Provincia;
 import com.example.donapp.Entity.Campania;
 
+import com.example.donapp.Entity.Usuario;
 import com.example.donapp.R;
 import com.example.donapp.Util.DateUtil;
 
@@ -115,20 +116,23 @@ public class AltaCampaniaActivity extends AppCompatActivity {
         int cantSolicitantes = Integer.parseInt(txtCantS.getText().toString());
         int cantDias = Integer.parseInt(txtCantDias.getText().toString());
 
-        int response;
+        //Obtener el ID de Usuario sesion, creo que con el SharedPreferences
+        Usuario UsuarioEmpresa = new Usuario();
+
 
         if(validarFechayZona(fecha, localidadSelected) && (checkTerminos.isChecked())){
 
-            // Solucionar Constructor
-            /*Campana newCampana = new Campana(
+            // Importate: Falta obtener el Usuario de SESSION!!!
+            Campania newCampania = new Campania(
                     nombre,
                     fecha,
                     direccion,
                     localidadSelected,
                     provinciaSelected,
                     cantSolicitantes,
-                    cantDias);
-            campaniaRepository.create(newCampana);*/
+                    cantDias,
+                    UsuarioEmpresa);
+            campaniaRepository.create(newCampania);
             Toast.makeText(
                     getApplicationContext(),
                     "Registro exitoso",
@@ -137,7 +141,7 @@ public class AltaCampaniaActivity extends AppCompatActivity {
         } else {
             Toast.makeText(
                     getApplicationContext(),
-                    "Error al registrar usuario",
+                    "Error al registrar Campaña",
                     Toast.LENGTH_LONG).show();
         }
     }
