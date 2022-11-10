@@ -29,6 +29,10 @@ public class BancoSangreRepository extends AsyncTask<String, Void, StatusRespons
         this.context = ct;
     }
 
+    public BancoSangreRepository(Context ct){
+        this.context = ct;
+    }
+
     @Override
     protected StatusResponse doInBackground(String... strings) {
         try {
