@@ -2,11 +2,13 @@ package com.example.donapp.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.example.donapp.Entity.BancoSangre;
 import com.example.donapp.Entity.Solicitud;
 import com.example.donapp.R;
 
@@ -24,12 +26,13 @@ public class ListBancoSangre extends AppCompatActivity {
     }
 
     public void setListeners(){
-        // Instancia de list view
         vtBancoSangre.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Solicitud solicitudSelected = (Solicitud) parent.getItemAtPosition(position);
-
+                BancoSangre bancoSangre = (BancoSangre) parent.getItemAtPosition(position);
+                /*Intent modificarSolicitud = new Intent(this, AltaSolicitudActivity.class);
+                modificarSolicitud.putExtra("bancoSangre", bancoSangre);
+                startActivity(modificarSolicitud);*/
             }
         });
     }

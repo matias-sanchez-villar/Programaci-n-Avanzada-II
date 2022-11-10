@@ -1,7 +1,7 @@
 package com.example.donapp.Entity;
 
 public class BancoSangre extends EntidadBase{
-    String hospita;
+    String hospital;
     String direccion;
     Provincia provincia;
     Localidad localidad;
@@ -10,27 +10,27 @@ public class BancoSangre extends EntidadBase{
         super();
     }
 
-    public BancoSangre(String hospita, String direccion, Provincia provincia, Localidad localidad) {
-        this.hospita = hospita;
+    public BancoSangre(String hospital, String direccion, Provincia provincia, Localidad localidad) {
+        this.hospital = hospital;
         this.direccion = direccion;
         this.provincia = provincia;
         this.localidad = localidad;
     }
 
-    public BancoSangre(int id, String hospita, String direccion, Provincia provincia, Localidad localidad) {
+    public BancoSangre(int id, String hospital, String direccion, Provincia provincia, Localidad localidad) {
         super(id);
-        this.hospita = hospita;
+        this.hospital = hospital;
         this.direccion = direccion;
         this.provincia = provincia;
         this.localidad = localidad;
     }
 
-    public String getHospita() {
-        return hospita;
+    public String getHospital() {
+        return hospital;
     }
 
-    public void setHospita(String hospita) {
-        this.hospita = hospita;
+    public void setHospital(String hospital) {
+        this.hospital = hospital;
     }
 
     public String getDireccion() {
