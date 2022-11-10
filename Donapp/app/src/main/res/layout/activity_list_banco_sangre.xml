@@ -1,28 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Activity.ListBancoSangre">
-
-
-    <LinearLayout
-        android:layout_width="409dp"
-        android:layout_height="729dp"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp"
-        tools:ignore="MissingConstraints">
+        tools:context=".Activity.ListBancoSangre">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="15dp">
+            android:layout_marginTop="20dp">
 
             <TextView
-                android:id="@+id/title"
+                android:id="@+id/titleBancoSangre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:baselineAligned="false"
@@ -34,40 +26,14 @@
                 tools:layout_conversion_absoluteHeight="32dp"
                 tools:layout_conversion_absoluteWidth="200dp"
                 tools:layout_editor_absoluteX="41dp"
-                tools:layout_editor_absoluteY="0dp"
-                android:padding="15dp"/>
+                tools:layout_editor_absoluteY="0dp" />
 
         </LinearLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+    <ListView
+        android:id="@+id/lvBancoSangre"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="15dp"/>
 
-            <SearchView
-                android:id="@+id/SearchBuscar"
-                android:layout_width="350dp"
-                android:layout_height="45dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:background="#95E4E8E1"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:queryBackground="@android:color/transparent"
-                android:queryHint="Buscar"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.496"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <ListView
-            android:id="@+id/ListCampana"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="15dp" />
-
-    </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
