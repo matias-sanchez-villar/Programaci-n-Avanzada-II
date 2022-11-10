@@ -16,7 +16,7 @@ import com.example.donapp.Data.Provincia.ProvinciaRepository;
 import com.example.donapp.Entity.HistorialMedico;
 import com.example.donapp.R;
 
-public class AltaHistorialMedico extends AppCompatActivity {
+public class AltaHistorialMedicoActivity extends AppCompatActivity {
 
     private EditText txtPeso, txtAltura, txtFechaUltimaDonacion;
     private Spinner spnTipoSangre;
