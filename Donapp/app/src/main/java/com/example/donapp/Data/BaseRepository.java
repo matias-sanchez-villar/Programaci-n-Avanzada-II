@@ -22,6 +22,9 @@ import java.util.concurrent.ExecutionException;
 public abstract class BaseRepository<T> implements IBaseRepository<T> {
 
     protected Context context;
+    protected AsyncTask<String, Void, T> selectEntityThread;
+    protected AsyncTask<String, Void, Integer> createThread;
+    protected AsyncTask<String, Void, StatusResponse> mainThread;
 
     @Override
     public Integer createAsync(AsyncTask<String, Void, Integer> thread) {

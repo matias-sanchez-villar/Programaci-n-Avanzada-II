@@ -263,6 +263,17 @@
                     android:textSize="16sp"/>
 
             </LinearLayout>
+
+            <Button
+                android:id="@+id/btnPostularseDetalleSolicitud"
+                style="@style/Widget.Material3.Button"
+                android:layout_width="248dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:backgroundTint="#348708"
+                android:text="Postularse"
+                android:textSize="14sp"
+                app:rippleColor="#4CAF50" />
             <Button
                 android:id="@+id/btnVolverDetalleSolicitud"
                 style="@style/Widget.Material3.Button"

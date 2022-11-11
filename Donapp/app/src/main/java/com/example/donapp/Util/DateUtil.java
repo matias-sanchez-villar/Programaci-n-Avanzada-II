@@ -3,6 +3,7 @@ package com.example.donapp.Util;
 import android.util.Log;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public final class DateUtil {
@@ -45,5 +46,12 @@ public final class DateUtil {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public static Date getActualDate(){
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        String currentDate = sdf.format(Calendar.getInstance().getTime());
+
+        return convertToSqlDate(currentDate);
     }
 }

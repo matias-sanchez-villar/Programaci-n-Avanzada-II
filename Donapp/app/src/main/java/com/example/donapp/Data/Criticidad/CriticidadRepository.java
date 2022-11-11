@@ -8,9 +8,9 @@ import android.widget.Spinner;
 import com.example.donapp.Data.BaseRepository;
 import com.example.donapp.Entity.Criticidad;
 import com.example.donapp.Enums.StatusResponse;
-import com.example.donapp.Interfaces.IQuerySelectRepository;
+import com.example.donapp.Interfaces.IReadRepository;
 
-public class CriticidadRepository extends BaseRepository<Criticidad> implements IQuerySelectRepository<Criticidad> {
+public class CriticidadRepository extends BaseRepository<Criticidad> implements IReadRepository<Criticidad> {
     AsyncTask<String, Void, StatusResponse> thread;
 
     public CriticidadRepository(Context context){

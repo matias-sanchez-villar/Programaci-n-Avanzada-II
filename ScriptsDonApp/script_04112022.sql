@@ -126,7 +126,7 @@ CREATE TABLE IF NOT EXISTS `historiales_medicos`(
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `tipo_sangre` varchar(25) NOT NULL,
     `peso` int(11) NOT NULL,
-    `altura` decimal(15) NOT NULL,
+    `altura` decimal(15,2) NOT NULL,
     `ultima_donacion` date NULL,
     `tatuajes` binary NOT NULL,
     `inyeccion_alergia` binary NOT NULL,
@@ -146,6 +146,19 @@ CREATE TABLE IF NOT EXISTS `historiales_medicos`(
     `id_usuario` int(11) NOT NULL,
     PRIMARY KEY (`id`),
     FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Bancos de sangre
+CREATE TABLE IF NOT EXISTS `bancos_sangre`(
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `hospital` varchar(75) NOT NULL,
+    `direccion` varchar(75) NOT NULL,
+    `id_provincia` int(11) NOT NULL,
+    `id_localidad` int(11) NOT NULL,
+    `estado` binary NOT NULL DEFAULT true,
+    PRIMARY KEY (`id`),
+    FOREIGN KEY (id_provincia) REFERENCES provincias(id),
+    FOREIGN KEY (id_localidad) REFERENCES localidades(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- ------- ----------------------------------------------------------------

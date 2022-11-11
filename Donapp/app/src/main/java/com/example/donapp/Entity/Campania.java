@@ -1,10 +1,13 @@
 package com.example.donapp.Entity;
 
+import com.example.donapp.Enums.EstadoCampania;
+import com.example.donapp.Interfaces.IEstado;
+import com.example.donapp.Interfaces.IRegistroPostulable;
+
 import java.util.Date;
 
-public class Campania {
-    private int id;
-    private String cuitEmpresa; //para probar
+public class Campania extends EntidadEstadoBase implements IRegistroPostulable {
+
     private String nombreCampania;
     private Date fecha;
     private String direccion;
@@ -12,42 +15,51 @@ public class Campania {
     private Provincia provincia;
     private int cantSolicitante;
     private int cantDias;
-    private Boolean estado;
-    private int UsuarioEmpresa;
+    private Usuario UsuarioEmpresa;
 
-    public Campania() {this.estado = true;}
+    public Campania() { }
 
+    public Campania(int id) {super(id);}
 
-    public Campania(String nombreCampana, Date fecha, String direccion, Provincia provincia, int cantSolicitante, int cantDias) {
+    public Campania(String nombreCampana,
+                    Date fecha,
+                    Provincia provincia,
+                    String direccion,
+                    int cantSolicitante,
+                    int cantDias) {
         //Falta el ID empresa de session
         this.nombreCampania = nombreCampana;
         this.fecha = fecha;
-        this.direccion = direccion;
         this.provincia = provincia;
+        this.direccion = direccion;
         this.cantSolicitante = cantSolicitante;
         this.cantDias = cantDias;
     }
 
-    public Campania(String nombreCampana, Date fecha, String direccion, Localidad localidad, Provincia provincia, int cantSolicitante, int cantDias, Usuario usuarioEmpresa) {
+    public Campania(int id,
+                    String nombreCampana,
+                    Date fecha,
+                    Provincia provincia,
+                    String direccion,
+                    int cantSolicitante,
+                    int cantDias) {
+        this.id = id;
         this.nombreCampania = nombreCampana;
         this.fecha = fecha;
-        this.direccion = direccion;
-        this.localidad = localidad;
         this.provincia = provincia;
+        this.direccion = direccion;
         this.cantSolicitante = cantSolicitante;
         this.cantDias = cantDias;
-        this.estado = true;
-        UsuarioEmpresa = usuarioEmpresa.getId();
     }
 
-    public int getUsuarioEmpresa() {
+
+    public Usuario getUsuario() {
         return UsuarioEmpresa;
     }
 
-    public void setUsuarioEmpresa(int usuarioEmpresa) {
-        UsuarioEmpresa = usuarioEmpresa;
+    public void setUsuario(Usuario usuario) {
+        UsuarioEmpresa = usuario;
     }
-
     public Localidad getLocalidad() {
         return localidad;
     }
@@ -62,14 +74,6 @@ public class Campania {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getCuitEmpresa() {
-        return cuitEmpresa;
-    }
-
-    public void setCuitEmpresa(String cuitEmpresa) {
-        this.cuitEmpresa = cuitEmpresa;
     }
 
     public String getNombreCampana() {
@@ -91,7 +95,6 @@ public class Campania {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
-
 
     public Provincia getProvincia() {
         return provincia;
@@ -117,11 +120,35 @@ public class Campania {
         this.cantDias = cantDias;
     }
 
-    public Boolean getEstado() {
+    public IEstado getEstado() {
         return estado;
     }
 
-    public void setEstado(Boolean estado) {
+    public void setEstado(IEstado estado) {
         this.estado = estado;
     }
+
+    @Override
+    public String getDireccionPostulacion() {
+        return direccion;
+    }
+
+    @Override
+    public String getProvinciaPostulacion() {
+        return provincia.getNombre();
+    }
+
+    @Override
+    public String getLocalidadPostulacion() {
+        return localidad.getNombre();
+    }
+
+    @Override
+    public int getIdRegistro() {
+        return this.id;
+    }
+    public int getEstadoInt(){
+        return EstadoCampania.getTipoEstadoToInt(this.estado);
+    }
+
 }

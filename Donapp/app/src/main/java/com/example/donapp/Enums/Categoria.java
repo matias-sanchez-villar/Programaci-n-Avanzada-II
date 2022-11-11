@@ -17,4 +17,12 @@ public enum Categoria implements ICategoria {
                 : this == BANCO ? CategoriasConst.BANCO
                 : ErrorConst.CATEGORIA_INVALIDA;
     }
+
+    public static Categoria getCategoria(int pos){
+        return pos == SOLICITUD.ordinal()
+                ? SOLICITUD
+                : pos == CAMPANIA.ordinal()
+                ? CAMPANIA
+                : BANCO;
+    }
 }

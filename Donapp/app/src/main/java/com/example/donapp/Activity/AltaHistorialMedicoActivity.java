@@ -2,6 +2,7 @@ package com.example.donapp.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -12,15 +13,19 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.donapp.Data.Campania.CampaniaRepository;
+import com.example.donapp.Data.HistorialMedico.HistorialMedicoRepository;
 import com.example.donapp.Data.Localidad.LocalidadRepository;
 import com.example.donapp.Data.Provincia.ProvinciaRepository;
 import com.example.donapp.Entity.GlobalPreferences;
 import com.example.donapp.Entity.HistorialMedico;
 import com.example.donapp.Entity.Usuario;
 import com.example.donapp.Enums.Estado;
+import com.example.donapp.Enums.StatusResponse;
 import com.example.donapp.Enums.TipoSangre;
 import com.example.donapp.R;
 import com.example.donapp.Util.DateUtil;
+
+import java.math.BigDecimal;
 
 public class AltaHistorialMedicoActivity extends AppCompatActivity {
 
@@ -44,38 +49,60 @@ public class AltaHistorialMedicoActivity extends AppCompatActivity {
     medicamentosSi, medicamentosNo,
     hepatitisSi, hepatitisNo;
 
-    private HistorialMedico historialMedico;
+    HistorialMedicoRepository _historialMedicoRepository;
+
+    Bundle bundle;
+
+    HistorialMedico historialMedico;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alta_historial_medico);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        _historialMedicoRepository = new HistorialMedicoRepository(this);
+
+        bundle = getIntent().getExtras();
+
+        historialMedico = (HistorialMedico) bundle.getSerializable("historialMedicoUpdate");
+
+        if (!historialMedico.isNew()){
+            setPropertiesForUpdate(historialMedico);
+        }
         fillProperties();
         setListeners();
     }
 
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return false;
+    }
+
     public void onClickBtnGuardar(){
-        historialMedico = new HistorialMedico();
         historialMedico.setTipoSangre(tsSelected);
         historialMedico.setPeso(Integer.valueOf(txtPeso.getText().toString()));
-        historialMedico.setAltura(Double.parseDouble(txtAltura.getText().toString()));
+        historialMedico.setAltura(new BigDecimal(txtAltura.getText().toString()));
         historialMedico.setUltimaDonacion(DateUtil.convertToSqlDate(txtFechaUltimaDonacion.getText().toString()));
 
-        historialMedico.setTatuajes(tatuajesSi.isSelected());
-        historialMedico.setVacunaAlergia(inyeccionSi.isSelected());
-        historialMedico.setExamenSangre(examenSi.isSelected());
-        historialMedico.setRevisionMedica(revisionSi.isSelected());
-        historialMedico.setTratamientoDental(dentalSi.isSelected());
-        historialMedico.setEndoscopia(endoscopiaSi.isSelected());
-        historialMedico.setEmbarazo(embarazosi.isSelected());
-        historialMedico.setEnfermedaCronica(enfermedadCronicaSi.isSelected());
-        historialMedico.setOperacion(operacionSi.isSelected());
-        historialMedico.setViaje(viajeSi.isSelected());
-        historialMedico.setAnemia(anemiaSi.isSelected());
-        historialMedico.setAccidenteVascular(accidenteSi.isSelected());
-        historialMedico.setUsaMedicamentos(medicamentosSi.isSelected());
+        historialMedico.setTatuajes(tatuajesSi.isChecked());
+        historialMedico.setVacunaAlergia(inyeccionSi.isChecked());
+        historialMedico.setExamenSangre(examenSi.isChecked());
+        historialMedico.setRevisionMedica(revisionSi.isChecked());
+        historialMedico.setTratamientoDental(dentalSi.isChecked());
+        historialMedico.setEndoscopia(endoscopiaSi.isChecked());
+        historialMedico.setEmbarazo(embarazosi.isChecked());
+        historialMedico.setEnfermedaCronica(enfermedadCronicaSi.isChecked());
+        historialMedico.setOperacion(operacionSi.isChecked());
+        historialMedico.setViaje(viajeSi.isChecked());
+        historialMedico.setAnemia(anemiaSi.isChecked());
+        historialMedico.setAccidenteVascular(accidenteSi.isChecked());
+        historialMedico.setUsaMedicamentos(medicamentosSi.isChecked());
         historialMedico.setEstado(Estado.ACTIVO);
         historialMedico.setUsuario(new Usuario(GlobalPreferences.getLoggedUserId(this)));
+
+        updateHistorialMedico(historialMedico);
     }
 
     private void fillProperties() {
@@ -113,6 +140,7 @@ public class AltaHistorialMedicoActivity extends AppCompatActivity {
         hepatitisSi = findViewById(R.id.cbxHepatitisTrue);
         hepatitisNo = findViewById(R.id.cbxHepatitisFalse);
 
+        spnTipoSangre.setAdapter(TipoSangre.getSpinnerAdapter(this));
         btnGuardar = (Button)findViewById(R.id.btnGuardarHistMedico);
     }
 
@@ -141,6 +169,27 @@ public class AltaHistorialMedicoActivity extends AppCompatActivity {
         });
     }
 
+    public void setPropertiesForUpdate(HistorialMedico historialMedico){
+
+    }
+
+    public void updateHistorialMedico(HistorialMedico historialMedico){
+
+        if(historialMedico.isNew()){
+            if(_historialMedicoRepository.create(historialMedico) != 0){
+                toast("Historial generado");
+            } else toast("ERROR");
+        } else {
+            if(_historialMedicoRepository.update(historialMedico) != StatusResponse.FAIL){
+                toast("Historial modificado");
+            } else toast("ERROR");
+        }
+
+        Intent solicitanteActivity = new Intent(this, SolicitanteDonanteActivity.class);
+        startActivity(solicitanteActivity);
+    }
+
     public void toast(String txt) {
-        Toast.makeText(this, txt, Toast.LENGTH_SHORT).show();}
+        Toast.makeText(this, txt, Toast.LENGTH_SHORT).show();
+    }
 }

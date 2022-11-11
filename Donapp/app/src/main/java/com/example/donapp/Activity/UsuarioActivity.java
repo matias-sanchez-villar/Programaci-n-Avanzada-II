@@ -40,6 +40,8 @@ public class UsuarioActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_usuario);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         bundle = getIntent().getExtras();
         if(bundle.getBoolean("isJuridica")){
             personaJuridica = (PersonaJuridica) bundle.getSerializable("persona");
@@ -56,6 +58,12 @@ public class UsuarioActivity extends AppCompatActivity {
                 backToLoginActivity();
             }
         });
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return false;
     }
 
     public void fillProperties(){

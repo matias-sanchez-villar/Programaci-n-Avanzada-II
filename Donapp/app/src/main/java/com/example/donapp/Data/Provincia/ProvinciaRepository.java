@@ -5,15 +5,12 @@ import android.os.AsyncTask;
 import android.widget.ListView;
 import android.widget.Spinner;
 
-import androidx.loader.content.AsyncTaskLoader;
-
 import com.example.donapp.Data.BaseRepository;
 import com.example.donapp.Entity.Provincia;
 import com.example.donapp.Enums.StatusResponse;
-import com.example.donapp.Interfaces.IQueryRepository;
-import com.example.donapp.Interfaces.IQuerySelectRepository;
+import com.example.donapp.Interfaces.IReadRepository;
 
-public class ProvinciaRepository extends BaseRepository<Provincia> implements IQuerySelectRepository<Provincia> {
+public class ProvinciaRepository extends BaseRepository<Provincia> implements IReadRepository<Provincia> {
 
     private AsyncTask<String, Void, StatusResponse> thread;
     private AsyncTask<String, Void, Integer> createThread;

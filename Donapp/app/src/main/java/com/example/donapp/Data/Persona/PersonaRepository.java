@@ -1,6 +1,5 @@
 package com.example.donapp.Data.Persona;
 
-import android.app.Person;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.ListView;
@@ -11,9 +10,9 @@ import com.example.donapp.Entity.Persona;
 import com.example.donapp.Entity.PersonaFisica;
 import com.example.donapp.Entity.PersonaJuridica;
 import com.example.donapp.Enums.StatusResponse;
-import com.example.donapp.Interfaces.IQueryRepository;
+import com.example.donapp.Interfaces.ICRUDRepository;
 
-public class PersonaRepository extends BaseRepository<Persona> implements IQueryRepository<Persona> {
+public class PersonaRepository extends BaseRepository<Persona> implements ICRUDRepository<Persona> {
     private AsyncTask<String, Void, StatusResponse> thread;
     private AsyncTask<String, Void, Persona> threadEntity;
     private AsyncTask<String, Void, Integer> createThread;

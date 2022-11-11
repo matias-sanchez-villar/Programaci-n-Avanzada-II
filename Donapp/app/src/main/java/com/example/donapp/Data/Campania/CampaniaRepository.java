@@ -8,9 +8,9 @@ import android.widget.Spinner;
 import com.example.donapp.Data.BaseRepository;
 import com.example.donapp.Entity.Campania;
 import com.example.donapp.Enums.StatusResponse;
-import com.example.donapp.Interfaces.IQueryRepository;
+import com.example.donapp.Interfaces.ICRUDRepository;
 
-public class CampaniaRepository extends BaseRepository<Campania> implements IQueryRepository<Campania> {
+public class CampaniaRepository extends BaseRepository<Campania> implements ICRUDRepository<Campania> {
     private AsyncTask<String, Void, StatusResponse> thread;
     private AsyncTask<String, Void, Integer> createThread;
     private AsyncTask<String, Void, Campania> entityThread;

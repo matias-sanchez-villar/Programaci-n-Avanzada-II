@@ -8,10 +8,10 @@ import android.widget.Spinner;
 import com.example.donapp.Data.BaseRepository;
 import com.example.donapp.Entity.Usuario;
 import com.example.donapp.Enums.StatusResponse;
-import com.example.donapp.Interfaces.IQueryRepository;
+import com.example.donapp.Interfaces.ICRUDRepository;
 
 
-public class UsuarioRepository extends BaseRepository<Usuario> implements IQueryRepository<Usuario> {
+public class UsuarioRepository extends BaseRepository<Usuario> implements ICRUDRepository<Usuario> {
 
     private AsyncTask<String, Void, StatusResponse> thread;
     private AsyncTask<String, Void, Integer> createThread;

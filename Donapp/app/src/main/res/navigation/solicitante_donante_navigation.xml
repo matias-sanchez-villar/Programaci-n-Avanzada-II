@@ -43,7 +43,7 @@
 
     <fragment
         android:id="@+id/nav_mis_datos_solicitante"
-        android:name="com.example.donapp.Activity.ui.HistorialMedico.HistorialMedicoFragment"
+        android:name="com.example.donapp.Activity.ui.MisDatos.MisDatosPersonaFisicaFragment"
         android:label="Mis datos"
         tools:layout="@layout/fragment_mis_datos_persona_fisica"/>
 </navigation>

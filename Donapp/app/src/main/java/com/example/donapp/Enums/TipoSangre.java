@@ -13,8 +13,8 @@ public enum TipoSangre {
     AN ("A-", 1),
     BP ("B+", 2),
     BN ("B-", 3),
-    OP ("O+", 4),
-    ON ("O-", 5),
+    OP ("0+", 4),
+    ON ("0-", 5),
     ABP ("AB+", 6),
     ABN ("AB-", 7);
 
@@ -45,6 +45,34 @@ public enum TipoSangre {
             case 6: return ABP;
             case 7: return ABN;
             default: return AP;
+        }
+    }
+
+    public static TipoSangre getTipoSangreByString(String tipoSangre){
+        switch (tipoSangre){
+            case "A+": return AP;
+            case "A-": return AN;
+            case "B+": return BP;
+            case "B-": return BN;
+            case "0+": return OP;
+            case "0-": return ON;
+            case "AB+": return ABP;
+            case "AB-": return ABN;
+            default: return AP;
+        }
+    }
+
+    public static String getStringByPosition(int pos){
+        switch (pos){
+            case 0: return AP.getTipoSangre();
+            case 1: return AN.getTipoSangre();
+            case 2: return BP.getTipoSangre();
+            case 3: return BN.getTipoSangre();
+            case 4: return OP.getTipoSangre();
+            case 5: return ON.getTipoSangre();
+            case 6: return ABP.getTipoSangre();
+            case 7: return ABN.getTipoSangre();
+            default: return AP.getTipoSangre();
         }
     }
 
