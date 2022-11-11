@@ -30,7 +30,7 @@ public class DataSolicitudAsync extends AsyncTask<String, Void, StatusResponse> 
     private ListView lvSolicitud;
     private Context context;
     private Spinner spn;
-    private static ArrayList<Solicitud> listSolicitud = new ArrayList<Solicitud>();
+    private ArrayList<Solicitud> listSolicitud = new ArrayList<Solicitud>();
     private int integerPropertie = -1;
     private String stringPropertie;
     private String searcheablePropertie;
@@ -121,7 +121,6 @@ public class DataSolicitudAsync extends AsyncTask<String, Void, StatusResponse> 
     protected void onPostExecute(StatusResponse response) {
 
         // TODO: Encontrar mejor forma de usar el if, no se debería cargar el mismo item a spn o lv.
-
         ArrayAdapter<Solicitud> adapter = new ArrayAdapter<Solicitud>(
                 this.context,
                 R.layout.solicitudes_list_item,
@@ -129,6 +128,7 @@ public class DataSolicitudAsync extends AsyncTask<String, Void, StatusResponse> 
                 listSolicitud
         );
         this.lvSolicitud.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
     }
 
     public String querySolicitudWithCriticidad(){

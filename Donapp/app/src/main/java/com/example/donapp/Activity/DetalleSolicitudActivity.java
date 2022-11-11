@@ -31,7 +31,7 @@ public class DetalleSolicitudActivity extends AppCompatActivity {
 
     private TextView txtIdResponse, txtNombreResponse, txtApellidoResponse,
             txtFechaFinResponse, txtLocalidadResponse, txtProvinciaResponse,
-            txtDireccionResponse, txtCantDonantesResponse, txtCantTipoSangre, txtCriticidad;
+            txtDireccionResponse, txtCantDonantesResponse, txtCantTipoSangre, txtCriticidad, txtEstado;
     private Button btnVolver;
     private Button btnPostularse;
     Solicitud solicitud;
@@ -76,6 +76,7 @@ public class DetalleSolicitudActivity extends AppCompatActivity {
         txtCantDonantesResponse = (TextView)findViewById(R.id.txtCantDonantesResponseDetalleSolicitud);
         txtCantTipoSangre = (TextView)findViewById(R.id.txtCantTipoSangreDetalleSolicitud);
         txtCriticidad = (TextView) findViewById(R.id.txtCriticidadResponseDetalleSolicitud);
+        txtEstado = (TextView) findViewById(R.id.txtEstadoResponseDetalleSolicitud);
         btnVolver = (Button)findViewById(R.id.btnVolverDetalleSolicitud);
         btnPostularse = (Button) findViewById(R.id.btnPostularseDetalleSolicitud);
     }
@@ -94,6 +95,7 @@ public class DetalleSolicitudActivity extends AppCompatActivity {
                 postulate();
             }
         });
+
     }
 
     public void setProperties(){
@@ -107,6 +109,7 @@ public class DetalleSolicitudActivity extends AppCompatActivity {
         txtCantDonantesResponse.setText(String.valueOf(solicitud.getCantidadDonantes()));
         txtCantTipoSangre.setText(solicitud.getTipoDeSangre());
         txtCriticidad.setText(solicitud.getCriticidad().getDescripcion());
+        txtEstado.setText(solicitud.getEstado().displayEstado());
 
         if(this.solicitud.getUsuario().getId() == GlobalPreferences.getLoggedUserId(this)){
             btnPostularse.setVisibility(View.GONE);

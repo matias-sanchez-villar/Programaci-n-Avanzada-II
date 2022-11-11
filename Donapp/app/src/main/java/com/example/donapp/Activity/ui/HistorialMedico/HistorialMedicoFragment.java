@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.donapp.Activity.AltaHistorialMedicoActivity;
 import com.example.donapp.Data.HistorialMedico.HistorialMedicoRepository;
+import com.example.donapp.Data.Postulacion.PostulacionRepository;
 import com.example.donapp.Entity.GlobalPreferences;
 import com.example.donapp.Entity.HistorialMedico;
 import com.example.donapp.databinding.FragmentHistorialMedicoBinding;
@@ -27,6 +28,7 @@ public class HistorialMedicoFragment extends Fragment{
     TextView fragmentTittle;
     ScrollView historialMainScrollView;
     HistorialMedicoRepository _historialMedicoRepository;
+    PostulacionRepository _postulacionRepository;
     HistorialMedico historialMedico;
 
 
@@ -40,6 +42,7 @@ public class HistorialMedicoFragment extends Fragment{
         binding = FragmentHistorialMedicoBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         _historialMedicoRepository = new HistorialMedicoRepository(getActivity());
+        _postulacionRepository = new PostulacionRepository(getActivity());
 
         instanceLayouts();
         setListeners();
@@ -91,8 +94,14 @@ public class HistorialMedicoFragment extends Fragment{
         if(historialMedico != null){
             fragmentTittle.setText("Historial Médico");
             btnAltaHistorialMedico.setText("EDITAR HISTORIAL MÉDICO");
+            sinPostulacionesTxt.setText("Historial Postulaciones");
         } else {
          historialMainScrollView.setVisibility(View.GONE);
         }
+
+        _postulacionRepository.selectAllById(
+                lvHistorialPostulaciones,
+                GlobalPreferences.getLoggedUserId(getActivity())
+        );
     }
 }

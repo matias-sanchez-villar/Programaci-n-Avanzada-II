@@ -15,4 +15,10 @@ public enum EstadoPostulacion implements IEstado {
                 : this == CONFIRMADO ? CONFIRMADO.name()
                 : ErrorConst.ESTADO_INVALIDO;
     }
+
+    public static EstadoPostulacion getTipoEstadoPostulacion(int estado){
+        return estado == ACTIVO.ordinal()
+                ? ACTIVO
+                : CONFIRMADO;
+    }
 }

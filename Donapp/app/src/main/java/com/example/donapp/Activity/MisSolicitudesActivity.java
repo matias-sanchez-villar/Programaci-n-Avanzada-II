@@ -13,6 +13,7 @@ import android.widget.ListView;
 
 import com.example.donapp.Data.Solicitud.SolicitudRepository;
 import com.example.donapp.Entity.Solicitud;
+import com.example.donapp.Enums.EstadoSolicitud;
 import com.example.donapp.R;
 
 public class MisSolicitudesActivity extends AppCompatActivity {
@@ -59,7 +60,12 @@ public class MisSolicitudesActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Solicitud solicitudSelected = (Solicitud) parent.getItemAtPosition(position);
-                goToModificarSolicitud(solicitudSelected);
+
+                if(solicitudSelected.getEstado() == EstadoSolicitud.ACTIVA){
+                    goToModificarSolicitud(solicitudSelected);
+                } else {
+                    goToDetalleSolicitud(solicitudSelected);
+                }
             }
         });
     }
@@ -78,5 +84,12 @@ public class MisSolicitudesActivity extends AppCompatActivity {
         Intent modificarSolicitud = new Intent(this, AltaSolicitudActivity.class);
         modificarSolicitud.putExtra("solicitudUpdate", solicitud);
         startActivity(modificarSolicitud);
+    }
+
+    public void goToDetalleSolicitud(Solicitud solicitud){
+        Intent detalleIntent = new Intent(this, DetalleSolicitudActivity.class);
+        detalleIntent.putExtra("solicitud_id", solicitud.getId());
+
+        startActivity(detalleIntent);
     }
 }

@@ -12,6 +12,8 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.donapp.Activity.ui.BancosDeSangre.BancosDeSangreViewModel;
 import com.example.donapp.Data.Postulacion.PostulacionRepository;
+import com.example.donapp.Entity.GlobalPreferences;
+import com.example.donapp.Enums.EstadoPostulacion;
 import com.example.donapp.databinding.FragmentBancosDeSangreBinding;
 import com.example.donapp.databinding.FragmentPostulacionesBinding;
 
@@ -48,6 +50,11 @@ public class PostulacionesFragment extends Fragment{
     }
 
     public void getDBInfo(){
-        _postulacionRepository.selectAllForListView(listView);
+
+        _postulacionRepository.selectAllByEstado(
+                listView,
+                EstadoPostulacion.ACTIVO,
+                GlobalPreferences.getLoggedUserId(getActivity())
+        );
     }
 }

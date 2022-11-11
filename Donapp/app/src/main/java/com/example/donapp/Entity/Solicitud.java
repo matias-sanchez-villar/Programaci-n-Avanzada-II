@@ -17,6 +17,7 @@ public class Solicitud extends EntidadEstadoBase implements IRegistroPostulable 
     private String direccion;
     private String tipoDeSangre;
     private int cantidadDonantes;
+    private int cantidadDonantesConfirmados;
     private Usuario usuario;
     private Criticidad criticidad;
 
@@ -190,5 +191,13 @@ public class Solicitud extends EntidadEstadoBase implements IRegistroPostulable 
     @Override
     public int getIdRegistro() {
         return this.id;
+    }
+
+    public int getCantidadDonantesConfirmados() {
+        return cantidadDonantesConfirmados;
+    }
+
+    public void setCantidadDonantesConfirmados(int cantidadDonantesConfirmados) {
+        this.cantidadDonantesConfirmados = cantidadDonantesConfirmados;
     }
 }

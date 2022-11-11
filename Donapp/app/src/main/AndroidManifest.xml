@@ -17,6 +17,12 @@
         android:theme="@style/Theme.Donapp"
         tools:targetApi="31">
         <activity
+            android:name=".PostulanteActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DetallePostulantesActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activity.DetallePostulacionActivity"
             android:exported="false" />
         <activity

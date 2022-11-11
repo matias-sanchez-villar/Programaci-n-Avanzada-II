@@ -50,7 +50,8 @@ public class ReadSolicitudAsync extends AsyncTask<String, Void, Solicitud> {
                 solicitud.setLocalidad(new Localidad(rs.getString("localidad")));
                 solicitud.setDireccion(rs.getString("direccion"));
                 solicitud.setUsuario(new Usuario(rs.getInt("id_usuario")));
-                solicitud.setCantidadDonantes(rs.getInt("cantidadDonantes"));
+                solicitud.setCantidadDonantes(rs.getInt("cantidad_donantes"));
+                solicitud.setCantidadDonantesConfirmados(rs.getInt("cant_donantes_confirmados") );
                 solicitud.setTipoDeSangre(rs.getString("tipo_sangre"));
                 solicitud.setEstado(EstadoSolicitud.getTipoEstadoSolicitud(rs.getInt("estado")));
                 solicitud.setCriticidad(new Criticidad(rs.getString("descripcion")));

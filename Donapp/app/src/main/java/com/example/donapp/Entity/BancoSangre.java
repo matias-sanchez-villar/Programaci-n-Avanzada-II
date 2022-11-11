@@ -12,6 +12,10 @@ public class BancoSangre extends EntidadBase implements IRegistroPostulable {
         super();
     }
 
+    public BancoSangre(int id){
+        super(id);
+    }
+
     public BancoSangre(String hospital, String direccion, Provincia provincia, Localidad localidad) {
         this.hospital = hospital;
         this.direccion = direccion;

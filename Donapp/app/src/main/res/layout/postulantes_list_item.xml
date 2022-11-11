@@ -6,15 +6,16 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="15dp">
+
     <ImageView
-        android:id="@+id/imageListPostulacionItem"
+        android:id="@+id/imageListPostulanteItem"
         android:layout_width="80dp"
         android:layout_height="60dp"
         android:layout_margin="5dp"
         android:layout_marginTop="5dp"
-        app:srcCompat="@drawable/ic_reserva" />
+        app:srcCompat="@drawable/ic_donador_2" />
     <TextView
-        android:id="@+id/tvListPostulacionItem"
+        android:id="@+id/tvListPostulanteItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"

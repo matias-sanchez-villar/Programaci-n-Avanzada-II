@@ -23,6 +23,7 @@ import com.example.donapp.Entity.Localidad;
 import com.example.donapp.Entity.Provincia;
 import com.example.donapp.Entity.Solicitud;
 import com.example.donapp.Entity.Usuario;
+import com.example.donapp.Enums.Categoria;
 import com.example.donapp.Enums.Estado;
 import com.example.donapp.Enums.EstadoSolicitud;
 import com.example.donapp.Enums.StatusResponse;
@@ -38,6 +39,7 @@ public class AltaSolicitudActivity extends AppCompatActivity {
     private Spinner spnLocalidad, spnProvincia, spnTipoSangre, spnCriticidad;
     private Button btnGuardar;
     private Button btnCancelarSolicitud;
+    private Button btnVerPostulantes;
     private ProvinciaRepository _provinciaRepository;
     private LocalidadRepository _localidadRepository;
     private Provincia provinciaSelected;
@@ -71,6 +73,7 @@ public class AltaSolicitudActivity extends AppCompatActivity {
             title.setText("Modificar solicitud");
         } else{
             btnCancelarSolicitud.setVisibility(View.GONE);
+            btnVerPostulantes.setVisibility(View.GONE);
         }
 
     }
@@ -115,6 +118,7 @@ public class AltaSolicitudActivity extends AppCompatActivity {
         spnCriticidad = (Spinner) findViewById(R.id.spnTipoCriticidadAltaSolicitud);
         btnGuardar = (Button)findViewById(R.id.btnGuardarAltaSolicitud);
         btnCancelarSolicitud = (Button) findViewById(R.id.btnCancelarAltaSolicitud);
+        btnVerPostulantes = (Button) findViewById(R.id.btnVerPostulantesAltaSolicitud);
         title = (TextView) findViewById(R.id.altaSolicitudTitle);
     }
 
@@ -199,6 +203,13 @@ public class AltaSolicitudActivity extends AppCompatActivity {
                 cancelarSolicitud();
             }
         });
+
+        btnVerPostulantes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToPostulantes();
+            }
+        });
     }
 
     public void getDBInfo(){
@@ -263,10 +274,19 @@ public class AltaSolicitudActivity extends AppCompatActivity {
         startActivity(misSolicitudes);
     }
 
+    public void goToPostulantes(){
+        Intent postulantesIntent = new Intent(this, DetallePostulantesActivity.class);
+        postulantesIntent.putExtra("id_registro", solicitudForUpdate.getId());
+        postulantesIntent.putExtra("categoria", Categoria.SOLICITUD.ordinal());
+        startActivity(postulantesIntent);
+    }
+
     public void cancelarSolicitud(){
         setSolicitud(EstadoSolicitud.CANCELADA);
         if(solicitudRepository.update(solicitudForUpdate) != StatusResponse.FAIL){
             toast("Solicitud cancelada");
+            Intent mainIntent = new Intent(this, SolicitanteDonanteActivity.class);
+            startActivity(mainIntent);
         } else{
             toast("Error");
         }
