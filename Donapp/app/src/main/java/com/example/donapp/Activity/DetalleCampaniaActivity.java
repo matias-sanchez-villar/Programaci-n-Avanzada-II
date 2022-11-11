@@ -8,6 +8,10 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.donapp.Data.Campania.CampaniaRepository;
+import com.example.donapp.Data.Solicitud.SolicitudRepository;
+import com.example.donapp.Entity.Campania;
+import com.example.donapp.Entity.Solicitud;
 import com.example.donapp.R;
 
 public class DetalleCampaniaActivity extends AppCompatActivity {
@@ -16,13 +20,37 @@ public class DetalleCampaniaActivity extends AppCompatActivity {
             txtLocalidadResponse, txtProvinciaResponse,
             txtDireccionResponse, txtCantSolicitantesResponse, txtCantDiasResponse;
     private Button btnVolver;
+    Campania campania;
+    CampaniaRepository _campaniaRepository;
+    Bundle bundle;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle_campania);
+        _campaniaRepository = new CampaniaRepository(this);
+
+        bundle = getIntent().getExtras();
+
+        int id = bundle.getInt("solicitud_id", 0);
+
+        if(id != 0){
+            this.campania = _campaniaRepository.selectEntity(new Campania(id));
+        }
         fillProperties();
-        setingsPropirties();
+        setProperties();
+        setListeners();
+    }
+
+    private void setListeners() {
+        btnVolver.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
     }
 
     private void fillProperties() {
@@ -37,10 +65,15 @@ public class DetalleCampaniaActivity extends AppCompatActivity {
         btnVolver = (Button)findViewById(R.id.btnVolver);
     }
 
-    private void setingsPropirties() {
+    private void setProperties() {
+        txtIdResponse.setText(campania.getId());
+        txtNombreResponse.setText(campania.getNombreCampana());
+        txtFechaResponse.setText(String.valueOf(campania.getFecha()));
+        txtLocalidadResponse.setText(campania.getLocalidad().getNombre());
+        txtProvinciaResponse.setText(campania.getProvincia().getNombre());
+        txtDireccionResponse.setText(campania.getDireccion());
+        txtCantSolicitantesResponse.setText(String.valueOf(campania.getCantSolicitante()));
+        txtCantDiasResponse.setText(String.valueOf(campania.getCantDias()));
     }
 
-    public void onClickBtnVolver(View view){
-        //Volvemos al activity anterior
-    }
 }

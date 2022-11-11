@@ -11,6 +11,8 @@ import com.example.donapp.Database.TableDB;
 import com.example.donapp.Entity.Campania;
 import com.example.donapp.Entity.Localidad;
 import com.example.donapp.Entity.Provincia;
+import com.example.donapp.Entity.Usuario;
+import com.example.donapp.Enums.EstadoCampania;
 import com.example.donapp.Enums.StatusResponse;
 import com.example.donapp.R;
 
@@ -56,7 +58,7 @@ public class DataCampaniaAsync extends AsyncTask<String,Void, StatusResponse> {
 
                 campania = new Campania();
                 campania.setId(rs.getInt("id"));
-                campania.setUsuarioEmpresa(rs.getInt("id_usuario"));
+                campania.setUsuario(new Usuario(rs.getInt("id_usuario")));
                 campania.setNombreCampana(rs.getString("nombre_campania"));
                 campania.setFecha(rs.getDate("fecha"));
                 campania.setLocalidad(new Localidad(rs.getInt("id_localidad")));
@@ -64,7 +66,7 @@ public class DataCampaniaAsync extends AsyncTask<String,Void, StatusResponse> {
                 campania.setDireccion(rs.getString("direccion"));
                 campania.setCantSolicitante(rs.getInt("cantidadSolicitantes"));
                 campania.setCantDias(rs.getInt("cantidadDias"));
-                //campana.setEstado(EstadoSolicitud.getTipoEstadoSolicitud(rs.getInt("estado")));
+                campania.setEstado(EstadoCampania.getTipoEstadoCampania(rs.getInt("estado")));
 
                 listCampania.add(campania);
             }

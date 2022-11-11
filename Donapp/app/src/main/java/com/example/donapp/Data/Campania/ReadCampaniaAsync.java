@@ -3,7 +3,19 @@ package com.example.donapp.Data.Campania;
 import android.content.Context;
 import android.os.AsyncTask;
 
+import com.example.donapp.Database.DataDB;
 import com.example.donapp.Entity.Campania;
+import com.example.donapp.Entity.Criticidad;
+import com.example.donapp.Entity.Localidad;
+import com.example.donapp.Entity.Provincia;
+import com.example.donapp.Entity.Solicitud;
+import com.example.donapp.Entity.Usuario;
+import com.example.donapp.Enums.EstadoSolicitud;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 
 public class ReadCampaniaAsync extends AsyncTask<String,Void, Campania> {
@@ -12,20 +24,51 @@ public class ReadCampaniaAsync extends AsyncTask<String,Void, Campania> {
     private Context context;
     private int searcheableId;
 
-    public ReadCampaniaAsync(Campania campania, Context context) {
-        this.campania = campania;
+    public ReadCampaniaAsync(int id, Context context) {
+        this.searcheableId = id;
         this.context = context;
     }
 
-    public ReadCampaniaAsync(Context context, int searcheableId) {
-        this.context = context;
-        this.searcheableId = searcheableId;
-    }
 
     @Override
     protected Campania doInBackground(String... strings) {
+        try {
+            Class.forName(DataDB.driver);
+            Connection con = DriverManager.getConnection(DataDB.urlMySQL, DataDB.user, DataDB.pass);
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(queryCampaniaWithid(searcheableId));
 
-        //Conexion a BD
-        return null;
+            Campania campania;
+            if(rs.next()) {
+
+                campania = new Campania();
+                campania.setId(rs.getInt("id"));
+                campania.setNombreCampana(rs.getString("nombre_campania"));
+                campania.setFecha(rs.getDate("fecha"));
+                campania.setProvincia(new Provincia(rs.getInt("id_provincia"), rs.getString("provincia")));
+                campania.setLocalidad(new Localidad(rs.getString("localidad")));
+                campania.setDireccion(rs.getString("direccion"));
+                campania.setCantSolicitante(rs.getInt("cantidaSolicitantes"));
+                campania.setCantDias(rs.getInt("cantidad_dias"));
+                campania.setEstado(EstadoSolicitud.getTipoEstadoSolicitud(rs.getInt("estado")));
+                campania.setUsuario(new Usuario(rs.getInt("id_usuario")));
+
+                return campania;
+            }
+            return null;
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    private String queryCampaniaWithid(int id) {
+        return String.format("SELECT cam.*, " +
+                "p.nombre AS 'provincia', l.nombre AS 'localidad' " +
+                "FROM `campanias` cam " +
+                "INNER JOIN `provincias` p ON p.id = cam.id_provincia " +
+                "INNER JOIN `localidades` l ON l.id = cam.id_localidad " +
+                "WHERE cam.id = %1$s", id);
     }
 }

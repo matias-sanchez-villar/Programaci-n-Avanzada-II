@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="bankSangreTitle">Bancos de sangre</string>
+    <string name="bankSangreTitleList">Lista bancos de sangre</string>
+    <string name="bankSangreTitleDetalle">Detalle bancos de sangre</string>
+    <string name="bankHospital">Hospital</string>
+    <string name="bankPovincia">Provincia</string>
+    <string name="bankCiudad">Ciudad</string>
+    <string name="bankDireccion">Direccion</string>
+    <string name="bankBtnPostularse">Postularse</string>
 </resources>
