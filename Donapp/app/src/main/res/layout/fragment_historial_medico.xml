@@ -302,6 +302,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="30dp">
         <Button
+            android:id="@+id/btnAltaHistorialMedico"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Completar Historial Médico"/>
@@ -334,6 +335,7 @@
         android:layout_height="100dp"
         android:layout_marginTop="50dp">
         <ListView
+            android:id="@+id/historialPostulaciones"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </ScrollView>

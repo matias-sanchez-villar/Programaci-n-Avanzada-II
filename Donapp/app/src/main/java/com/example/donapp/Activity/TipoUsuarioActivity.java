@@ -21,6 +21,7 @@ public class TipoUsuarioActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tipo_usuario);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         fillObjects();
 
         //Enlace entre botones y click. Otra forma se puede
@@ -53,6 +54,12 @@ public class TipoUsuarioActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return false;
     }
 
     public void registrarPersonaFisica(TipoUsuario tipoUsuario){

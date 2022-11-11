@@ -1,13 +1,15 @@
 package com.example.donapp.Entity;
 
 import com.example.donapp.Enums.TipoSangre;
+import com.example.donapp.Util.DateUtil;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class HistorialMedico extends EntidadEstadoBase{
     private TipoSangre tipoSangre;
     private int peso;
-    private double altura;
+    private BigDecimal altura;
     private Date ultimaDonacion;
     private boolean tatuajes;
     private boolean vacunaAlergia;
@@ -33,7 +35,7 @@ public class HistorialMedico extends EntidadEstadoBase{
 
     public HistorialMedico(TipoSangre tipoSangre,
                            int peso,
-                           double altura,
+                           BigDecimal altura,
                            boolean tatuajes,
                            boolean vacunaAlergia,
                            boolean examenSangre,
@@ -63,6 +65,10 @@ public class HistorialMedico extends EntidadEstadoBase{
         this.tipoSangre = tipoSangre;
     }
 
+    public String getAndroidFecha(){
+        return DateUtil.convertToAndroidDate(ultimaDonacion.toString());
+    }
+
     public String getPesoToString() {
         return String.valueOf(peso) + " kg";
     }
@@ -75,7 +81,7 @@ public class HistorialMedico extends EntidadEstadoBase{
         this.peso = peso;
     }
 
-    public double getAltura(){
+    public BigDecimal getAltura(){
         return altura;
     }
 
@@ -83,7 +89,7 @@ public class HistorialMedico extends EntidadEstadoBase{
         return String.valueOf(altura) + " mts";
     }
 
-    public void setAltura(double altura) {
+    public void setAltura(BigDecimal altura) {
         this.altura = altura;
     }
 

@@ -51,6 +51,12 @@ instanciamos el ui del drawer. Insertar los fragments que nosotros queramos.
 10. Renombrar IQueryRepository y IQuerySelectRepository, al igual que BaseRepository, no aplica del todo el nombre.
 11. Los repository usados en los activities/fragments se deberían instanciar en la misma declaración
 12. Se estan usando todo margin para alinear layouts de historial medico en fragment_historial. MEJORAR
+13. Deberiamos consumir una api? generarla nosotros y una extension externa a sql?
+14. Corregir en base registros que tienen columna estado al pedo.
+15. Fragment solicitudes -> Debería traer por defecto todas las solicitudes que no fueron creadas por el usuario logueado
+16. No usar doble DateUtil cuando queremos parsear la fecha actual, ver DetalleSolicitudActivity.
+17. I/Choreographer: Skipped 70 frames!  The application may be doing too much work on its main thread.Ver esto.
+18. Ver forma de encapsular asyncTask
 
 ** PENDIENTE **
 1. Validaciones en Persona y Usuario (Clase y formularios)
@@ -61,3 +67,4 @@ instanciamos el ui del drawer. Insertar los fragments que nosotros queramos.
 6. Agregar validaciones a cuil
 7. Falta mapear provincia, localidad y cualquier cosa que se carge en un spinner al modificar.
 8. VALIDACIONES EN HISTORIAL MEDICO, QUE SI O SI HAYA ALGUN CHECKBOX SELECCIONADO
+9. Enlazar propiedades cuando se busca un Historial medico en AltaHistorialMedico.

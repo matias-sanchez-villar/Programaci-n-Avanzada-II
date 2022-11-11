@@ -1,6 +1,8 @@
 package com.example.donapp.Entity;
 
-public class BancoSangre extends EntidadBase{
+import com.example.donapp.Interfaces.IRegistroPostulable;
+
+public class BancoSangre extends EntidadBase implements IRegistroPostulable {
     String hospital;
     String direccion;
     Provincia provincia;
@@ -55,5 +57,25 @@ public class BancoSangre extends EntidadBase{
 
     public void setLocalidad(Localidad localidad) {
         this.localidad = localidad;
+    }
+
+    @Override
+    public String getDireccionPostulacion() {
+        return direccion;
+    }
+
+    @Override
+    public String getProvinciaPostulacion() {
+        return provincia.getNombre();
+    }
+
+    @Override
+    public String getLocalidadPostulacion() {
+        return localidad.getNombre();
+    }
+
+    @Override
+    public int getIdRegistro() {
+        return this.id;
     }
 }

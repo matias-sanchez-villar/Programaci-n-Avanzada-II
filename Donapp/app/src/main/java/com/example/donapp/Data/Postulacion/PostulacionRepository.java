@@ -1,31 +1,28 @@
-package com.example.donapp.Data.HistorialMedico;
+package com.example.donapp.Data.Postulacion;
 
 import android.content.Context;
 import android.widget.ListView;
 import android.widget.Spinner;
 
 import com.example.donapp.Data.BaseRepository;
-import com.example.donapp.Data.Usuario.ReadUsuarioAsync;
-import com.example.donapp.Entity.HistorialMedico;
-import com.example.donapp.Entity.Usuario;
+import com.example.donapp.Entity.Postulacion;
 import com.example.donapp.Enums.StatusResponse;
 import com.example.donapp.Interfaces.ICRUDRepository;
 
-public class HistorialMedicoRepository extends BaseRepository<HistorialMedico> implements ICRUDRepository<HistorialMedico> {
+public class PostulacionRepository extends BaseRepository<Postulacion> implements ICRUDRepository<Postulacion> {
 
-
-    public HistorialMedicoRepository(Context context){
+    public PostulacionRepository(Context context){
         this.context = context;
     }
 
     @Override
-    public Integer create(HistorialMedico entity) {
-        this.createThread = new CreateHistorialMedicoAsync(entity, context);
+    public Integer create(Postulacion entity) {
+        this.createThread = new CreatePostulacionAsync(entity, context);
         return this.createAsync(createThread);
     }
 
     @Override
-    public StatusResponse update(HistorialMedico entity) {
+    public StatusResponse update(Postulacion entity) {
         return null;
     }
 
@@ -50,8 +47,12 @@ public class HistorialMedicoRepository extends BaseRepository<HistorialMedico> i
     }
 
     @Override
-    public HistorialMedico selectEntity(HistorialMedico entity) {
-        this.selectEntityThread = new ReadHistorialMedicoAsync(context, entity.getId());
-        return selectEntity(selectEntityThread);
+    public Postulacion selectEntity(Postulacion entity) {
+        this.selectEntityThread = new ReadPostulacionAsync(
+                entity.getCategoria(),
+                entity.getEstado(),
+                entity.getUsuario().getId(),
+                entity.getRegistroPostulado().getIdRegistro());
+        return this.selectEntity(selectEntityThread);
     }
 }

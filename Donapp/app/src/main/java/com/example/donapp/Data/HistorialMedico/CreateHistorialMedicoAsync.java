@@ -34,7 +34,7 @@ public class CreateHistorialMedicoAsync extends AsyncTask<String, Void, Integer>
                     con.prepareStatement(insertHistorialMedico(), Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, TipoSangre.getStringByPosition(historialMedico.getTipoSangre().ordinal()));
             preparedStatement.setInt(2, historialMedico.getPeso());
-            preparedStatement.setDouble(3, historialMedico.getAltura());
+            preparedStatement.setBigDecimal(3, historialMedico.getAltura());
             preparedStatement.setDate(4, new Date(historialMedico.getUltimaDonacion().getTime()));
             preparedStatement.setBoolean(5, historialMedico.isTatuajes());
             preparedStatement.setBoolean(6, historialMedico.isVacunaAlergia());

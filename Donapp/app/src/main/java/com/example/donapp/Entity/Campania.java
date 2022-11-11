@@ -1,9 +1,11 @@
 package com.example.donapp.Entity;
 
+import com.example.donapp.Interfaces.IEstado;
+import com.example.donapp.Interfaces.IRegistroPostulable;
+
 import java.util.Date;
 
-public class Campania {
-    private int id;
+public class Campania extends EntidadEstadoBase implements IRegistroPostulable {
     private String cuitEmpresa; //para probar
     private String nombreCampania;
     private Date fecha;
@@ -12,10 +14,9 @@ public class Campania {
     private Provincia provincia;
     private int cantSolicitante;
     private int cantDias;
-    private Boolean estado;
     private int UsuarioEmpresa;
 
-    public Campania() {this.estado = true;}
+    public Campania() { }
 
 
     public Campania(String nombreCampana, Date fecha, String direccion, Provincia provincia, int cantSolicitante, int cantDias) {
@@ -36,7 +37,6 @@ public class Campania {
         this.provincia = provincia;
         this.cantSolicitante = cantSolicitante;
         this.cantDias = cantDias;
-        this.estado = true;
         UsuarioEmpresa = usuarioEmpresa.getId();
     }
 
@@ -117,11 +117,31 @@ public class Campania {
         this.cantDias = cantDias;
     }
 
-    public Boolean getEstado() {
+    public IEstado getEstado() {
         return estado;
     }
 
-    public void setEstado(Boolean estado) {
+    public void setEstado(IEstado estado) {
         this.estado = estado;
+    }
+
+    @Override
+    public String getDireccionPostulacion() {
+        return direccion;
+    }
+
+    @Override
+    public String getProvinciaPostulacion() {
+        return provincia.getNombre();
+    }
+
+    @Override
+    public String getLocalidadPostulacion() {
+        return localidad.getNombre();
+    }
+
+    @Override
+    public int getIdRegistro() {
+        return this.id;
     }
 }

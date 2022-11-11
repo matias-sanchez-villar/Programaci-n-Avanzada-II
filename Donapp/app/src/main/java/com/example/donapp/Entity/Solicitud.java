@@ -1,12 +1,13 @@
 package com.example.donapp.Entity;
 
 import com.example.donapp.Enums.EstadoSolicitud;
+import com.example.donapp.Interfaces.IRegistroPostulable;
 import com.example.donapp.Util.CodigoGenerator;
 import com.example.donapp.Util.DateUtil;
 
 import java.util.Date;
 
-public class Solicitud extends EntidadEstadoBase{
+public class Solicitud extends EntidadEstadoBase implements IRegistroPostulable {
     private String codigo;
     private String nombre;
     private String apellido;
@@ -169,5 +170,25 @@ public class Solicitud extends EntidadEstadoBase{
 
     public int getEstadoInt(){
         return EstadoSolicitud.getTipoEstadoToInt(this.estado);
+    }
+
+    @Override
+    public String getDireccionPostulacion() {
+        return direccion;
+    }
+
+    @Override
+    public String getProvinciaPostulacion() {
+        return provincia.getNombre();
+    }
+
+    @Override
+    public String getLocalidadPostulacion() {
+        return localidad.getNombre();
+    }
+
+    @Override
+    public int getIdRegistro() {
+        return this.id;
     }
 }
