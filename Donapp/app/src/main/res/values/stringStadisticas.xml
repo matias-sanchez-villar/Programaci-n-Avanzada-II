@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="estadisticasTitle">Estadisticas</string>
+    <string name="estadisticasCantCampañas">Cantidad campañas realizadas</string>
+    <string name="estadisticasPromAsistencia">Promedio de asistencia por campaña</string>
+    <string name="estadisticasPromInasistencia">Promedio de inasistencia por campaña</string>
+</resources>
