@@ -6,7 +6,10 @@ import android.widget.ListView;
 import android.widget.Spinner;
 
 import com.example.donapp.Data.BaseRepository;
+import com.example.donapp.Data.Solicitud.DataSolicitudAsync;
+import com.example.donapp.Data.Usuario.ReadUsuarioAsync;
 import com.example.donapp.Entity.Campania;
+import com.example.donapp.Entity.Usuario;
 import com.example.donapp.Enums.StatusResponse;
 import com.example.donapp.Interfaces.ICRUDRepository;
 
@@ -14,6 +17,7 @@ public class CampaniaRepository extends BaseRepository<Campania> implements ICRU
     private AsyncTask<String, Void, StatusResponse> thread;
     private AsyncTask<String, Void, Integer> createThread;
     private AsyncTask<String, Void, Campania> entityThread;
+    private AsyncTask<String, Void, Boolean> validateThread;
 
     public CampaniaRepository(Context context){
         this.context = context;
@@ -55,9 +59,27 @@ public class CampaniaRepository extends BaseRepository<Campania> implements ICRU
         this.thread = new DataCampaniaAsync(lv, context);
         return this.selectAllAsync(thread);
     }
+    public StatusResponse selectAllForListViewByIntegerPropertie(
+            ListView lv,
+            String propertie,
+            int value
+    )
+    {
+        this.thread = new DataCampaniaAsync(context, lv, value, propertie);
+        return this.selectAllAsync(thread);
+    }
 
     @Override
     public Campania selectEntity(Campania entity)  {
         return this.selectEntity(entityThread);
     }
+    /* Creo que hize cualquier cosa "La idea era validar fecha y Zona(IdLocalidad)
+    @Override
+    public Boolean selectEntityforDateAndZone(Campania entity) {
+        this.validateThread = new ValidateCampaniaAsync(
+                entity.getFecha(),
+                entity.getLocalidad().getId(),
+                context);
+        return this.selectEntityforDateAndZone(validateThread);
+    }*/
 }

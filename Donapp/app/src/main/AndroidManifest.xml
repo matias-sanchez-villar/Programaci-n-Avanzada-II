@@ -17,7 +17,13 @@
         android:theme="@style/Theme.Donapp"
         tools:targetApi="31">
         <activity
+            android:name=".Activity.EditarMisDatos"
+            android:exported="false" />
+            <activity
             android:name=".Activity.PostulanteActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.DetallePostulacionActivity"
             android:exported="false" />
         <activity
             android:name=".Activity.DetallePostulantesActivity"

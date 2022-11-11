@@ -193,11 +193,11 @@ public class AltaCampaniaActivity extends AppCompatActivity {
         txtCantS.setText(campania.getCantSolicitante());
         txtCantDias.setText(campania.getCantDias());
     }
-    /*
+
     public void goToMisCampanias(){
-        Intent misSolicitudes = new Intent(this, MisSolicitudesActivity.class);
-        startActivity(misSolicitudes);
-    }*/
+        Intent misCampanias = new Intent(this, MisCampaniasActivity.class);
+        startActivity(misCampanias);
+    }
 
     private void cancelarCampania() {
         setCampania(EstadoCampania.CANCELADA);

@@ -15,6 +15,8 @@ import com.example.donapp.Interfaces.ICRUDRepository;
 public class PersonaRepository extends BaseRepository<Persona> implements ICRUDRepository<Persona> {
     private AsyncTask<String, Void, StatusResponse> thread;
     private AsyncTask<String, Void, Persona> threadEntity;
+    private AsyncTask<String, Void, PersonaFisica> threadEntityPF;
+    private AsyncTask<String, Void, PersonaJuridica> threadEntityPJ;
     private AsyncTask<String, Void, Integer> createThread;
 
     public PersonaRepository(Context context){
@@ -66,16 +68,14 @@ public class PersonaRepository extends BaseRepository<Persona> implements ICRUDR
         return createAsync(createThread);
     }
 
-    public PersonaFisica selectPersonaFisica(PersonaFisica persona){
-        this.threadEntity = new ReadPersonaAsync(persona.getDni(), context);
-        return new PersonaFisica(this.selectEntity(threadEntity),
-                persona.getApellido(),
-                persona.getFechaNacimiento(),
-                persona.getDni());
+    public PersonaFisica selectPersonaFisica(int id){
+        this.threadEntityPF = new ReadPersonaFisicaAsync(id, context);
+        return (PersonaFisica) this.selectEntity(threadEntity);
     }
 
-    public PersonaJuridica selectPersonaJuridica(PersonaJuridica persona){
-        this.threadEntity = new ReadPersonaAsync(persona.getId(), context);
-        return new PersonaJuridica(this.selectEntity(threadEntity), persona.getCuil(), persona.getHorarioInicio(), persona.getHorarioFin());
+    //falta lo mismo
+    public PersonaJuridica selectPersonaJuridica(int id){
+        this.threadEntityPJ = new ReadPersonaJuridicaAsync(id, context);
+        return (PersonaJuridica) this.selectEntity(threadEntity);
     }
 }

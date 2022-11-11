@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+        MDPF = Mis Datos Person Fisica
+        MDPJ = Mis Datos Person Juridica
+        MDPE = Mis Datos Pesona Editar
+    -->
+    <string name="MDP_Nombre">Nombre</string>
+    <string name="MDP_Titulo">Mis datos</string>
+    <string name="MDP_Telefono">Telefono</string>
+    <string name="MDP_Provincia">Provincia</string>
+    <string name="MDP_Localidad">Localidad</string>
+    <string name="MDP_Direccion">Direccion</string>
+    <string name="MDP_Email">Email</string>
+    <string name="MDP_Contrasena">Contraseña</string>
+    <string name="MDP_BtnModificar">Modificar</string>
+
+    <string name="MDPF_Apellido">Apellido</string>
+    <string name="MDPF_FechaNacimiento">Fecha de nacimiento</string>
+    <string name="MDPF_DNI">DNI</string>
+
+    <string name="MDPJ_Cuil">Cuil</string>
+    <string name="MDPJ_HorarioDesde">Horario de atención desde</string>
+    <string name="MDPJ_HorarioHasta">Horario de atención hasta</string>
+
+
+    <string name="MDPE_titulo">Editar mis datos</string>
+    <string name="MDPE_Nombre">Nombre</string>
+    <string name="MDPE_Email">Email</string>
+    <string name="MDPE_Password">Contraseña</string>
+    <string name="MDPE_btn">Modificar</string>
+
+</resources>

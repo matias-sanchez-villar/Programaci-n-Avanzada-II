@@ -33,7 +33,7 @@ public class BancosDeSangreFragment extends Fragment{
         binding = FragmentBancosDeSangreBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        vtBancoSangre = (ListView) binding.lvBancoSangre;
+        vtBancoSangre = binding.lvBancoSangre;
         bancoSangreRepository = new BancoSangreRepository(vtBancoSangre, getActivity());
         fillProperties();
         setListeners();
