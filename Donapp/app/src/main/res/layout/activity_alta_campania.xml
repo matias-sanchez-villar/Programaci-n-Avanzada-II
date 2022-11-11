@@ -151,6 +151,16 @@
             android:text="@string/BotonGuardar"
             android:textSize="14sp"
             app:rippleColor="#4CAF50" />
+        <Button
+            android:id="@+id/btnCancelarAltaCampania"
+            style="@style/Widget.Material3.Button"
+            android:layout_width="248dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#348708"
+            android:padding="15dp"
+            android:text="@string/BotonCancelar"
+            android:textSize="14sp"
+            app:rippleColor="#4CAF50" />
     </LinearLayout>
 
 

@@ -16,6 +16,7 @@
     <string name="CantDias">Cant de Dias</string>
     <string name="Check">Acepto terminos y condiciones</string>
     <string name="BotonGuardar">Guardar</string>
+    <string name="BotonCancelar">Cancelar Campañia</string>
 
     <!-- Spinner Localidad (Solamente para impresion de pantall)-->
     <string-array name="arrayLocalidades">

@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,11 +16,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.donapp.Data.Campania.CampaniaRepository;
 import com.example.donapp.Data.Localidad.LocalidadRepository;
 import com.example.donapp.Data.Provincia.ProvinciaRepository;
+import com.example.donapp.Entity.Criticidad;
+import com.example.donapp.Entity.GlobalPreferences;
 import com.example.donapp.Entity.Localidad;
 import com.example.donapp.Entity.Provincia;
 import com.example.donapp.Entity.Campania;
 
+import com.example.donapp.Entity.Solicitud;
 import com.example.donapp.Entity.Usuario;
+import com.example.donapp.Enums.EstadoCampania;
+import com.example.donapp.Enums.EstadoSolicitud;
+import com.example.donapp.Enums.StatusResponse;
 import com.example.donapp.R;
 import com.example.donapp.Util.DateUtil;
 
@@ -30,29 +37,62 @@ public class AltaCampaniaActivity extends AppCompatActivity {
     private EditText txtNombre, txtFecha, txtDireccion, txtCantS, txtCantDias;
     private Spinner spnLocalidad, spnProvincia;
     private CheckBox checkTerminos;
-    private Button btnGuardar;
+    private Button btnGuardar, btnCancelarAltaCampania;
     private ProvinciaRepository _provinciaRepository;
     private LocalidadRepository _localidadRepository;
     private Provincia provinciaSelected;
     private Localidad localidadSelected;
     private CampaniaRepository campaniaRepository;
-    private Campania campania;
+    private Campania campaniaForUpdate;
+    Bundle bundle;
+    TextView title;
 
 
     @Override
     protected void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alta_campania);
+        bundle = getIntent().getExtras();
+        campaniaForUpdate = (Campania) bundle.getSerializable("solicitudUpdate");
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         fillProperties();
         setListeners();
         getDBInfo();
 
-        btnGuardar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                registrar();
-            }
-        });
+        // Si no es nueva, hacemos un update
+        if(!campaniaForUpdate.isNew()){
+            fillComponents(campaniaForUpdate);
+            title.setText("Modificar campania"); //ver titulo
+        } else{
+            btnCancelarAltaCampania.setVisibility(View.GONE);
+        }
+    }
+
+
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return false;
+    }
+
+    public void onClickBtnGuardar(){
+        // if (validateData()) {
+        setCampania(EstadoCampania.ACTIVA);
+        int response;
+        if(campaniaForUpdate.isNew()){
+            if(campaniaRepository.create(campaniaForUpdate) != 0){
+                toast("Campaña creada");
+            }else toast("Error");
+        } else {
+            if(campaniaRepository.update(campaniaForUpdate) != StatusResponse.FAIL){
+                toast("Campaña modificada");
+            } else toast("Error");
+        }
+        //goToMisSolicitudes();
+        // }
     }
 
     private void fillProperties() {
@@ -69,7 +109,23 @@ public class AltaCampaniaActivity extends AppCompatActivity {
         txtCantDias = (EditText)findViewById((R.id.txtCantDiasAltaCampania));
         checkTerminos = (CheckBox)findViewById(R.id.checkTerminosAltaCampania);
         btnGuardar = (Button)findViewById(R.id.btnGuardarAltaCampania);
+        btnCancelarAltaCampania = (Button)findViewById(R.id.btnCancelarAltaCampania);
+        title = (TextView) findViewById(R.id.altaSolicitudTitle); //Ver el titulo
 
+    }
+
+    public void setCampania(EstadoCampania estado) {
+        if (campaniaForUpdate.isNew()) {
+            this.campaniaForUpdate.setEstado(estado);
+            this.campaniaForUpdate.setUsuario(new Usuario(GlobalPreferences.getLoggedUserId(this)));
+        }
+        this.campaniaForUpdate.setNombreCampana(txtNombre.getText().toString());
+        this.campaniaForUpdate.setFecha(DateUtil.convertToSqlDate(txtFecha.getText().toString()));
+        this.campaniaForUpdate.setProvincia(new Provincia(provinciaSelected.getId()));
+        this.campaniaForUpdate.setLocalidad(new Localidad(localidadSelected.getId()));
+        this.campaniaForUpdate.setDireccion(txtDireccion.getText().toString());
+        this.campaniaForUpdate.setCantSolicitante(Integer.parseInt(txtCantS.getText().toString()));
+        this.campaniaForUpdate.setCantDias(Integer.parseInt(txtCantDias.getText().toString()));
     }
 
     public void setListeners() {
@@ -96,10 +152,25 @@ public class AltaCampaniaActivity extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
 
+        btnGuardar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickBtnGuardar();
+            }
+        });
+        btnCancelarAltaCampania.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cancelarCampania();
             }
         });
     }
+
+
+
 
     public void getDBInfo(){
         _provinciaRepository.selectAllForSpinner(spnProvincia);
@@ -109,50 +180,33 @@ public class AltaCampaniaActivity extends AppCompatActivity {
         _localidadRepository.selectAllForSpinnerByProvincia(spnLocalidad, provinciaId);
     }
 
-    private void registrar() {
-        String nombre = txtNombre.getText().toString();
-        Date fecha = DateUtil.convertToSqlDate(txtFecha.getText().toString());
-        String direccion = txtDireccion.getText().toString();
-        int cantSolicitantes = Integer.parseInt(txtCantS.getText().toString());
-        int cantDias = Integer.parseInt(txtCantDias.getText().toString());
 
-        //Obtener el ID de Usuario sesion, creo que con el SharedPreferences
-        Usuario UsuarioEmpresa = new Usuario();
-
-
-        if(validarFechayZona(fecha, localidadSelected) && (checkTerminos.isChecked())){
-
-            // Importate: Falta obtener el Usuario de SESSION!!!
-            Campania newCampania = new Campania(
-                    nombre,
-                    fecha,
-                    direccion,
-                    localidadSelected,
-                    provinciaSelected,
-                    cantSolicitantes,
-                    cantDias,
-                    UsuarioEmpresa);
-            campaniaRepository.create(newCampania);
-            Toast.makeText(
-                    getApplicationContext(),
-                    "Registro exitoso",
-                    Toast.LENGTH_LONG).show();
-            backToLoginActivity();
-        } else {
-            Toast.makeText(
-                    getApplicationContext(),
-                    "Error al registrar Campaña",
-                    Toast.LENGTH_LONG).show();
-        }
-    }
 
     private boolean validarFechayZona(Date fecha, Localidad localidadSelected) {
         return true; //hacer metodo validar
     }
 
-    public void backToLoginActivity(){
-        Intent loginActivity = new Intent(this, LogInActivity.class);
-        startActivity(loginActivity);
+    private void fillComponents(Campania campania) {
+        txtNombre.setText(campania.getNombreCampana());
+        txtFecha.setText(String.valueOf(campania.getFecha()));
+        txtDireccion.setText(campania.getDireccion());
+        txtCantS.setText(campania.getCantSolicitante());
+        txtCantDias.setText(campania.getCantDias());
+    }
+    /*
+    public void goToMisCampanias(){
+        Intent misSolicitudes = new Intent(this, MisSolicitudesActivity.class);
+        startActivity(misSolicitudes);
+    }*/
+
+    private void cancelarCampania() {
+        setCampania(EstadoCampania.CANCELADA);
+        if(campaniaRepository.update(campaniaForUpdate) != StatusResponse.FAIL){
+            toast("Campaña cancelada");
+        } else{
+            toast("Error");
+        }
     }
 
+    public void toast(String txt) {Toast.makeText(this, txt, Toast.LENGTH_SHORT).show();}
 }
