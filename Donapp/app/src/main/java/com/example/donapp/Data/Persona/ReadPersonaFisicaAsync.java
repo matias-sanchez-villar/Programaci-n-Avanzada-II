@@ -37,7 +37,7 @@ public class ReadPersonaFisicaAsync extends AsyncTask<String, Void, PersonaFisic
             if(rs.next()){
                 this.personaFisica = new PersonaFisica();
                 this.personaFisica.setId(id);
-                this.personaFisica.setNombre(rs.getString("Nombre"));
+                this.personaFisica.setNombre(rs.getString("nombre"));
                 this.personaFisica.setTelefono(rs.getInt("telefono"));
                 this.personaFisica.setDireccion(rs.getString("direccion"));
                 this.personaFisica.setProvincia(new Provincia(
@@ -45,6 +45,9 @@ public class ReadPersonaFisicaAsync extends AsyncTask<String, Void, PersonaFisic
                         rs.getString("provincia")
                 ));
                 this.personaFisica.setLocalidad(new Localidad(rs.getString("localidad")));
+                this.personaFisica.setApellido(rs.getString("apellido"));
+                this.personaFisica.setDni(rs.getInt("dni"));
+                this.personaFisica.setFechaNacimiento(rs.getDate("fecha_nacimiento"));
                 return personaFisica;
             } else {
                 return null;
@@ -56,11 +59,12 @@ public class ReadPersonaFisicaAsync extends AsyncTask<String, Void, PersonaFisic
     }
 
     public String querySolicitudWithCriticidad(int id){
-        return String.format("SELECT bs.hospital, bs.direccion, bs.id_provincia, p.nombre as provincia, l.nombre as localidad " +
-                "FROM %1$s bs " +
-                "INNER JOIN provincias p on p.id = bs.id_provincia " +
-                "INNER JOIN localidades l on l.id = bs.id_localidad " +
-                "WHERE bs.id = %2$s ", TableDB.BANCOS_SANGRE, id);
+        return String.format(
+                "SELECT ps.nombre, ps.apellido, ps.telefono, ps.direccion, ps.fecha_nacimiento, ps.dni, ps.id_provincia, p.nombre as provincia, l.nombre as localidad " +
+                        "FROM %1$s ps " +
+                        "INNER JOIN provincias p on p.id = ps.id_provincia " +
+                        "INNER JOIN localidades l on l.id = ps.id_localidad " +
+                        "WHERE ps.id = %2$s", TableDB.PERSONA, id);
     }
 
 }

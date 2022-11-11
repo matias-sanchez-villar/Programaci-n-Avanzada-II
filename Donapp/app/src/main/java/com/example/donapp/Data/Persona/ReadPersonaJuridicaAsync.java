@@ -41,7 +41,7 @@ public class ReadPersonaJuridicaAsync extends AsyncTask<String, Void, PersonaJur
             if(rs.next()){
                 this.personaJuridica = new PersonaJuridica();
                 this.personaJuridica.setId(id);
-                this.personaJuridica.setNombre(rs.getString("Nombre"));
+                this.personaJuridica.setNombre(rs.getString("nombre"));
                 this.personaJuridica.setTelefono(rs.getInt("telefono"));
                 this.personaJuridica.setDireccion(rs.getString("direccion"));
                 this.personaJuridica.setProvincia(new Provincia(
@@ -49,6 +49,9 @@ public class ReadPersonaJuridicaAsync extends AsyncTask<String, Void, PersonaJur
                         rs.getString("provincia")
                 ));
                 this.personaJuridica.setLocalidad(new Localidad(rs.getString("localidad")));
+                this.personaJuridica.setCuil(rs.getString("cuil"));
+                this.personaJuridica.setHorarioInicio(rs.getString("horario_inicio"));
+                this.personaJuridica.setHorarioFin(rs.getString("horario_fin"));
                 return personaJuridica;
             } else {
                 return null;
@@ -60,11 +63,12 @@ public class ReadPersonaJuridicaAsync extends AsyncTask<String, Void, PersonaJur
     }
 
     public String querySolicitudWithCriticidad(int id){
-        return String.format("SELECT bs.hospital, bs.direccion, bs.id_provincia, p.nombre as provincia, l.nombre as localidad " +
-                "FROM %1$s bs " +
-                "INNER JOIN provincias p on p.id = bs.id_provincia " +
-                "INNER JOIN localidades l on l.id = bs.id_localidad " +
-                "WHERE bs.id = %2$s ", TableDB.BANCOS_SANGRE, id);
+        return String.format(
+                "SELECT ps.nombre, ps.horario_inicio, ps.telefono, ps.direccion, ps.horario_fin, ps.cuil, p.nombre as provincia, l.nombre as localidad " +
+                        "FROM %1$s ps " +
+                        "INNER JOIN provincias p on p.id = ps.id_provincia " +
+                        "INNER JOIN localidades l on l.id = ps.id_localidad " +
+                        "WHERE ps.id = %2$s", TableDB.PERSONA, id);
     }
 
 }
