@@ -1,5 +1,6 @@
 package com.example.donapp.Entity;
 
+import com.example.donapp.Enums.Categoria;
 import com.example.donapp.Enums.EstadoCampania;
 import com.example.donapp.Interfaces.IEstado;
 import com.example.donapp.Interfaces.IRegistroPostulable;
@@ -148,6 +149,11 @@ public class Campania extends EntidadEstadoBase implements IRegistroPostulable {
     }
 
     @Override
+    public Categoria getCategoriaPostulacion() {
+        return Categoria.CAMPANIA;
+    }
+
+    @Override
     public int getIdRegistro() {
         return this.id;
     }
@@ -201,5 +207,12 @@ public class Campania extends EntidadEstadoBase implements IRegistroPostulable {
 
     public void setInstitucion(Usuario institucion) {
         this.institucion = institucion;
+    }
+
+    public void confirmarDonacion(){
+        this.cantDonantesConfirmados++;
+        if(this.cantDonantes == this.cantDonantesConfirmados){
+            this.estado = EstadoCampania.COMPLETADA;
+        }
     }
 }

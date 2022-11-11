@@ -5,8 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.donapp.Data.Postulantes.PostulantesRepository;
 import com.example.donapp.Data.Solicitud.SolicitudRepository;
 import com.example.donapp.Entity.PersonaFisica;
+import com.example.donapp.Entity.Solicitud;
 import com.example.donapp.Enums.Categoria;
 import com.example.donapp.R;
+import com.example.donapp.databinding.SolicitudesListItemBinding;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,6 +22,7 @@ public class DetallePostulantesActivity extends AppCompatActivity {
     ListView listView;
     PostulantesRepository _postulantesRepository;
     PersonaFisica personaSelected;
+    Solicitud solicitud;
     int categoria;
     int idRegistro;
 
@@ -28,11 +31,13 @@ public class DetallePostulantesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle_postulantes);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        _postulantesRepository = new PostulantesRepository(this);
 
         bundle = getIntent().getExtras();
 
         categoria = bundle.getInt("categoria");
         idRegistro = bundle.getInt("id_registro");
+        solicitud = (Solicitud) bundle.getSerializable("solicitud");
 
         instanceLayouts();
         setListeners();
@@ -54,7 +59,7 @@ public class DetallePostulantesActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                personaSelected = (PersonaFisica) parent.getSelectedItem();
+                personaSelected = (PersonaFisica) parent.getItemAtPosition(position);
                 goToPostulanteActivity(personaSelected);
             }
         });
@@ -69,6 +74,7 @@ public class DetallePostulantesActivity extends AppCompatActivity {
         postulanteActivity.putExtra("postulante", personaSelected);
         postulanteActivity.putExtra("id_registro", idRegistro);
         postulanteActivity.putExtra("categoria", categoria);
+        postulanteActivity.putExtra("solicitud", solicitud);
 
         startActivity(postulanteActivity);
     }

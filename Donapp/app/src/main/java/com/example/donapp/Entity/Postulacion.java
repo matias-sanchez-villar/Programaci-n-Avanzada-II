@@ -18,6 +18,11 @@ public class Postulacion extends EntidadEstadoBase{
     public Postulacion(){
     }
 
+    public Postulacion(IRegistroPostulable registroPostulado, Categoria categoria){
+        this.registroPostulado = registroPostulado;
+        this.categoria = categoria;
+    }
+
     public Postulacion(int id){
         this.id = id;
     }

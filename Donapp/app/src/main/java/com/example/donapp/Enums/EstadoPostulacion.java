@@ -21,4 +21,5 @@ public enum EstadoPostulacion implements IEstado {
                 ? ACTIVO
                 : CONFIRMADO;
     }
+
 }

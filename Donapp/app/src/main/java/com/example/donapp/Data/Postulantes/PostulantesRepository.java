@@ -1,5 +1,6 @@
 package com.example.donapp.Data.Postulantes;
 
+import android.content.Context;
 import android.widget.ListView;
 import android.widget.Spinner;
 
@@ -11,6 +12,9 @@ import com.example.donapp.Interfaces.IReadRepository;
 
 public class PostulantesRepository extends BaseRepository<PersonaFisica> implements IReadRepository<PersonaFisica> {
 
+    public PostulantesRepository(Context context){
+        this.context = context;
+    }
     @Override
     public StatusResponse selectAllForSpinner(Spinner spn) {
         return null;

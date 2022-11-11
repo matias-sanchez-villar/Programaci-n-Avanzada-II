@@ -1,5 +1,6 @@
 package com.example.donapp.Entity;
 
+import com.example.donapp.Enums.Categoria;
 import com.example.donapp.Interfaces.IRegistroPostulable;
 
 public class BancoSangre extends EntidadBase implements IRegistroPostulable {
@@ -76,6 +77,11 @@ public class BancoSangre extends EntidadBase implements IRegistroPostulable {
     @Override
     public String getLocalidadPostulacion() {
         return localidad.getNombre();
+    }
+
+    @Override
+    public Categoria getCategoriaPostulacion() {
+        return Categoria.BANCO;
     }
 
     @Override

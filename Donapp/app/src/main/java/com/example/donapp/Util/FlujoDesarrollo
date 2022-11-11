@@ -66,7 +66,10 @@ de una sola query y agregar un serializable de Usuario a UpdateUsuario
 23. Posible mejora: https://stackoverflow.com/questions/16441298/android-call-notifydatasetchanged-from-asynctask
 24. Error al ir a Mis Solicitudes, volver y seleccionar un elemento. PARCHE: Recargar Activity. SOLUCION: La lista que cargaba el adapter era static
 25. Mejorar Campanias
-26. De DetallePostulantesActivity a PostulanteActivity se estan pasando muchos intents y extras. Optimizar.
+26. De DetallePostulantesActivity a PostulanteActivity se estan pasando muchos intents y extras.
+27. Separar Persona de persona fisica y juridica, se complica castearlos o buscar forma de optimizarlos
+28. Mejorar forma de putExtra(Solicitud) en Postulantes, se pasa mas de 2 veces el mismo objeto entre activities.
+29. mejorar logica de obtener la categoria en PostulanteActivity. Muchos objetos
 
 ** PENDIENTE **
 1. Validaciones en Persona y Usuario (Clase y formularios)
@@ -79,3 +82,5 @@ de una sola query y agregar un serializable de Usuario a UpdateUsuario
 8. VALIDACIONES EN HISTORIAL MEDICO, QUE SI O SI HAYA ALGUN CHECKBOX SELECCIONADO
 9. Enlazar propiedades cuando se busca un Historial medico en AltaHistorialMedico.
 10. Falta que un solicitante/donante no pueda postularse a mas de 1 registro.
+11. Filtrar SolicitudesFragment listview con las solicitudes que no son nuestras
+12. Bloquear boton postularse si no esta el historial medico creado.

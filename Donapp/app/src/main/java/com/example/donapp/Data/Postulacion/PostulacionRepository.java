@@ -7,6 +7,7 @@ import android.widget.Spinner;
 import com.example.donapp.Activity.ui.Postulaciones.DataPostulacionesAsync;
 import com.example.donapp.Data.BaseRepository;
 import com.example.donapp.Entity.Postulacion;
+import com.example.donapp.Enums.Categoria;
 import com.example.donapp.Enums.EstadoPostulacion;
 import com.example.donapp.Enums.StatusResponse;
 import com.example.donapp.Interfaces.ICRUDRepository;
@@ -26,7 +27,9 @@ public class PostulacionRepository extends BaseRepository<Postulacion> implement
 
     @Override
     public StatusResponse update(Postulacion entity) {
-        return null;
+        this.mainThread = new UpdatePostulacionAsync(context,
+                entity.getId());
+        return this.updateAsync(mainThread);
     }
 
     @Override
@@ -56,6 +59,14 @@ public class PostulacionRepository extends BaseRepository<Postulacion> implement
                 entity.getEstado(),
                 entity.getUsuario().getId(),
                 entity.getRegistroPostulado().getIdRegistro());
+        return this.selectEntity(selectEntityThread);
+    }
+
+    public Postulacion selectEntityByRegistroAndCategoria(Postulacion entity, int personaId){
+        this.selectEntityThread = new ReadPostulacionAsync(context,
+                personaId,
+                entity.getRegistroPostulado().getIdRegistro(),
+                entity.getRegistroPostulado().getCategoriaPostulacion());
         return this.selectEntity(selectEntityThread);
     }
 

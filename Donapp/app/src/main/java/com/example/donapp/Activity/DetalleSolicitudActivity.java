@@ -3,6 +3,7 @@ package com.example.donapp.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.View;
@@ -11,15 +12,18 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.donapp.Data.HistorialMedico.HistorialMedicoRepository;
 import com.example.donapp.Data.Localidad.LocalidadRepository;
 import com.example.donapp.Data.Postulacion.PostulacionRepository;
 import com.example.donapp.Data.Provincia.ProvinciaRepository;
 import com.example.donapp.Data.Solicitud.SolicitudRepository;
 import com.example.donapp.Entity.GlobalPreferences;
+import com.example.donapp.Entity.HistorialMedico;
 import com.example.donapp.Entity.Postulacion;
 import com.example.donapp.Entity.Solicitud;
 import com.example.donapp.Entity.Usuario;
 import com.example.donapp.Enums.Categoria;
+import com.example.donapp.Enums.StatusResponse;
 import com.example.donapp.R;
 import com.example.donapp.Util.DateUtil;
 import com.example.donapp.Util.Toastable;
@@ -31,12 +35,16 @@ public class DetalleSolicitudActivity extends AppCompatActivity {
 
     private TextView txtIdResponse, txtNombreResponse, txtApellidoResponse,
             txtFechaFinResponse, txtLocalidadResponse, txtProvinciaResponse,
-            txtDireccionResponse, txtCantDonantesResponse, txtCantTipoSangre, txtCriticidad, txtEstado;
+            txtDireccionResponse, txtCantDonantesResponse, txtCantTipoSangre, txtCriticidad, txtEstado,
+    txtAlertaHistorialMedico;
+
     private Button btnVolver;
     private Button btnPostularse;
+    private Button btnEliminarSolicitud;
     Solicitud solicitud;
     SolicitudRepository _solicitudRepository;
     PostulacionRepository _postulacionRepository;
+    HistorialMedicoRepository _historialMedicoRepository = new HistorialMedicoRepository(this);
     Bundle bundle;
 
     @Override
@@ -58,6 +66,7 @@ public class DetalleSolicitudActivity extends AppCompatActivity {
         fillProperties();
         setProperties();
         setListeners();
+        getDBInfo();
     }
 
     @Override
@@ -77,8 +86,10 @@ public class DetalleSolicitudActivity extends AppCompatActivity {
         txtCantTipoSangre = (TextView)findViewById(R.id.txtCantTipoSangreDetalleSolicitud);
         txtCriticidad = (TextView) findViewById(R.id.txtCriticidadResponseDetalleSolicitud);
         txtEstado = (TextView) findViewById(R.id.txtEstadoResponseDetalleSolicitud);
+        txtAlertaHistorialMedico = (TextView) findViewById(R.id.txtAlertaHistorialMedicoDetalleSolicitud);
         btnVolver = (Button)findViewById(R.id.btnVolverDetalleSolicitud);
         btnPostularse = (Button) findViewById(R.id.btnPostularseDetalleSolicitud);
+        btnEliminarSolicitud = (Button) findViewById(R.id.btnBorrarDetalleSolicitud);
     }
 
     public void setListeners(){
@@ -93,6 +104,13 @@ public class DetalleSolicitudActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 postulate();
+            }
+        });
+
+        btnEliminarSolicitud.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deleteSolicitud();
             }
         });
 
@@ -114,6 +132,7 @@ public class DetalleSolicitudActivity extends AppCompatActivity {
         if(this.solicitud.getUsuario().getId() == GlobalPreferences.getLoggedUserId(this)){
             btnPostularse.setVisibility(View.GONE);
         } else {
+            btnEliminarSolicitud.setVisibility(View.GONE);
             getDBInfo();
         }
     }
@@ -141,6 +160,30 @@ public class DetalleSolicitudActivity extends AppCompatActivity {
         if(_postulacionRepository.selectEntity(existsPostulacion) != null){
             btnPostularse.setEnabled(false);
         }
+
+        HistorialMedico historial = _historialMedicoRepository.selectEntity(
+                new HistorialMedico(new Usuario(GlobalPreferences.getLoggedUserId(this)))
+        );
+
+        if(historial == null){
+            btnPostularse.setEnabled(false);
+            txtAlertaHistorialMedico.setText("DEBE COMPLETAR HISTORIAL MEDICO PARA POSTULARSE");
+
+        }
+    }
+
+    public void deleteSolicitud(){
+
+
+        if(_solicitudRepository.delete(this.solicitud.getId()) == StatusResponse.SUCCESS){
+            Toastable.toast(this, "Solicitud Eliminada");
+        } else{
+            Toastable.toast(this, "Error");
+        }
+
+        Intent activity = new Intent(this, MisSolicitudesActivity.class);
+        startActivity(activity);
+
     }
 
 }

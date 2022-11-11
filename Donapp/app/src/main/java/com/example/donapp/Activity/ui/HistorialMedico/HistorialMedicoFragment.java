@@ -18,6 +18,7 @@ import com.example.donapp.Data.HistorialMedico.HistorialMedicoRepository;
 import com.example.donapp.Data.Postulacion.PostulacionRepository;
 import com.example.donapp.Entity.GlobalPreferences;
 import com.example.donapp.Entity.HistorialMedico;
+import com.example.donapp.Entity.Usuario;
 import com.example.donapp.databinding.FragmentHistorialMedicoBinding;
 
 public class HistorialMedicoFragment extends Fragment{
@@ -87,7 +88,7 @@ public class HistorialMedicoFragment extends Fragment{
 
         historialMedico = _historialMedicoRepository.selectEntity(
                 new HistorialMedico(
-                        GlobalPreferences.getLoggedUserId(getActivity())
+                        new Usuario(GlobalPreferences.getLoggedUserId(getActivity()))
                 )
         );
 

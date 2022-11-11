@@ -22,4 +22,8 @@ public final class TableDB {
     public static String SelectByPropertieInt(String table, String column, int value){
         return String.format("SELECT * FROM %1$s WHERE %2$s = %3$s", table, column, value);
     }
+
+    public static String DeletePreparedStatement(String table){
+        return String.format("DELETE FROM %1$s WHERE id = ?", table);
+    }
 }

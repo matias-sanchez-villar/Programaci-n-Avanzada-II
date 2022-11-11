@@ -27,6 +27,7 @@ import com.example.donapp.Enums.Categoria;
 import com.example.donapp.Enums.Estado;
 import com.example.donapp.Enums.EstadoSolicitud;
 import com.example.donapp.Enums.StatusResponse;
+import com.example.donapp.Enums.TipoSangre;
 import com.example.donapp.R;
 import com.example.donapp.Util.DateUtil;
 import com.example.donapp.Util.Validar;
@@ -48,8 +49,6 @@ public class AltaSolicitudActivity extends AppCompatActivity {
     private SolicitudRepository solicitudRepository;
     private CriticidadRepository _criticidadRepository;
     private Solicitud solicitudForUpdate;
-
-    ArrayList<String> tiposDeSangre = new ArrayList<String>(){{add("A"); add("B"); add("AB"); add("O");}};
 
     Bundle bundle;
     TextView title;
@@ -124,10 +123,10 @@ public class AltaSolicitudActivity extends AppCompatActivity {
 
     public void setSolicitud(EstadoSolicitud estado){
         if(solicitudForUpdate.isNew()){
-            this.solicitudForUpdate.setEstado(estado);
             this.solicitudForUpdate.setUsuario(new Usuario(GlobalPreferences.getLoggedUserId(this)));
             this.solicitudForUpdate.setAutomaticCodigo();
         }
+        this.solicitudForUpdate.setEstado(estado);
         this.solicitudForUpdate.setNombre(txtNombre.getText().toString());
         this.solicitudForUpdate.setApellido(txtApellido.getText().toString());
         this.solicitudForUpdate.setFecha(DateUtil.convertToSqlDate(txtFecha.getText().toString()));
@@ -217,11 +216,7 @@ public class AltaSolicitudActivity extends AppCompatActivity {
         _criticidadRepository.selectAllForSpinner(spnCriticidad);
 
         //Fill spnTiposDeSangre
-        ArrayAdapter<String> tiposDeSangreAdapter = new ArrayAdapter<String>(
-                this,
-                android.R.layout.simple_spinner_item,
-                tiposDeSangre);
-        spnTipoSangre.setAdapter(tiposDeSangreAdapter);
+        spnTipoSangre.setAdapter(TipoSangre.getSpinnerAdapter(this));
     }
 
     public void getLocalidadByProvincia(int provinciaId){
@@ -278,6 +273,7 @@ public class AltaSolicitudActivity extends AppCompatActivity {
         Intent postulantesIntent = new Intent(this, DetallePostulantesActivity.class);
         postulantesIntent.putExtra("id_registro", solicitudForUpdate.getId());
         postulantesIntent.putExtra("categoria", Categoria.SOLICITUD.ordinal());
+        postulantesIntent.putExtra("solicitud", solicitudForUpdate);
         startActivity(postulantesIntent);
     }
 
@@ -285,7 +281,7 @@ public class AltaSolicitudActivity extends AppCompatActivity {
         setSolicitud(EstadoSolicitud.CANCELADA);
         if(solicitudRepository.update(solicitudForUpdate) != StatusResponse.FAIL){
             toast("Solicitud cancelada");
-            Intent mainIntent = new Intent(this, SolicitanteDonanteActivity.class);
+            Intent mainIntent = new Intent(this, MisSolicitudesActivity.class);
             startActivity(mainIntent);
         } else{
             toast("Error");

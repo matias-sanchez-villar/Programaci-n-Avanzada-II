@@ -17,16 +17,13 @@
         android:theme="@style/Theme.Donapp"
         tools:targetApi="31">
         <activity
-            android:name=".PostulanteActivity"
+            android:name=".Activity.PostulanteActivity"
             android:exported="false" />
         <activity
-            android:name=".DetallePostulantesActivity"
+            android:name=".Activity.DetallePostulantesActivity"
             android:exported="false" />
         <activity
             android:name=".Activity.DetallePostulacionActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Activity.ListBancoSangre"
             android:exported="false" />
         <activity
             android:name=".Activity.DetalleBancoSangre"

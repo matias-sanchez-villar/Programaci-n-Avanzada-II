@@ -1,5 +1,6 @@
 package com.example.donapp.Entity;
 
+import com.example.donapp.Enums.Categoria;
 import com.example.donapp.Enums.EstadoSolicitud;
 import com.example.donapp.Interfaces.IRegistroPostulable;
 import com.example.donapp.Util.CodigoGenerator;
@@ -189,6 +190,11 @@ public class Solicitud extends EntidadEstadoBase implements IRegistroPostulable 
     }
 
     @Override
+    public Categoria getCategoriaPostulacion() {
+        return Categoria.SOLICITUD;
+    }
+
+    @Override
     public int getIdRegistro() {
         return this.id;
     }
@@ -199,5 +205,12 @@ public class Solicitud extends EntidadEstadoBase implements IRegistroPostulable 
 
     public void setCantidadDonantesConfirmados(int cantidadDonantesConfirmados) {
         this.cantidadDonantesConfirmados = cantidadDonantesConfirmados;
+    }
+
+    public void confirmarDonacion(){
+        this.cantidadDonantesConfirmados++;
+        if(this.cantidadDonantesConfirmados == this.cantidadDonantes){
+            this.estado = EstadoSolicitud.COMPLETADA;
+        }
     }
 }
