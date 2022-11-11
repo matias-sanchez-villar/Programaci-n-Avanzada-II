@@ -14,9 +14,12 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.fragment.app.Fragment;
 
 import com.example.donapp.Activity.MisSolicitudesActivity;
+import com.example.donapp.Data.Persona.ReadPersonaFisicaAsync;
 import com.example.donapp.Data.Persona.ReadPersonaJuridicaAsync;
+import com.example.donapp.Data.Usuario.UsuarioRepository;
 import com.example.donapp.Entity.GlobalPreferences;
 import com.example.donapp.Entity.PersonaJuridica;
+import com.example.donapp.Entity.Usuario;
 import com.example.donapp.databinding.FragmentMisDatosPersonaJuridicaBinding;
 
 public class MisDatosPersonaJuridicaFragment extends Fragment{
@@ -27,6 +30,7 @@ public class MisDatosPersonaJuridicaFragment extends Fragment{
     Button btnModifica;
     PersonaJuridica personaJuridica;
     ReadPersonaJuridicaAsync personaJuridicaAsync;
+    UsuarioRepository _usuarioRepository;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -70,8 +74,10 @@ public class MisDatosPersonaJuridicaFragment extends Fragment{
     }
 
     private void setingsPropirties() {
-        int id = GlobalPreferences.getLoggedUserId(getActivity());
-        personaJuridicaAsync = new ReadPersonaJuridicaAsync(id, getActivity());
+        Usuario usuario = searchUsuario();
+        personaJuridicaAsync = new ReadPersonaJuridicaAsync(
+                usuario.getPersona().getId(), getActivity()
+        );
 
         txtNombre.setText(personaJuridica.getNombre());
         txtCUIL.setText(personaJuridica.getCuil());
@@ -81,9 +87,20 @@ public class MisDatosPersonaJuridicaFragment extends Fragment{
         txtProvincia.setText(personaJuridica.getProvincia().getNombre());
         txtLocalidad.setText(personaJuridica.getLocalidad().getNombre());
         txtDireccion.setText(personaJuridica.getDireccion());
-        ///Email y contrasena? en usuario
-        txtEmail.setText(personaJuridica.getNombre());
-        txtContasena.setText(personaJuridica.getNombre());
+        txtEmail.setText(usuario.getEmail());
+        txtContasena.setText(usuario.getPassword());
+    }
+
+    public Usuario searchUsuario(){
+        Usuario usuario = GlobalPreferences.getLoggedUserNamePass(getActivity());
+        _usuarioRepository = new UsuarioRepository(getActivity());
+
+        Usuario usuarioToSearch =
+                new Usuario(
+                        usuario.getNombreUsuario(),
+                        usuario.getPassword());
+
+        return _usuarioRepository.selectEntity(usuarioToSearch);
     }
 
     @Override

@@ -15,8 +15,10 @@ import androidx.fragment.app.Fragment;
 
 import com.example.donapp.Activity.MisSolicitudesActivity;
 import com.example.donapp.Data.Persona.ReadPersonaFisicaAsync;
+import com.example.donapp.Data.Usuario.UsuarioRepository;
 import com.example.donapp.Entity.GlobalPreferences;
 import com.example.donapp.Entity.PersonaFisica;
+import com.example.donapp.Entity.Usuario;
 import com.example.donapp.databinding.FragmentMisDatosPersonaFisicaBinding;
 
 public class MisDatosPersonaFisicaFragment extends Fragment{
@@ -27,6 +29,7 @@ public class MisDatosPersonaFisicaFragment extends Fragment{
     Button btnModifica;
     PersonaFisica personaFisica;
     ReadPersonaFisicaAsync readPersonaFisicaAsync;
+    UsuarioRepository _usuarioRepository;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -69,8 +72,10 @@ public class MisDatosPersonaFisicaFragment extends Fragment{
     }
 
     private void setingsPropirties() {
-        int id = GlobalPreferences.getLoggedUserId(getActivity());
-        readPersonaFisicaAsync = new ReadPersonaFisicaAsync(id, getActivity());
+        Usuario usuario = searchUsuario();
+        readPersonaFisicaAsync = new ReadPersonaFisicaAsync(
+                usuario.getPersona().getId(), getActivity()
+        );
 
         txtNombre.setText(personaFisica.getNombre());
         txtApellido.setText(personaFisica.getApellido());
@@ -80,9 +85,20 @@ public class MisDatosPersonaFisicaFragment extends Fragment{
         txtProvincia.setText(personaFisica.getProvincia().getNombre());
         txtLocalidad.setText(personaFisica.getLocalidad().getNombre());
         txtDireccion.setText(personaFisica.getDireccion());
-        ///Email y contrasena? en usuario
-        txtEmail.setText(personaFisica.getNombre());
-        txtContasena.setText(personaFisica.getNombre());
+        txtEmail.setText(usuario.getEmail());
+        txtContasena.setText(usuario.getPassword());
+    }
+
+    public Usuario searchUsuario(){
+        Usuario usuario = GlobalPreferences.getLoggedUserNamePass(getActivity());
+        _usuarioRepository = new UsuarioRepository(getActivity());
+
+        Usuario usuarioToSearch =
+                new Usuario(
+                        usuario.getNombreUsuario(),
+                        usuario.getPassword());
+
+        return _usuarioRepository.selectEntity(usuarioToSearch);
     }
 
     @Override

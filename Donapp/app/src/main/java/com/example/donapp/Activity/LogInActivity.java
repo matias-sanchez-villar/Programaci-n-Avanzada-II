@@ -38,6 +38,7 @@ public class LogInActivity extends AppCompatActivity {
             SharedPreferences.Editor edit = preferences.edit();
             edit.putString("mailUsuario", usuarioSearched.getEmail());
             edit.putString("nombreUsuario", usuarioSearched.getNombreUsuario());
+            edit.putString("passwordUsuario", usuarioSearched.getPassword());
             edit.putInt("idUsuario", usuarioSearched.getId());
             edit.putInt("tipoUsuario", usuarioSearched.getTipoUsuario().ordinal());
             edit.apply();
