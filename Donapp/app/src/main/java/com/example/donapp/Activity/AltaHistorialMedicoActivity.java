@@ -81,28 +81,33 @@ public class AltaHistorialMedicoActivity extends AppCompatActivity {
     }
 
     public void onClickBtnGuardar(){
-        historialMedico.setTipoSangre(tsSelected);
-        historialMedico.setPeso(Integer.valueOf(txtPeso.getText().toString()));
-        historialMedico.setAltura(new BigDecimal(txtAltura.getText().toString()));
-        historialMedico.setUltimaDonacion(DateUtil.convertToSqlDate(txtFechaUltimaDonacion.getText().toString()));
+        if(validarCamposVacios() == true) {
+            historialMedico.setTipoSangre(tsSelected);
+            historialMedico.setPeso(Integer.valueOf(txtPeso.getText().toString()));
+            historialMedico.setAltura(new BigDecimal(txtAltura.getText().toString()));
+            historialMedico.setUltimaDonacion(DateUtil.convertToSqlDate(txtFechaUltimaDonacion.getText().toString()));
 
-        historialMedico.setTatuajes(tatuajesSi.isChecked());
-        historialMedico.setVacunaAlergia(inyeccionSi.isChecked());
-        historialMedico.setExamenSangre(examenSi.isChecked());
-        historialMedico.setRevisionMedica(revisionSi.isChecked());
-        historialMedico.setTratamientoDental(dentalSi.isChecked());
-        historialMedico.setEndoscopia(endoscopiaSi.isChecked());
-        historialMedico.setEmbarazo(embarazosi.isChecked());
-        historialMedico.setEnfermedaCronica(enfermedadCronicaSi.isChecked());
-        historialMedico.setOperacion(operacionSi.isChecked());
-        historialMedico.setViaje(viajeSi.isChecked());
-        historialMedico.setAnemia(anemiaSi.isChecked());
-        historialMedico.setAccidenteVascular(accidenteSi.isChecked());
-        historialMedico.setUsaMedicamentos(medicamentosSi.isChecked());
-        historialMedico.setEstado(Estado.ACTIVO);
-        historialMedico.setUsuario(new Usuario(GlobalPreferences.getLoggedUserId(this)));
+            historialMedico.setTatuajes(tatuajesSi.isChecked());
+            historialMedico.setVacunaAlergia(inyeccionSi.isChecked());
+            historialMedico.setExamenSangre(examenSi.isChecked());
+            historialMedico.setRevisionMedica(revisionSi.isChecked());
+            historialMedico.setTratamientoDental(dentalSi.isChecked());
+            historialMedico.setEndoscopia(endoscopiaSi.isChecked());
+            historialMedico.setEmbarazo(embarazosi.isChecked());
+            historialMedico.setEnfermedaCronica(enfermedadCronicaSi.isChecked());
+            historialMedico.setOperacion(operacionSi.isChecked());
+            historialMedico.setViaje(viajeSi.isChecked());
+            historialMedico.setAnemia(anemiaSi.isChecked());
+            historialMedico.setAccidenteVascular(accidenteSi.isChecked());
+            historialMedico.setUsaMedicamentos(medicamentosSi.isChecked());
+            historialMedico.setEstado(Estado.ACTIVO);
+            historialMedico.setUsuario(new Usuario(GlobalPreferences.getLoggedUserId(this)));
 
-        updateHistorialMedico(historialMedico);
+            updateHistorialMedico(historialMedico);
+        }
+        else{
+            toast("Por favor verifique llenar todos los campos solicitados.");
+        }
     }
 
     private void fillProperties() {
@@ -116,7 +121,7 @@ public class AltaHistorialMedicoActivity extends AppCompatActivity {
         inyeccionSi = findViewById(R.id.cbxVacunaAlergiaTrueAltaHistorialMedico);
         inyeccionNo = findViewById(R.id.cbxVacunaAlergiaFalseAltaHistorialMedico);
         examenSi  = findViewById(R.id.cbxExamenSangreTrueAltaHistorialMedico);
-        examenNo = findViewById(R.id.cbxExamenSangreTrueAltaHistorialMedico);
+        examenNo = findViewById(R.id.cbxExamenSangreFalseAltaHistorialMedico);
         revisionSi = findViewById(R.id.cbxRevisionMedicaTrueAltaHistorialMedico);
         revisionNo = findViewById(R.id.cbxRevisionMedicaFalseAltaHistorialMedico);
         dentalSi = findViewById(R.id.cbxTratamientoDentalTrueAltaHistorialMedico);
@@ -144,8 +149,10 @@ public class AltaHistorialMedicoActivity extends AppCompatActivity {
         btnGuardar = (Button)findViewById(R.id.btnGuardarHistMedico);
     }
 
-    public boolean validateData(){
-        return true;
+    public void setPropertiesForUpdate(HistorialMedico historialMedico){
+
+
+
     }
 
     public void setListeners(){
@@ -167,10 +174,6 @@ public class AltaHistorialMedicoActivity extends AppCompatActivity {
 
             }
         });
-    }
-
-    public void setPropertiesForUpdate(HistorialMedico historialMedico){
-
     }
 
     public void updateHistorialMedico(HistorialMedico historialMedico){
@@ -200,4 +203,83 @@ public class AltaHistorialMedicoActivity extends AppCompatActivity {
             responseNo.setChecked(true);
         }
     }
+
+    public boolean validarCamposVacios() {
+        boolean bandera= true;
+        if (txtPeso.getText().equals("")){
+            txtPeso.setError("El peso es obligatorio.");
+            bandera=false;
+        }
+        if (txtAltura.getText().equals("")){
+            txtAltura.setError("La altura es obligatoria.");
+            bandera=false;
+        }
+        if (txtFechaUltimaDonacion.getText().equals("")){
+            txtFechaUltimaDonacion.setError("La Fecha de ultima donacion es obligatoria.");
+            bandera=false;
+        }
+        if (spnTipoSangre.getSelectedItem() == ""){
+            toast("Olvido seleccionar un tipo de sangre.");
+            bandera=false;
+        }
+        if (tatuajesSi.isChecked() == false && tatuajesNo.isChecked() == false){
+            tatuajesNo.setError("Debe seleccionar si o no por favor!");
+            bandera=false;
+        }
+        if (inyeccionSi.isChecked() == false && inyeccionNo.isChecked() == false){
+            inyeccionNo.setError("Debe seleccionar si o no por favor!");
+            bandera=false;
+        }
+        if (examenSi.isChecked() == false && examenNo.isChecked() == false){
+            examenNo.setError("Debe seleccionar si o no por favor!");
+            bandera=false;
+        }
+        if (revisionSi.isChecked() == false && revisionNo.isChecked() == false){
+            revisionNo.setError("Debe seleccionar si o no por favor!");
+            bandera=false;
+        }
+        if (dentalSi.isChecked() == false && dentalNo.isChecked() == false){
+            dentalNo.setError("Debe seleccionar si o no por favor!");
+            bandera=false;
+        }
+        if (endoscopiaSi.isChecked() == false && endoscopiaNo.isChecked() == false){
+            endoscopiaNo.setError("Debe seleccionar si o no por favor!");
+            bandera=false;
+        }
+        if (embarazosi.isChecked() == false && embarazoNo.isChecked() == false){
+            embarazoNo.setError("Debe seleccionar si o no por favor!");
+            bandera=false;
+        }
+        if (enfermedadCronicaSi.isChecked() == false && enfermedadCronicaNo.isChecked() == false){
+            enfermedadCronicaNo.setError("Debe seleccionar si o no por favor!");
+            bandera=false;
+        }
+        if (operacionSi.isChecked() == false && operacionNo.isChecked() == false){
+            operacionNo.setError("Debe seleccionar si o no por favor!");
+            bandera=false;
+        }
+        if (viajeSi.isChecked() == false && viajeNo.isChecked() == false){
+            viajeNo.setError("Debe seleccionar si o no por favor!");
+            bandera=false;
+        }
+        if (anemiaSi.isChecked() == false && anemiaNo.isChecked() == false){
+            anemiaNo.setError("Debe seleccionar si o no por favor!");
+            bandera=false;
+        }
+        if (accidenteSi.isChecked() == false && accidenteNo.isChecked() == false){
+            accidenteNo.setError("Debe seleccionar si o no por favor!");
+            bandera=false;
+        }
+        if (medicamentosSi.isChecked() == false && medicamentosNo.isChecked() == false){
+            medicamentosNo.setError("Debe seleccionar si o no por favor!");
+            bandera=false;
+        }
+        if (hepatitisSi.isChecked() == false && hepatitisNo.isChecked() == false){
+            hepatitisNo.setError("Debe seleccionar si o no por favor!");
+            bandera=false;
+        }
+
+        return bandera;
+    }
+
 }
