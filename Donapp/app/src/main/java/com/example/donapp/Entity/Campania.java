@@ -7,7 +7,7 @@ import com.example.donapp.Interfaces.IRegistroPostulable;
 import java.util.Date;
 
 public class Campania extends EntidadEstadoBase implements IRegistroPostulable {
-    
+
     private String nombreCampania;
     private Date fecha;
     private String direccion;

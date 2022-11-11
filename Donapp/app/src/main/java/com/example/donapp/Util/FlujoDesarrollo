@@ -57,6 +57,8 @@ instanciamos el ui del drawer. Insertar los fragments que nosotros queramos.
 16. No usar doble DateUtil cuando queremos parsear la fecha actual, ver DetalleSolicitudActivity.
 17. I/Choreographer: Skipped 70 frames!  The application may be doing too much work on its main thread.Ver esto.
 18. Ver forma de encapsular asyncTask
+19. VER ReadUsuarioPersonaFisicaAsync y ReadUsuarioPersonaJuridicaAsync, se puede optimizar buscando solo el usuario y mapeando
+la persona en un async de Usuario. Actualmente en package Persona.
 
 ** PENDIENTE **
 1. Validaciones en Persona y Usuario (Clase y formularios)
