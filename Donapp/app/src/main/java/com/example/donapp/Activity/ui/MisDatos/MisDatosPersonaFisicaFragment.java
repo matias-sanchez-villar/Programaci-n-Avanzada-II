@@ -58,17 +58,17 @@ public class MisDatosPersonaFisicaFragment extends Fragment{
     }
 
     private void fillProperties() {
-        txtNombre = (EditText)binding.txtNombreResponseMDF;
-        txtApellido = (EditText)binding.txtApellidoResponseMDF;
-        txtFechaNacimiento = (EditText)binding.txtFechaNacimientoResponseMDF;
-        txtDNI = (EditText)binding.txtDNIResponseMDF;
-        txtTelefono = (EditText)binding.txtTelefonoResponseMDF;
-        txtProvincia = (EditText)binding.txtProvinciaResponseMDF;
-        txtLocalidad = (EditText)binding.txtLocalidadResponseMDF;
-        txtDireccion = (EditText)binding.txtDireccionResponseMDF;
-        txtEmail = (EditText)binding.txtEmailResponseMDF;
-        txtContasena = (EditText)binding.txtContrasenaResponseDPF;
-        btnModifica = (Button)binding.btnMoficiarDPF;
+        txtNombre = binding.txtNombreResponseMDF;
+        txtApellido = binding.txtApellidoResponseMDF;
+        txtFechaNacimiento = binding.txtFechaNacimientoResponseMDF;
+        txtDNI = binding.txtDNIResponseMDF;
+        txtTelefono = binding.txtTelefonoResponseMDF;
+        txtProvincia = binding.txtProvinciaResponseMDF;
+        txtLocalidad = binding.txtLocalidadResponseMDF;
+        txtDireccion = binding.txtDireccionResponseMDF;
+        txtEmail = binding.txtEmailResponseMDF;
+        txtContasena = binding.txtContrasenaResponseDPF;
+        btnModifica = binding.btnMoficiarDPF;
     }
 
     private void setingsPropirties() {

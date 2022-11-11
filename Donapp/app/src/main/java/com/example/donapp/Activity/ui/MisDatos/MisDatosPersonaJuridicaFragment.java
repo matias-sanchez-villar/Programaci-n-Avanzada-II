@@ -60,17 +60,17 @@ public class MisDatosPersonaJuridicaFragment extends Fragment{
     }
 
     private void fillProperties() {
-        txtNombre = (EditText)binding.txtNombreResponseMDJ;
-        txtCUIL = (EditText)binding.txtCuilResponseMDJ;
-        txtHoraInicio = (EditText)binding.txtHoraInicioResponseMDJ;
-        txtHoraFin = (EditText)binding.txtHoraCierreResponseMDJ;
-        txtTelefono = (EditText)binding.txtTelefonoResponseMDJ;
-        txtProvincia = (EditText)binding.txtProvinciaResponseMDJ;
-        txtLocalidad = (EditText)binding.txtLocalidadResponseMDJ;
-        txtDireccion = (EditText)binding.txtDireccionResponseMDJ;
-        txtEmail = (EditText)binding.txtEmailResponseMDJ;
-        txtContasena = (EditText)binding.txtContrasenaResponseDPJ;
-        btnModifica = (Button)binding.btnMoficiarDPJ;
+        txtNombre = binding.txtNombreResponseMDJ;
+        txtCUIL = binding.txtCuilResponseMDJ;
+        txtHoraInicio = binding.txtHoraInicioResponseMDJ;
+        txtHoraFin = binding.txtHoraCierreResponseMDJ;
+        txtTelefono = binding.txtTelefonoResponseMDJ;
+        txtProvincia = binding.txtProvinciaResponseMDJ;
+        txtLocalidad = binding.txtLocalidadResponseMDJ;
+        txtDireccion = binding.txtDireccionResponseMDJ;
+        txtEmail = binding.txtEmailResponseMDJ;
+        txtContasena = binding.txtContrasenaResponseDPJ;
+        btnModifica = binding.btnMoficiarDPJ;
     }
 
     private void setingsPropirties() {

@@ -55,11 +55,11 @@ public class HistorialMedicoFragment extends Fragment{
     }
 
     public void instanceLayouts(){
-        btnAltaHistorialMedico = (Button) binding.btnAltaHistorialMedico;
-        lvHistorialPostulaciones = (ListView) binding.historialPostulaciones;
-        sinPostulacionesTxt = (TextView) binding.titlePostulacionesFragmentHistorialMedico;
-        fragmentTittle = (TextView) binding.titleFragmentHistorialMedico;
-        historialMainScrollView = (ScrollView) binding.scrollFragmentHistorialMedico;
+        btnAltaHistorialMedico = binding.btnAltaHistorialMedico;
+        lvHistorialPostulaciones = binding.historialPostulaciones;
+        sinPostulacionesTxt = binding.titlePostulacionesFragmentHistorialMedico;
+        fragmentTittle = binding.titleFragmentHistorialMedico;
+        historialMainScrollView = binding.scrollFragmentHistorialMedico;
     }
 
     public void setListeners(){
