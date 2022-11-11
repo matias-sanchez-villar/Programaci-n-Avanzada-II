@@ -102,16 +102,16 @@
                 android:padding="10dp">
 
                 <TextView
-                    android:id="@+id/txtEstPromInasistencia"
+                    android:id="@+id/txtEstCantMaxDonantes"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/estadisticasPromInasistencia"
+                    android:text="@string/estadisticaCantMaxima"
                     android:textSize="16sp"
                     android:textStyle="bold"/>
 
                 <TextView
-                    android:id="@+id/txtEstPromInasistenciaResponse"
+                    android:id="@+id/txtEstCantMaxDonantesResponse"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -126,16 +126,16 @@
                 android:padding="10dp">
 
                 <TextView
-                    android:id="@+id/txtEstPeriodoFecha"
+                    android:id="@+id/txtEstCantMinDonantes"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/estadisticaPeriodoFech"
+                    android:text="@string/estadisticaCantManima"
                     android:textSize="16sp"
                     android:textStyle="bold"/>
 
                 <TextView
-                    android:id="@+id/txtEstPeriodoFechaResponse"
+                    android:id="@+id/txtEstCantMinDonantesResponse"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

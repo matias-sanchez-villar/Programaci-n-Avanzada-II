@@ -5,4 +5,6 @@
     <string name="estadisticasPromAsistencia">Promedio de asistencia por campaña</string>
     <string name="estadisticasPromInasistencia">Promedio de inasistencia por campaña</string>
     <string name="estadisticaPeriodoFech">Promedio periodo entre campañas</string>
+    <string name="estadisticaCantMaxima">Cant. maxima de donantes</string>
+    <string name="estadisticaCantManima">Cant. minima de donantes</string>
 </resources>

@@ -66,6 +66,7 @@ public class ReadCampaniaUsuarioJuridicioAsync extends AsyncTask<String,Void, Ar
     private String queryCampaniaWithid(int id) {
         return String.format("SELECT id, fecha, cantidad_donantes_confirmados, estado " +
                 "FROM campanias " +
-                "WHERE id_institucion = %1$s", id);
+                "WHERE id_institucion = %1$s " +
+                "ORDER BY cantidad_donantes_confirmados ASC", id);
     }
 }
