@@ -6,17 +6,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.fragment.app.Fragment;
 
-import com.example.donapp.Activity.EditarMisDatos;
-import com.example.donapp.Activity.MisSolicitudesActivity;
+import com.example.donapp.Activity.EditarMisDatosActivity;
+import com.example.donapp.Data.Persona.PersonaFisicaRepository;
 import com.example.donapp.Data.Persona.PersonaRepository;
-import com.example.donapp.Data.Persona.ReadPersonaFisicaAsync;
 import com.example.donapp.Data.Usuario.UsuarioRepository;
 import com.example.donapp.Entity.GlobalPreferences;
 import com.example.donapp.Entity.PersonaFisica;
@@ -30,7 +28,7 @@ public class MisDatosPersonaFisicaFragment extends Fragment{
             txtLocalidad, txtApellido, txtDNI, txtFechaNacimiento, txtContasena;
     Button btnModifica;
     PersonaFisica personaFisica;
-    PersonaRepository personaRepository;
+    PersonaFisicaRepository _personaFisicaRepository;
     UsuarioRepository _usuarioRepository;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -38,6 +36,7 @@ public class MisDatosPersonaFisicaFragment extends Fragment{
         MisDatosPersonaFisicaViewModel misDatosViewModel =
                 new ViewModelProvider(this).get(MisDatosPersonaFisicaViewModel.class);
 
+        _personaFisicaRepository = new PersonaFisicaRepository(getActivity());
         binding = FragmentMisDatosPersonaFisicaBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
@@ -52,7 +51,7 @@ public class MisDatosPersonaFisicaFragment extends Fragment{
         btnModifica.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent misSolicitudesIntent = new Intent(getActivity(), EditarMisDatos.class);
+                Intent misSolicitudesIntent = new Intent(getActivity(), EditarMisDatosActivity.class);
                 startActivity(misSolicitudesIntent);
             }
         });
@@ -74,15 +73,15 @@ public class MisDatosPersonaFisicaFragment extends Fragment{
 
     private void setingsPropirties() {
         Usuario usuario = searchUsuario();
-
-        personaRepository = new PersonaRepository(getActivity());
-        personaFisica = personaRepository.selectPersonaFisica(usuario.getPersona().getId());
+        personaFisica = _personaFisicaRepository.selectEntityByUserId(
+                GlobalPreferences.getLoggedUserId(getActivity())
+        );
 
         txtNombre.setText(personaFisica.getNombre());
         txtApellido.setText(personaFisica.getApellido());
         txtFechaNacimiento.setText(personaFisica.getFechaNacimiento().toString());
-        txtDNI.setText(personaFisica.getDni());
-        txtTelefono.setText(personaFisica.getTelefono());
+        txtDNI.setText(String.valueOf(personaFisica.getDni()));
+        txtTelefono.setText(String.valueOf(personaFisica.getTelefono()));
         txtProvincia.setText(personaFisica.getProvincia().getNombre());
         txtLocalidad.setText(personaFisica.getLocalidad().getNombre());
         txtDireccion.setText(personaFisica.getDireccion());

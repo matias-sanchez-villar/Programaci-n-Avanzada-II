@@ -19,14 +19,15 @@ public class ReadPersonaJuridicaAsync extends AsyncTask<String, Void, PersonaJur
 
     PersonaJuridica personaJuridica;
     Context context;
+    int usuarioId;
     int id;
 
     public ReadPersonaJuridicaAsync(Context context){
         this.context = context;
     }
 
-    public ReadPersonaJuridicaAsync(int id, Context context){
-        this.id = id;
+    public ReadPersonaJuridicaAsync(int usuarioId, Context context){
+        this.usuarioId = usuarioId;
         this.context = context;
     }
 
@@ -36,7 +37,7 @@ public class ReadPersonaJuridicaAsync extends AsyncTask<String, Void, PersonaJur
             Class.forName(DataDB.driver);
             Connection con = DriverManager.getConnection(DataDB.urlMySQL, DataDB.user, DataDB.pass);
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery(querySolicitudWithCriticidad(id));
+            ResultSet rs = st.executeQuery(queryPersonaJuridicaByUsuario(usuarioId));
 
             if(rs.next()){
                 this.personaJuridica = new PersonaJuridica();
@@ -45,7 +46,6 @@ public class ReadPersonaJuridicaAsync extends AsyncTask<String, Void, PersonaJur
                 this.personaJuridica.setTelefono(rs.getInt("telefono"));
                 this.personaJuridica.setDireccion(rs.getString("direccion"));
                 this.personaJuridica.setProvincia(new Provincia(
-                        rs.getInt("id_provincia"),
                         rs.getString("provincia")
                 ));
                 this.personaJuridica.setLocalidad(new Localidad(rs.getString("localidad")));
@@ -62,13 +62,14 @@ public class ReadPersonaJuridicaAsync extends AsyncTask<String, Void, PersonaJur
         }
     }
 
-    public String querySolicitudWithCriticidad(int id){
+    public String queryPersonaJuridicaByUsuario(int id){
         return String.format(
                 "SELECT ps.nombre, ps.horario_inicio, ps.telefono, ps.direccion, ps.horario_fin, ps.cuil, p.nombre as provincia, l.nombre as localidad " +
                         "FROM %1$s ps " +
                         "INNER JOIN provincias p on p.id = ps.id_provincia " +
                         "INNER JOIN localidades l on l.id = ps.id_localidad " +
-                        "WHERE ps.id = %2$s", TableDB.PERSONA, id);
+                        "INNER JOIN usuarios user ON user.id_persona = ps.id " +
+                        "WHERE user.id = %2$s", TableDB.PERSONA, id);
     }
 
 }

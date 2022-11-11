@@ -17,6 +17,11 @@ public class GlobalPreferences {
         return preferences.getInt("idUsuario",0);
     }
 
+    public static String getLoggedUserMail(Context context){
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return preferences.getString("mailUsuario","");
+    }
+
     public static Usuario getLoggedUserNamePass(Context context){
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         Usuario usuario = new Usuario(
