@@ -32,7 +32,7 @@ public class ReadBancoSangreAsync extends AsyncTask<String, Void, BancoSangre> {
             Class.forName(DataDB.driver);
             Connection con = DriverManager.getConnection(DataDB.urlMySQL, DataDB.user, DataDB.pass);
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery(querySolicitudWithCriticidad(id));
+            ResultSet rs = st.executeQuery(queryString(id));
 
             if(rs.next()){
                 this.bancoSangre = new BancoSangre();
@@ -54,7 +54,7 @@ public class ReadBancoSangreAsync extends AsyncTask<String, Void, BancoSangre> {
         }
     }
 
-    public String querySolicitudWithCriticidad(int id){
+    public String queryString(int id){
         return String.format("SELECT bs.hospital, bs.direccion, bs.id_provincia, p.nombre as provincia, l.nombre as localidad " +
                 "FROM %1$s bs " +
                 "INNER JOIN provincias p on p.id = bs.id_provincia " +

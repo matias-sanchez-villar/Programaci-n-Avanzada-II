@@ -13,10 +13,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.donapp.Activity.DetalleBancoSangre;
-import com.example.donapp.Activity.ui.HistorialMedico.HistorialMedicoViewModel;
 import com.example.donapp.Data.BancoSangre.BancoSangreRepository;
 import com.example.donapp.Entity.BancoSangre;
-import com.example.donapp.R;
 import com.example.donapp.databinding.FragmentBancosDeSangreBinding;
 
 public class BancosDeSangreFragment extends Fragment{
@@ -33,8 +31,6 @@ public class BancosDeSangreFragment extends Fragment{
         binding = FragmentBancosDeSangreBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        vtBancoSangre = binding.lvBancoSangre;
-        bancoSangreRepository = new BancoSangreRepository(vtBancoSangre, getActivity());
         fillProperties();
         setListeners();
 
@@ -42,7 +38,9 @@ public class BancosDeSangreFragment extends Fragment{
     }
 
     public void fillProperties(){
-
+        vtBancoSangre = binding.lvBancoSangre;
+        bancoSangreRepository = new BancoSangreRepository(getActivity());
+        bancoSangreRepository.selectAllForListView(vtBancoSangre);
     }
 
     public void setListeners(){
