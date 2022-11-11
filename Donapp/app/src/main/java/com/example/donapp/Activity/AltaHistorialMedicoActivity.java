@@ -192,4 +192,12 @@ public class AltaHistorialMedicoActivity extends AppCompatActivity {
     public void toast(String txt) {
         Toast.makeText(this, txt, Toast.LENGTH_SHORT).show();
     }
+
+    public void fillCheckBox(CheckBox responseSi, CheckBox responseNo, boolean isChecked){
+        if(isChecked){
+            responseSi.setChecked(true);
+        } else {
+            responseNo.setChecked(true);
+        }
+    }
 }

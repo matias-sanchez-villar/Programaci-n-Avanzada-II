@@ -26,7 +26,8 @@ public class HistorialMedicoRepository extends BaseRepository<HistorialMedico> i
 
     @Override
     public StatusResponse update(HistorialMedico entity) {
-        return null;
+        this.mainThread = new UpdateHistorialMedicoAsync(context, entity);
+        return this.updateAsync(mainThread);
     }
 
     @Override
