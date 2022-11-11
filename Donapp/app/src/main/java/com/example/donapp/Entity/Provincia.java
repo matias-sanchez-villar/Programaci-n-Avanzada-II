@@ -14,6 +14,10 @@ public class Provincia extends EntidadBase {
         this.id = id;
     }
 
+    public Provincia(String nombre){
+        this.nombre = nombre;
+    }
+
     public Provincia(String provincia, ArrayList<Localidad> localidad) {
         super();
         this.nombre = provincia;

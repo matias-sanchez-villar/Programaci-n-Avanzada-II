@@ -82,4 +82,11 @@ public class PersonaFisica extends Persona {
     public void setDni(int dni) {
         this.dni = dni;
     }
+
+    @Override
+    public String toString() {
+        return "Nombre: " + nombre + '\n' +
+                "Apellido: " + apellido + '\n' +
+                "DNI: " + dni;
+    }
 }

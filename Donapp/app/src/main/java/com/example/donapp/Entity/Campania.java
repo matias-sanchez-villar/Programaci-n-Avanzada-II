@@ -1,5 +1,6 @@
 package com.example.donapp.Entity;
 
+import com.example.donapp.Enums.Categoria;
 import com.example.donapp.Enums.EstadoCampania;
 import com.example.donapp.Interfaces.IEstado;
 import com.example.donapp.Interfaces.IRegistroPostulable;
@@ -8,14 +9,18 @@ import java.util.Date;
 
 public class Campania extends EntidadEstadoBase implements IRegistroPostulable {
 
+    private String codigo;
     private String nombreCampania;
     private Date fecha;
+    private Date fechaFin;
     private String direccion;
     private Localidad localidad;
     private Provincia provincia;
-    private int cantSolicitante;
+    private int cantDonantes;
+    private int cantDonantesConfirmados;
+    private Usuario institucion;
     private int cantDias;
-    private Usuario UsuarioEmpresa;
+    private Usuario usuario;
 
     public Campania() { }
 
@@ -32,7 +37,7 @@ public class Campania extends EntidadEstadoBase implements IRegistroPostulable {
         this.fecha = fecha;
         this.provincia = provincia;
         this.direccion = direccion;
-        this.cantSolicitante = cantSolicitante;
+        this.cantDonantes = cantSolicitante;
         this.cantDias = cantDias;
     }
 
@@ -48,17 +53,17 @@ public class Campania extends EntidadEstadoBase implements IRegistroPostulable {
         this.fecha = fecha;
         this.provincia = provincia;
         this.direccion = direccion;
-        this.cantSolicitante = cantSolicitante;
+        this.cantDonantes = cantSolicitante;
         this.cantDias = cantDias;
     }
 
 
     public Usuario getUsuario() {
-        return UsuarioEmpresa;
+        return usuario;
     }
 
     public void setUsuario(Usuario usuario) {
-        UsuarioEmpresa = usuario;
+        usuario = usuario;
     }
     public Localidad getLocalidad() {
         return localidad;
@@ -105,11 +110,11 @@ public class Campania extends EntidadEstadoBase implements IRegistroPostulable {
     }
 
     public int getCantSolicitante() {
-        return cantSolicitante;
+        return cantDonantes;
     }
 
     public void setCantSolicitante(int cantSolicitante) {
-        this.cantSolicitante = cantSolicitante;
+        this.cantDonantes = cantSolicitante;
     }
 
     public int getCantDias() {
@@ -144,6 +149,11 @@ public class Campania extends EntidadEstadoBase implements IRegistroPostulable {
     }
 
     @Override
+    public Categoria getCategoriaPostulacion() {
+        return Categoria.CAMPANIA;
+    }
+
+    @Override
     public int getIdRegistro() {
         return this.id;
     }
@@ -151,4 +161,58 @@ public class Campania extends EntidadEstadoBase implements IRegistroPostulable {
         return EstadoCampania.getTipoEstadoToInt(this.estado);
     }
 
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
+    public String getNombreCampania() {
+        return nombreCampania;
+    }
+
+    public void setNombreCampania(String nombreCampania) {
+        this.nombreCampania = nombreCampania;
+    }
+
+    public Date getFechaFin() {
+        return fechaFin;
+    }
+
+    public void setFechaFin(Date fechaFin) {
+        this.fechaFin = fechaFin;
+    }
+
+    public int getCantDonantes() {
+        return cantDonantes;
+    }
+
+    public void setCantDonantes(int cantDonantes) {
+        this.cantDonantes = cantDonantes;
+    }
+
+    public int getCantDonantesConfirmados() {
+        return cantDonantesConfirmados;
+    }
+
+    public void setCantDonantesConfirmados(int cantDonantesConfirmados) {
+        this.cantDonantesConfirmados = cantDonantesConfirmados;
+    }
+
+    public Usuario getInstitucion() {
+        return institucion;
+    }
+
+    public void setInstitucion(Usuario institucion) {
+        this.institucion = institucion;
+    }
+
+    public void confirmarDonacion(){
+        this.cantDonantesConfirmados++;
+        if(this.cantDonantes == this.cantDonantesConfirmados){
+            this.estado = EstadoCampania.COMPLETADA;
+        }
+    }
 }

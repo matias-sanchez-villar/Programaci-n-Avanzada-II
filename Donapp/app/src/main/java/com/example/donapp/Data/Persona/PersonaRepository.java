@@ -70,12 +70,12 @@ public class PersonaRepository extends BaseRepository<Persona> implements ICRUDR
 
     public PersonaFisica selectPersonaFisica(int id){
         this.threadEntityPF = new ReadPersonaFisicaAsync(id, context);
-        return (PersonaFisica) this.selectEntity(threadEntityPF);
+        return (PersonaFisica) this.selectEntity(threadEntity);
     }
 
     //falta lo mismo
     public PersonaJuridica selectPersonaJuridica(int id){
         this.threadEntityPJ = new ReadPersonaJuridicaAsync(id, context);
-        return this.selectEntity(threadEntityPJ);
+        return (PersonaJuridica) this.selectEntity(threadEntity);
     }
 }

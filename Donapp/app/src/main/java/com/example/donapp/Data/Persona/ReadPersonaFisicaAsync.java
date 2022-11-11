@@ -20,10 +20,11 @@ public class ReadPersonaFisicaAsync extends AsyncTask<String, Void, PersonaFisic
 
     PersonaFisica personaFisica;
     Context context;
+    int usuarioId;
     int id;
 
-    public ReadPersonaFisicaAsync(int id, Context context){
-        this.id = id;
+    public ReadPersonaFisicaAsync(int usuarioId, Context context){
+        this.usuarioId = usuarioId;
         this.context = context;
     }
 
@@ -33,7 +34,7 @@ public class ReadPersonaFisicaAsync extends AsyncTask<String, Void, PersonaFisic
             Class.forName(DataDB.driver);
             Connection con = DriverManager.getConnection(DataDB.urlMySQL, DataDB.user, DataDB.pass);
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery(querySolicitudWithCriticidad(id));
+            ResultSet rs = st.executeQuery(queryPersonaFisicaByUsuario(id));
 
             if(rs.next()){
                 this.personaFisica = new PersonaFisica();
@@ -59,13 +60,14 @@ public class ReadPersonaFisicaAsync extends AsyncTask<String, Void, PersonaFisic
         }
     }
 
-    public String querySolicitudWithCriticidad(int id){
+    public String queryPersonaFisicaByUsuario(int id){
         return String.format(
                 "SELECT ps.nombre, ps.apellido, ps.telefono, ps.direccion, ps.fecha_nacimiento, ps.dni, ps.id_provincia, p.nombre as provincia, l.nombre as localidad " +
                         "FROM %1$s ps " +
-                        "INNER JOIN provincias p on p.id = ps.id_provincia " +
-                        "INNER JOIN localidades l on l.id = ps.id_localidad " +
-                        "WHERE ps.id = %2$s", TableDB.PERSONA, id);
+                        "INNER JOIN provincias p ON p.id = ps.id_provincia " +
+                        "INNER JOIN localidades l ON l.id = ps.id_localidad " +
+                        "INNER JOIN usuarios user ON user.id_persona = ps.id " +
+                        "WHERE user.id = %2$s", TableDB.PERSONA, usuarioId);
     }
 
 }

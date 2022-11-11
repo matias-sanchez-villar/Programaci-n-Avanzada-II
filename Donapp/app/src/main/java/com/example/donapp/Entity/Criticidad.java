@@ -15,6 +15,11 @@ public class Criticidad extends EntidadBase{
         this.descripcion = descripcion;
     }
 
+    public Criticidad(int id, String descripcion){
+        this.id = id;
+        this.descripcion = descripcion;
+    }
+
     public String getDescripcion() {
         return descripcion;
     }

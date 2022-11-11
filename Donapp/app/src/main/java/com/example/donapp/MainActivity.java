@@ -1,7 +1,9 @@
 package com.example.donapp;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -20,5 +22,12 @@ public class MainActivity extends AppCompatActivity {
         // Instanciamos LogInActivity
         Intent login = new Intent(this, LogInActivity.class);
         startActivity(login);
+
     }
+
+    public void irVerMasInformacion (View view){
+        Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.argentina.gob.ar/salud/donarsangre/faq"));
+        startActivity(i);
+    }
+
 }

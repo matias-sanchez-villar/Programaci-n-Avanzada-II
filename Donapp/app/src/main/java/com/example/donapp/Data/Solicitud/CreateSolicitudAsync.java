@@ -44,9 +44,10 @@ public class CreateSolicitudAsync extends AsyncTask<String, Void, Integer> {
             preparedStatement.setString(7, solicitud.getDireccion());
             preparedStatement.setInt(8, solicitud.getUsuario().getId());
             preparedStatement.setInt(9, solicitud.getCantidadDonantes());
-            preparedStatement.setString(10, solicitud.getTipoDeSangre());
-            preparedStatement.setInt(11, solicitud.getEstadoInt());
-            preparedStatement.setInt(12, solicitud.getCriticidad().getId());
+            preparedStatement.setInt(10, 0);
+            preparedStatement.setString(11, solicitud.getTipoDeSangre());
+            preparedStatement.setInt(12, solicitud.getEstadoInt());
+            preparedStatement.setInt(13, solicitud.getCriticidad().getId());
 
 
             preparedStatement.executeUpdate();
@@ -67,7 +68,7 @@ public class CreateSolicitudAsync extends AsyncTask<String, Void, Integer> {
 
     public String insertSolicitud(){
         return "INSERT INTO `solicitudes`" +
-                "(`codigo`, `nombre`, `apellido`, `fecha`, `id_localidad`, `id_provincia`, `direccion`, `id_usuario`, `cantidadDonantes`, `tipo_sangre`, `estado`, `id_criticidad`) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                "(`codigo`, `nombre`, `apellido`, `fecha`, `id_localidad`, `id_provincia`, `direccion`, `id_usuario`, `cantidad_donantes`, `cant_donantes_confirmados`, `tipo_sangre`, `estado`, `id_criticidad`) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     }
 }

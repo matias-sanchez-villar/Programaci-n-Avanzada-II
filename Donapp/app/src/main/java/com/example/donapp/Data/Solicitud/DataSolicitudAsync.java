@@ -30,7 +30,7 @@ public class DataSolicitudAsync extends AsyncTask<String, Void, StatusResponse> 
     private ListView lvSolicitud;
     private Context context;
     private Spinner spn;
-    private static ArrayList<Solicitud> listSolicitud = new ArrayList<Solicitud>();
+    private ArrayList<Solicitud> listSolicitud = new ArrayList<Solicitud>();
     private int integerPropertie = -1;
     private String stringPropertie;
     private String searcheablePropertie;
@@ -103,9 +103,12 @@ public class DataSolicitudAsync extends AsyncTask<String, Void, StatusResponse> 
                 solicitud.setLocalidad(new Localidad(rs.getInt("id_localidad")));
                 solicitud.setDireccion(rs.getString("direccion"));
                 solicitud.setUsuario(new Usuario(rs.getInt("id_usuario")));
-                solicitud.setCantidadDonantes(rs.getInt("cantidadDonantes"));
+                solicitud.setCantidadDonantes(rs.getInt("cantidad_donantes"));
+                solicitud.setCantidadDonantesConfirmados(rs.getInt("cant_donantes_confirmados"));
                 solicitud.setEstado(EstadoSolicitud.getTipoEstadoSolicitud(rs.getInt("estado")));
-                solicitud.setCriticidad(new Criticidad(rs.getString("descripcion")));
+                solicitud.setCriticidad(
+                        new Criticidad(rs.getInt("id_criticidad"), rs.getString("descripcion"))
+                );
 
                 listSolicitud.add(solicitud);
             }
@@ -121,7 +124,6 @@ public class DataSolicitudAsync extends AsyncTask<String, Void, StatusResponse> 
     protected void onPostExecute(StatusResponse response) {
 
         // TODO: Encontrar mejor forma de usar el if, no se debería cargar el mismo item a spn o lv.
-
         ArrayAdapter<Solicitud> adapter = new ArrayAdapter<Solicitud>(
                 this.context,
                 R.layout.solicitudes_list_item,
@@ -129,10 +131,11 @@ public class DataSolicitudAsync extends AsyncTask<String, Void, StatusResponse> 
                 listSolicitud
         );
         this.lvSolicitud.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
     }
 
     public String querySolicitudWithCriticidad(){
-        return "SELECT sol.*, c.descripcion AS 'descripcion' " +
+        return "SELECT sol.*, c.descripcion AS 'descripcion', c.id AS 'id_criticidad' " +
                 "FROM `solicitudes` sol " +
                 "INNER JOIN `criticidad` c ON c.id = sol.id_criticidad " +
                 "WHERE sol.estado = 1";
@@ -141,7 +144,7 @@ public class DataSolicitudAsync extends AsyncTask<String, Void, StatusResponse> 
     public String querySolicitudWithCriticidadByIntegerPropertie(
             String propertie,
             int value){
-        return String.format("SELECT sol.*, c.descripcion AS 'descripcion' " +
+        return String.format("SELECT sol.*, c.descripcion AS 'descripcion', c.id AS 'id_criticidad' " +
                 "FROM `solicitudes` sol " +
                 "INNER JOIN `criticidad` c ON c.id = sol.id_criticidad " +
                 "WHERE sol.%1$s = %2$s ORDER BY fecha", propertie, value);
@@ -150,7 +153,7 @@ public class DataSolicitudAsync extends AsyncTask<String, Void, StatusResponse> 
     public String querySolicitudWithCriticidadLikeStringPropertie(
             String propertie,
             String value){
-        return String.format("SELECT sol.*, c.descripcion AS 'descripcion' " +
+        return String.format("SELECT sol.*, c.descripcion AS 'descripcion', c.id AS 'id_criticidad' " +
                 "FROM `solicitudes` sol " +
                 "INNER JOIN `criticidad` c ON c.id = sol.id_criticidad " +
                 "WHERE sol.%1$s LIKE '%" + "'%2$s'" + "%' ORDER BY fecha", propertie, value);

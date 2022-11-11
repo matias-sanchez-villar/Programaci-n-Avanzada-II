@@ -14,7 +14,7 @@ import com.example.donapp.Entity.Usuario;
 import com.example.donapp.Enums.StatusResponse;
 import com.example.donapp.R;
 
-public class EditarMisDatos extends AppCompatActivity {
+public class EditarMisDatosActivity extends AppCompatActivity {
 
     EditText txtNombre, txtEmail, txtPassword;
     Button btnModificar;

@@ -51,7 +51,7 @@ public class HistorialMedicoRepository extends BaseRepository<HistorialMedico> i
 
     @Override
     public HistorialMedico selectEntity(HistorialMedico entity) {
-        this.selectEntityThread = new ReadHistorialMedicoAsync(context, entity.getId());
+        this.selectEntityThread = new ReadHistorialMedicoAsync(context, entity.getUsuario().getId());
         return selectEntity(selectEntityThread);
     }
 }

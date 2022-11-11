@@ -1,5 +1,6 @@
 package com.example.donapp.Data.Postulacion;
 
+import android.content.Context;
 import android.os.AsyncTask;
 
 import com.example.donapp.Database.DataDB;
@@ -24,7 +25,9 @@ public class ReadPostulacionAsync extends AsyncTask<String, Void, Postulacion> {
         Categoria categoria;
         IEstado estado;
         int idUsuario;
+        int idPersona;
         int idRegistroPostulable;
+        Context context;
 
         public ReadPostulacionAsync(Categoria categoria,
                                     IEstado estado,
@@ -36,14 +39,25 @@ public class ReadPostulacionAsync extends AsyncTask<String, Void, Postulacion> {
                 this.idRegistroPostulable = idRegistroPostulable;
         }
 
+        public ReadPostulacionAsync(Context context,
+                                    int idPersona,
+                                    int idRegistroPostulable,
+                                    Categoria categoria){
+                this.context = context;
+                this.idPersona = idPersona;
+                this.idRegistroPostulable = idRegistroPostulable;
+                this.categoria = categoria;
+        }
+
         @Override
         protected Postulacion doInBackground(String... strings) {
                 try {
                         Class.forName(DataDB.driver);
                         Connection con = DriverManager.getConnection(DataDB.urlMySQL, DataDB.user, DataDB.pass);
                         Statement st = con.createStatement();
-                        ResultSet rs = st.executeQuery(
-                                searchQuery());
+                        ResultSet rs = st.executeQuery(idUsuario != 0
+                                ? searchQuery()
+                                : searchQueryByIdRegistro());
 
                         Postulacion postulacion;
                         if(rs.next()) {
@@ -52,6 +66,10 @@ public class ReadPostulacionAsync extends AsyncTask<String, Void, Postulacion> {
                                 postulacion.setId(rs.getInt("id"));
                                 postulacion.setCodigo(rs.getString("codigo"));
                                 postulacion.setFechaGeneracion(rs.getDate("fecha_generacion"));
+                                postulacion.setEstado(
+                                        EstadoPostulacion.getTipoEstadoPostulacion(rs.getInt("estado")
+                                        )
+                                );
 
                                 return postulacion;
                         }
@@ -70,5 +88,15 @@ public class ReadPostulacionAsync extends AsyncTask<String, Void, Postulacion> {
                         "AND categoria = %2$s " +
                         "AND id_registro_postulado = %3$s " +
                         "AND estado = 0", idUsuario, categoria.ordinal(), idRegistroPostulable);
+        }
+
+        private String searchQueryByIdRegistro(){
+                return String.format("SELECT post.* " +
+                        "FROM `postulaciones` post " +
+                        "INNER JOIN `usuarios` user ON user.id = post.id_usuario " +
+                        "WHERE categoria = %1$s " +
+                        "AND id_registro_postulado = %2$s " +
+                        "AND user.id_persona = %3$s",
+                        categoria.ordinal(), idRegistroPostulable, idPersona);
         }
 }

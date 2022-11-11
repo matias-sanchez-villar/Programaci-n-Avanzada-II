@@ -92,4 +92,5 @@ public abstract class Persona extends EntidadBase {
     public void setJuridica(Boolean juridica) {
         isJuridica = juridica;
     }
+
 }

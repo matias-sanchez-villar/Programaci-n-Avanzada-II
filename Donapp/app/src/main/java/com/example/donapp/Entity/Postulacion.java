@@ -18,6 +18,11 @@ public class Postulacion extends EntidadEstadoBase{
     public Postulacion(){
     }
 
+    public Postulacion(IRegistroPostulable registroPostulado, Categoria categoria){
+        this.registroPostulado = registroPostulado;
+        this.categoria = categoria;
+    }
+
     public Postulacion(int id){
         this.id = id;
     }
@@ -91,13 +96,13 @@ public class Postulacion extends EntidadEstadoBase{
 
     @Override
     public String toString() {
-        return "Postulacion{" +
-                "codigo='" + codigo + '\'' +
-                ", fechaGeneracion=" + fechaGeneracion +
-                ", categoria=" + categoria +
-                ", usuario=" + usuario +
-                ", fechaConfirmacion=" + fechaConfirmacion +
-                ", registroPostulado=" + registroPostulado +
-                '}';
+        return "Codigo: " + codigo + '\n' +
+                "Fecha generacion: " + fechaGeneracion + '\n' +
+                "Categoria: " + categoria.name() + '\n' +
+                "Fecha confirmacion: " +
+                (fechaConfirmacion != null
+                ? fechaConfirmacion.toString()
+                : "") + '\n' +
+                "Estado: " + estado.displayEstado();
     }
 }

@@ -23,11 +23,12 @@ import java.sql.Statement;
 public class ReadHistorialMedicoAsync extends AsyncTask<String, Void, HistorialMedico> {
 
     Context context;
-    int searcheableId;
+    int usuarioId;
+    int id;
 
     public ReadHistorialMedicoAsync(Context context, int id){
         this.context = context;
-        this.searcheableId = id;
+        this.usuarioId = id;
     }
 
     @Override
@@ -36,7 +37,7 @@ public class ReadHistorialMedicoAsync extends AsyncTask<String, Void, HistorialM
             Class.forName(DataDB.driver);
             Connection con = DriverManager.getConnection(DataDB.urlMySQL, DataDB.user, DataDB.pass);
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery(queryHistorialMedico(searcheableId));
+            ResultSet rs = st.executeQuery(queryHistorialMedico(usuarioId));
 
             HistorialMedico historialMedico;
             if(rs.next()) {

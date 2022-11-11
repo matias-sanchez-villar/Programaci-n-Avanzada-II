@@ -5,7 +5,8 @@ import com.example.donapp.Util.ErrorConst;
 
 public enum EstadoSolicitud implements IEstado {
     CANCELADA,
-    ACTIVA;
+    ACTIVA,
+    COMPLETADA;
 
     @Override
     public String displayEstado() {
@@ -22,7 +23,10 @@ public enum EstadoSolicitud implements IEstado {
     }
 
     public static int getTipoEstadoToInt(IEstado estado){
-        return estado.equals(ACTIVA.displayEstado()) ? ACTIVA.ordinal() : CANCELADA.ordinal();
+        return estado.displayEstado().equals(ACTIVA.displayEstado())
+                ? ACTIVA.ordinal()
+                : estado.displayEstado().equals(CANCELADA.displayEstado())
+                ? CANCELADA.ordinal() : COMPLETADA.ordinal();
     }
 
 }

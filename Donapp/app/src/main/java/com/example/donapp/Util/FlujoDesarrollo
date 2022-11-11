@@ -59,6 +59,18 @@ instanciamos el ui del drawer. Insertar los fragments que nosotros queramos.
 18. Ver forma de encapsular asyncTask
 19. VER ReadUsuarioPersonaFisicaAsync y ReadUsuarioPersonaJuridicaAsync, se puede optimizar buscando solo el usuario y mapeando
 la persona en un async de Usuario. Actualmente en package Persona.
+20. Mejorar logia de operadores ternarios en DataAsyncs, por ejemplo DataPostulacionesAsync
+21. Ver logica de "Mis datos", GlobalPreferences solo debe obtener nombre usuario. Habría que buscar y mapear la persona
+de una sola query y agregar un serializable de Usuario a UpdateUsuario
+22. Ver si hace falta mejorar las relaciones entre tablas, ej: Postulacion_x_usuario o POstulacion_x_solicitud, etc.
+23. Posible mejora: https://stackoverflow.com/questions/16441298/android-call-notifydatasetchanged-from-asynctask
+24. Error al ir a Mis Solicitudes, volver y seleccionar un elemento. PARCHE: Recargar Activity. SOLUCION: La lista que cargaba el adapter era static
+25. Mejorar Campanias
+26. De DetallePostulantesActivity a PostulanteActivity se estan pasando muchos intents y extras.
+27. Separar Persona de persona fisica y juridica, se complica castearlos o buscar forma de optimizarlos
+28. Mejorar forma de putExtra(Solicitud) en Postulantes, se pasa mas de 2 veces el mismo objeto entre activities.
+29. mejorar logica de obtener la categoria en PostulanteActivity. Muchos objetos
+30. Ver mejor forma de optimizar la busqueda de persona en MisDatos. Se tuvieron que crear 2 repositories tal vez al pedo.
 
 ** PENDIENTE **
 1. Validaciones en Persona y Usuario (Clase y formularios)
@@ -70,3 +82,6 @@ la persona en un async de Usuario. Actualmente en package Persona.
 7. Falta mapear provincia, localidad y cualquier cosa que se carge en un spinner al modificar.
 8. VALIDACIONES EN HISTORIAL MEDICO, QUE SI O SI HAYA ALGUN CHECKBOX SELECCIONADO
 9. Enlazar propiedades cuando se busca un Historial medico en AltaHistorialMedico.
+10. Falta que un solicitante/donante no pueda postularse a mas de 1 registro.
+11. Filtrar SolicitudesFragment listview con las solicitudes que no son nuestras
+12. Bloquear boton postularse si no esta el historial medico creado.

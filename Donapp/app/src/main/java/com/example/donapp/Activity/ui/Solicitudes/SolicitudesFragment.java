@@ -78,6 +78,7 @@ public class SolicitudesFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
                 Solicitud solicitudSelected = (Solicitud) parent.getItemAtPosition(position);
                 Intent detalleIntent = new Intent(getActivity(), DetalleSolicitudActivity.class);
                 detalleIntent.putExtra("solicitud_id", solicitudSelected.getId());
@@ -99,7 +100,7 @@ public class SolicitudesFragment extends Fragment {
     }
 
     public void instanceLayouts(){
-        listView = (ListView) binding.listSolicitudes;
+        listView = (ListView) binding.listSolicitudesFragment;
         misSolicitudesButton = (Button) binding.MisSolicitudesBtn;
     }
 

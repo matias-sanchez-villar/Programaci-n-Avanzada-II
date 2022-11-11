@@ -33,6 +33,10 @@ public class HistorialMedico extends EntidadEstadoBase{
         super(id);
     }
 
+    public HistorialMedico(Usuario usuario){
+        this.usuario = usuario;
+    }
+
     public HistorialMedico(TipoSangre tipoSangre,
                            int peso,
                            BigDecimal altura,

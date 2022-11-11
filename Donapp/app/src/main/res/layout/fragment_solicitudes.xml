@@ -68,7 +68,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ListView
-        android:id="@+id/listSolicitudes"
+        android:id="@+id/listSolicitudesFragment"
         android:layout_width="match_parent"
         android:layout_height="320dp" />
 <LinearLayout

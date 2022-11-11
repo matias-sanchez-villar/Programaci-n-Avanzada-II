@@ -44,10 +44,11 @@ public class UpdateSolicitudAsync extends AsyncTask<String, Void, StatusResponse
             preparedStatement.setString(7, solicitud.getDireccion());
             preparedStatement.setInt(8, solicitud.getUsuario().getId());
             preparedStatement.setInt(9, solicitud.getCantidadDonantes());
-            preparedStatement.setString(10, solicitud.getTipoDeSangre());
-            preparedStatement.setInt(11, solicitud.getEstadoInt());
-            preparedStatement.setInt(12, solicitud.getCriticidad().getId());
-            preparedStatement.setInt(13, solicitud.getId());
+            preparedStatement.setInt(10, solicitud.getCantidadDonantesConfirmados());
+            preparedStatement.setString(11, solicitud.getTipoDeSangre());
+            preparedStatement.setInt(12, solicitud.getEstadoInt());
+            preparedStatement.setInt(13, solicitud.getCriticidad().getId());
+            preparedStatement.setInt(14, solicitud.getId());
 
 
             int row = preparedStatement.executeUpdate();
@@ -75,7 +76,8 @@ public class UpdateSolicitudAsync extends AsyncTask<String, Void, StatusResponse
                 "`id_provincia`= ?," +
                 "`direccion`= ?," +
                 "`id_usuario`= ?," +
-                "`cantidadDonantes`= ?," +
+                "`cantidad_donantes`= ?," +
+                "`cant_donantes_confirmados`= ?," +
                 "`tipo_sangre` = ?," +
                 "`estado`= ?," +
                 "`id_criticidad` = ? " +
