@@ -18,7 +18,6 @@ import java.util.ArrayList;
 public class CampaniaRepository extends BaseRepository<Campania> implements ICRUDRepository<Campania> {
     private AsyncTask<String, Void, StatusResponse> thread;
     private AsyncTask<String, Void, Integer> createThread;
-    private AsyncTask<String, Void, ArrayList<Campania>> threadList;
     private AsyncTask<String, Void, Campania> entityThread;
     private AsyncTask<String, Void, Boolean> validateThread;
 
@@ -72,10 +71,10 @@ public class CampaniaRepository extends BaseRepository<Campania> implements ICRU
         return this.selectAllAsync(thread);
     }
 
-    @Override
-    public ArrayList<Campania> selectListCampanisUsuario(int id) {
-        this.threadList = new ReadCampaniaUsuarioJuridicioAsync(id, context);
-        return this.selectAllAsync(threadList);
+
+    public ArrayList<Campania> selectEntityList(int id) {
+        this.listEntityThread  = new ReadCampaniaUsuarioJuridicioAsync(id, context);
+        return this.selectEntityListAsync(listEntityThread);
     }
 
     @Override

@@ -13,5 +13,5 @@ public interface IBaseRepository<T> {
     StatusResponse deleteAsync(int id, AsyncTask<String, Void, StatusResponse> thread);
     StatusResponse selectAllAsync(AsyncTask<String, Void, StatusResponse> thread);
     T selectEntity(AsyncTask<String, Void, T> thread);
-    ArrayList<T> selectEntityList(AsyncTask<String, Void, ArrayList<T>> listThread);
+    ArrayList<T> selectEntityListAsync(AsyncTask<String, Void, ArrayList<T>> listThread);
 }

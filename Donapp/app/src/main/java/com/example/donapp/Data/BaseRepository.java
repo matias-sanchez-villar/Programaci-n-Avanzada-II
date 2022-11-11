@@ -88,7 +88,7 @@ public abstract class BaseRepository<T> implements IBaseRepository<T> {
     }
 
     @Override
-    public ArrayList<T> selectEntityList(AsyncTask<String, Void, ArrayList<T>> listThread) {
+    public ArrayList<T> selectEntityListAsync(AsyncTask<String, Void, ArrayList<T>> listThread) {
         try {
             return listThread.execute().get();
         } catch (ExecutionException e) {
