@@ -13,16 +13,18 @@ import com.example.donapp.Entity.Usuario;
 import com.example.donapp.Enums.StatusResponse;
 import com.example.donapp.Interfaces.ICRUDRepository;
 
+import java.util.ArrayList;
+
 public class CampaniaRepository extends BaseRepository<Campania> implements ICRUDRepository<Campania> {
     private AsyncTask<String, Void, StatusResponse> thread;
     private AsyncTask<String, Void, Integer> createThread;
+    private AsyncTask<String, Void, ArrayList<Campania>> threadList;
     private AsyncTask<String, Void, Campania> entityThread;
     private AsyncTask<String, Void, Boolean> validateThread;
 
     public CampaniaRepository(Context context){
         this.context = context;
     }
-
 
     @Override
     public Integer create(Campania entity) {
@@ -59,6 +61,7 @@ public class CampaniaRepository extends BaseRepository<Campania> implements ICRU
         this.thread = new DataCampaniaAsync(lv, context);
         return this.selectAllAsync(thread);
     }
+
     public StatusResponse selectAllForListViewByIntegerPropertie(
             ListView lv,
             String propertie,
@@ -67,6 +70,12 @@ public class CampaniaRepository extends BaseRepository<Campania> implements ICRU
     {
         this.thread = new DataCampaniaAsync(context, lv, value, propertie);
         return this.selectAllAsync(thread);
+    }
+
+    @Override
+    public ArrayList<Campania> selectListCampanisUsuario(int id) {
+        this.threadList = new ReadCampaniaUsuarioJuridicioAsync(id, context);
+        return this.selectAllAsync(threadList);
     }
 
     @Override

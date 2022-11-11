@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -15,6 +16,7 @@ import com.example.donapp.databinding.FragmentEstadisticasBinding;
 public class EstadisticasFragment extends Fragment{
 
     private FragmentEstadisticasBinding binding;
+    TextView txCantCampania, txtPromAsistencia, txtPromInasistencia, txtPeriodoFecha;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -24,9 +26,21 @@ public class EstadisticasFragment extends Fragment{
         binding = FragmentEstadisticasBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        // final TextView textView = binding.textSlideshow;
-        // slideshowViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        fillProperties();
+        instanceLayouts();
+
         return root;
+    }
+
+    public void fillProperties(){
+        txCantCampania = binding.txtEstCantCampaniasResponse;
+        txtPromAsistencia = binding.txtEstPromAsistenciaResponse;
+        txtPromInasistencia = binding.txtEstPromInasistenciaResponse;
+        txtPeriodoFecha = binding.txtEstPeriodoFechaResponse;
+    }
+
+    public void instanceLayouts(){
+
     }
 
     @Override

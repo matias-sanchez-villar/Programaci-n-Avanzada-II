@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import com.example.donapp.Enums.StatusResponse;
 import com.example.donapp.Interfaces.IBaseRepository;
 
+import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -25,6 +26,7 @@ public abstract class BaseRepository<T> implements IBaseRepository<T> {
     protected AsyncTask<String, Void, T> selectEntityThread;
     protected AsyncTask<String, Void, Integer> createThread;
     protected AsyncTask<String, Void, StatusResponse> mainThread;
+    protected AsyncTask<String, Void, ArrayList<T>> listEntityThread;
 
     @Override
     public Integer createAsync(AsyncTask<String, Void, Integer> thread) {
