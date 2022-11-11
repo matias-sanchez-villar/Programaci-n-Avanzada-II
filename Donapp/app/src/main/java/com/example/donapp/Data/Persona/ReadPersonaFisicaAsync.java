@@ -7,6 +7,7 @@ import com.example.donapp.Database.DataDB;
 import com.example.donapp.Database.TableDB;
 import com.example.donapp.Entity.BancoSangre;
 import com.example.donapp.Entity.Localidad;
+import com.example.donapp.Entity.Persona;
 import com.example.donapp.Entity.PersonaFisica;
 import com.example.donapp.Entity.Provincia;
 

@@ -13,7 +13,9 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.fragment.app.Fragment;
 
+import com.example.donapp.Activity.EditarMisDatos;
 import com.example.donapp.Activity.MisSolicitudesActivity;
+import com.example.donapp.Data.Persona.PersonaRepository;
 import com.example.donapp.Data.Persona.ReadPersonaFisicaAsync;
 import com.example.donapp.Data.Usuario.UsuarioRepository;
 import com.example.donapp.Entity.GlobalPreferences;
@@ -28,7 +30,7 @@ public class MisDatosPersonaFisicaFragment extends Fragment{
             txtLocalidad, txtApellido, txtDNI, txtFechaNacimiento, txtContasena;
     Button btnModifica;
     PersonaFisica personaFisica;
-    ReadPersonaFisicaAsync readPersonaFisicaAsync;
+    PersonaRepository personaRepository;
     UsuarioRepository _usuarioRepository;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -50,8 +52,7 @@ public class MisDatosPersonaFisicaFragment extends Fragment{
         btnModifica.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: EditarMisDatos.class
-                Intent misSolicitudesIntent = new Intent(getActivity(), MisSolicitudesActivity.class);
+                Intent misSolicitudesIntent = new Intent(getActivity(), EditarMisDatos.class);
                 startActivity(misSolicitudesIntent);
             }
         });
@@ -73,9 +74,9 @@ public class MisDatosPersonaFisicaFragment extends Fragment{
 
     private void setingsPropirties() {
         Usuario usuario = searchUsuario();
-        readPersonaFisicaAsync = new ReadPersonaFisicaAsync(
-                usuario.getPersona().getId(), getActivity()
-        );
+
+        personaRepository = new PersonaRepository(getActivity());
+        personaFisica = personaRepository.selectPersonaFisica(usuario.getPersona().getId());
 
         txtNombre.setText(personaFisica.getNombre());
         txtApellido.setText(personaFisica.getApellido());

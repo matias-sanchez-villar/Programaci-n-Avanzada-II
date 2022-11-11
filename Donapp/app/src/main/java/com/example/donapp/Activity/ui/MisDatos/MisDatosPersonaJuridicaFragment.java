@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.fragment.app.Fragment;
 
 import com.example.donapp.Activity.MisSolicitudesActivity;
+import com.example.donapp.Data.Persona.PersonaRepository;
 import com.example.donapp.Data.Persona.ReadPersonaFisicaAsync;
 import com.example.donapp.Data.Persona.ReadPersonaJuridicaAsync;
 import com.example.donapp.Data.Usuario.UsuarioRepository;
@@ -29,7 +30,7 @@ public class MisDatosPersonaJuridicaFragment extends Fragment{
             txtCUIL, txtHoraInicio, txtHoraFin, txtContasena;
     Button btnModifica;
     PersonaJuridica personaJuridica;
-    ReadPersonaJuridicaAsync personaJuridicaAsync;
+    PersonaRepository personaRepository;
     UsuarioRepository _usuarioRepository;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -75,9 +76,9 @@ public class MisDatosPersonaJuridicaFragment extends Fragment{
 
     private void setingsPropirties() {
         Usuario usuario = searchUsuario();
-        personaJuridicaAsync = new ReadPersonaJuridicaAsync(
-                usuario.getPersona().getId(), getActivity()
-        );
+
+        personaRepository = new PersonaRepository(getActivity());
+        personaJuridica = personaRepository.selectPersonaJuridica(usuario.getPersona().getId());
 
         txtNombre.setText(personaJuridica.getNombre());
         txtCUIL.setText(personaJuridica.getCuil());
