@@ -27,15 +27,17 @@ public class DataCampaniaAsync extends AsyncTask<String,Void, StatusResponse> {
     private ListView lvCampania;
     private Context context;
     private Spinner spn;
-
     private static ArrayList<Campania> listCampania = new ArrayList<Campania>();
-
-    public DataCampaniaAsync(Context context) {
-        this.context = context;
-    }
+    private int integerPropertie = -1;
+    private String stringPropertie;
+    private String searcheablePropertie;
 
     public DataCampaniaAsync(ListView lvCampania, Context context) {
         this.lvCampania = lvCampania;
+        this.context = context;
+    }
+
+    public DataCampaniaAsync(Context context) {
         this.context = context;
     }
 
@@ -44,6 +46,33 @@ public class DataCampaniaAsync extends AsyncTask<String,Void, StatusResponse> {
         this.spn = spn;
     }
 
+    public DataCampaniaAsync(
+            Context context,
+            ListView lv,
+            int integerPropertie,
+            String searcheablePropertie
+    )
+    {
+        this.lvCampania = lv;
+        this.context = context;
+        this.integerPropertie = integerPropertie;
+        this.searcheablePropertie = searcheablePropertie;
+    }
+
+    public DataCampaniaAsync(
+            Context context,
+            ListView lv,
+            String stringPropertie,
+            String searcheablePropertie
+    )
+    {
+        this.lvCampania = lv;
+        this.context = context;
+        this.stringPropertie = stringPropertie;
+        this.searcheablePropertie = searcheablePropertie;
+    }
+
+
     @Override
     protected StatusResponse doInBackground(String... strings) {
         try {
@@ -51,6 +80,8 @@ public class DataCampaniaAsync extends AsyncTask<String,Void, StatusResponse> {
             Connection con = DriverManager.getConnection(DataDB.urlMySQL, DataDB.user, DataDB.pass);
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(TableDB.SelectAll(TableDB.CAMPANIA));
+
+            //Use la query de SelectAll (a verificar!!!)
 
             Campania campania;
             listCampania.clear();
@@ -90,4 +121,15 @@ public class DataCampaniaAsync extends AsyncTask<String,Void, StatusResponse> {
         );
         this.lvCampania.setAdapter(adapter);
     }
+
+    public boolean findByIntegerPropertie(){
+        return this.integerPropertie != -1 && this.searcheablePropertie != null;
+    }
+
+    public boolean findByStringPropertie(){
+        return this.stringPropertie != null && searcheablePropertie != null;
+    }
+
+
+
 }
