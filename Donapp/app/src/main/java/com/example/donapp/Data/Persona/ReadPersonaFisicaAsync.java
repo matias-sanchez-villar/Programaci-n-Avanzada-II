@@ -5,9 +5,9 @@ import android.os.AsyncTask;
 
 import com.example.donapp.Database.DataDB;
 import com.example.donapp.Database.TableDB;
+import com.example.donapp.Entity.BancoSangre;
 import com.example.donapp.Entity.Localidad;
 import com.example.donapp.Entity.PersonaFisica;
-import com.example.donapp.Entity.PersonaJuridica;
 import com.example.donapp.Entity.Provincia;
 
 import java.sql.Connection;
@@ -15,23 +15,19 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-public class ReadUsuarioPersonaJuridicaAsync extends AsyncTask<String, Void, PersonaJuridica> {
+public class ReadPersonaFisicaAsync extends AsyncTask<String, Void, PersonaFisica> {
 
-    PersonaJuridica personaJuridica;
+    PersonaFisica personaFisica;
     Context context;
     int id;
 
-    public ReadUsuarioPersonaJuridicaAsync(Context context){
-        this.context = context;
-    }
-
-    public ReadUsuarioPersonaJuridicaAsync(int id, Context context){
+    public ReadPersonaFisicaAsync(int id, Context context){
         this.id = id;
         this.context = context;
     }
 
     @Override
-    protected PersonaJuridica doInBackground(String... strings) {
+    protected PersonaFisica doInBackground(String... strings) {
         try {
             Class.forName(DataDB.driver);
             Connection con = DriverManager.getConnection(DataDB.urlMySQL, DataDB.user, DataDB.pass);
@@ -39,17 +35,17 @@ public class ReadUsuarioPersonaJuridicaAsync extends AsyncTask<String, Void, Per
             ResultSet rs = st.executeQuery(querySolicitudWithCriticidad(id));
 
             if(rs.next()){
-                this.personaJuridica = new PersonaJuridica();
-                this.personaJuridica.setId(id);
-                this.personaJuridica.setNombre(rs.getString("Nombre"));
-                this.personaJuridica.setTelefono(rs.getInt("telefono"));
-                this.personaJuridica.setDireccion(rs.getString("direccion"));
-                this.personaJuridica.setProvincia(new Provincia(
+                this.personaFisica = new PersonaFisica();
+                this.personaFisica.setId(id);
+                this.personaFisica.setNombre(rs.getString("Nombre"));
+                this.personaFisica.setTelefono(rs.getInt("telefono"));
+                this.personaFisica.setDireccion(rs.getString("direccion"));
+                this.personaFisica.setProvincia(new Provincia(
                         rs.getInt("id_provincia"),
                         rs.getString("provincia")
                 ));
-                this.personaJuridica.setLocalidad(new Localidad(rs.getString("localidad")));
-                return personaJuridica;
+                this.personaFisica.setLocalidad(new Localidad(rs.getString("localidad")));
+                return personaFisica;
             } else {
                 return null;
             }
