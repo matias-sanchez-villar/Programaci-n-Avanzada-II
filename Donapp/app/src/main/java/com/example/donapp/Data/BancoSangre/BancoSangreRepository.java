@@ -71,4 +71,6 @@ public class BancoSangreRepository extends AsyncTask<String, Void, StatusRespons
         this.lvBancoSangre.setAdapter(adapter);
     }
 
+
+
 }
