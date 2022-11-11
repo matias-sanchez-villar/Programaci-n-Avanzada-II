@@ -3,6 +3,7 @@
     <!--
         MDPF = Mis Datos Person Fisica
         MDPJ = Mis Datos Person Juridica
+        MDPE = Mis Datos Pesona Editar
     -->
     <string name="MDP_Nombre">Nombre</string>
     <string name="MDP_Titulo">Mis datos</string>
@@ -21,4 +22,12 @@
     <string name="MDPJ_Cuil">Cuil</string>
     <string name="MDPJ_HorarioDesde">Horario de atención desde</string>
     <string name="MDPJ_HorarioHasta">Horario de atención hasta</string>
+
+
+    <string name="MDPE_titulo">Editar mis datos</string>
+    <string name="MDPE_Nombre">Nombre</string>
+    <string name="MDPE_Email">Email</string>
+    <string name="MDPE_Password">Contraseña</string>
+    <string name="MDPE_btn">Modificar</string>
+
 </resources>
