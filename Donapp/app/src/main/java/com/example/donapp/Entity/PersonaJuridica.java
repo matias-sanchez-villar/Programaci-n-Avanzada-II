@@ -58,6 +58,10 @@ public class PersonaJuridica extends Persona{
         this.id = id;
     }
 
+    public PersonaJuridica(String nombre){
+        this.nombre = nombre;
+    }
+
     public String getCuil() {
         return cuil;
     }

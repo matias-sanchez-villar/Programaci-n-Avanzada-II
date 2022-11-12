@@ -17,6 +17,8 @@ import java.sql.Statement;
 public class UpdateCampaniaAsync extends AsyncTask<String, Void, StatusResponse> {
     private Campania campania;
     private Context context;
+    private int idInstitucion;
+    private int idEntity;
 
     public UpdateCampaniaAsync(Campania campania, Context context) {
         this.campania = campania;
@@ -27,24 +29,40 @@ public class UpdateCampaniaAsync extends AsyncTask<String, Void, StatusResponse>
         this.context = context;
     }
 
+    public UpdateCampaniaAsync(int idInstitucion, int idEntity, Context context){
+        this.idInstitucion = idInstitucion;
+        this.idEntity = idEntity;
+        this.context = context;
+    }
+
     @Override
     protected StatusResponse doInBackground(String... strings) {
         try {
             Class.forName(DataDB.driver);
             Connection con = DriverManager.getConnection(DataDB.urlMySQL, DataDB.user, DataDB.pass);
-            PreparedStatement preparedStatement = con.prepareStatement(updateCampania(), Statement.RETURN_GENERATED_KEYS);
-            preparedStatement.setString(1, campania.getNombreCampana());
-            preparedStatement.setDate(2, new Date(campania.getFecha().getTime()));
-            preparedStatement.setDate(3, new Date(campania.getFechaFin().getTime()));
-            preparedStatement.setInt(4, campania.getLocalidad().getId());
-            preparedStatement.setInt(5, campania.getProvincia().getId());
-            preparedStatement.setString(6, campania.getDireccion());
-            preparedStatement.setInt(7, campania.getCantDonantes());
-            preparedStatement.setInt(8, campania.getCantDias());
-            preparedStatement.setInt(9, campania.getUsuario().getId());
-            preparedStatement.setInt(10, campania.getEstadoInt());
-            preparedStatement.setInt(11, campania.getId());
 
+            PreparedStatement preparedStatement;
+
+            if(updateForInstitucion()){
+
+                preparedStatement = con.prepareStatement(updateCampaniaForInstitucion(), Statement.RETURN_GENERATED_KEYS);
+                preparedStatement.setInt(1, idInstitucion);
+                preparedStatement.setInt(2, idEntity);
+
+            } else {
+                preparedStatement = con.prepareStatement(updateCampania(), Statement.RETURN_GENERATED_KEYS);
+                preparedStatement.setString(1, campania.getNombreCampana());
+                preparedStatement.setDate(2, new Date(campania.getFecha().getTime()));
+                preparedStatement.setDate(3, new Date(campania.getFechaFin().getTime()));
+                preparedStatement.setInt(4, campania.getLocalidad().getId());
+                preparedStatement.setInt(5, campania.getProvincia().getId());
+                preparedStatement.setString(6, campania.getDireccion());
+                preparedStatement.setInt(7, campania.getCantDonantes());
+                preparedStatement.setInt(8, campania.getCantDias());
+                preparedStatement.setInt(9, campania.getUsuario().getId());
+                preparedStatement.setInt(10, campania.getEstadoInt());
+                preparedStatement.setInt(11, campania.getId());
+            }
 
             int row = preparedStatement.executeUpdate();
 
@@ -74,5 +92,13 @@ public class UpdateCampaniaAsync extends AsyncTask<String, Void, StatusResponse>
                 "`id_usuario`= ?," +
                 "`estado`= ?" +
                 " WHERE id = ?";
+    }
+
+    private String updateCampaniaForInstitucion(){
+        return "UPDATE `campanias` SET id_institucion = ? WHERE id = ?";
+    }
+
+    boolean updateForInstitucion(){
+        return this.idEntity != 0 && this.idInstitucion != 0;
     }
 }

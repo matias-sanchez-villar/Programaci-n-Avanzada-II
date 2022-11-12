@@ -271,6 +271,32 @@
                     android:padding="10dp">
 
                     <TextView
+                        android:id="@+id/txtInstitucionMedica"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Institucion medica: "
+                        android:textSize="16sp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/txtInstitucionResponseMedica"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text=""
+                        android:textSize="16sp"
+                        android:textStyle="bold"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <TextView
                         android:id="@+id/txtAlertaHistorialMedicoDetalleCampania"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

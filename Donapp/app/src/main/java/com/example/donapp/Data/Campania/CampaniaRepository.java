@@ -37,6 +37,11 @@ public class CampaniaRepository extends BaseRepository<Campania> implements ICRU
         return this.updateAsync(thread);
     }
 
+    public StatusResponse update(int idInstitucion, int idEntity){
+        this.thread = new UpdateCampaniaAsync(idInstitucion, idEntity, context);
+        return this.updateAsync(thread);
+    }
+
     @Override
     public StatusResponse delete(int id) {
         this.thread = new DeleteCampaniaAsync(id, this.context);

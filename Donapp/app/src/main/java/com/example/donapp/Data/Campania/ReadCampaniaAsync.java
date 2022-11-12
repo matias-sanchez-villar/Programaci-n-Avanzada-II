@@ -7,6 +7,7 @@ import com.example.donapp.Database.DataDB;
 import com.example.donapp.Entity.Campania;
 import com.example.donapp.Entity.Criticidad;
 import com.example.donapp.Entity.Localidad;
+import com.example.donapp.Entity.PersonaJuridica;
 import com.example.donapp.Entity.Provincia;
 import com.example.donapp.Entity.Solicitud;
 import com.example.donapp.Entity.Usuario;
@@ -56,6 +57,12 @@ public class ReadCampaniaAsync extends AsyncTask<String,Void, Campania> {
                 campania.setEstado(EstadoSolicitud.getTipoEstadoSolicitud(rs.getInt("estado")));
                 campania.setUsuario(new Usuario(rs.getInt("id_usuario")));
 
+                if(rs.getString("institucion") != null){
+                    Usuario usuario = new Usuario();
+                    usuario.setPersona(new PersonaJuridica(rs.getString("institucion")));
+                    campania.setInstitucion(usuario);
+                }
+
                 return campania;
             }
             return null;
@@ -68,10 +75,12 @@ public class ReadCampaniaAsync extends AsyncTask<String,Void, Campania> {
 
     private String queryCampaniaWithid(int id) {
         return String.format("SELECT cam.*, " +
-                "p.nombre AS 'provincia', l.nombre AS 'localidad' " +
+                "p.nombre AS 'provincia', l.nombre AS 'localidad', per.nombre AS 'institucion' " +
                 "FROM `campanias` cam " +
                 "INNER JOIN `provincias` p ON p.id = cam.id_provincia " +
                 "INNER JOIN `localidades` l ON l.id = cam.id_localidad " +
+                "LEFT JOIN `usuarios` us ON us.id = cam.id_institucion " +
+                "LEFT JOIN `personas` per ON per.id = us.id_persona " +
                 "WHERE cam.id = %1$s", id);
     }
 }

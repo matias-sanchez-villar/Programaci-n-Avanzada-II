@@ -32,7 +32,8 @@ public class DetalleCampaniaActivity extends AppCompatActivity {
 
     private TextView txtIdResponse, txtNombreResponse, txtFechaResponse, txtFechaFinResponse,
             txtLocalidadResponse, txtProvinciaResponse,
-            txtDireccionResponse, txtCantDonantesResponse, txtCantDiasResponse,txtAlertaHistorialMedico;
+            txtDireccionResponse, txtCantDonantesResponse, txtCantDiasResponse,txtAlertaHistorialMedico,
+    txtInstitucionMedicaResponse;
     private Button btnVolver;
     private Button btnPostularse;
     private Button btnEliminarSolicitud;
@@ -82,6 +83,7 @@ public class DetalleCampaniaActivity extends AppCompatActivity {
         txtCantDonantesResponse = (TextView)findViewById(R.id.txtCantDonantesResponse);
         txtCantDiasResponse = (TextView)findViewById(R.id.txtCantDiasResponse);
         txtAlertaHistorialMedico = (TextView) findViewById(R.id.txtAlertaHistorialMedicoDetalleCampania);
+        txtInstitucionMedicaResponse = (TextView) findViewById(R.id.txtInstitucionResponseMedica);
         btnVolver = (Button)findViewById(R.id.btnVolverDetalleCampania);
         btnPostularse = (Button) findViewById(R.id.btnPostularseDetalleCampania);
         btnEliminarSolicitud = (Button) findViewById(R.id.btnBorrarDetalleCampania);
@@ -120,6 +122,11 @@ public class DetalleCampaniaActivity extends AppCompatActivity {
         txtCantDonantesResponse.setText(String.valueOf(campania.getCantDonantes()));
         txtCantDiasResponse.setText(String.valueOf(campania.getCantDias()));
 
+        if(campania.getInstitucion() != null){
+            txtInstitucionMedicaResponse.setText(campania.getInstitucion().getPersona().getNombre());
+            btnPostularse.setEnabled(false);
+        }
+
         if(this.campania.getUsuario().getId() == GlobalPreferences.getLoggedUserId(this)){
             btnPostularse.setVisibility(View.GONE);
         } else {
@@ -133,8 +140,16 @@ public class DetalleCampaniaActivity extends AppCompatActivity {
         Usuario usuarioPostulado = new Usuario(GlobalPreferences.getLoggedUserId(this));
         Postulacion postulacion = new Postulacion(date, Categoria.CAMPANIA, usuarioPostulado, this.campania);
 
-        if(_postulacionRepository.create(postulacion) != 0){
-            Toastable.toast(this, "Postulación exitosa");
+        if(GlobalPreferences.getLoggedTipoUsuario(this) == TipoUsuario.INSTITUCION){
+
+            _campaniaRepository.update(GlobalPreferences.getLoggedUserId(this), campania.getId());
+            Toastable.toast(this,"Institucion almacenada");
+
+        } else {
+
+            if(_postulacionRepository.create(postulacion) != 0){
+                Toastable.toast(this, "Postulación exitosa");
+            }
         }
 
         onBackPressed();
@@ -157,9 +172,14 @@ public class DetalleCampaniaActivity extends AppCompatActivity {
                 new HistorialMedico(new Usuario(GlobalPreferences.getLoggedUserId(this)))
         );
 
-        if(historial == null && GlobalPreferences.getLoggedTipoUsuario(this) != TipoUsuario.EMPRESA){
+        if(historial == null &&
+                (GlobalPreferences.getLoggedTipoUsuario(this) == TipoUsuario.DONANTE
+        || GlobalPreferences.getLoggedTipoUsuario(this) == TipoUsuario.SOLICITANTE))
+        {
             btnPostularse.setEnabled(false);
             txtAlertaHistorialMedico.setText("DEBE COMPLETAR HISTORIAL MEDICO PARA POSTULARSE");
+        } else if (campania.getInstitucion() != null){
+            txtAlertaHistorialMedico.setText("Esta campaña tiene asignada una institución médica");
         }
     }
 

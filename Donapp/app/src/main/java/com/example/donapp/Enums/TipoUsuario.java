@@ -8,7 +8,7 @@ public enum TipoUsuario {
 
     public static TipoUsuario getTipoUsuario(int tipoUsuarioInt){
         switch (tipoUsuarioInt){
-            case 0: { return SOLICITANTE; }
+            case 0: return SOLICITANTE;
             case 1: return DONANTE;
             case 2: return EMPRESA;
             case 3: return INSTITUCION;
