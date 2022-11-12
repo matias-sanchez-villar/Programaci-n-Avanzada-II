@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.donapp.Data.Localidad.LocalidadRepository;
 import com.example.donapp.Data.Provincia.ProvinciaRepository;
@@ -106,28 +107,65 @@ public class PersonaJuridicaActivity extends AppCompatActivity {
 
     public void goToUsuarioActivity(){
 
-        String nombre = nombreText.getText().toString();
-        String cuil = cuilText.getText().toString();
-        String direccion = direccionJuridica.getText().toString();
-        int telefono = Integer.parseInt(telefonoText.getText().toString());
-        String horarioInicio = horarioInicioText.getText().toString();
-        String horarioFin = horarioFinText.getText().toString();
+        if(validarCamposVacios() == true) {
+            String nombre = nombreText.getText().toString();
+            String cuil = cuilText.getText().toString();
+            String direccion = direccionJuridica.getText().toString();
+            int telefono = Integer.parseInt(telefonoText.getText().toString());
+            String horarioInicio = horarioInicioText.getText().toString();
+            String horarioFin = horarioFinText.getText().toString();
 
-        persona = new PersonaJuridica(
-                nombre,
-                telefono,
-                direccion,
-                provinciaSelected,
-                localidadSelected,
-                cuil,
-                horarioInicio,
-                horarioFin);
+            persona = new PersonaJuridica(
+                    nombre,
+                    telefono,
+                    direccion,
+                    provinciaSelected,
+                    localidadSelected,
+                    cuil,
+                    horarioInicio,
+                    horarioFin);
 
-        Intent usuarioActivity = new Intent(this, UsuarioActivity.class);
-        usuarioActivity.putExtra("persona", this.persona);
-        usuarioActivity.putExtra("isJuridica", this.persona.getJuridica());
-        usuarioActivity.putExtra("tipoUsuario", this.tipoUsuario);
-        startActivity(usuarioActivity);
+            Intent usuarioActivity = new Intent(this, UsuarioActivity.class);
+            usuarioActivity.putExtra("persona", this.persona);
+            usuarioActivity.putExtra("isJuridica", this.persona.getJuridica());
+            usuarioActivity.putExtra("tipoUsuario", this.tipoUsuario);
+            startActivity(usuarioActivity);
+        }
+        else{
+            Toast.makeText(
+                    getApplicationContext(),
+                    "Error!",
+                    Toast.LENGTH_LONG).show();
+        }
+    }
+
+    public boolean validarCamposVacios() {
+        boolean bandera= true;
+        if (nombreText.getText().length() == 0){
+            nombreText.setError("Campo obligatorio.");
+            bandera=false;
+        }
+        if (cuilText.getText().length() == 0){
+            cuilText.setError("Campo obligatorio.");
+            bandera=false;
+        }
+        if (direccionJuridica.getText().length() == 0){
+            direccionJuridica.setError("Campo obligatorio.");
+            bandera=false;
+        }
+        if (telefonoText.getText().length() == 0){
+            telefonoText.setError("Campo obligatorio.");
+            bandera=false;
+        }
+        if (horarioInicioText.getText().length() == 0){
+            horarioInicioText.setError("Campo obligatorio.");
+            bandera=false;
+        }
+        if (horarioFinText.getText().length() == 0){
+            horarioFinText.setError("Campo obligatorio.");
+            bandera=false;
+        }
+        return bandera;
     }
 
     public void getDBInfo(){

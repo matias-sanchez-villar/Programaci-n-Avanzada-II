@@ -55,7 +55,6 @@ public class UsuarioActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 registrar();
-                backToLoginActivity();
             }
         });
     }
@@ -83,7 +82,7 @@ public class UsuarioActivity extends AppCompatActivity {
         String confContrasenia = confContraseniaText.getText().toString();
         int response;
 
-        if(validarUsuario(nombreUsuario, contrasenia, confContrasenia)){
+        if(validarCamposVacios() == true){
             Usuario newUsuario = new Usuario(
                     nombreUsuario,
                     mail,
@@ -117,11 +116,31 @@ public class UsuarioActivity extends AppCompatActivity {
         }
     }
 
-    public boolean validarUsuario(
+    /*public boolean validarUsuario(
             String nombreUsuario,
             String contrasenia,
             String confContrasenia){
         return true;
+    }*/
+    public boolean validarCamposVacios() {
+        boolean bandera= true;
+        if (nombreUsuarioText.getText().length() == 0){
+            nombreUsuarioText.setError("Campo obligatorio.");
+            bandera=false;
+        }
+        if (mailUsuarioText.getText().length() == 0){
+            mailUsuarioText.setError("Campo obligatorio.");
+            bandera=false;
+        }
+        if (contraseniaText.getText().length() == 0){
+            contraseniaText.setError("Campo obligatorio.");
+            bandera=false;
+        }
+        if (confContraseniaText.getText().length() == 0){
+            confContraseniaText.setError("Campo obligatorio.");
+            bandera=false;
+        }
+        return bandera;
     }
 
     public void backToLoginActivity(){
