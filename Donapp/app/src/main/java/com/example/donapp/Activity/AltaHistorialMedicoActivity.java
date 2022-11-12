@@ -154,9 +154,23 @@ public class AltaHistorialMedicoActivity extends AppCompatActivity {
 
     public void setPropertiesForUpdate(HistorialMedico historialMedico){
         txtAltura.setText(historialMedico.getAltura().toString());
-        txtPeso.setText(historialMedico.getPeso());
-        txtFechaUltimaDonacion.setText(historialMedico.getUltimaDonacion().toString());
+        txtPeso.setText(String.valueOf(historialMedico.getPeso()));
+        txtFechaUltimaDonacion.setText(historialMedico.getAndroidFecha());
         fillCheckBox(examenSi, examenNo, historialMedico.isExamenSangre());
+        fillCheckBox(tatuajesSi,tatuajesNo,historialMedico.isTatuajes());
+        fillCheckBox(inyeccionSi,inyeccionNo,historialMedico.isVacunaAlergia());
+        fillCheckBox(revisionSi,revisionNo,historialMedico.isRevisionMedica());
+        fillCheckBox(dentalSi,dentalNo,historialMedico.isTratamientoDental());
+        fillCheckBox(endoscopiaSi,endoscopiaNo,historialMedico.isEndoscopia());
+        fillCheckBox(embarazosi,embarazoNo,historialMedico.isEmbarazo());
+        fillCheckBox(enfermedadCronicaSi,enfermedadCronicaNo,historialMedico.isEnfermedaCronica());
+        fillCheckBox(operacionSi,operacionNo,historialMedico.isOperacion());
+        fillCheckBox(viajeSi,viajeNo,historialMedico.isViaje());
+        fillCheckBox(anemiaSi,anemiaNo,historialMedico.isAnemia());
+        fillCheckBox(accidenteSi,accidenteNo,historialMedico.isAccidenteVascular());
+        fillCheckBox(medicamentosSi,medicamentosNo,historialMedico.isUsaMedicamentos());
+        fillCheckBox(hepatitisSi,hepatitisNo,historialMedico.isHepatitis());
+        spnTipoSangre.setAdapter(TipoSangre.getSpinnerAdapter(this));
     }
 
     public void setListeners(){

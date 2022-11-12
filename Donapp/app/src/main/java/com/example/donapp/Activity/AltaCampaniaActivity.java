@@ -112,16 +112,16 @@ public class AltaCampaniaActivity extends AppCompatActivity {
         checkTerminos = (CheckBox)findViewById(R.id.checkTerminosAltaCampania);
         btnGuardar = (Button)findViewById(R.id.btnGuardarAltaCampania);
         btnCancelarAltaCampania = (Button)findViewById(R.id.btnCancelarAltaCampania);
-        title = (TextView) findViewById(R.id.titleAltaCampania); //Ver el titulo
+        title = (TextView) findViewById(R.id.titleAltaCampania); //
 
     }
 
     public void setCampania(EstadoCampania estado) {
         if (campaniaForUpdate.isNew()) {
-            this.campaniaForUpdate.setEstado(estado);
             this.campaniaForUpdate.setUsuario(new Usuario(GlobalPreferences.getLoggedUserId(this)));
             this.campaniaForUpdate.setAutomaticCodigo();
         }
+        this.campaniaForUpdate.setEstado(estado);
         this.campaniaForUpdate.setNombreCampana(txtNombre.getText().toString());
         this.campaniaForUpdate.setFecha(DateUtil.convertToSqlDate(txtFecha.getText().toString()));
         this.campaniaForUpdate.setFechaFin(DateUtil.convertToSqlDate(txtFechaFin.getText().toString()));
@@ -202,11 +202,11 @@ public class AltaCampaniaActivity extends AppCompatActivity {
 
     private void fillComponents(Campania campania) {
         txtNombre.setText(campania.getNombreCampana());
-        txtFecha.setText(String.valueOf(campania.getFecha()));
-        txtFechaFin.setText(String.valueOf(campania.getFechaFin()));
+        txtFecha.setText(campania.getAndroidFecha());
+        txtFechaFin.setText(campania.getAndroidFechaFin());
         txtDireccion.setText(campania.getDireccion());
-        txtCantS.setText(campania.getCantDonantes());
-        txtCantDias.setText(campania.getCantDias());
+        txtCantS.setText(String.valueOf(campania.getCantDonantes()));
+        txtCantDias.setText(String.valueOf(campania.getCantDias()));
     }
 
     public void goToMisCampanias(){
@@ -218,6 +218,9 @@ public class AltaCampaniaActivity extends AppCompatActivity {
         setCampania(EstadoCampania.CANCELADA);
         if(campaniaRepository.update(campaniaForUpdate) != StatusResponse.FAIL){
             toast("Campaña cancelada");
+            Intent intent = new Intent(this, EmpresaActivity.class);
+            startActivity(intent);
+
         } else{
             toast("Error");
         }

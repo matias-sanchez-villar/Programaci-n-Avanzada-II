@@ -79,7 +79,11 @@ public class DataCampaniaAsync extends AsyncTask<String,Void, StatusResponse> {
             Class.forName(DataDB.driver);
             Connection con = DriverManager.getConnection(DataDB.urlMySQL, DataDB.user, DataDB.pass);
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery(TableDB.SelectAll(TableDB.CAMPANIA) + " WHERE `estado` = 1");
+            ResultSet rs = st.executeQuery(findByIntegerPropertie()
+                    ? queryCampaniaByIntegerPropertie(searcheablePropertie, integerPropertie)
+                    : findByStringPropertie()
+                    ? queryCampaniaLikeStringPropertie(searcheablePropertie, stringPropertie)
+                    : queryCampania());
 
             Campania campania;
             listCampania.clear();
@@ -122,7 +126,58 @@ public class DataCampaniaAsync extends AsyncTask<String,Void, StatusResponse> {
                 listCampania
         );
         this.lvCampania.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
     }
+
+    public String queryCampania(){
+        return "SELECT camp.* " +
+                "FROM `campanias` camp " +
+                "WHERE camp.estado = 1 ORDER BY camp.fecha";
+    }
+
+    public String queryCampaniaByIntegerPropertie(
+            String propertie,
+            int value){
+        return String.format("SELECT camp.* " +
+                "FROM `campanias` camp " +
+                "WHERE camp.%1$s = %2$s ORDER BY fecha", propertie, value);
+    }
+
+    public String queryCampaniaLikeStringPropertie(
+            String propertie,
+            String value){
+
+        if (propertie.equals("provincia")){
+
+            return String.format("SELECT camp.* " +
+                    "FROM `campanias` camp " +
+                    "INNER JOIN `provincias` prov ON prov.id = camp.id_provincia " +
+                    "WHERE prov.nombre LIKE '%%" + "%1$s" + "%%' AND camp.estado = 1 " +
+                    "ORDER BY camp.fecha", value);
+
+        } else if (propertie.equals("localidad")){
+
+            return String.format("SELECT camp.* " +
+                    "FROM `campanias` camp " +
+                    "INNER JOIN `localidades` loc ON loc.id = camp.id_localidad " +
+                    "WHERE loc.nombre LIKE '%%" + "%1$s" + "%%' AND camp.estado = 1 " +
+                    "ORDER BY camp.fecha", value);
+
+        } else if (propertie.equals("nombre")){
+            return String.format("SELECT camp.* " +
+                    "FROM `campanias` camp " +
+                    "WHERE camp.nombre LIKE '%%" + "%1$s" + "%%' " +
+                    "AND camp.estado = 1 " +
+                    "ORDER BY camp.fecha", value);
+        } else {
+            return String.format("SELECT camp.* " +
+                    "FROM `campanias` camp " +
+                    "WHERE camp.%1$s LIKE '%%" + "%2$s" + "%%' AND camp.estado = 1 " +
+                    "ORDER BY camp.fecha", propertie, value);
+        }
+    }
+
+
 
     public boolean findByIntegerPropertie(){
         return this.integerPropertie != -1 && this.searcheablePropertie != null;

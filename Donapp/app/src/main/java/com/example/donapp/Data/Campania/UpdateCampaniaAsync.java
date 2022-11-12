@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 
 import com.example.donapp.Database.DataDB;
 import com.example.donapp.Entity.Campania;
+import com.example.donapp.Enums.EstadoCampania;
 import com.example.donapp.Enums.StatusResponse;
 
 import java.sql.Connection;
@@ -33,13 +34,16 @@ public class UpdateCampaniaAsync extends AsyncTask<String, Void, StatusResponse>
             Connection con = DriverManager.getConnection(DataDB.urlMySQL, DataDB.user, DataDB.pass);
             PreparedStatement preparedStatement = con.prepareStatement(updateCampania(), Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, campania.getNombreCampana());
-            preparedStatement.setString(2, campania.getFecha().toString());
-            preparedStatement.setInt(3, campania.getLocalidad().getId());
-            preparedStatement.setInt(4, campania.getProvincia().getId());
-            preparedStatement.setString(5, campania.getDireccion());
-            preparedStatement.setInt(6, campania.getCantDonantes());
-            preparedStatement.setInt(7, campania.getCantDias());
-            preparedStatement.setInt(8, campania.getUsuario().getId()); //ver
+            preparedStatement.setDate(2, new Date(campania.getFecha().getTime()));
+            preparedStatement.setDate(3, new Date(campania.getFechaFin().getTime()));
+            preparedStatement.setInt(4, campania.getLocalidad().getId());
+            preparedStatement.setInt(5, campania.getProvincia().getId());
+            preparedStatement.setString(6, campania.getDireccion());
+            preparedStatement.setInt(7, campania.getCantDonantes());
+            preparedStatement.setInt(8, campania.getCantDias());
+            preparedStatement.setInt(9, campania.getUsuario().getId());
+            preparedStatement.setInt(10, campania.getEstadoInt());
+            preparedStatement.setInt(11, campania.getId());
 
 
             int row = preparedStatement.executeUpdate();
@@ -61,11 +65,14 @@ public class UpdateCampaniaAsync extends AsyncTask<String, Void, StatusResponse>
         return  "UPDATE `campanias` SET " +
                 "`nombre_campania`=?, " +
                 "`fecha`= ?," +
+                "`fecha_fin`= ?," +
                 "`id_localidad`= ?," +
                 "`id_provincia`= ?," +
                 "`direccion`= ?," +
-                "`cantidadDonantes`= ?," +
-                "`cantidadDias`= ?," +
-                "`id_persona`= ?";
+                "`cantidad_donantes`= ?," +
+                "`cantidad_dias`= ?," +
+                "`id_usuario`= ?," +
+                "`estado`= ?" +
+                " WHERE id = ?";
     }
 }

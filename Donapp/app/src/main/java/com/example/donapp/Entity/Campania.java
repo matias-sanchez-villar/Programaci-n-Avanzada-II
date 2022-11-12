@@ -5,6 +5,7 @@ import com.example.donapp.Enums.EstadoCampania;
 import com.example.donapp.Interfaces.IEstado;
 import com.example.donapp.Interfaces.IRegistroPostulable;
 import com.example.donapp.Util.CodigoGenerator;
+import com.example.donapp.Util.DateUtil;
 
 import java.util.Date;
 
@@ -95,6 +96,14 @@ public class Campania extends EntidadEstadoBase implements IRegistroPostulable {
     }
 
     public Date getFecha() {return fecha;}
+
+    public String getAndroidFecha(){
+        return DateUtil.convertToAndroidDate(fecha.toString());
+    }
+
+    public String getAndroidFechaFin(){
+        return DateUtil.convertToAndroidDate(fechaFin.toString());
+    }
 
     public void setFecha(Date fecha) {this.fecha = fecha;}
 
