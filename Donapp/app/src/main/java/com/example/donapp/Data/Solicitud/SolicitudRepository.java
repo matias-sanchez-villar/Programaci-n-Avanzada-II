@@ -65,6 +65,13 @@ public class SolicitudRepository extends BaseRepository<Solicitud> implements IC
         return this.selectAllAsync(thread);
     }
 
+    public StatusResponse selectAllForListViewByStringPropertie(ListView lv,
+                                                                String propertie,
+                                                                String value){
+        this.thread = new DataSolicitudAsync(context, lv, value, propertie);
+        return this.selectAllAsync(thread);
+    }
+
     @Override
     public Solicitud selectEntity(Solicitud entity) {
         this.entityThread = new ReadSolicitudAsync(entity.getId(), context);

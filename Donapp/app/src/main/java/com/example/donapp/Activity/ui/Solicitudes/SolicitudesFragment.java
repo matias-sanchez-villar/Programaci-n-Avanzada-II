@@ -2,6 +2,7 @@ package com.example.donapp.Activity.ui.Solicitudes;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,9 +22,12 @@ import com.example.donapp.Activity.DetalleSolicitudActivity;
 import com.example.donapp.Activity.MisSolicitudesActivity;
 import com.example.donapp.Data.Solicitud.SolicitudRepository;
 import com.example.donapp.Entity.Solicitud;
+import com.example.donapp.Enums.StatusResponse;
+import com.example.donapp.Util.Toastable;
 import com.example.donapp.databinding.FragmentSolicitudesBinding;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 
 public class SolicitudesFragment extends Fragment {
@@ -34,6 +38,7 @@ public class SolicitudesFragment extends Fragment {
     ListView listView;
     SolicitudRepository _solicitudRepository;
     ArrayList<String> searcheableProperties = new ArrayList<String>();
+    String searcheablePropertie;
     Spinner spnSearcheableProperties;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -66,11 +71,22 @@ public class SolicitudesFragment extends Fragment {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                return false;
+                return true;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
+                String searcheable = newText;
+                if(!searcheable.equals("") && !searcheablePropertie.equals("")){
+                  StatusResponse response = _solicitudRepository.selectAllForListViewByStringPropertie(
+                            listView, searcheablePropertie.toLowerCase(Locale.ROOT), searcheable);
+
+                  if(response == StatusResponse.FAIL){
+                      Toastable.toast(getActivity(), "Hubo un error al recuperar los datos");
+                  }
+                } else if(searcheable.equals("")){
+                    getDBInfo();
+                }
                 return false;
             }
         });
@@ -93,6 +109,18 @@ public class SolicitudesFragment extends Fragment {
                 goToMisSolicitudes();
             }
         });
+
+        spnSearcheableProperties.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                searcheablePropertie = (String) parent.getItemAtPosition(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
     public void getDBInfo(){
@@ -108,6 +136,7 @@ public class SolicitudesFragment extends Fragment {
         spnSearcheableProperties = (Spinner) binding.spnSearchSolicitud;
 
         // Propiedades buscables
+        searcheableProperties.add("");
         searcheableProperties.add("Codigo");
         searcheableProperties.add("Nombre");
         searcheableProperties.add("Criticidad");

@@ -9,14 +9,18 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.donapp.Data.Campania.CampaniaRepository;
+import com.example.donapp.Data.HistorialMedico.HistorialMedicoRepository;
 import com.example.donapp.Data.Postulacion.PostulacionRepository;
 import com.example.donapp.Data.Postulantes.PostulantesRepository;
 import com.example.donapp.Data.Solicitud.SolicitudRepository;
 import com.example.donapp.Entity.BancoSangre;
 import com.example.donapp.Entity.Campania;
+import com.example.donapp.Entity.GlobalPreferences;
+import com.example.donapp.Entity.HistorialMedico;
 import com.example.donapp.Entity.PersonaFisica;
 import com.example.donapp.Entity.Postulacion;
 import com.example.donapp.Entity.Solicitud;
+import com.example.donapp.Entity.Usuario;
 import com.example.donapp.Enums.Categoria;
 import com.example.donapp.Enums.EstadoPostulacion;
 import com.example.donapp.Enums.StatusResponse;
@@ -36,11 +40,13 @@ public class PostulanteActivity extends AppCompatActivity {
     TextView apellidoTxt;
     TextView dniTxt;
     Bundle bundle;
+    HistorialMedico historialMedico;
 
     SolicitudRepository _solicitudRepository = new SolicitudRepository(this);
     PostulantesRepository _postulantesRepository = new PostulantesRepository(this);
     PostulacionRepository _postulacionRepository = new PostulacionRepository(this);
     CampaniaRepository _campaniaRepository = new CampaniaRepository(this);
+    HistorialMedicoRepository _historialMedicoRepository = new HistorialMedicoRepository(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,11 +65,6 @@ public class PostulanteActivity extends AppCompatActivity {
         setListeners();
         fillProperties();
         getDBInfo();
-
-        // SI LA POSTULACION TIENE ESTADO CONFIRMADO ENTONCES NO MOSTRAMOS BOTON, USAR POSTULACIONES REPOSITORY O VER OPTIMIZACIÓN
-        // if(false){
-          //  btnConfirmarDonación.setVisibility(View.GONE);
-       // }
 
     }
 
@@ -129,6 +130,10 @@ public class PostulanteActivity extends AppCompatActivity {
             Toastable.toast(this, "Error al actualizar postulación");
         }
 
+        if(_historialMedicoRepository.updateLastDonacion(historialMedico) != StatusResponse.SUCCESS){
+            Toastable.toast(this, "Error al actualizar historial medico");
+        }
+
         Intent postulantesActivity = new Intent(this, DetallePostulantesActivity.class);
         postulantesActivity.putExtra("categoria", getActualCategoria().ordinal());
         postulantesActivity.putExtra("id_registro", getRegistroInt());
@@ -170,5 +175,8 @@ public class PostulanteActivity extends AppCompatActivity {
         if(postulacion.getEstado() == EstadoPostulacion.CONFIRMADO){
             btnConfirmarDonación.setVisibility(View.GONE);
         }
+
+
+        historialMedico = _historialMedicoRepository.selectEntityByPersonaId(postulante.getId());
     }
 }

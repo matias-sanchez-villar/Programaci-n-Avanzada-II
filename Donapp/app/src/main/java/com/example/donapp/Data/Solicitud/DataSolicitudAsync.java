@@ -153,10 +153,47 @@ public class DataSolicitudAsync extends AsyncTask<String, Void, StatusResponse> 
     public String querySolicitudWithCriticidadLikeStringPropertie(
             String propertie,
             String value){
-        return String.format("SELECT sol.*, c.descripcion AS 'descripcion', c.id AS 'id_criticidad' " +
-                "FROM `solicitudes` sol " +
-                "INNER JOIN `criticidad` c ON c.id = sol.id_criticidad " +
-                "WHERE sol.%1$s LIKE '%" + "'%2$s'" + "%' ORDER BY fecha", propertie, value);
+
+        if(propertie.equals("criticidad")){
+
+            return String.format("SELECT sol.*, c.descripcion AS 'descripcion', c.id AS 'id_criticidad' " +
+                    "FROM `solicitudes` sol " +
+                    "INNER JOIN `criticidad` c ON c.id = sol.id_criticidad " +
+                    "WHERE c.descripcion LIKE '%%" + "%1$s" + "%%' AND sol.estado = 1 " +
+                    "ORDER BY fecha", value);
+        } else if (propertie.equals("provincia")){
+
+            return String.format("SELECT sol.*, c.descripcion AS 'descripcion', c.id AS 'id_criticidad' " +
+                    "FROM `solicitudes` sol " +
+                    "INNER JOIN `criticidad` c ON c.id = sol.id_criticidad " +
+                    "INNER JOIN `provincias` prov ON prov.id = sol.id_provincia " +
+                    "WHERE prov.nombre LIKE '%%" + "%1$s" + "%%' AND sol.estado = 1 " +
+                    "ORDER BY fecha", value);
+
+        } else if (propertie.equals("localidad")){
+
+            return String.format("SELECT sol.*, c.descripcion AS 'descripcion', c.id AS 'id_criticidad' " +
+                    "FROM `solicitudes` sol " +
+                    "INNER JOIN `localidades` loc ON loc.id = sol.id_localidad " +
+                    "INNER JOIN `criticidad` c ON c.id = sol.id_criticidad " +
+                    "WHERE loc.nombre LIKE '%%" + "%1$s" + "%%' AND sol.estado = 1 " +
+                    "ORDER BY fecha", value);
+
+        } else if (propertie.equals("nombre")){
+            return String.format("SELECT sol.*, c.descripcion AS 'descripcion', c.id AS 'id_criticidad' " +
+                    "FROM `solicitudes` sol " +
+                    "INNER JOIN `criticidad` c ON c.id = sol.id_criticidad " +
+                    "WHERE sol.nombre LIKE '%%" + "%1$s" + "%%' " +
+                    "OR sol.apellido LIKE '%%" + "%1$s" + "%%' " +
+                    "AND sol.estado = 1 " +
+                    "ORDER BY fecha", value);
+        } else {
+            return String.format("SELECT sol.*, c.descripcion AS 'descripcion', c.id AS 'id_criticidad' " +
+                    "FROM `solicitudes` sol " +
+                    "INNER JOIN `criticidad` c ON c.id = sol.id_criticidad " +
+                    "WHERE sol.%1$s LIKE '%%" + "%2$s" + "%%' AND sol.estado = 1 " +
+                    "ORDER BY fecha", propertie, value);
+        }
     }
 
     public boolean findByIntegerPropertie(){

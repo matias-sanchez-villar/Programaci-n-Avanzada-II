@@ -15,7 +15,7 @@
         android:layout_marginTop="5dp"
         app:srcCompat="@drawable/ic_donador_2" />
     <TextView
-        android:id="@+id/tvListDonanteFragment"
+        android:id="@+id/tvListDonanteItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"

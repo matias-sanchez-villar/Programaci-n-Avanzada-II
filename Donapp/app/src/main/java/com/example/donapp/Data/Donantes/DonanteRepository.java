@@ -21,6 +21,7 @@ public class DonanteRepository extends BaseRepository<PersonaFisica> implements 
 
     @Override
     public StatusResponse selectAllForListView(ListView lv) {
-        return null;
+        this.mainThread = new DataDonanteAsync(context, lv);
+        return this.selectAllAsync(mainThread);
     }
 }

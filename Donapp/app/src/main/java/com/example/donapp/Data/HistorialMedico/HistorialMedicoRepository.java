@@ -1,6 +1,7 @@
 package com.example.donapp.Data.HistorialMedico;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.widget.ListView;
 import android.widget.Spinner;
 
@@ -54,5 +55,17 @@ public class HistorialMedicoRepository extends BaseRepository<HistorialMedico> i
     public HistorialMedico selectEntity(HistorialMedico entity) {
         this.selectEntityThread = new ReadHistorialMedicoAsync(context, entity.getUsuario().getId());
         return selectEntity(selectEntityThread);
+    }
+
+    public HistorialMedico selectEntityByPersonaId(int personaId) {
+        this.selectEntityThread = new ReadHistorialMedicoByPersonaAsync(context, personaId);
+        return selectEntity(selectEntityThread);
+    }
+
+    public StatusResponse updateLastDonacion(HistorialMedico entity){
+        this.mainThread = new UpdateHistorialMedicoByPostulacionAsync(
+                entity.getUsuario().getId(),
+                context);
+        return this.updateAsync(mainThread);
     }
 }

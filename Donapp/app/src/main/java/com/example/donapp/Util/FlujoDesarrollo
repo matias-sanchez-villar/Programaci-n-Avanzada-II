@@ -71,6 +71,7 @@ de una sola query y agregar un serializable de Usuario a UpdateUsuario
 28. Mejorar forma de putExtra(Solicitud) en Postulantes, se pasa mas de 2 veces el mismo objeto entre activities.
 29. mejorar logica de obtener la categoria en PostulanteActivity. Muchos objetos
 30. Ver mejor forma de optimizar la busqueda de persona en MisDatos. Se tuvieron que crear 2 repositories tal vez al pedo.
+31. Mejorar querySolicitudWithCriticidadLikeStringPropertie
 
 ** PENDIENTE **
 1. Validaciones en Persona y Usuario (Clase y formularios)
