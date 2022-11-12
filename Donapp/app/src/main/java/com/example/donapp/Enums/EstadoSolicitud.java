@@ -13,13 +13,15 @@ public enum EstadoSolicitud implements IEstado {
         return this == CANCELADA
                 ? CANCELADA.name()
                 : this == ACTIVA ? ACTIVA.name()
-                : ErrorConst.ESTADO_INVALIDO;
+                : COMPLETADA.name();
     }
 
     public static EstadoSolicitud getTipoEstadoSolicitud(int estado){
         return estado == CANCELADA.ordinal()
                 ? CANCELADA
-                : ACTIVA;
+                : estado == ACTIVA.ordinal()
+                ? ACTIVA
+                : COMPLETADA;
     }
 
     public static int getTipoEstadoToInt(IEstado estado){

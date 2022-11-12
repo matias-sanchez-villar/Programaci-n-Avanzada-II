@@ -68,7 +68,7 @@ public class Campania extends EntidadEstadoBase implements IRegistroPostulable {
     }
 
     public void setUsuario(Usuario usuario) {
-        usuario = usuario;
+        this.usuario = usuario;
     }
     public Localidad getLocalidad() {
         return localidad;
@@ -225,5 +225,14 @@ public class Campania extends EntidadEstadoBase implements IRegistroPostulable {
         if(this.cantDonantes == this.cantDonantesConfirmados){
             this.estado = EstadoCampania.COMPLETADA;
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Codigo: " + codigo + '\n' +
+                "Nombre: " + nombreCampania + '\n' +
+                "Fecha: " + fecha.toString() + '\n' +
+                "Fecha fin: " + fechaFin.toString() + '\n' +
+                "Donantes solicitados: " + cantDonantes + '\n';
     }
 }

@@ -122,18 +122,9 @@ public class CampaniasFragment extends Fragment {
         //
     }
 
-    public void goToMisCampanias(){
+    public void goToMisCampanias() {
         Intent misCampaniasIntent = new Intent(getActivity(), MisCampaniasActivity.class);
         startActivity(misCampaniasIntent);
     }
-
-
-
-
-
-
-
-
-
 
 }

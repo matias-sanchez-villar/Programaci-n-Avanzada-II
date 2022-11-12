@@ -88,4 +88,12 @@ public class BancoSangre extends EntidadBase implements IRegistroPostulable {
     public int getIdRegistro() {
         return this.id;
     }
+
+    @Override
+    public String toString() {
+        return "Hospital: " + hospital + '\n' +
+                "Direccion: " + direccion + '\n' +
+                "Provincia: " + provincia.getNombre() + '\n' +
+                "Localidad: " + localidad.getNombre() + '\n';
+    }
 }

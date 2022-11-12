@@ -50,10 +50,20 @@ public class EstadisticasFragment extends Fragment{
 
     public void instanceLayouts(){
         listCampania = campaniaRepository.selectEntityList(GlobalPreferences.getLoggedUserId(getActivity()));
-        txtCantCampania.setText(listCampania.size());
-        txtPromAsistencia.setText(promDonantes(listCampania));
-        txtCantMin.setText(listCampania.get(0).getCantDonantes());
-        txtCantMax.setText(listCampania.get(listCampania.size()-1).getCantDonantes());
+
+        if(listCampania != null) {
+            txtCantCampania.setText(listCampania.size());
+            txtPromAsistencia.setText(promDonantes(listCampania));
+            txtCantMin.setText(listCampania.get(0).getCantDonantes());
+            txtCantMax.setText(listCampania.get(listCampania.size()-1).getCantDonantes());
+        } else {
+            txtCantCampania.setText("0");
+            txtPromAsistencia.setText("0");
+            txtPromAsistencia.setText("0");
+            txtCantMin.setText("0");
+            txtCantMax.setText("0");
+        }
+
     }
 
     public int promDonantes(ArrayList<Campania> list){

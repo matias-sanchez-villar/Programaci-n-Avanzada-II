@@ -138,7 +138,7 @@ public class DataSolicitudAsync extends AsyncTask<String, Void, StatusResponse> 
         return "SELECT sol.*, c.descripcion AS 'descripcion', c.id AS 'id_criticidad' " +
                 "FROM `solicitudes` sol " +
                 "INNER JOIN `criticidad` c ON c.id = sol.id_criticidad " +
-                "WHERE sol.estado = 1";
+                "WHERE sol.estado = 1 ORDER BY sol.fecha";
     }
 
     public String querySolicitudWithCriticidadByIntegerPropertie(

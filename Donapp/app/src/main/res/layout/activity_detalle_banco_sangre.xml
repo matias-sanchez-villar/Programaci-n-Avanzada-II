@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.DetalleBancoSangre">
+    tools:context=".Activity.DetalleBancoSangreActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -153,7 +153,6 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
                 android:backgroundTint="#348708"
-                android:onClick="onClickBtnPostularse"
                 android:text="@string/bankBtnPostularse"
                 android:textSize="14sp"
                 app:rippleColor="#4CAF50" />

@@ -8,6 +8,7 @@ import com.example.donapp.Entity.Campania;
 import com.example.donapp.Enums.StatusResponse;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -34,17 +35,15 @@ public class CreateCampaniaAsync extends AsyncTask<String, Void, Integer> {
             PreparedStatement preparedStatement = con.prepareStatement(insertCampania(), Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, campania.getCodigo());
             preparedStatement.setString(2, campania.getNombreCampana());
-            preparedStatement.setString(3, campania.getFecha().toString());
-            preparedStatement.setString(4, campania.getFechaFin().toString());
+            preparedStatement.setDate(3, new Date(campania.getFecha().getTime()));
+            preparedStatement.setDate(4, new Date(campania.getFechaFin().getTime()));
             preparedStatement.setInt(5, campania.getLocalidad().getId());
             preparedStatement.setInt(6, campania.getProvincia().getId());
             preparedStatement.setString(7, campania.getDireccion());
             preparedStatement.setInt(8, campania.getCantDonantes());
-            preparedStatement.setInt(9, 0);
-            preparedStatement.setInt(10, campania.getCantDias());
-            preparedStatement.setInt(11, campania.getInstitucion().getId());
-            preparedStatement.setInt(12, campania.getUsuario().getId()); //ver
-            preparedStatement.setInt(13, campania.getEstadoInt());
+            preparedStatement.setInt(9, campania.getCantDias());
+            preparedStatement.setInt(10, campania.getUsuario().getId());
+            preparedStatement.setInt(11, campania.getEstadoInt());
 
             preparedStatement.executeUpdate();
 
@@ -63,7 +62,6 @@ public class CreateCampaniaAsync extends AsyncTask<String, Void, Integer> {
         
     }
 
-    // sin chequear
     private String insertCampania() {
         return  "INSERT INTO `campanias`(`codigo`, " +
                 "`nombre_campania`, " +
@@ -72,11 +70,9 @@ public class CreateCampaniaAsync extends AsyncTask<String, Void, Integer> {
                 "`id_localidad`, " +
                 "`id_provincia`, " +
                 "`direccion`, " +
-                "`cantidadDonantes`, " +
-                "`cantidad_donantes_confirmados`, " +
-                "`cantidadDias`, " +
-                "`id_institucion`, " +
+                "`cantidad_donantes`, " +
+                "`cantidad_dias`, " +
                 "`id_usuario`, " +
-                "`estado`) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                "`estado`) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     }
 }

@@ -57,7 +57,7 @@ public class UpdateUsuarioAsync extends AsyncTask<String, Void, StatusResponse> 
         return "UPDATE usuarios SET " +
                 "nombre_usuario= ?, " +
                 "email= ?, " +
-                "password= ?, " +
+                "password= ? " +
                 "WHERE id = ?";
     }
 

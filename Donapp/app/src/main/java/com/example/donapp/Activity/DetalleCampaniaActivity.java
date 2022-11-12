@@ -53,7 +53,7 @@ public class DetalleCampaniaActivity extends AppCompatActivity {
 
         bundle = getIntent().getExtras();
 
-        int id = bundle.getInt("solicitud_id", 0);
+        int id = bundle.getInt("campania_id", 0);
 
         if(id != 0){
             this.campania = _campaniaRepository.selectEntity(new Campania(id));

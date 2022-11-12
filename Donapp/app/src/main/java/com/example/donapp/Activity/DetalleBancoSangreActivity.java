@@ -11,34 +11,49 @@ import android.widget.Toast;
 import com.example.donapp.Data.BancoSangre.BancoSangreRepository;
 import com.example.donapp.Data.BancoSangre.DataBancoSangreAsync;
 import com.example.donapp.Data.BancoSangre.ReadBancoSangreAsync;
+import com.example.donapp.Data.Postulacion.PostulacionRepository;
 import com.example.donapp.Entity.BancoSangre;
 import com.example.donapp.Entity.GlobalPreferences;
+import com.example.donapp.Entity.Postulacion;
 import com.example.donapp.Entity.Solicitud;
+import com.example.donapp.Entity.Usuario;
+import com.example.donapp.Enums.Categoria;
 import com.example.donapp.R;
+import com.example.donapp.Util.DateUtil;
+import com.example.donapp.Util.Toastable;
 
-public class DetalleBancoSangre extends AppCompatActivity {
+import java.util.Date;
+
+public class DetalleBancoSangreActivity extends AppCompatActivity {
 
     TextView txtHospital, txtProvincia, txtLocalidad, txtDireccion;
     Button btnPostularse;
     BancoSangreRepository BancoSangreRepository;
+    PostulacionRepository _postulacionRepository;
     BancoSangre bancoSangre;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle_banco_sangre);
+        _postulacionRepository = new PostulacionRepository(this);
 
         fillProperties();
         setProperties();
+        setListeners();
     }
 
-    public void onClickBtnPostularse(View view){
-        int idUsuario = GlobalPreferences.getLoggedUserId(this);
-        int idBancoSangre = idBancoSangre();
+    public void onClickBtnPostularse(){
 
+        Date date = DateUtil.getActualDate();
+        Usuario usuarioPostulado = new Usuario(GlobalPreferences.getLoggedUserId(this));
+        Postulacion postulacion = new Postulacion(date, Categoria.BANCO, usuarioPostulado, this.bancoSangre);
 
+        if(_postulacionRepository.create(postulacion) != 0){
+            Toastable.toast(this, "Postulación exitosa");
+        }
 
-        toast("postulación realizada");
+        onBackPressed();
     }
 
     private void fillProperties() {
@@ -66,5 +81,14 @@ public class DetalleBancoSangre extends AppCompatActivity {
 
     public void toast(String txt) {
         Toast.makeText(this, txt, Toast.LENGTH_SHORT).show();}
+
+    public void setListeners(){
+        btnPostularse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickBtnPostularse();
+            }
+        });
+    }
 
 }

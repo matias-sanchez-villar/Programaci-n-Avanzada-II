@@ -17,6 +17,15 @@
         android:theme="@style/Theme.Donapp"
         tools:targetApi="31">
         <activity
+            android:name=".Activity.MisCampaniasActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".Activity.AltaCampaniaActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".Activity.DetalleCampaniaActivity"
+            android:exported="false"/>
+        <activity
             android:name=".Activity.EditarMisDatosActivity"
             android:exported="false" />
             <activity
@@ -29,7 +38,7 @@
             android:name=".Activity.DetallePostulantesActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.DetalleBancoSangre"
+            android:name=".Activity.DetalleBancoSangreActivity"
             android:exported="false" />
         <activity
             android:name=".Activity.MisSolicitudesActivity"

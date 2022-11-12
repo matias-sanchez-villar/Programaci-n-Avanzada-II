@@ -1,183 +1,199 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".Activity.AltaCampaniaActivity">
 
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/titleAltaCampania"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:baselineAligned="false"
-            android:text="@string/title_Altacampana"
-            android:textAlignment="center"
-            android:textColor="#0C0C0B"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            tools:layout_conversion_absoluteHeight="32dp"
-            tools:layout_conversion_absoluteWidth="200dp"
-            tools:layout_editor_absoluteX="41dp"
-            tools:layout_editor_absoluteY="0dp" />
-    </LinearLayout>
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="20dp" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp" />
-
-        <EditText
-            android:id="@+id/txtNombreAltaCampania"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/NombreCampana"
-            android:textSize="16sp" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp" />
-
-        <EditText
-            android:id="@+id/txtFechaAltaCampania"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clickable="false"
-            android:drawableEnd="@android:drawable/ic_menu_my_calendar"
-            android:ems="10"
-            android:hint="@string/Fecha"
-            android:inputType="date"
-            android:textSize="16sp" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp" />
-
-        <EditText
-            android:id="@+id/txtFechaFinAltaCampania"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clickable="false"
-            android:drawableEnd="@android:drawable/ic_menu_my_calendar"
-            android:ems="10"
-            android:hint="@string/FechaFin"
-            android:inputType="date"
-            android:textSize="16sp" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp" />
-
-
-        <EditText
-            android:id="@+id/txtDireccionAltaCampania"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Direccion"
-            android:textSize="16sp" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp" />
-
-        <Spinner
-            android:id="@+id/spnLocalidadAltaCampania"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:entries="@array/arrayLocalidades" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp" />
-
-        <Spinner
-            android:id="@+id/spnProvinciaAltaCampania"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:entries="@array/arrayProvincia" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp" />
-
-        <EditText
-            android:id="@+id/txtCantSAltaCampania"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/CantDonantes"
-            android:inputType="number"
-            android:textSize="16sp" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp" />
-
-        <EditText
-            android:id="@+id/txtCantDiasAltaCampania"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:hint="@string/CantDias"
-            android:inputType="number"
-            android:textSize="16sp" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp" />
-
-    </LinearLayout>
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="1dp"
+        tools:ignore="MissingConstraints"
+        android:padding="15dp">
 
-        <CheckBox
-            android:id="@+id/checkTerminosAltaCampania"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/Check"
-            android:textSize="12sp" />
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/btnGuardarAltaCampania"
-            style="@style/Widget.Material3.Button"
-            android:layout_width="248dp"
+            <TextView
+                android:id="@+id/titleAltaCampania"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="false"
+                android:text="@string/title_Altacampana"
+                android:textAlignment="center"
+                android:textColor="#0C0C0B"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                tools:layout_conversion_absoluteHeight="32dp"
+                tools:layout_conversion_absoluteWidth="200dp"
+                tools:layout_editor_absoluteX="41dp"
+                tools:layout_editor_absoluteY="0dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#348708"
-            android:text="@string/BotonGuardar"
-            android:textSize="14sp"
-            app:rippleColor="#4CAF50" />
-        <Button
-            android:id="@+id/btnCancelarAltaCampania"
-            style="@style/Widget.Material3.Button"
-            android:layout_width="248dp"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#348708"
-            android:padding="15dp"
-            android:text="@string/BotonCancelar"
-            android:textSize="14sp"
-            app:rippleColor="#4CAF50" />
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp" />
+
+                <EditText
+                    android:id="@+id/txtNombreAltaCampania"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/NombreCampana"
+                    android:textSize="16sp" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp" />
+
+                <EditText
+                    android:id="@+id/txtFechaAltaCampania"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:drawableEnd="@android:drawable/ic_menu_my_calendar"
+                    android:ems="10"
+                    android:hint="@string/Fecha"
+                    android:inputType="date"
+                    android:textSize="16sp" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp" />
+
+                <EditText
+                    android:id="@+id/txtFechaFinAltaCampania"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:drawableEnd="@android:drawable/ic_menu_my_calendar"
+                    android:ems="10"
+                    android:hint="@string/FechaFin"
+                    android:inputType="date"
+                    android:textSize="16sp" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp" />
+
+
+                <EditText
+                    android:id="@+id/txtDireccionAltaCampania"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Direccion"
+                    android:textSize="16sp" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp" />
+
+                <Spinner
+                    android:id="@+id/spnProvinciaAltaCampania"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:dropDownWidth="match_parent"
+                    android:padding="25dp"
+                    android:scaleType="center"/>
+
+                <Spinner
+                    android:id="@+id/spnLocalidadAltaCampania"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:dropDownWidth="match_parent"
+                    android:padding="25dp"
+                    android:scaleType="center"/>
+
+
+                <EditText
+                    android:id="@+id/txtCantDonantesAltaCampania"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/CantDonantes"
+                    android:inputType="number"
+                    android:textSize="16sp" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp" />
+
+                <EditText
+                    android:id="@+id/txtCantDiasAltaCampania"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="@string/CantDias"
+                    android:inputType="number"
+                    android:textSize="16sp" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <CheckBox
+                    android:id="@+id/checkTerminosAltaCampania"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Check"
+                    android:textSize="12sp" />
+
+                <Button
+                    android:id="@+id/btnGuardarAltaCampania"
+                    style="@style/Widget.Material3.Button"
+                    android:layout_width="248dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#348708"
+                    android:text="@string/BotonGuardar"
+                    android:textSize="14sp"
+                    app:rippleColor="#4CAF50" />
+                <Button
+                    android:id="@+id/btnCancelarAltaCampania"
+                    style="@style/Widget.Material3.Button"
+                    android:layout_width="248dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#348708"
+                    android:padding="15dp"
+                    android:text="@string/BotonCancelar"
+                    android:textSize="14sp"
+                    app:rippleColor="#4CAF50" />
+            </LinearLayout>
+
+        </LinearLayout>
     </LinearLayout>
 
+</ScrollView>
 
-</LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

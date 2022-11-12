@@ -13,6 +13,7 @@ import com.example.donapp.Entity.GlobalPreferences;
 import com.example.donapp.Entity.Localidad;
 import com.example.donapp.Entity.Provincia;
 import com.example.donapp.Enums.StatusResponse;
+import com.example.donapp.R;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -56,6 +57,7 @@ public class DataBancoSangreAsync extends AsyncTask<String, Void, StatusResponse
                 bancoSangre = new BancoSangre();
                 bancoSangre.setId(rs.getInt("id"));
                 bancoSangre.setHospital(rs.getString("hospital"));
+                bancoSangre.setDireccion(rs.getString("direccion"));
                 bancoSangre.setProvincia(new Provincia(
                         rs.getInt("id_provincia"),
                         rs.getString("provincia")
@@ -76,19 +78,17 @@ public class DataBancoSangreAsync extends AsyncTask<String, Void, StatusResponse
     protected void onPostExecute(StatusResponse response) {
         ArrayAdapter<BancoSangre> adapter = new ArrayAdapter<BancoSangre>(
                 this.context,
-                android.R.layout.simple_spinner_item,
+                R.layout.banco_sangre_item,
+                R.id.tvListBancoSangre,
                 listBancoSangre
         );
-        if(spnBancoSangre != null){
-            spnBancoSangre.setAdapter(adapter);
-            spnBancoSangre.setPrompt("PROVINCIAS");
-        } else {
+
             this.LVBancoSangre.setAdapter(adapter);
-        }
+            adapter.notifyDataSetChanged();
     }
 
     public String queryString(){
-        return String.format("SELECT bs.id, bs.hospital, bs.id_provincia, p.nombre as provincia, l.nombre as localidad " +
+        return String.format("SELECT bs.id, bs.hospital, bs.direccion as direccion, bs.id_provincia, p.nombre as provincia, l.nombre as localidad " +
                 "FROM %1$s bs " +
                 "INNER JOIN provincias p on p.id = bs.id_provincia " +
                 "INNER JOIN localidades l on l.id = bs.id_localidad ", TableDB.BANCOS_SANGRE);

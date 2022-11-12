@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -53,7 +54,8 @@ public class AltaCampaniaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alta_campania);
         bundle = getIntent().getExtras();
-        campaniaForUpdate = (Campania) bundle.getSerializable("solicitudUpdate");
+
+        campaniaForUpdate = (Campania) bundle.getSerializable("campaniaUpdate");
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -103,14 +105,14 @@ public class AltaCampaniaActivity extends AppCompatActivity {
         txtFecha = (EditText)findViewById(R.id.txtFechaAltaCampania);
         txtFechaFin = (EditText)findViewById(R.id.txtFechaFinAltaCampania);
         txtDireccion = (EditText)findViewById(R.id.txtDireccionAltaCampania);
-        txtCantS = (EditText)findViewById(R.id.txtCantDiasAltaCampania);
         spnLocalidad = (Spinner)findViewById(R.id.spnLocalidadAltaCampania);
         spnProvincia = (Spinner)findViewById(R.id.spnProvinciaAltaCampania);
+        txtCantS = (EditText)findViewById(R.id.txtCantDonantesAltaCampania);
         txtCantDias = (EditText)findViewById((R.id.txtCantDiasAltaCampania));
         checkTerminos = (CheckBox)findViewById(R.id.checkTerminosAltaCampania);
         btnGuardar = (Button)findViewById(R.id.btnGuardarAltaCampania);
         btnCancelarAltaCampania = (Button)findViewById(R.id.btnCancelarAltaCampania);
-        title = (TextView) findViewById(R.id.altaSolicitudTitle); //Ver el titulo
+        title = (TextView) findViewById(R.id.titleAltaCampania); //Ver el titulo
 
     }
 
@@ -118,6 +120,7 @@ public class AltaCampaniaActivity extends AppCompatActivity {
         if (campaniaForUpdate.isNew()) {
             this.campaniaForUpdate.setEstado(estado);
             this.campaniaForUpdate.setUsuario(new Usuario(GlobalPreferences.getLoggedUserId(this)));
+            this.campaniaForUpdate.setAutomaticCodigo();
         }
         this.campaniaForUpdate.setNombreCampana(txtNombre.getText().toString());
         this.campaniaForUpdate.setFecha(DateUtil.convertToSqlDate(txtFecha.getText().toString()));
@@ -125,11 +128,14 @@ public class AltaCampaniaActivity extends AppCompatActivity {
         this.campaniaForUpdate.setProvincia(new Provincia(provinciaSelected.getId()));
         this.campaniaForUpdate.setLocalidad(new Localidad(localidadSelected.getId()));
         this.campaniaForUpdate.setDireccion(txtDireccion.getText().toString());
-        this.campaniaForUpdate.setCantDonantesConfirmados(Integer.parseInt(txtCantS.getText().toString()));
         this.campaniaForUpdate.setCantDias(Integer.parseInt(txtCantDias.getText().toString()));
+        this.campaniaForUpdate.setCantDonantes(Integer.parseInt(txtCantS.getText().toString()));
+
     }
 
     public void setListeners() {
+        btnGuardar.setEnabled(false);
+
         spnProvincia.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -168,9 +174,16 @@ public class AltaCampaniaActivity extends AppCompatActivity {
                 cancelarCampania();
             }
         });
+
+        checkTerminos.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    btnGuardar.setEnabled(true);
+                }
+            }
+        });
     }
-
-
 
 
     public void getDBInfo(){

@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.donapp.Activity.DetalleBancoSangre;
+import com.example.donapp.Activity.DetalleBancoSangreActivity;
 import com.example.donapp.Data.BancoSangre.BancoSangreRepository;
 import com.example.donapp.Entity.BancoSangre;
 import com.example.donapp.databinding.FragmentBancosDeSangreBinding;
@@ -48,7 +48,7 @@ public class BancosDeSangreFragment extends Fragment{
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 BancoSangre bancoSangre = (BancoSangre) parent.getItemAtPosition(position);
-                Intent detalleIntent = new Intent(getActivity(), DetalleBancoSangre.class);
+                Intent detalleIntent = new Intent(getActivity(), DetalleBancoSangreActivity.class);
                 detalleIntent.putExtra("bancoSangre_id", bancoSangre.getId());
                 startActivity(detalleIntent);
             }
