@@ -13,6 +13,8 @@ import com.example.donapp.Entity.Usuario;
 import com.example.donapp.Enums.StatusResponse;
 import com.example.donapp.Interfaces.ICRUDRepository;
 
+import java.util.ArrayList;
+
 public class CampaniaRepository extends BaseRepository<Campania> implements ICRUDRepository<Campania> {
     private AsyncTask<String, Void, StatusResponse> thread;
     private AsyncTask<String, Void, Integer> createThread;
@@ -22,7 +24,6 @@ public class CampaniaRepository extends BaseRepository<Campania> implements ICRU
     public CampaniaRepository(Context context){
         this.context = context;
     }
-
 
     @Override
     public Integer create(Campania entity) {
@@ -59,6 +60,7 @@ public class CampaniaRepository extends BaseRepository<Campania> implements ICRU
         this.thread = new DataCampaniaAsync(lv, context);
         return this.selectAllAsync(thread);
     }
+
     public StatusResponse selectAllForListViewByIntegerPropertie(
             ListView lv,
             String propertie,
@@ -69,8 +71,15 @@ public class CampaniaRepository extends BaseRepository<Campania> implements ICRU
         return this.selectAllAsync(thread);
     }
 
+
+    public ArrayList<Campania> selectEntityList(int id) {
+        this.listEntityThread  = new ReadCampaniaUsuarioJuridicioAsync(id, context);
+        return this.selectEntityListAsync(listEntityThread);
+    }
+
     @Override
     public Campania selectEntity(Campania entity)  {
+        this.entityThread = new ReadCampaniaAsync(entity.getId(), context);
         return this.selectEntity(entityThread);
     }
     /* Creo que hize cualquier cosa "La idea era validar fecha y Zona(IdLocalidad)

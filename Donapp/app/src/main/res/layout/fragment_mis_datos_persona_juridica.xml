@@ -7,7 +7,12 @@
     android:orientation="vertical"
     tools:context=".Activity.ui.MisDatos.MisDatosPersonaJuridicaFragment">
 
-    <LinearLayout
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -300,5 +305,7 @@
         </LinearLayout>
 
     </LinearLayout>
+
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

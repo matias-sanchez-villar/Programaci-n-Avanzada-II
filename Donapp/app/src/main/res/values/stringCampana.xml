@@ -10,9 +10,10 @@
     <string name="Out_AltaCampana">Cerrar Sesion</string>
     <string name="NombreCampana">Nombre de la campaña</string>
     <string name="Fecha">Fecha: dd/mm/aaaa</string>
+    <string name="FechaFin">Fecha Fin: dd/mm/aaaa</string>
     <string name="Localidad">Localidad</string>
     <string name="Provincia">Provincia</string>
-    <string name="CantSolitantes">Cantidad de solicitantes</string>
+    <string name="CantDonantes">Cantidad de Donantes</string>
     <string name="CantDias">Cant de Dias</string>
     <string name="Check">Acepto terminos y condiciones</string>
     <string name="BotonGuardar">Guardar</string>
@@ -50,10 +51,11 @@
     <string name="id">ID:</string>
     <string name="Empresa">Empresa:</string>
     <string name="FechaDCampaña">Fecha:</string>
+    <string name="FechaFinDCampaña">Fecha Fin:</string>
     <string name="LocalidadDetalle">Localidad:</string>
     <string name="ProvinciaDetalle">Provincia:</string>
     <string name="DireccionDetalle">Direccion:</string>
-    <string name="CantSolitantesDetalle">Cant de solicitantes:</string>
+    <string name="CantDonantesDetalle">Cant de Donantes:</string>
     <string name="CantDiasDetalle">Cant Dias:</string>
     <string name="BotonVolver">Volver</string>
 

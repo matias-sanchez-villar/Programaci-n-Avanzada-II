@@ -37,7 +37,7 @@ public class UpdateCampaniaAsync extends AsyncTask<String, Void, StatusResponse>
             preparedStatement.setInt(3, campania.getLocalidad().getId());
             preparedStatement.setInt(4, campania.getProvincia().getId());
             preparedStatement.setString(5, campania.getDireccion());
-            preparedStatement.setInt(6, campania.getCantSolicitante());
+            preparedStatement.setInt(6, campania.getCantDonantes());
             preparedStatement.setInt(7, campania.getCantDias());
             preparedStatement.setInt(8, campania.getUsuario().getId()); //ver
 

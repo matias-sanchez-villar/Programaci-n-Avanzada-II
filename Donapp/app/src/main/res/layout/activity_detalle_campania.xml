@@ -125,6 +125,30 @@
                 android:padding="10dp">
 
                 <TextView
+                    android:id="@+id/txtFechaFin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/FechaFinDCampaña"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/txtFechaFinResponse"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="16sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
                     android:id="@+id/txtLocalidad"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -197,20 +221,37 @@
                 android:padding="10dp">
 
                 <TextView
-                    android:id="@+id/txtCantSolicitantes"
+                    android:id="@+id/txtCantDonantes"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/CantSolitantesDetalle"
+                    android:text="@string/CantDonantesDetalle"
                     android:textSize="16sp"
                     android:textStyle="bold"/>
 
                 <TextView
-                    android:id="@+id/txtCantSolicitantesResponse"
+                    android:id="@+id/txtCantDonantesResponse"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textSize="16sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+            <TextView
+                android:id="@+id/txtAlertaHistorialMedicoDetalleSolicitud"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text=""
+                android:textSize="16sp"
+                android:textStyle="bold"/>
 
             </LinearLayout>
 
@@ -239,13 +280,23 @@
             </LinearLayout>
 
             <Button
+                android:id="@+id/btnPostularseDetalleSolicitud"
+                style="@style/Widget.Material3.Button"
+                android:layout_width="248dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:backgroundTint="#348708"
+                android:text="Postularse"
+                android:textSize="14sp"
+                app:rippleColor="#4CAF50" />
+
+            <Button
                 android:id="@+id/btnVolver"
                 style="@style/Widget.Material3.Button"
                 android:layout_width="248dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
                 android:backgroundTint="#348708"
-                android:onClick="onClickBtnVolver"
                 android:text="@string/BotonVolver"
                 android:textSize="14sp"
                 app:rippleColor="#4CAF50" />

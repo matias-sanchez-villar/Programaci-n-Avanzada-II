@@ -84,7 +84,7 @@ public class AltaSolicitudActivity extends AppCompatActivity {
 
 
     public void onClickBtnGuardar(){
-        // if (validateData()) {
+         if (validarCamposVacios() == true) {
             setSolicitud(EstadoSolicitud.ACTIVA);
             int response;
             if(solicitudForUpdate.isNew()){
@@ -97,7 +97,10 @@ public class AltaSolicitudActivity extends AppCompatActivity {
                 } else toast("Error");
             }
             goToMisSolicitudes();
-       // }
+        }
+         else{
+             toast("Verifique Llenar todos los campos!");
+         }
     }
 
     public void fillProperties(){
@@ -286,6 +289,31 @@ public class AltaSolicitudActivity extends AppCompatActivity {
         } else{
             toast("Error");
         }
+    }
+
+    public boolean validarCamposVacios() {
+        boolean bandera= true;
+        if (txtNombre.getText().length() == 0){
+            txtNombre.setError("El Nombre es obligatorio.");
+            bandera=false;
+        }
+        if (txtApellido.getText().length() == 0){
+            txtApellido.setError("El Apellido es obligatorio.");
+            bandera=false;
+        }
+        if (txtFecha.getText().length()==0){
+            txtFecha.setError("La fecha es obligatoria.");
+            bandera=false;
+        }
+        if (txtDireccion.getText().length() == 0){
+            txtDireccion.setError("La Dirección es obligatoria.");
+            bandera=false;
+        }
+        if (txtCantDonante.getText().length()==0){
+            txtCantDonante.setError("Indique una cantidad por favor.");
+            bandera=false;
+        }
+        return  bandera;
     }
 
     public void toast(String txt) {Toast.makeText(this, txt, Toast.LENGTH_SHORT).show();}

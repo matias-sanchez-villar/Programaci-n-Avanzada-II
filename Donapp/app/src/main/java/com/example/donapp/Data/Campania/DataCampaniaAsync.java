@@ -89,13 +89,16 @@ public class DataCampaniaAsync extends AsyncTask<String,Void, StatusResponse> {
 
                 campania = new Campania();
                 campania.setId(rs.getInt("id"));
+                campania.setCodigo(rs.getString("codigo"));
                 campania.setUsuario(new Usuario(rs.getInt("id_usuario")));
                 campania.setNombreCampana(rs.getString("nombre_campania"));
                 campania.setFecha(rs.getDate("fecha"));
+                campania.setFechaFin(rs.getDate("fecha"));
                 campania.setLocalidad(new Localidad(rs.getInt("id_localidad")));
                 campania.setProvincia(new Provincia(rs.getInt("id_provincia")));
                 campania.setDireccion(rs.getString("direccion"));
-                campania.setCantSolicitante(rs.getInt("cantidadSolicitantes"));
+                campania.setCantDonantes(rs.getInt("cantidadSolicitantes"));
+                campania.setCantDonantesConfirmados(rs.getInt("cant_donantes_confirmados"));
                 campania.setCantDias(rs.getInt("cantidadDias"));
                 campania.setEstado(EstadoCampania.getTipoEstadoCampania(rs.getInt("estado")));
 
