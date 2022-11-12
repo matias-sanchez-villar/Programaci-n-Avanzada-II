@@ -22,6 +22,7 @@ public class InstitucionMedicaRepository extends BaseRepository<PersonaJuridica>
 
     @Override
     public StatusResponse selectAllForListView(ListView lv) {
-        return null;
+        this.mainThread = new DataInstitucionMedicaAsync(lv, context);
+        return this.selectAllAsync(mainThread);
     }
 }

@@ -7,6 +7,7 @@ import android.widget.ListView;
 
 import com.example.donapp.Database.DataDB;
 import com.example.donapp.Database.TableDB;
+import com.example.donapp.Entity.Localidad;
 import com.example.donapp.Entity.Persona;
 import com.example.donapp.Entity.PersonaJuridica;
 import com.example.donapp.Entity.Provincia;
@@ -45,8 +46,15 @@ public class DataInstitucionMedicaAsync extends AsyncTask<String, Void, StatusRe
                 institucion = new PersonaJuridica();
                 institucion.setId(rs.getInt("id"));
                 institucion.setNombre(rs.getString("nombre"));
+                institucion.setTelefono(rs.getInt("telefono"));
+                institucion.setDireccion(rs.getString("direccion"));
+                institucion.setProvincia(new Provincia(rs.getString("provincia")));
+                institucion.setLocalidad(new Localidad(rs.getString("localidad")));
+                institucion.setCuil(rs.getString("cuil"));
+                institucion.setHorarioInicio(rs.getString("horario_inicio"));
+                institucion.setHorarioFin(rs.getString("horario_fin"));
 
-                // listProvincia.add(provincia);
+                institucionesList.add(institucion);
             }
             return StatusResponse.SUCCESS;
         }
@@ -70,9 +78,11 @@ public class DataInstitucionMedicaAsync extends AsyncTask<String, Void, StatusRe
     }
 
     public String queryJuridicasWithInstituciones(){
-        return "SELECT per.* " +
-                "FROM personas per" +
-                "INNER JOIN usuarios user ON user.id_persona = per.id " +
+        return "SELECT per.*, prov.nombre AS 'provincia', loc.nombre AS 'localidad' " +
+                "FROM `personas` per " +
+                "INNER JOIN `usuarios` user ON user.id_persona = per.id " +
+                "INNER JOIN `provincias` prov ON prov.id = per.id_provincia " +
+                "INNER JOIN `localidades` loc ON loc.id = per.id_localidad " +
                 "WHERE user.tipo_usuario = 3";
     }
 }

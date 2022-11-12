@@ -81,4 +81,14 @@ public class PersonaJuridica extends Persona{
     public void setHorarioFin(String horarioFin) {
         this.horarioFin = horarioFin;
     }
+
+    @Override
+    public String toString() {
+        return "Nombre: " + nombre + '\n' +
+                "Telefono: " + telefono + '\n' +
+                "Direccion: " + direccion + '\n' +
+                "Cuil: " + cuil + '\n' +
+                "HorarioInicio: " + horarioInicio + '\n' +
+                "HorarioFin: " + horarioFin + '\n';
+    }
 }
