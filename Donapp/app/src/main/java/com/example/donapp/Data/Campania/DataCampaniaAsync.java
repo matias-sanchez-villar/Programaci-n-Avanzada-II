@@ -79,9 +79,7 @@ public class DataCampaniaAsync extends AsyncTask<String,Void, StatusResponse> {
             Class.forName(DataDB.driver);
             Connection con = DriverManager.getConnection(DataDB.urlMySQL, DataDB.user, DataDB.pass);
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery(TableDB.SelectAll(TableDB.CAMPANIA));
-
-            //Use la query de SelectAll (a verificar!!!)
+            ResultSet rs = st.executeQuery(TableDB.SelectAll(TableDB.CAMPANIA) + " WHERE `estado` = 1");
 
             Campania campania;
             listCampania.clear();
@@ -89,14 +87,18 @@ public class DataCampaniaAsync extends AsyncTask<String,Void, StatusResponse> {
 
                 campania = new Campania();
                 campania.setId(rs.getInt("id"));
-                campania.setUsuario(new Usuario(rs.getInt("id_usuario")));
+                campania.setCodigo(rs.getString("codigo"));
                 campania.setNombreCampana(rs.getString("nombre_campania"));
                 campania.setFecha(rs.getDate("fecha"));
+                campania.setFechaFin(rs.getDate("fecha_fin"));
                 campania.setLocalidad(new Localidad(rs.getInt("id_localidad")));
                 campania.setProvincia(new Provincia(rs.getInt("id_provincia")));
                 campania.setDireccion(rs.getString("direccion"));
-                campania.setCantSolicitante(rs.getInt("cantidadSolicitantes"));
-                campania.setCantDias(rs.getInt("cantidadDias"));
+                campania.setCantDonantes(rs.getInt("cantidad_donantes"));
+                campania.setCantDonantesConfirmados(rs.getInt("cantidad_donantes_confirmados"));
+                campania.setCantDias(rs.getInt("cantidad_dias"));
+                campania.setInstitucion(new Usuario(rs.getInt("id_institucion")));
+                campania.setUsuario(new Usuario(rs.getInt("id_usuario")));
                 campania.setEstado(EstadoCampania.getTipoEstadoCampania(rs.getInt("estado")));
 
                 listCampania.add(campania);

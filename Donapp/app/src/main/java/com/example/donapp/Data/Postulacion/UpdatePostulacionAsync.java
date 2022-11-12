@@ -8,6 +8,7 @@ import com.example.donapp.Database.DataDB;
 import com.example.donapp.Enums.EstadoPostulacion;
 import com.example.donapp.Enums.EstadoSolicitud;
 import com.example.donapp.Enums.StatusResponse;
+import com.example.donapp.Util.DateUtil;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -38,10 +39,11 @@ public class UpdatePostulacionAsync extends AsyncTask<String, Void, StatusRespon
         try {
             Class.forName(DataDB.driver);
             Connection con = DriverManager.getConnection(DataDB.urlMySQL, DataDB.user, DataDB.pass);
-            PreparedStatement preparedStatement = con.prepareStatement(updatePostulacionStatus());
+            PreparedStatement preparedStatement = con.prepareStatement(updatePostulacionStatusById());
 
             preparedStatement.setInt(1, EstadoPostulacion.CONFIRMADO.ordinal());
-            preparedStatement.setInt(2, id);
+            preparedStatement.setDate(2, new Date(DateUtil.getActualDate().getTime()));
+            preparedStatement.setInt(3, id);
 
             int row = preparedStatement.executeUpdate();
 
@@ -59,13 +61,16 @@ public class UpdatePostulacionAsync extends AsyncTask<String, Void, StatusRespon
     }
 
     private String updatePostulacionStatus(){
-        return "UPDATE `postulaciones` SET `estado` = ? " +
+        return "UPDATE `postulaciones` SET " +
+                "`estado` = ?, " +
+                "`fecha_confirmacion` = ? " +
                 "WHERE id_registro_postulado = ? " +
                 "AND categoria = ?";
     }
 
     private String updatePostulacionStatusById(){
-        return "UPDATE `postulaciones` SET `estado` = ? " +
+        return "UPDATE `postulaciones` SET `estado` = ?, " +
+                "`fecha_confirmacion` = ? " +
                 "WHERE id = ?";
     }
 }

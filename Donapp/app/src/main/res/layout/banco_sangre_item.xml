@@ -4,20 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="70dp"
     android:layout_marginTop="15dp">
 
     <ImageView
-        android:id="@+id/imageListDonante"
+        android:id="@+id/imageListBancoSangre"
         android:layout_width="80dp"
         android:layout_height="60dp"
         android:layout_margin="5dp"
         android:layout_marginTop="5dp"
-        app:srcCompat="@drawable/ic_donador_2" />
+        app:srcCompat="@drawable/ic_hospital" />
     <TextView
-        android:id="@+id/tvListDonanteItem"
+        android:id="@+id/tvListBancoSangre"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="85dp"
         android:layout_weight="1"
         android:layout_marginTop="5dp"
         android:layout_gravity="center_vertical"/>

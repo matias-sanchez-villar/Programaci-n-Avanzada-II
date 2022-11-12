@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:baselineAligned="false"
-            android:text="Instituciones Medicas"
+            android:text="Donantes"
             android:textAlignment="center"
             android:textColor="#0C0C0B"
             android:textSize="20sp"

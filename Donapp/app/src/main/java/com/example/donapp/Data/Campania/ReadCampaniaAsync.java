@@ -43,12 +43,15 @@ public class ReadCampaniaAsync extends AsyncTask<String,Void, Campania> {
 
                 campania = new Campania();
                 campania.setId(rs.getInt("id"));
+                campania.setCodigo(rs.getString("codigo"));
                 campania.setNombreCampana(rs.getString("nombre_campania"));
                 campania.setFecha(rs.getDate("fecha"));
+                campania.setFechaFin(rs.getDate("fecha_fin"));
                 campania.setProvincia(new Provincia(rs.getInt("id_provincia"), rs.getString("provincia")));
                 campania.setLocalidad(new Localidad(rs.getString("localidad")));
                 campania.setDireccion(rs.getString("direccion"));
-                campania.setCantSolicitante(rs.getInt("cantidaSolicitantes"));
+                campania.setCantDonantes(rs.getInt("cantidad_donantes"));
+                campania.setCantDonantesConfirmados(rs.getInt("cantidad_donantes_confirmados") );
                 campania.setCantDias(rs.getInt("cantidad_dias"));
                 campania.setEstado(EstadoSolicitud.getTipoEstadoSolicitud(rs.getInt("estado")));
                 campania.setUsuario(new Usuario(rs.getInt("id_usuario")));

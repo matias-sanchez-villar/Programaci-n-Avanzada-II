@@ -4,6 +4,7 @@ import com.example.donapp.Enums.Categoria;
 import com.example.donapp.Enums.EstadoCampania;
 import com.example.donapp.Interfaces.IEstado;
 import com.example.donapp.Interfaces.IRegistroPostulable;
+import com.example.donapp.Util.CodigoGenerator;
 
 import java.util.Date;
 
@@ -28,17 +29,20 @@ public class Campania extends EntidadEstadoBase implements IRegistroPostulable {
 
     public Campania(String nombreCampana,
                     Date fecha,
+                    Date fechaFin,
                     Provincia provincia,
                     String direccion,
-                    int cantSolicitante,
+                    int cantDonantes,
                     int cantDias) {
         //Falta el ID empresa de session
         this.nombreCampania = nombreCampana;
         this.fecha = fecha;
+        this.fechaFin = fechaFin;
         this.provincia = provincia;
         this.direccion = direccion;
-        this.cantDonantes = cantSolicitante;
+        this.cantDonantes = cantDonantes;
         this.cantDias = cantDias;
+        setAutomaticCodigo();
     }
 
     public Campania(int id,
@@ -46,15 +50,16 @@ public class Campania extends EntidadEstadoBase implements IRegistroPostulable {
                     Date fecha,
                     Provincia provincia,
                     String direccion,
-                    int cantSolicitante,
+                    int cantDonantes,
                     int cantDias) {
         this.id = id;
         this.nombreCampania = nombreCampana;
         this.fecha = fecha;
         this.provincia = provincia;
         this.direccion = direccion;
-        this.cantDonantes = cantSolicitante;
+        this.cantDonantes = cantDonantes;
         this.cantDias = cantDias;
+        setAutomaticCodigo();
     }
 
 
@@ -63,7 +68,7 @@ public class Campania extends EntidadEstadoBase implements IRegistroPostulable {
     }
 
     public void setUsuario(Usuario usuario) {
-        usuario = usuario;
+        this.usuario = usuario;
     }
     public Localidad getLocalidad() {
         return localidad;
@@ -109,13 +114,7 @@ public class Campania extends EntidadEstadoBase implements IRegistroPostulable {
         this.provincia = provincia;
     }
 
-    public int getCantSolicitante() {
-        return cantDonantes;
-    }
 
-    public void setCantSolicitante(int cantSolicitante) {
-        this.cantDonantes = cantSolicitante;
-    }
 
     public int getCantDias() {
         return cantDias;
@@ -189,6 +188,14 @@ public class Campania extends EntidadEstadoBase implements IRegistroPostulable {
         return cantDonantes;
     }
 
+        /*public int getCantDonantes() {
+        return cantDonantes;
+    }
+
+    public void setCantDonantes(int cantSolicitante) {
+        this.cantDonantes = cantSolicitante;
+    }*/
+
     public void setCantDonantes(int cantDonantes) {
         this.cantDonantes = cantDonantes;
     }
@@ -199,6 +206,10 @@ public class Campania extends EntidadEstadoBase implements IRegistroPostulable {
 
     public void setCantDonantesConfirmados(int cantDonantesConfirmados) {
         this.cantDonantesConfirmados = cantDonantesConfirmados;
+    }
+
+    public void setAutomaticCodigo(){
+        this.codigo = CodigoGenerator.getAutomaticCode(CodigoGenerator.codigoSolicitudLenght);
     }
 
     public Usuario getInstitucion() {
@@ -214,5 +225,14 @@ public class Campania extends EntidadEstadoBase implements IRegistroPostulable {
         if(this.cantDonantes == this.cantDonantesConfirmados){
             this.estado = EstadoCampania.COMPLETADA;
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Codigo: " + codigo + '\n' +
+                "Nombre: " + nombreCampania + '\n' +
+                "Fecha: " + fecha.toString() + '\n' +
+                "Fecha fin: " + fechaFin.toString() + '\n' +
+                "Donantes solicitados: " + cantDonantes + '\n';
     }
 }
