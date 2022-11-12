@@ -21,6 +21,7 @@ import com.example.donapp.Entity.Solicitud;
 import com.example.donapp.Entity.Usuario;
 import com.example.donapp.Enums.Categoria;
 import com.example.donapp.Enums.StatusResponse;
+import com.example.donapp.Enums.TipoUsuario;
 import com.example.donapp.R;
 import com.example.donapp.Util.DateUtil;
 import com.example.donapp.Util.Toastable;
@@ -38,7 +39,6 @@ public class DetalleCampaniaActivity extends AppCompatActivity {
 
     Campania campania;
     CampaniaRepository _campaniaRepository;
-    SolicitudRepository _solicitudRepository;
     PostulacionRepository _postulacionRepository;
     HistorialMedicoRepository _historialMedicoRepository = new HistorialMedicoRepository(this);
     Bundle bundle;
@@ -150,23 +150,23 @@ public class DetalleCampaniaActivity extends AppCompatActivity {
 
         if(_postulacionRepository.selectEntity(existsPostulacion) != null){
             btnPostularse.setEnabled(false);
+            txtAlertaHistorialMedico.setText("Solo puede postularse a una donación cada 90 dias");
         }
 
         HistorialMedico historial = _historialMedicoRepository.selectEntity(
                 new HistorialMedico(new Usuario(GlobalPreferences.getLoggedUserId(this)))
         );
 
-        if(historial == null){
+        if(historial == null && GlobalPreferences.getLoggedTipoUsuario(this) != TipoUsuario.EMPRESA){
             btnPostularse.setEnabled(false);
             txtAlertaHistorialMedico.setText("DEBE COMPLETAR HISTORIAL MEDICO PARA POSTULARSE");
-
         }
     }
 
     public void deleteSolicitud(){
 
 
-        if(_solicitudRepository.delete(this.campania.getId()) == StatusResponse.SUCCESS){
+        if(_campaniaRepository.delete(this.campania.getId()) == StatusResponse.SUCCESS){
             Toastable.toast(this, "Solicitud Eliminada");
         } else{
             Toastable.toast(this, "Error");

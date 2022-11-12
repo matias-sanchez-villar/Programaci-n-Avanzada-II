@@ -77,6 +77,7 @@ public class MisCampaniasActivity extends AppCompatActivity {
                 usuarioId
         );
     }
+
     public void goToModificarCampania(Campania campania){
         Intent modificarCampania = new Intent(this, AltaCampaniaActivity.class);
         modificarCampania.putExtra("campaniaUpdate", campania);

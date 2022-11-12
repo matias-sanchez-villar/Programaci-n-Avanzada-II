@@ -71,6 +71,13 @@ public class CampaniaRepository extends BaseRepository<Campania> implements ICRU
         return this.selectAllAsync(thread);
     }
 
+    public StatusResponse selectAllForListViewByStringPropertie(ListView lv,
+                                                                String propertie,
+                                                                String value){
+        this.thread = new DataCampaniaAsync(context, lv, value, propertie);
+        return this.selectAllAsync(thread);
+    }
+
 
     public ArrayList<Campania> selectEntityList(int id) {
         this.listEntityThread  = new ReadCampaniaUsuarioJuridicioAsync(id, context);

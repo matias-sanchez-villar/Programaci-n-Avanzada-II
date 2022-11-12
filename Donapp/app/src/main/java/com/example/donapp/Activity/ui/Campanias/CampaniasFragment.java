@@ -21,9 +21,14 @@ import com.example.donapp.Activity.DetalleCampaniaActivity;
 import com.example.donapp.Activity.MisCampaniasActivity;
 import com.example.donapp.Data.Campania.CampaniaRepository;
 import com.example.donapp.Entity.Campania;
+import com.example.donapp.Entity.GlobalPreferences;
+import com.example.donapp.Enums.StatusResponse;
+import com.example.donapp.Enums.TipoUsuario;
+import com.example.donapp.Util.Toastable;
 import com.example.donapp.databinding.FragmentCampaniasBinding;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class CampaniasFragment extends Fragment {
 
@@ -33,6 +38,7 @@ public class CampaniasFragment extends Fragment {
     ListView listView;
     CampaniaRepository _campaniaRepository;
     ArrayList<String> searcheableProperties = new ArrayList<String>();
+    String searcheablePropertie;
     Spinner spnSearcheableProperties;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -69,6 +75,18 @@ public class CampaniasFragment extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String newText) {
+                String searcheable = newText;
+                if(!searcheable.equals("") && !searcheablePropertie.equals("")){
+                    StatusResponse response = _campaniaRepository.selectAllForListViewByStringPropertie(
+                            listView, searcheablePropertie.toLowerCase(Locale.ROOT), searcheable);
+
+                    if(response == StatusResponse.FAIL){
+                        Toastable.toast(getActivity(), "Hubo un error al recuperar los datos");
+                    }
+                } else if(searcheable.equals("")){
+                    getDBInfo();
+                }
+
                 return false;
             }
         });
@@ -91,6 +109,18 @@ public class CampaniasFragment extends Fragment {
                 goToMisCampanias();
             }
         });
+
+        spnSearcheableProperties.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                searcheablePropertie = (String) parent.getItemAtPosition(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
     public void getDBInfo(){
@@ -108,7 +138,6 @@ public class CampaniasFragment extends Fragment {
         // Propiedades buscables
         searcheableProperties.add("Codigo");
         searcheableProperties.add("Nombre");
-        searcheableProperties.add("Criticidad");
         searcheableProperties.add("Provincia");
         searcheableProperties.add("Localidad");
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
@@ -119,7 +148,9 @@ public class CampaniasFragment extends Fragment {
         // Set Adapter
         spnSearcheableProperties.setAdapter(adapter);
 
-        //
+        if(GlobalPreferences.getLoggedTipoUsuario(getActivity()) != TipoUsuario.EMPRESA){
+            misCampaniasButton.setVisibility(View.GONE);
+        }
     }
 
     public void goToMisCampanias() {

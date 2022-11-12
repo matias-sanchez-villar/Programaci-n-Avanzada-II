@@ -247,23 +247,6 @@
                     android:padding="10dp">
 
                     <TextView
-                        android:id="@+id/txtAlertaHistorialMedicoDetalleCampania"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Debe completar el historial medico"
-                        android:textSize="16sp"
-                        android:textStyle="bold"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="10dp">
-
-                    <TextView
                         android:id="@+id/txtCantDias"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -278,6 +261,23 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:textSize="16sp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:id="@+id/txtAlertaHistorialMedicoDetalleCampania"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text=""
+                        android:textSize="16sp"
+                        android:textStyle="bold"/>
 
                 </LinearLayout>
 
