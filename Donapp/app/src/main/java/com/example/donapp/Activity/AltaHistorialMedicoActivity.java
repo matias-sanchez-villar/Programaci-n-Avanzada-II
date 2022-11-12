@@ -67,10 +67,13 @@ public class AltaHistorialMedicoActivity extends AppCompatActivity {
 
         historialMedico = (HistorialMedico) bundle.getSerializable("historialMedicoUpdate");
 
+
+        fillProperties();
+
         if (!historialMedico.isNew()){
             setPropertiesForUpdate(historialMedico);
         }
-        fillProperties();
+
         setListeners();
     }
 
@@ -150,11 +153,10 @@ public class AltaHistorialMedicoActivity extends AppCompatActivity {
     }
 
     public void setPropertiesForUpdate(HistorialMedico historialMedico){
-        /*txtAltura.setText(historialMedico.getAltura().toString());
+        txtAltura.setText(historialMedico.getAltura().toString());
         txtPeso.setText(historialMedico.getPeso());
         txtFechaUltimaDonacion.setText(historialMedico.getUltimaDonacion().toString());
-        spnTipoSangre*/
-
+        fillCheckBox(examenSi, examenNo, historialMedico.isExamenSangre());
     }
 
     public void setListeners(){

@@ -81,10 +81,10 @@ public class DetalleCampaniaActivity extends AppCompatActivity {
         txtDireccionResponse = (TextView)findViewById(R.id.txtDireccionResponse);
         txtCantDonantesResponse = (TextView)findViewById(R.id.txtCantDonantesResponse);
         txtCantDiasResponse = (TextView)findViewById(R.id.txtCantDiasResponse);
-        txtAlertaHistorialMedico = (TextView) findViewById(R.id.txtAlertaHistorialMedicoDetalleSolicitud);
-        btnVolver = (Button)findViewById(R.id.btnVolver);
-        btnPostularse = (Button) findViewById(R.id.btnPostularseDetalleSolicitud);
-        btnEliminarSolicitud = (Button) findViewById(R.id.btnBorrarDetalleSolicitud);
+        txtAlertaHistorialMedico = (TextView) findViewById(R.id.txtAlertaHistorialMedicoDetalleCampania);
+        btnVolver = (Button)findViewById(R.id.btnVolverDetalleCampania);
+        btnPostularse = (Button) findViewById(R.id.btnPostularseDetalleCampania);
+        btnEliminarSolicitud = (Button) findViewById(R.id.btnBorrarDetalleCampania);
     }
 
     private void setListeners() {
@@ -108,11 +108,9 @@ public class DetalleCampaniaActivity extends AppCompatActivity {
                 deleteSolicitud();
             }
         });
-
     }
 
     private void setProperties() {
-        txtIdResponse.setText(campania.getId());
         txtNombreResponse.setText(campania.getNombreCampana());
         txtFechaResponse.setText(String.valueOf(campania.getFecha()));
         txtFechaFinResponse.setText(String.valueOf(campania.getFechaFin()));
@@ -133,7 +131,7 @@ public class DetalleCampaniaActivity extends AppCompatActivity {
     public void postulate(){
         Date date = DateUtil.getActualDate();
         Usuario usuarioPostulado = new Usuario(GlobalPreferences.getLoggedUserId(this));
-        Postulacion postulacion = new Postulacion(date, Categoria.SOLICITUD, usuarioPostulado, this.campania);
+        Postulacion postulacion = new Postulacion(date, Categoria.CAMPANIA, usuarioPostulado, this.campania);
 
         if(_postulacionRepository.create(postulacion) != 0){
             Toastable.toast(this, "Postulación exitosa");
@@ -145,7 +143,7 @@ public class DetalleCampaniaActivity extends AppCompatActivity {
     public void getDBInfo(){
 
         Postulacion existsPostulacion = new Postulacion(
-                Categoria.SOLICITUD,
+                Categoria.CAMPANIA,
                 new Usuario(GlobalPreferences.getLoggedUserId(this)),
                 this.campania
         );

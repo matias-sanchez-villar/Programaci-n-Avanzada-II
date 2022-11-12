@@ -82,6 +82,7 @@ public class CampaniaRepository extends BaseRepository<Campania> implements ICRU
         this.entityThread = new ReadCampaniaAsync(entity.getId(), context);
         return this.selectEntity(entityThread);
     }
+
     /* Creo que hize cualquier cosa "La idea era validar fecha y Zona(IdLocalidad)
     @Override
     public Boolean selectEntityforDateAndZone(Campania entity) {
