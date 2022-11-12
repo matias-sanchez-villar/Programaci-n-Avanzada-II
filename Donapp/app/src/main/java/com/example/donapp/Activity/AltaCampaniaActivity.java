@@ -34,7 +34,7 @@ import java.util.Date;
 
 public class AltaCampaniaActivity extends AppCompatActivity {
 
-    private EditText txtNombre, txtFecha, txtDireccion, txtCantS, txtCantDias;
+    private EditText txtNombre, txtFecha,txtFechaFin, txtDireccion, txtCantS, txtCantDias;
     private Spinner spnLocalidad, spnProvincia;
     private CheckBox checkTerminos;
     private Button btnGuardar, btnCancelarAltaCampania;
@@ -91,8 +91,7 @@ public class AltaCampaniaActivity extends AppCompatActivity {
                 toast("Campaña modificada");
             } else toast("Error");
         }
-        //goToMisSolicitudes();
-        // }
+        goToMisCampanias();
     }
 
     private void fillProperties() {
@@ -102,6 +101,7 @@ public class AltaCampaniaActivity extends AppCompatActivity {
 
         txtNombre = (EditText)findViewById(R.id.txtNombreAltaCampania);
         txtFecha = (EditText)findViewById(R.id.txtFechaAltaCampania);
+        txtFechaFin = (EditText)findViewById(R.id.txtFechaFinAltaCampania);
         txtDireccion = (EditText)findViewById(R.id.txtDireccionAltaCampania);
         txtCantS = (EditText)findViewById(R.id.txtCantDiasAltaCampania);
         spnLocalidad = (Spinner)findViewById(R.id.spnLocalidadAltaCampania);
@@ -121,10 +121,11 @@ public class AltaCampaniaActivity extends AppCompatActivity {
         }
         this.campaniaForUpdate.setNombreCampana(txtNombre.getText().toString());
         this.campaniaForUpdate.setFecha(DateUtil.convertToSqlDate(txtFecha.getText().toString()));
+        this.campaniaForUpdate.setFechaFin(DateUtil.convertToSqlDate(txtFechaFin.getText().toString()));
         this.campaniaForUpdate.setProvincia(new Provincia(provinciaSelected.getId()));
         this.campaniaForUpdate.setLocalidad(new Localidad(localidadSelected.getId()));
         this.campaniaForUpdate.setDireccion(txtDireccion.getText().toString());
-        this.campaniaForUpdate.setCantSolicitante(Integer.parseInt(txtCantS.getText().toString()));
+        this.campaniaForUpdate.setCantDonantesConfirmados(Integer.parseInt(txtCantS.getText().toString()));
         this.campaniaForUpdate.setCantDias(Integer.parseInt(txtCantDias.getText().toString()));
     }
 
@@ -189,8 +190,9 @@ public class AltaCampaniaActivity extends AppCompatActivity {
     private void fillComponents(Campania campania) {
         txtNombre.setText(campania.getNombreCampana());
         txtFecha.setText(String.valueOf(campania.getFecha()));
+        txtFechaFin.setText(String.valueOf(campania.getFechaFin()));
         txtDireccion.setText(campania.getDireccion());
-        txtCantS.setText(campania.getCantSolicitante());
+        txtCantS.setText(campania.getCantDonantes());
         txtCantDias.setText(campania.getCantDias());
     }
 
@@ -206,31 +208,6 @@ public class AltaCampaniaActivity extends AppCompatActivity {
         } else{
             toast("Error");
         }
-    }
-
-    public boolean validarCamposVacios() {
-        boolean bandera= true;
-        if (txtNombre.getText().length() == 0){
-            txtNombre.setError("El Nombre es obligatorio.");
-            bandera=false;
-        }
-        if (txtCantS.getText().length() == 0){
-            txtCantS.setError("La cantidad de solicitantes es obligatoria.");
-            bandera=false;
-        }
-        if (txtFecha.getText().length()==0){
-            txtFecha.setError("La fecha es obligatoria.");
-            bandera=false;
-        }
-        if (txtDireccion.getText().length() == 0){
-            txtDireccion.setError("La Dirección es obligatoria.");
-            bandera=false;
-        }
-        if (txtCantDias.getText().length()==0){
-            txtCantDias.setError("Indique una cantidad de dias por favor.");
-            bandera=false;
-        }
-        return  bandera;
     }
 
     public void toast(String txt) {Toast.makeText(this, txt, Toast.LENGTH_SHORT).show();}
