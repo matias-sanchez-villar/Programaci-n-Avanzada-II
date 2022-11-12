@@ -150,8 +150,10 @@ public class AltaHistorialMedicoActivity extends AppCompatActivity {
     }
 
     public void setPropertiesForUpdate(HistorialMedico historialMedico){
-
-
+        /*txtAltura.setText(historialMedico.getAltura().toString());
+        txtPeso.setText(historialMedico.getPeso());
+        txtFechaUltimaDonacion.setText(historialMedico.getUltimaDonacion().toString());
+        spnTipoSangre*/
 
     }
 
@@ -206,20 +208,16 @@ public class AltaHistorialMedicoActivity extends AppCompatActivity {
 
     public boolean validarCamposVacios() {
         boolean bandera= true;
-        if (txtPeso.getText().equals("")){
+        if (txtPeso.getText().length() == 0){
             txtPeso.setError("El peso es obligatorio.");
             bandera=false;
         }
-        if (txtAltura.getText().equals("")){
+        if (txtAltura.getText().length() == 0){
             txtAltura.setError("La altura es obligatoria.");
             bandera=false;
         }
-        if (txtFechaUltimaDonacion.getText().equals("")){
+        if (txtFechaUltimaDonacion.getText().length() == 0){
             txtFechaUltimaDonacion.setError("La Fecha de ultima donacion es obligatoria.");
-            bandera=false;
-        }
-        if (spnTipoSangre.getSelectedItem() == ""){
-            toast("Olvido seleccionar un tipo de sangre.");
             bandera=false;
         }
         if (tatuajesSi.isChecked() == false && tatuajesNo.isChecked() == false){

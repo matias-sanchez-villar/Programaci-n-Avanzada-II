@@ -208,5 +208,30 @@ public class AltaCampaniaActivity extends AppCompatActivity {
         }
     }
 
+    public boolean validarCamposVacios() {
+        boolean bandera= true;
+        if (txtNombre.getText().length() == 0){
+            txtNombre.setError("El Nombre es obligatorio.");
+            bandera=false;
+        }
+        if (txtCantS.getText().length() == 0){
+            txtCantS.setError("La cantidad de solicitantes es obligatoria.");
+            bandera=false;
+        }
+        if (txtFecha.getText().length()==0){
+            txtFecha.setError("La fecha es obligatoria.");
+            bandera=false;
+        }
+        if (txtDireccion.getText().length() == 0){
+            txtDireccion.setError("La Dirección es obligatoria.");
+            bandera=false;
+        }
+        if (txtCantDias.getText().length()==0){
+            txtCantDias.setError("Indique una cantidad de dias por favor.");
+            bandera=false;
+        }
+        return  bandera;
+    }
+
     public void toast(String txt) {Toast.makeText(this, txt, Toast.LENGTH_SHORT).show();}
 }
