@@ -48,35 +48,37 @@
                     android:text="Tipo Sangre:"
                     android:textColor="#0C0C0B"/>
                 <TextView
-                    android:id="@+id/tipoSangreDetalleHistorialMedico"
+                    android:id="@+id/tipoSangreDHM"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:text="SI"/>
+                    android:layout_marginStart="10dp" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:text="Peso:"
                     android:textColor="#0C0C0B"/>
+
                 <TextView
-                    android:id="@+id/pesoDetalleHistorialMedico"
+                    android:id="@+id/pesoDHM"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:text="SI"/>
+                    android:layout_marginStart="10dp"/>
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:text="Altura:"
                     android:textColor="#0C0C0B"/>
+
                 <TextView
-                    android:id="@+id/alturaDetalleHistorialMedico"
+                    android:id="@+id/alturaDHM"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:text="SI"/>
+                    android:layout_marginStart="10dp" />
+
             </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -90,11 +92,11 @@
                     android:text="Fecha donacion:"
                     android:textColor="#0C0C0B"/>
                 <TextView
-                    android:id="@+id/ultimaDonacionDetalleHistorialMedico"
+                    android:id="@+id/ultimaDonacionDHM"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:text="SI"/>
+                    android:layout_marginStart="10dp"/>
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -102,11 +104,11 @@
                     android:text="Tatuajes:"
                     android:textColor="#0C0C0B"/>
                 <TextView
-                    android:id="@+id/tatuajeDetalleHistorialMedico"
+                    android:id="@+id/tatuajeDHM"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:text="SI"/>
+                    android:layout_marginStart="10dp"/>
+
             </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -120,11 +122,10 @@
                     android:text="Vacuna:"
                     android:textColor="#0C0C0B"/>
                 <TextView
-                    android:id="@+id/vacunaDetalleHistorialMedico"
+                    android:id="@+id/vacunaDHM"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:text="SI"/>
+                    android:layout_marginStart="10dp"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -132,11 +133,10 @@
                     android:text="Examen Sangre:"
                     android:textColor="#0C0C0B"/>
                 <TextView
-                    android:id="@+id/examenDetalleHistorialMedico"
+                    android:id="@+id/examenDHM"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:text="SI"/>
+                    android:layout_marginStart="10dp"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -144,11 +144,10 @@
                     android:text="Revision Medica:"
                     android:textColor="#0C0C0B"/>
                 <TextView
-                    android:id="@+id/revisionDetalleHistorialMedico"
+                    android:id="@+id/revisionDHM"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:text="SI"/>
+                    android:layout_marginStart="10dp"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -162,11 +161,10 @@
                     android:text="Tratamiento dental:"
                     android:textColor="#0C0C0B"/>
                 <TextView
-                    android:id="@+id/tratamientoDetalleHistorialMedico"
+                    android:id="@+id/tratamientoDHM"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:text="SI"/>
+                    android:layout_marginStart="10dp"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -174,11 +172,10 @@
                     android:text="Endoscopia:"
                     android:textColor="#0C0C0B"/>
                 <TextView
-                    android:id="@+id/endoscopiaDetalleHistorialMedico"
+                    android:id="@+id/endoscopiaDHM"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:text="SI"/>
+                    android:layout_marginStart="10dp"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -192,11 +189,10 @@
                     android:text="Embarazo:"
                     android:textColor="#0C0C0B"/>
                 <TextView
-                    android:id="@+id/embarazoDetalleHistorialMedico"
+                    android:id="@+id/embarazoDHM"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:text="SI"/>
+                    android:layout_marginStart="10dp"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -204,11 +200,10 @@
                     android:text="Enfermedad:"
                     android:textColor="#0C0C0B"/>
                 <TextView
-                    android:id="@+id/enfermedadDetalleHistorialMedico"
+                    android:id="@+id/enfermedadDHM"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:text="SI"/>
+                    android:layout_marginStart="10dp"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -216,11 +211,10 @@
                     android:text="Operacion:"
                     android:textColor="#0C0C0B"/>
                 <TextView
-                    android:id="@+id/operacionDetalleHistorialMedico"
+                    android:id="@+id/operacionDHM"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:text="SI"/>
+                    android:layout_marginStart="10dp"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -234,11 +228,10 @@
                     android:text="Viaje:"
                     android:textColor="#0C0C0B"/>
                 <TextView
-                    android:id="@+id/viajeDetalleHistorialMedico"
+                    android:id="@+id/viajeDHM"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:text="SI"/>
+                    android:layout_marginStart="10dp"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -246,11 +239,10 @@
                     android:text="Anemia:"
                     android:textColor="#0C0C0B"/>
                 <TextView
-                    android:id="@+id/anemiaDetalleHistorialMedico"
+                    android:id="@+id/anemiaDHM"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:text="SI"/>
+                    android:layout_marginStart="10dp"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -258,11 +250,10 @@
                     android:text="Accidentes:"
                     android:textColor="#0C0C0B"/>
                 <TextView
-                    android:id="@+id/accidenteDetalleHistorialMedico"
+                    android:id="@+id/accidenteDHM"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:text="SI"/>
+                    android:layout_marginStart="10dp"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -276,11 +267,10 @@
                     android:text="Usa Medicamentos:"
                     android:textColor="#0C0C0B"/>
                 <TextView
-                    android:id="@+id/medicamentosDetalleHistorialMedico"
+                    android:id="@+id/medicamentosDHM"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:text="SI"/>
+                    android:layout_marginStart="10dp"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -288,11 +278,10 @@
                     android:text="Hepatitis:"
                     android:textColor="#0C0C0B"/>
                 <TextView
-                    android:id="@+id/hepatitisDetalleHistorialMedico"
+                    android:id="@+id/hepatitisDHM"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:text="SI"/>
+                    android:layout_marginStart="10dp"/>
             </LinearLayout>
         </FrameLayout>
     </ScrollView>
