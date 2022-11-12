@@ -88,7 +88,7 @@ public class DataBancoSangreAsync extends AsyncTask<String, Void, StatusResponse
     }
 
     public String queryString(){
-        return String.format("SELECT bs.id bs.hospital, bs.id_provincia, p.nombre as provincia, l.nombre as localidad " +
+        return String.format("SELECT bs.id, bs.hospital, bs.id_provincia, p.nombre as provincia, l.nombre as localidad " +
                 "FROM %1$s bs " +
                 "INNER JOIN provincias p on p.id = bs.id_provincia " +
                 "INNER JOIN localidades l on l.id = bs.id_localidad ", TableDB.BANCOS_SANGRE);
