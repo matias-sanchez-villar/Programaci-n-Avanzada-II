@@ -38,20 +38,12 @@ public class ReadCampaniaUsuarioJuridicioAsync extends AsyncTask<String,Void, Ar
 
             Campania campania;
             listCampania = new ArrayList<Campania>();
-            if(rs.next()) {
-
+            while (rs.next()) {
                 campania = new Campania();
                 campania.setId(rs.getInt("id"));
-                campania.setNombreCampana(rs.getString("nombre_campania"));
                 campania.setFecha(rs.getDate("fecha"));
-                campania.setProvincia(new Provincia(rs.getInt("id_provincia"), rs.getString("provincia")));
-                campania.setLocalidad(new Localidad(rs.getString("localidad")));
-                campania.setDireccion(rs.getString("direccion"));
-                campania.setCantDonantes(rs.getInt("cantidad_donantes"));
                 campania.setCantDonantesConfirmados(rs.getInt("cantidad_donantes_confirmados"));
-                campania.setCantDias(rs.getInt("cantidad_dias"));
                 campania.setEstado(EstadoSolicitud.getTipoEstadoSolicitud(rs.getInt("estado")));
-                campania.setUsuario(new Usuario(rs.getInt("id_usuario")));
 
                 listCampania.add(campania);
             }
@@ -67,7 +59,7 @@ public class ReadCampaniaUsuarioJuridicioAsync extends AsyncTask<String,Void, Ar
     private String queryCampaniaWithid(int id) {
         return String.format("SELECT id, fecha, cantidad_donantes_confirmados, estado " +
                 "FROM campanias " +
-                "WHERE id_institucion = %1$s " +
+                "WHERE id_usuario = %1$s " +
                 "ORDER BY cantidad_donantes_confirmados ASC", id);
     }
 }
