@@ -224,4 +224,5 @@ public class HistorialMedico extends EntidadEstadoBase{
     public void setAnemia(boolean anemia) {
         this.anemia = anemia;
     }
+    public String GetAndroidDate(){return DateUtil.convertToAndroidDate(this.ultimaDonacion.toString());}
 }
