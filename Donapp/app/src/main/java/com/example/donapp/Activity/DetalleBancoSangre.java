@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.donapp.Data.BancoSangre.BancoSangreRepository;
+import com.example.donapp.Data.BancoSangre.DataBancoSangreAsync;
 import com.example.donapp.Data.BancoSangre.ReadBancoSangreAsync;
 import com.example.donapp.Entity.BancoSangre;
 import com.example.donapp.Entity.GlobalPreferences;
@@ -18,7 +20,7 @@ public class DetalleBancoSangre extends AppCompatActivity {
 
     TextView txtHospital, txtProvincia, txtLocalidad, txtDireccion;
     Button btnPostularse;
-    ReadBancoSangreAsync readBancoSangreAsync;
+    BancoSangreRepository BancoSangreRepository;
     BancoSangre bancoSangre;
 
     @Override
@@ -31,9 +33,9 @@ public class DetalleBancoSangre extends AppCompatActivity {
     }
 
     public void onClickBtnPostularse(View view){
-        ///yo soy categoria id 3 descripcion TERCERA;
         int idUsuario = GlobalPreferences.getLoggedUserId(this);
         int idBancoSangre = idBancoSangre();
+
 
 
         toast("postulación realizada");
@@ -49,7 +51,8 @@ public class DetalleBancoSangre extends AppCompatActivity {
 
     public void setProperties(){
         int id = idBancoSangre();
-        readBancoSangreAsync = new ReadBancoSangreAsync(id, this);
+        BancoSangreRepository = new BancoSangreRepository(this);
+        bancoSangre = BancoSangreRepository.selectEntity(new BancoSangre(id));
         txtHospital.setText(bancoSangre.getHospital());
         txtProvincia.setText(bancoSangre.getProvincia().getNombre());
         txtLocalidad.setText(bancoSangre.getLocalidad().getNombre());
